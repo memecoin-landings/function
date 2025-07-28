@@ -4,7 +4,7 @@ import { ScalableWrapper } from "../scalaible-wrapper";
 export default function HomeBlock() {
   return (
     <section className="relative w-full overflow-hidden lg:pt-35 pt-10 md:pt-20">
-      <ScalableWrapper className="bg-black">
+      <ScalableWrapper className="">
         <div className="text-white font-bold ">
           <ScalableText size={8} className="tracking-tight ">
             Think.
