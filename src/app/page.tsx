@@ -1,13 +1,13 @@
-import Header from "@/components/blocks/0-header/header";
 import HomeBlock from "@/components/blocks/1-home/home-block";
+import ServicesBlock from "@/components/blocks/3-services/services-block";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center sm:items-start">
-      <Header />
       <HomeBlock />
+      <ServicesBlock />
     </main>
   );
 }
