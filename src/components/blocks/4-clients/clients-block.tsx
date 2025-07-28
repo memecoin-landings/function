@@ -33,8 +33,8 @@ const companies = [
 export default function ClientsBlock({ className }: { className?: string }) {
   return (
     <section className={`${className} w-full`}>
-      <h2 className="text-[#727272] text-[2.8125rem] leading-[1em] font-medium">Clients</h2>
-      <ul className="mt-7.5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(13.5625rem,1fr))] gap-x-5 gap-y-5 justify-items-center">
+      <h2 className="text-[#727272] text-[2.8125rem] leading-[1em] font-medium lg:ml-5 ml-2.5">Clients</h2>
+      <ul className="mt-7.5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(13.5625rem,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(1fr,9rem))] gap-x-5 gap-y-5 justify-items-center">
       {companies.map((c, i) => (<li key={i}><Image className="object-center object-contain w-full h-full" src={c.src} alt={c.name} /></li>))}
       </ul>
     </section>
