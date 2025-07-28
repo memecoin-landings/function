@@ -1,6 +1,7 @@
 //import Header from "@/components/blocks/0-header/header";
 import type { Metadata } from "next";
 import "./globals.css";
+import CustomCursor from "@/components/custom-cursor";
 import getConfig from "@/config";
 import localFont from "next/font/local";
 import ToastProvider from "@/components/common/toast-provider";
@@ -28,17 +29,17 @@ export const metadata: Metadata = {
 const cera = localFont({
   src: [
     {
-      path: "./_fonts/CeraPro-Regular.ttf",
+      path: "./_fonts/CeraPro-Regular.woff",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./_fonts/CeraPro-Medium.ttf",
+      path: "./_fonts/CeraPro-Medium.woff",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./_fonts/CeraPro-Bold.ttf",
+      path: "./_fonts/CeraPro-Bold.woff",
       weight: "600",
       style: "normal",
     },
@@ -90,7 +91,8 @@ export default function RootLayout({
       >
         <ToastProvider>
           {/* <Header /> */}
-          {children}
+          <CustomCursor />
+        {children}
         </ToastProvider>
       </body>
     </html>

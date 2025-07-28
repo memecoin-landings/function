@@ -125,4 +125,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: cera, sans;
+  cursor: none; /* Hide the default cursor */
 }
