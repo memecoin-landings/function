@@ -16,7 +16,6 @@ import mitsubishi from "@/../public/clients/Mitsubishi.svg";
 import hyundai from "@/../public/clients/Hyundai.svg";
 
 const companies = [
-  // Row 1
   { name: "Hyundai", src: hyundai },
   { name: "Mitsubishi", src: mitsubishi },
   { name: "Яндекс", src: yandex },
@@ -31,11 +30,11 @@ const companies = [
   { name: "ТехноНИКОЛЬ", src: techonicol },
 ];
 
-export default function TrustBlock({ className }: { className?: string }) {
+export default function ClientsBlock({ className }: { className?: string }) {
   return (
     <section className={`${className} w-full`}>
       <h2 className="text-[#727272] text-[2.8125rem] leading-[1em] font-medium">Clients</h2>
-      <ul className="mt-7.5 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-x-5 gap-y-5 justify-items-center">
+      <ul className="mt-7.5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(13.5625rem,1fr))] gap-x-5 gap-y-5 justify-items-center">
       {companies.map((c, i) => (<li key={i}><Image className="object-center object-contain w-full h-full" src={c.src} alt={c.name} /></li>))}
       </ul>
     </section>
