@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <main className="flex flex-col items-center sm:items-start">
-      <HomeBlock />
+      <HomeBlock mt-37 />
       <ServicesBlock />
     </main>
   );

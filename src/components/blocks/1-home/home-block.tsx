@@ -1,38 +1,23 @@
-import { ScalableText } from "@/components/text/scalabie-text";
-import { ScalableWrapper } from "../scalaible-wrapper";
-
 export default function HomeBlock() {
   return (
-    <section className="relative w-full overflow-hidden lg:pt-35 pt-10 md:pt-20">
-      <ScalableWrapper className="">
-        <div className="text-white font-bold ">
-          <ScalableText size={8} className="tracking-tight ">
-            Think.
-          </ScalableText>
-          <ScalableText
-            size={8}
-            marginLeft={41}
-            leading={4}
-            className="tracking-tight "
-          >
-            Create.
-          </ScalableText>
-          <ScalableText size={8} className="tracking-tight ">
-            Function.
-          </ScalableText>
-          <div className="content-center">
-            <ScalableText
-              size={2}
-              maxWidth={50}
-              marginLeft={38}
-              className="text-white font-light text-left"
-            >
-              Functional design for solving practical business challenges,
-              driving growth, and entering new markets
-            </ScalableText>
+    <section className="relative w-full lg:pt-35 pt-10 md:pt-20">
+      <div className="flex flex-col">
+        <div className="@container">
+          <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[19cqw] md:text-[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap">
+            Unique
+            <br />
+            Solutions —
           </div>
         </div>
-      </ScalableWrapper>
+        <p
+          className="text-5xl @container text-[4cqw] mt-[-1em] relative z-10"
+          style={{ marginTop: "-1.4em" }}
+        >
+          Functionally and strategically refined design by a brand identity
+          studio that solves business challenges, drives growth, and is based on
+          in‑depth analysis
+        </p>
+      </div>
     </section>
   );
 }
