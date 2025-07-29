@@ -7,7 +7,7 @@ export default function LinkedinIcon({ className }: { className?: string }) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_1860_410)">
+      <g clipPath="url(#clip0_1860_410)">
         <path
           d="M18.5886 16.3908V16.3516C18.5886 16.3516 18.5625 16.3777 18.5625 16.3908H18.5886Z"
           
