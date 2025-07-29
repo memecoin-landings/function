@@ -15,6 +15,7 @@ export class BgImageParam {
     this.subtitle = subtitle;
   }
 }
+
 export default function BgImageCard({
   data,
   className,
@@ -24,29 +25,26 @@ export default function BgImageCard({
 }) {
   return (
     <div
-      className={`${className} relative h-[468px] rounded-b-md pb-5 flex flex-col items-start justify-end overflow-hidden group/item mt-5`}
+      className={`${className} relative h-[468px] rounded-md  flex flex-col items-start justify-end  overflow-hidden`} // Добавлен overflow-hidden
     >
-      {/* Текстовый блок с отступами и ограничением ширины */}
-      <div className="text-left z-10 w-full px-5 max-w-[90%]">
-        <div>
-          {data.title && (
-            <p className="text-white text-3xl font-medium">{data.title}</p>
-          )}
-          {data.subtitle && (
-            <p className="text-white text-[0.875rem] leading-5 tracking-tight whitespace-normal">
-              {data.subtitle}
-            </p>
-          )}
-        </div>
+      <div className="text-left z-10 w-full px-5 py-5 max-w-[90%]">
+        {data.title && (
+          <p className="text-white text-3xl font-medium">{data.title}</p>
+        )}
+        {data.subtitle && (
+          <p className="text-white text-[0.875rem] pt-2.5 leading-5 tracking-tight whitespace-normal">
+            {data.subtitle}
+          </p>
+        )}
       </div>
-
-      {/* Фоновое изображение */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0">
         <Image
           src={data.image}
           alt={data.title ?? ""}
-          className="object-cover w-full h-full transition-transform duration-650 ease-in-out group-hover/item:scale-110"
           fill
+          sizes="(max-width: 468px) 100vw, 50vw"
+          priority
+          className="object-cover transition-transform duration-650 hover:scale-105" // Уменьшено до scale-105
         />
       </div>
     </div>

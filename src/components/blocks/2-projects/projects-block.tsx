@@ -1,3 +1,4 @@
+"use client";
 // import { ScalableText } from "@/components/text/scalabie-text";
 // import { ScalableWrapper } from "../scalaible-wrapper";
 
@@ -13,21 +14,31 @@
 //   );
 // }
 
-import pic from "@/../public/assets/test.jpg";
+import arshaluysPic from "@/../public/cover_project-arshaluys.jpg";
+import cancerPic from "@/../public/cover_project-cancer.jpg";
+import caspianGoldPic from "@/../public/cover_project-caspian-gold.jpg";
+import fffPic from "@/../public/cover_project-fff.jpg";
+import smartStoryPic from "@/../public/cover_project-smart-stroy.jpg";
+import spilePic from "@/../public/cover_project-spile.jpg";
+
 import BgImageCard, { BgImageParam } from "@/components/cards/bg-image-card";
+import SectionHeader from "@/components/common/section-header";
 import type React from "react";
-import { ScalableWrapper } from "../scalaible-wrapper";
+import ProjectLinkButton from "./projects-link-button";
 
 export default function ProjectsBlock({ className }: { className?: string }) {
   const infoBlocks = [
-    new BgImageParam(pic),
-    new BgImageParam(pic, "Arshaluys", "Logo, Product branding"),
-    new BgImageParam(pic),
-    new BgImageParam(pic),
+    new BgImageParam(fffPic),
+    new BgImageParam(spilePic),
+    new BgImageParam(caspianGoldPic),
+    new BgImageParam(cancerPic),
+    new BgImageParam(arshaluysPic, "Arshaluys", "Logo, Product branding"),
+    new BgImageParam(smartStoryPic),
   ];
   return (
     <section className={`${className} fluid-container`}>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-2.5">
+      <SectionHeader>Projects</SectionHeader>
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-2.5 mt-7.5">
         {infoBlocks.map((item, i) => (
           <div
             key={i}
@@ -40,6 +51,7 @@ export default function ProjectsBlock({ className }: { className?: string }) {
           </div>
         ))}
       </div>
+      <ProjectLinkButton></ProjectLinkButton>
     </section>
   );
 }
