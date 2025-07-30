@@ -12,7 +12,11 @@ export default function ServicesBlock({ className }: { className?: string }) {
         {
           services.map((service, index) => (
             <Link href={`#services`} key={index} className="text-[5.71cqw] font-medium font-cera inline not-last:after:[content:',_']">
-              <span className="hover:text-[#FF3F1A] hover:underline inline-block text-left">{service.title}</span>
+              <span className="
+                hover:text-[#FF3F1A] inline-block text-left relative transition-colors duration-500
+                after:[content:''] after:scale-x-0 after:w-full after:h-1.5 after:bg-[#FF3F1A] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
+                hover:after:scale-x-100
+              ">{service.title}</span>
             </Link>
           ))
         }
