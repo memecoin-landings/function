@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #151516;
+  --foreground: #F0EDE8;
 }
 
 @layer components {
@@ -17,8 +17,6 @@
 :root {
   background: #F3F3F3;
   scroll-behavior: smooth;
-
-
 
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
@@ -78,6 +76,8 @@
 
   --animate-ride: ride 0.8s ease-in-out;
   --animate-button: button-hover 0.8s ease-in-out;
+
+    --breakpoint-xs: 26.875rem;
 
   @keyframes ride {
 
