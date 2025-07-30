@@ -10,9 +10,7 @@ export default function HomeBlock({ className }: { className?: string }) {
           Solutions —
         </div>
         <p className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pl-5 pl-2.5 md:pr-[9.58cqw] xs:px-2.5">
-          Functionally and strategically refined design by a brand identity
-          studio that solves business challenges, drives growth, and is based on
-          in‑depth analysis
+          Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
         </p>
       </div>
     </section>
