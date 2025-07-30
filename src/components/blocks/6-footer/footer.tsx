@@ -6,7 +6,7 @@ import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 
 export default function Footer({ emailAddress }: { emailAddress: string }) {
   return (
-    <footer className="w-full bg-black pt-12.5">
+    <footer className="w-full bg-black pt-12.5"><div className="fluid-container">
       <div className="@container px-3.75 xs:p-9.25 mb-5 max-w-[120rem]">
         <div className="text-[#FF3F1A] whitespace-nowrap text-[7.49cqw] tracking-[-3%] ">
           {emailAddress}
@@ -19,16 +19,16 @@ export default function Footer({ emailAddress }: { emailAddress: string }) {
               Contact via Messenger:
             </p>
           </div>
-        
-            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
-              <WhatsappCircleIcon className="w-6.25 pr-2.5" />
-              <p>WhatsApp</p>
-            </div>
-            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
-              <TelegramCircleIcon className="w-6.25 pr-2.5" />
-              <p>Telegram</p>
-            </div>
-   
+
+          <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
+            <WhatsappCircleIcon className="w-6.25 pr-2.5" />
+            <p>WhatsApp</p>
+          </div>
+          <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
+            <TelegramCircleIcon className="w-6.25 pr-2.5" />
+            <p>Telegram</p>
+          </div>
+
         </div>
       </div>
       <div className="flex flex-col px-11.25">
@@ -58,6 +58,6 @@ export default function Footer({ emailAddress }: { emailAddress: string }) {
           </div>
         </div>
       </div>
-    </footer>
+    </div></footer>
   );
 }
