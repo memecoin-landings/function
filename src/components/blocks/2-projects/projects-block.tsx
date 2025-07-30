@@ -11,15 +11,44 @@ import SectionHeader from "@/components/common/section-header";
 import type React from "react";
 import ProjectLinkButton from "./projects-link-button";
 
+
+const projects = [
+  {
+    title: "Feel Full Free",
+    image: fffPic,
+
+  },
+  {
+    title: "Spile",
+    image: spilePic,
+  },
+  {
+    title: "Caspian Gold",
+    image: caspianGoldPic,
+  },
+  {
+    title: "Cancer screening campaign in Moscow",
+    image: cancerPic,
+  },
+  {
+    title: "Arshaluys",
+    image: arshaluysPic,
+    description: "Logo, Product branding",
+  },
+  {
+    title: "Smartstroy",
+    image: smartStoryPic,
+  },
+]
+
 export default function ProjectsBlock({ className }: { className?: string }) {
-  const infoBlocks = [
-    new BgImageParam(fffPic),
-    new BgImageParam(spilePic),
-    new BgImageParam(caspianGoldPic),
-    new BgImageParam(cancerPic),
-    new BgImageParam(arshaluysPic, "Arshaluys", "Logo, Product branding"),
-    new BgImageParam(smartStoryPic),
-  ];
+  const infoBlocks = projects.map((project) => {
+    return new BgImageParam(
+      project.image,
+      project.title,
+      "Logo, Product branding",
+    )
+  });
   return (
     <section className={`${className} fluid-container`}>
       <SectionHeader>Projects</SectionHeader>
