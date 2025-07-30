@@ -18,27 +18,17 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "reflect-metadata": "^0.2.2"
-    "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^15.2.4",
     "@tailwindcss/postcss": "^4",
-    "@eslint/eslintrc": "^3",
-    "@next/eslint-plugin-next": "^15.2.4",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/qs": "^6.9.18",
     "@types/qs": "^6.9.18",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "prettier-eslint": "^16.3.0",
-    "tailwindcss": "^4",
-    "tsyringe": "^4.9.1",
-    "typescript": "^5"
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier-eslint": "^16.3.0",
     "tailwindcss": "^4",
