@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex flex-col items-center sm:items-start">
       <HomeBlock />
       <ServicesBlock />
-      <ClientsBlock />
+      <ClientsBlock className="mt-42.5" />
     </main>
   );
 }
