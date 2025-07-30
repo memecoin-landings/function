@@ -23,7 +23,7 @@ export default function Header({ className }: { className?: string }) {
       <div className="mx-auto px-5 flex items-center">
         {/* Logo */}
         <Link href="/#home" className="flex-shrink-0 flex items-center group">
-          <FunctionLogo className="fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
+          <FunctionLogo className="sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
         </Link>
         <div className="grow-1"></div>
         {/* Desktop Navigation */}
