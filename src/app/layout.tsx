@@ -1,6 +1,7 @@
 //import Header from "@/components/blocks/0-header/header";
 import type { Metadata } from "next";
 import "./globals.css";
+import CustomCursor from "@/components/custom-cursor";
 import getConfig from "@/config";
 import localFont from "next/font/local";
 import ToastProvider from "@/components/common/toast-provider";
@@ -90,7 +91,8 @@ export default function RootLayout({
       >
         <ToastProvider>
           {/* <Header /> */}
-          {children}
+          <CustomCursor />
+        {children}
         </ToastProvider>
       </body>
     </html>
