@@ -10,15 +10,13 @@
 
 @layer components {
   .fluid-container {
-    @apply mx-auto w-full max-w-350 px-2.5 md:px-5;
+    @apply mx-auto w-full max-w-495 px-2.5 md:px-5;
   }
 }
 
 :root {
   background: #F3F3F3;
   scroll-behavior: smooth;
-
-
 
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
@@ -47,6 +45,9 @@
 
   .animated {
     will-change: transform;
+  }
+  * {
+      cursor: none !important; /* Hide the default cursor */
   }
 }
 

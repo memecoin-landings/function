@@ -22,11 +22,12 @@ export function useHoverTriggeredAnimation({
     };
 
     // Добавляем слушатель скролла
-    el.current?.addEventListener('mouseover', handleHover);
+    const elementCopy = el.current;
+    elementCopy?.addEventListener('mouseover', handleHover);
 
     // Очистка
     return () => {
-      el.current?.removeEventListener('mouseover', handleHover);
+      elementCopy?.removeEventListener('mouseover', handleHover);
     };
-  }, [el, animationRule]);
+  }, [el, animationRule, animationClass, playing]);
 }
