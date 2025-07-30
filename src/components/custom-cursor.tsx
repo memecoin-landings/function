@@ -39,8 +39,8 @@ export default function CustomCursor() {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: 18,
-        height: 18,
+        width: 17,
+        height: 17,
         borderRadius: '50%',
         background: '#FF3F1A',
         pointerEvents: 'none',
@@ -67,7 +67,7 @@ export default function CustomCursor() {
           opacity: hovered ? 1 : 0,
           scale: hovered ? 0.25 : 0.125,
         }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
       >
         <path
           d="M36 72C55.8823 72 72 55.8823 72 36C72 16.1177 55.8823 0 36 0C16.1177 0 0 16.1177 0 36C0 55.8823 16.1177 72 36 72Z"

@@ -1,38 +1,18 @@
-import { ScalableText } from "@/components/text/scalabie-text";
-import { ScalableWrapper } from "../scalaible-wrapper";
+import { cn } from "@/lib/utils";
 
-export default function HomeBlock() {
+export default function HomeBlock({ className }: { className?: string }) {
   return (
-    <section className="relative w-full overflow-hidden lg:pt-35 pt-10 md:pt-20">
-      <ScalableWrapper className="">
-        <div className="text-white font-bold ">
-          <ScalableText size={8} className="tracking-tight ">
-            Think.
-          </ScalableText>
-          <ScalableText
-            size={8}
-            marginLeft={41}
-            leading={4}
-            className="tracking-tight "
-          >
-            Create.
-          </ScalableText>
-          <ScalableText size={8} className="tracking-tight ">
-            Function.
-          </ScalableText>
-          <div className="content-center">
-            <ScalableText
-              size={2}
-              maxWidth={50}
-              marginLeft={38}
-              className="text-white font-light text-left"
-            >
-              Functional design for solving practical business challenges,
-              driving growth, and entering new markets
-            </ScalableText>
-          </div>
+    <section className={cn("relative w-full", className)}>
+      <div className="flex flex-col @container">
+        <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap pl-2.5 xs:pl-0">
+          Unique
+          <br />
+          Solutions —
         </div>
-      </ScalableWrapper>
+        <p className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pl-5 pl-2.5 md:pr-[9.58cqw] xs:px-2.5">
+          Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
+        </p>
+      </div>
     </section>
   );
 }
