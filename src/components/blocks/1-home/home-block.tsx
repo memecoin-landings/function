@@ -3,7 +3,7 @@ export default function HomeBlock() {
     <section className="relative w-full lg:pt-35 pt-10 md:pt-20">
       <div className="flex flex-col">
         <div className="@container">
-          <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[19cqw] md:text-[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap">
+          <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap">
             Unique
             <br />
             Solutions —
