@@ -23,7 +23,7 @@ export default function ProjectsBlock({ className }: { className?: string }) {
   return (
     <section className={`${className} fluid-container`}>
       <SectionHeader>Projects</SectionHeader>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-2.5 mt-7.5">
+      <div className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5 xs:mt-7.5 mt-2.5">
         {infoBlocks.map((item, i) => (
           <div
             key={i}
