@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import logo from "@/../public/logo.svg";
 import React, { useState } from "react";
 import Link from "next/link";
 import FunctionLogo from "@/components/icons/logo";
