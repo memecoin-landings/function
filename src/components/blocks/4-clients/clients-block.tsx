@@ -35,7 +35,11 @@ export default function ClientsBlock({ className }: { className?: string }) {
     <section className={`${className} w-full fluid-container`}>
       <SectionHeader className="text-[#727272] text-[2.8125rem] leading-[1em] font-medium">Clients</SectionHeader>
       <ul className="mt-7.5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(13.5625rem,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(1fr,9rem))] gap-x-2.5 gap-y-5 sm:gap-x-1.75 sm:gap-y-8.75 md:gap-x-5 md:gap-y-5">
-      {companies.map((c, i) => (<li key={i}><Image className="object-center object-contain w-full h-full" src={c.src} alt={c.name} /></li>))}
+      {companies.map((c, i) => (
+        <li key={i} className="transition-transform duration-300 ease-in-out hover:scale-110">
+          <Image className="object-center object-contain w-full h-full" src={c.src} alt={c.name} />
+        </li>
+      ))}
       </ul>
     </section>
   )
