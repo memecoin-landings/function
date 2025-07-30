@@ -1,19 +1,4 @@
 "use client";
-// import { ScalableText } from "@/components/text/scalabie-text";
-// import { ScalableWrapper } from "../scalaible-wrapper";
-
-// export default function ProjectsBlock() {
-//   return (
-//     <section className="relative w-full overflow-hidden lg:pt-35 pt-10 md:pt-20">
-//       <ScalableWrapper className="bg-black">
-//         <div>
-
-//         </div>
-//       </ScalableWrapper>
-//     </section>
-//   );
-// }
-
 import arshaluysPic from "@/../public/cover_project-arshaluys.jpg";
 import cancerPic from "@/../public/cover_project-cancer.jpg";
 import caspianGoldPic from "@/../public/cover_project-caspian-gold.jpg";
