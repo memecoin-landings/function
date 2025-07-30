@@ -6,12 +6,12 @@ import ClientsBlock from "@/components/blocks/4-clients/clients-block";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center sm:items-start md:pt-25.75 xs:pt-18.25 pt-17">
+    <main className="flex flex-col items-center sm:items-start md:pt-25.75 xs:pt-18.25 pt-17 pb-25.75 md:pb-18.25 xs:pb-18.25 w-full">
       <HomeBlock className="" />
       <ProjectsBlock className="md:pt-32.75 xs:pt-18.25 pt-17" />
-      <ServicesBlock />
+      <ServicesBlock className="md:mt-39 xs:mt-18 mt-10.5" />
       <ClientsBlock className="md:mt-42.5 xs:mt-25 mt-17.5" />
-      <FedorBlock />
+      <FedorBlock className="md:mt-51.75 xs:mt-25 mt-17.5" />
     </main>
   );
 }
