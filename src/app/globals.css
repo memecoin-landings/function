@@ -10,7 +10,7 @@
 
 @layer components {
   .fluid-container {
-    @apply mx-auto w-full max-w-330.5 px-6.25 md:px-5 lg:px-4;
+    @apply mx-auto w-full max-w-495 px-2.5 md:px-5;
   }
 }
 
