@@ -25,7 +25,7 @@ export default function BgImageCard({
 }) {
   return (
     <div
-      className={`${className} group relative h-[468px] rounded-md flex flex-col items-start justify-end overflow-hidden cursor-pointer`}
+      className={`${className} group relative h-[29.25rem] rounded-md flex flex-col items-start justify-end overflow-hidden cursor-pointer`}
     >
       <div className="text-left z-10 w-full px-5 py-5 max-w-[90%]">
         {data.title && (
@@ -54,7 +54,6 @@ export default function BgImageCard({
           src={data.image}
           alt={data.title ?? ""}
           fill
-          sizes="(max-width: 468px) 100vw, 50vw"
           priority
           className="object-cover transition-transform duration-650 group-hover:scale-105"
         />
