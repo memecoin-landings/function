@@ -31,7 +31,7 @@ export default function CustomCursor() {
         scale: hovered ? 4 : 1,
       }}
       transition={{
-        type: 'spring',
+        type: false,
         stiffness: 1200,
         damping: 60,
       }}
@@ -39,8 +39,8 @@ export default function CustomCursor() {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: 18,
-        height: 18,
+        width: 17,
+        height: 17,
         borderRadius: '50%',
         background: '#FF3F1A',
         pointerEvents: 'none',
