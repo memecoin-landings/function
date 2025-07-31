@@ -1,16 +1,11 @@
 import type { MetadataRoute } from "next";
 import "reflect-metadata";
-import { container } from "tsyringe";
-import { services } from "../components/services/all-services-block";
 import getConfig from "../config";
-import VehicleService from "../domain/vehicle/vehicleService";
+import services from "@/domain/services";
 
 const baseUrl = getConfig().baseUrl;
 
-const service = container.resolve(VehicleService);
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const cars = await service.getVehicles();
   return [
     {
       url: baseUrl,
@@ -22,18 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...cars.map((b) => ({
-      url: `${baseUrl}/catalog/${b.slug}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    })),
     {
       url: `${baseUrl}/services`,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     ...services.map((s) => ({
-      url: `${baseUrl}/services/${s.link}`,
+      url: `${baseUrl}/services/${s.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

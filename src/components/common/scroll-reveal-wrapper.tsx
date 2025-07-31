@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode, RefObject } from "react";
-import { useScrollReveal } from "../../app/animation/use-scroll-reveal";
+import { useScrollReveal } from "./use-scroll-reveal";
 
 export default function ScrollRevealWrapper({
   children,

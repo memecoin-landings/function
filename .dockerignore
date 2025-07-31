@@ -1,0 +1,13 @@
+.tmp
+build
+node_modules
+public/uploads/*
+# .env*
+.eslint*
+.git*
+.strapi-updater.json
+yarn.lock
+.next
+Dockerfile
+.dockerignore
+.prettier*
