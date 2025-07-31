@@ -6,54 +6,59 @@ import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 
 export default function Footer({ emailAddress }: { emailAddress: string }) {
   return (
-    <footer className="w-full bg-black pt-12.5">
-      <div className="@container px-3.75 xs:p-9.25 mb-5 max-w-[120rem]">
-        <div className="text-[#FF3F1A] whitespace-nowrap text-[7.49cqw] tracking-[-3%] ">
-          {emailAddress}
-        </div>
-      </div>
-      <div className="px-11.25">
-        <div className="flex flex-row space-x-5 xs:justify-center text-[0.75rem] xs:text-[0.875rem] tracking-[-3%] pb-12.5 @container">
-          <div className="flex items-center">
-            <p className="flex items-center text-[3.5cqw] xs:text-[clamp(0.75rem,3.5cqw,0.875rem)] text-nowrap">
-              Contact via Messenger:
-            </p>
+    <footer className="w-full bg-black pt-12.5 ">
+      <div className="fluid-container @container">
+        <div className="@container mb-5 md:mb-16.5 w-full text-center ">
+          <div className="text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline font-medium leading-[100%] decoration-solid">
+            {emailAddress}
           </div>
-        
-            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
-              <WhatsappCircleIcon className="w-6.25 pr-2.5" />
+        </div>
+        <div className="px-11.25 pb-12.5 md:pb-25">
+          <div className="flex flex-row space-x-5 xs:justify-center text-[0.75rem] xs:text-[0.875rem] tracking-[-3%]   @container">
+            <div className="flex items-center">
+              <p className="flex items-center text-[3.5cqw] xs:text-[clamp(0.75rem,3.5cqw,0.875rem)] md:text-[1.25rem] text-nowrap">
+                Contact via Messenger:
+              </p>
+            </div>
+
+            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center">
+              <WhatsappCircleIcon className="w-6.25 md:w-8.75 pr-2.5" />
               <p>WhatsApp</p>
             </div>
-            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] items-center">
-              <TelegramCircleIcon className="w-6.25 pr-2.5" />
+            <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center">
+              <TelegramCircleIcon className="w-6.25 md:w-8.75  pr-2.5" />
               <p>Telegram</p>
             </div>
-   
-        </div>
-      </div>
-      <div className="flex flex-col px-11.25">
-        <div className="flex flex-row w-full @container pb-12.5">
-          <div className="flex w-[42cqw] xs:w-1/2 ">
-            <p className="text-[1.563rem] leading-[1.938rem] tracking-[0%]">
-              Order <br /> a service
-            </p>
-          </div>
-          <div className="flex flex-row w-[58cqw] xs:w-1/2 xs:max-w-[98cqw]">
-            <div className="w-full h-[10rem] bg-[#FF3F1A]">Form</div>
           </div>
         </div>
-        <div className="flex flex-row w-full @container items-center pb-12.5">
-          <div className="flex flex-row w-[42cqw] xs:w-1/2 items-center space-x-5">
-            <p className="text-[0.75rem] tracking-[-3%]">
-              Discover our work on:
-            </p>
-            <InstagramIcon className="w-6.25   fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-            <BehanceIcon className="w-6.25  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-            <UnknownIcon className="w-6.25  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+        <div className="flex flex-col px-8.75 md:px-[7.6cqw]">
+          <div className="flex flex-row w-full @container pb-12.5">
+            <div className="flex w-[42cqw] xs:w-1/2 ">
+              <p className="text-[1.563rem] leading-[1.938rem] tracking-[0%] xs:text-[5.8cqw] xs:leading-[7cqw] md:text-[clamp(2.25rem,4.6cqw,3.375rem)] md:leading-[5.6cqw]">
+                Order <br /> a service
+              </p>
+            </div>
+            <div className="flex flex-row w-[58cqw] xs:w-1/2 xs:max-w-[98cqw] ">
+              <div className="w-full h-[10rem] bg-[#FF3F1A] md:max-w-[39cqw]">
+                Form
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row w-[58cqw] xs:w-1/2 items-center pt-1">
-            <div className="text-[#727272] text-[0.438rem]">
-              © Functional Design Studio. All rights reserved
+          <div className="flex flex-row w-full @container items-center pb-12.5">
+            <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center space-x-5 @container pr-[6.3cqw] md:pr-0">
+              <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-[-3%] mb-2.5 md:mb-0 whitespace-nowrap">
+                Discover our work on:
+              </p>
+              <div className="flex flex-row space-x-2.5 md:space-x-5">
+                <InstagramIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                <BehanceIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                <UnknownIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+              </div>
+            </div>
+            <div className="flex flex-row w-[58cqw] xs:w-1/2 items-center pt-1">
+              <div className="text-[#727272] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem]">
+                © Functional Design Studio. All rights reserved
+              </div>
             </div>
           </div>
         </div>
