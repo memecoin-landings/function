@@ -5,23 +5,19 @@ import React, { useState } from "react";
 import Link from "next/link";
 import FunctionLogo from "@/components/icons/logo";
 import BurgerIcon from "@/components/icons/burger";
+import MobileMenu from "./mobile-menu";
+import menuItems from "./menu-items";
 
-const menuItems = [
-  { href: "#", label: "Projects" },
-  { href: "#", label: "Services" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Contact Us" },
-];
 
 export default function Header({ className }: { className?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className={cn("w-full  text-white", className)} >
-      <div className="mx-auto px-5 flex items-center">
+    <header className={cn("w-full text-white sm:relative fixed z-100", className)} >
+      <div className={cn("mx-auto px-5 flex items-center")}>
         {/* Logo */}
         <Link href="/#home" className="flex-shrink-0 flex items-center group">
-          <FunctionLogo className="sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
+          <FunctionLogo className="origin-left sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
         </Link>
         <div className="grow-1"></div>
         {/* Desktop Navigation */}
@@ -41,47 +37,14 @@ export default function Header({ className }: { className?: string }) {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          className={cn(isMenuOpen ? "rotate-90" : "", "transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white")}
         ><BurgerIcon className="fill-[#F0EDE8] transition-colors duration-300 group-hover:fill-[#FF3F1A]" />
         </button>
-
       </div>
 
       {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-800">
-            <a
-              href="#"
-              className="hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Projects
-            </a>
-            <a
-              href="#"
-              className="hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Services
-            </a>
-            <a
-              href="#"
-              className="hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className="hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Contact Us
-            </a>
-            <button className="w-full text-left bg-white text-slate-900 hover:bg-gray-100 transition-colors duration-200 px-3 py-2 rounded-md text-base font-medium mt-2">
-              Get Price
-            </button>
-          </div>
-        </div>
-      )}
-    </header>
+      <MobileMenu className={cn(isMenuOpen ? "translate-x-0" : "translate-x-[200vw]")} />
+    </header >
   )
 }
 
