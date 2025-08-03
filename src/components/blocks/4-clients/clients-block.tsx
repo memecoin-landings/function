@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { animate } from "animejs";
+import { useScrollReveal } from "@/components/common/use-scroll-reveal";
 
 import yandex from "@/../public/clients/yandex.svg";
 import jti from "@/../public/clients/jti.svg";
@@ -34,53 +35,33 @@ const companies = [
 
 export default function ClientsBlock({ className }: { className?: string }) {
   const containerRef = useRef<HTMLUListElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const hasAnimated = useRef(false);
+  const { ref: sectionRef, isInView } = useScrollReveal({ 
+    threshold: 0.2,
+  });
 
   useEffect(() => {
-    if (!sectionRef.current || hasAnimated.current) return;
+    if (isInView && containerRef.current) {
+      
+      const listItems = containerRef.current.querySelectorAll('li');
+      
+      listItems.forEach(item => {
+        (item as HTMLElement).style.opacity = '0';
+        (item as HTMLElement).style.transform = 'scale(0.8) translateY(30px)';
+      });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && containerRef.current && !hasAnimated.current) {
-            hasAnimated.current = true;
-            
-            const listItems = containerRef.current.querySelectorAll('li');
-            
-            listItems.forEach(item => {
-              (item as HTMLElement).style.opacity = '0';
-              (item as HTMLElement).style.transform = 'scale(0.8) translateY(30px)';
-            });
-
-            listItems.forEach((item, index) => {
-              setTimeout(() => {
-                animate(item, {
-                  opacity: [0, 1],
-                  scale: [0.8, 1],
-                  translateY: [30, 0],
-                  easing: 'easeOutExpo',
-                  duration: 800
-                });
-              }, 200 + (index * 100));
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.3, // Trigger when 30% of the section is visible
-        rootMargin: '0px 0px -50px 0px' // Start animation slightly before the section is fully in view
-      }
-    );
-
-    observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+      listItems.forEach((item, index) => {
+        setTimeout(() => {
+          animate(item, {
+            opacity: [0, 1],
+            scale: [0.8, 1],
+            translateY: [30, 0],
+            easing: 'easeOutExpo',
+            duration: 800
+          });
+        }, 200 + (index * 100));
+      });
+    }
+  }, [isInView]);
 
   return (
     <section ref={sectionRef} className={`${className} w-full fluid-container`}>
