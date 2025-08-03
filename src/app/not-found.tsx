@@ -26,7 +26,7 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages overlaid on top left of 404 */}
-          <div className="relative sm:absolute bottom-70 sm:bottom-0 ml-11.5 mr-11.5 sm:text-left sm:mb-0 xl:top-[20%] xl:left-[4%] z-20 sm:top-[19%] sm:left-[8.25%]">
+          <div className="relative sm:absolute bottom-70 sm:bottom-0 ml-11.5 mr-11.5 sm:text-left sm:mb-0 xl:top-[20%] xl:left-[-2%] z-20 sm:top-[19%] sm:left-[2%]">
             <p className="text-white text-[1.5625rem] leading-[1.75rem] xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
@@ -34,7 +34,7 @@ export default function NotFound() {
           </div>
 
           {/* Link overlaid on bottom right of 404 */}
-          <div className="relative bottom-10 text-center sm:absolute sm:block sm:text-left xl:bottom-[-2%] xl:right-[2.5%] z-20 sm:bottom-[-2.75%] sm:right-[8.75%]" custom-cursor="hover">
+          <div className="relative bottom-10 text-center sm:absolute sm:block sm:text-left xl:bottom-[-2%] xl:right-[2%] z-20 sm:bottom-[-2.75%] sm:right-[8.75%]" custom-cursor="hover">
             <Link 
               href="/"
               className="text-white text-[1.5625rem] xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
