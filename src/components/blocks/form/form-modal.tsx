@@ -51,7 +51,7 @@ export default function FormModal({
           <div className="grow-1 max-w-[453px] flex-col pt-3">
             <div>
               <h3 className="font-cera-pro font-medium text-[1.5rem] leading-[2rem] mb-4 text-black text-nowrap">
-                What's Your Branding?
+                What&apos;s Your Branding?
               </h3>
               <ChipRow
                 chipTexts={[
