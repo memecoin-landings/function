@@ -26,7 +26,7 @@ const ArrowSVG: React.FC = () => (
   </svg>
 );
 
-const CustomCursor: React.FC = () => {
+function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -88,6 +88,6 @@ const CustomCursor: React.FC = () => {
       {isHovering && <ArrowSVG />}
     </div>
   );
-};
+}
 
 export default CustomCursor;
