@@ -4,6 +4,8 @@ import ServicesBlock from "@/components/blocks/3-services/services-block";
 import FedorBlock from "@/components/blocks/4-fedor/fedor-block";
 import ClientsBlock from "@/components/blocks/4-clients/clients-block";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center sm:items-start md:pt-25.75 xs:pt-18.25 pt-17 pb-25.75 md:pb-18.25 xs:pb-18.25 w-full">
