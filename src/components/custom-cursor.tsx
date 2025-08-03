@@ -30,8 +30,30 @@ const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    checkMobile();
+
+    const handleResize = () => {
+      checkMobile();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Don't initialize cursor functionality on mobile
+    if (isMobile) {
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+
     // Initialize Anime.js scope
     scopeRef.current = createScope({ root: document.body }).add(() => {
       // Animate cursor to follow mouse
@@ -76,9 +98,17 @@ const CustomCursor: React.FC = () => {
       };
     });
 
-    // Revert Anime.js scope on unmount
-    return () => scopeRef.current?.revert();
-  }, []);
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      scopeRef.current?.revert();
+    };
+  }, [isMobile]);
+
+  // Don't render cursor on mobile
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
