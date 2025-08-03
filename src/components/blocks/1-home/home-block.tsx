@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 
 export default function HomeBlock({ className }: { className?: string }) {
   return (
-    <section className={cn("relative fluid-container w-full flex flex-col @container", className)}>
-      <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap pl-2.5 xs:pl-0">
+    <section className={cn("relative w-full flex flex-col @container fluid-container", className)}>
+      <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap  xs:pl-0">
         Unique
         <br />
         Solutions —

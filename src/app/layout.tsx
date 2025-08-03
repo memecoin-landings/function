@@ -6,6 +6,8 @@ import localFont from "next/font/local";
 import ToastProvider from "@/components/common/toast-provider";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/blocks/6-footer/footer";
+import SmoothScroll from "@/components/common/smooth-scroll";
+import CookieConsent from "@/components/layout/accept-cookies";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -92,7 +94,9 @@ export default function RootLayout({
       >
         <ToastProvider>
           <Header />
+          <CookieConsent />
           <CustomCursor />
+          <SmoothScroll />
           {children}
           <Footer emailAddress="hello@functionaldesign.studio" />
         </ToastProvider>
