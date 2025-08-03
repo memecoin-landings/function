@@ -2,42 +2,29 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import { useState, useEffect } from "react";
+import { Ref, useState } from "react";
 import FormHeader from "./form-header";
 import SubmitForm from "./submit-form";
 
 export default function FormModal({
   className,
+  ref,
   onClose,
 }: {
   className?: string;
+  ref: Ref<HTMLDivElement> | undefined;
   onClose?: () => void;
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Enable transition on mount
-    setIsVisible(true);
-
-    // Disable scroll on body
-    document.body.style.overflow = "hidden";
-
-    // Cleanup: Restore original overflow style
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <section
+    <div className={className}>
+      <div
+        ref={ref}
         className={cn(
-          "relative bg-white shadow-xl w-full h-full p-6 overflow-y-auto transition-all duration-300 ease-in-out",
-          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95",
-          className
+          "relative bg-white shadow-xl w-full h-full max-h-full p-6 overflow-scroll",
         )}
       >
         <FormHeader onClose={onClose} />
@@ -112,7 +99,7 @@ export default function FormModal({
             <SubmitForm />
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
