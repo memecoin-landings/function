@@ -9,7 +9,7 @@ export default function NotFound() {
         {/* Large 404 SVG - positioned as background */}
         <div className="relative">
           <svg 
-            width="100%"
+            width="auto"
             height="auto"
             viewBox="0 0 1207 486"
             fill="none" 
@@ -26,7 +26,7 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages overlaid on top left of 404 */}
-          <div className="absolute top-0 left-0 md:top-8 md:left-8 z-20">
+          <div className="absolute top-0 left-0 md:top-[20%] md:left-[4.5%] z-20">
             <p className="text-white text-sm md:text-[3.375rem] md:leading-[4.125rem] font-medium font-cera-pro">
             Well, isn&apos;t this just f*ing great?<br />
             How did you even get here?
@@ -34,7 +34,7 @@ export default function NotFound() {
           </div>
 
           {/* Link overlaid on bottom right of 404 */}
-          <div className="absolute bottom-0 right-0 md:bottom-8 md:right-8 z-20">
+          <div className="absolute bottom-0 right-0 md:bottom-[-1.5%] md:right-[2.5%] z-20">
             <Link 
               href="/"
               className="text-white text-sm md:text-[3.375rem] md:leading-[4.125rem] font-medium font-cera-pro hover:text-white transition-colors duration-200 relative group"
