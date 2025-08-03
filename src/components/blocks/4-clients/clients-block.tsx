@@ -1,5 +1,7 @@
-import React from "react";
+"use client"
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { animate } from "animejs";
 
 import yandex from "@/../public/clients/yandex.svg";
 import jti from "@/../public/clients/jti.svg";
@@ -31,10 +33,62 @@ const companies = [
 ];
 
 export default function ClientsBlock({ className }: { className?: string }) {
+  const containerRef = useRef<HTMLUListElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!sectionRef.current || hasAnimated.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && containerRef.current && !hasAnimated.current) {
+            hasAnimated.current = true;
+            
+            const listItems = containerRef.current.querySelectorAll('li');
+            
+            listItems.forEach(item => {
+              (item as HTMLElement).style.opacity = '0';
+              (item as HTMLElement).style.transform = 'scale(0.8) translateY(30px)';
+            });
+
+            listItems.forEach((item, index) => {
+              setTimeout(() => {
+                animate(item, {
+                  opacity: [0, 1],
+                  scale: [0.8, 1],
+                  translateY: [30, 0],
+                  easing: 'easeOutExpo',
+                  duration: 800
+                });
+              }, 200 + (index * 100));
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -50px 0px' // Start animation slightly before the section is fully in view
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className={`${className} w-full fluid-container`}>
+    <section ref={sectionRef} className={`${className} w-full fluid-container`}>
       <SectionHeader>Clients</SectionHeader>
-      <ul className="sm:mt-7.5 mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(13.5rem,1fr))] xs:grid-cols-[repeat(auto-fit,minmax(1fr,9rem))] gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5">
+      <ul 
+        ref={containerRef}
+        className="sm:mt-7.5 mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(13.5rem,1fr))] xs:grid-cols-[repeat(auto-fit,minmax(1fr,9rem))] gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5"
+      >
         {companies.map((c, i) => (
           <li key={i} className="transition-transform duration-300 ease-in-out hover:scale-110">
             <Image className="object-center object-contain w-full h-full" src={c.src} alt={c.name} />
