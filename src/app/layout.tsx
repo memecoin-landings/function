@@ -6,6 +6,7 @@ import getConfig from "@/config";
 import localFont from "next/font/local";
 import ToastProvider from "@/components/common/toast-provider";
 import Header from "@/components/layout/header/header";
+import SmoothScroll from "@/components/common/smooth-scroll";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -93,6 +94,7 @@ export default function RootLayout({
         <ToastProvider>
           <Header />
           <CustomCursor />
+          <SmoothScroll />
           {children}
         </ToastProvider>
       </body>
