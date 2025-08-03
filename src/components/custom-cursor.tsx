@@ -113,7 +113,8 @@ function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center shadow-[0px_0px_4px_1px_rgba(230,57,23,0.49)]"
+      // shadow-[0px_0px_4px_1px_rgba(230,57,23,0.49)]
+      className="fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center "
     >
       {isHovering && <ArrowSVG />}
     </div>
