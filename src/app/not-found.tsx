@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <body className="h-screen bg-[#151516] relative overflow-hidden">
+    <body className="h-screen  relative overflow-hidden">
       {/* Container for the entire 404 design */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
         
@@ -14,7 +14,7 @@ export default function NotFound() {
             viewBox="0 0 1207 486"
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
-            className="w-80 h-auto md:w-[75rem] md:h-[30rem] opacity-100"
+            className="w-full xl:h-[30rem] sm:h-[18.75rem] h-[12rem] opacity-100"
             style={{
               transform: "rotate(0deg)",
             }}
@@ -26,21 +26,22 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages overlaid on top left of 404 */}
-          <div className="absolute top-0 left-0 md:top-[20%] md:left-[4.5%] z-20">
-            <p className="text-white text-sm md:text-[3.375rem] md:leading-[4.125rem] font-medium font-cera-pro">
-            Well, isn&apos;t this just f*ing great?<br />
-            How did you even get here?
+          <div className="relative flex items-center sm:absolute sm:block bottom-70 pr-9 pl-9 xl:top-[20%] xl:left-[4%] z-20 sm:top-[19%] sm:left-[8.25%]">
+            <p className="text-white text-[1.5625rem] leading-7.75 xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro text-center sm:text-left">
+              Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
+              How did you even get here?
             </p>
           </div>
 
           {/* Link overlaid on bottom right of 404 */}
-          <div className="absolute bottom-0 right-0 md:bottom-[-1.5%] md:right-[2.5%] z-20">
+          <div className="relative sm:absolute sm:block xl:bottom-[-2%] xl:right-[2.5%] z-20 sm:bottom-[-2.75%] sm:right-[8.75%]" custom-cursor="hover">
             <Link 
               href="/"
-              className="text-white text-sm md:text-[3.375rem] md:leading-[4.125rem] font-medium font-cera-pro hover:text-white transition-colors duration-200 relative group"
+              className="text-white text-center text-[1.5625rem] xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro hover:text-white transition-colors duration-200 relative group"
             >
               Head back to the good stuff
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-100 transition-transform duration-200 origin-left"></span>
+              {/* using this instead of underline to make it more configurable */}
+            <span className="block sm:w-full xl:h-1 h-0.5 bg-white mt-0.25 "></span>
             </Link>
           </div>
         </div>
