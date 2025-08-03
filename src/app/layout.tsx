@@ -1,4 +1,3 @@
-//import Header from "@/components/blocks/0-header/header";
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "@/components/custom-cursor";
@@ -6,6 +5,7 @@ import getConfig from "@/config";
 import localFont from "next/font/local";
 import ToastProvider from "@/components/common/toast-provider";
 import Header from "@/components/layout/header/header";
+import Footer from "@/components/blocks/6-footer/footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -94,6 +94,7 @@ export default function RootLayout({
           <Header />
           <CustomCursor />
           {children}
+          <Footer emailAddress="hello@functionaldesign.studio" />
         </ToastProvider>
       </body>
     </html>
