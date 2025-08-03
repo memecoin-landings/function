@@ -24,7 +24,6 @@ export default function ServicesBlock({ className }: { className?: string }) {
       autoplay: onScroll({
         target: section,
         container: document.body,
-        debug: true
       }),
     });
   }, []);
