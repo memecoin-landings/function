@@ -1,7 +1,7 @@
 import Form from "next/form";
 
 const inputStyle =
-  "w-full px-5 py-2.5 border-b-1 border-[#F0EDE8] focus:outline-none focus:border-[#FF3F1A] placeholder-[#727272] text-[0.875rem] xs:text-[clamp(0.875rem,7cqw,1.063rem)] md:text-[clamp(1.063rem,5.5cqw,1.563rem)]";
+  "w-full px-5 py-2.5 border-b-[0.039rem] md:border-b-1 border-[#F0EDE8] focus:outline-none focus:border-[#FF3F1A] placeholder-[#727272] text-[0.875rem] xs:text-[clamp(0.875rem,7cqw,1.063rem)] md:text-[clamp(1.063rem,5.5cqw,1.563rem)]";
 
 export default function FooterForm({ className }: { className?: string }) {
   return (
@@ -12,7 +12,7 @@ export default function FooterForm({ className }: { className?: string }) {
           type="text"
           id="name"
           //   onChange={(e) => console.log(e.target.value)}
-          className={`${inputStyle} mb-12.5`}
+          className={`${inputStyle} mb-12.5 `}
           placeholder="Name"
           required
         />
