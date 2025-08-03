@@ -3,7 +3,7 @@
 import Lenis from 'lenis';
 import { useEffect, } from 'react';
 
-function SmoothScroll() {
+export default function SmoothScroll() {
   // Инициализация Lenis
   useEffect(() => {
     const lenis = new Lenis({
@@ -24,6 +24,5 @@ function SmoothScroll() {
       lenis.destroy();
     };
   }, []);
+  return null
 }
-
-export default SmoothScroll;
