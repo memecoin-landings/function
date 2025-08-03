@@ -1,4 +1,5 @@
 import BehanceIcon from "@/components/common/behance-icon";
+import FooterForm from "@/components/common/footer-form/footer-form";
 import InstagramIcon from "@/components/common/instagram-icon";
 import TelegramCircleIcon from "@/components/common/telegram-circle-icon";
 import UnknownIcon from "@/components/common/unknown-cw";
@@ -34,13 +35,15 @@ export default function Footer({ emailAddress }: { emailAddress: string }) {
         <div className="flex flex-col px-8.75 md:px-[7.6cqw]">
           <div className="flex flex-row w-full @container pb-12.5">
             <div className="flex w-[42cqw] xs:w-1/2 ">
-              <p className="text-[1.563rem] leading-[1.938rem] tracking-[0%] xs:text-[5.8cqw] xs:leading-[7cqw] md:text-[clamp(2.25rem,4.6cqw,3.375rem)] md:leading-[5.6cqw]">
+              <p className="text-[1.563rem] leading-[1.938rem] tracking-[0%] xs:text-[5.8cqw] xs:leading-[7cqw] md:text-[clamp(2.25rem,4.6cqw,3.375rem)] md:leading-[4.7cqw]">
                 Order <br /> a service
               </p>
             </div>
             <div className="flex flex-row w-[58cqw] xs:w-1/2 xs:max-w-[98cqw] ">
-              <div className="w-full h-[10rem] bg-[#FF3F1A] md:max-w-[39cqw]">
-                Form
+              <div className="w-full md:max-w-[39cqw]">
+                <FooterForm />
+
+                
               </div>
             </div>
           </div>
