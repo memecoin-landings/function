@@ -36,8 +36,9 @@ function CustomCursor() {
   useEffect(() => {
     const checkMobile = () => {
       const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      const isSmallScreen = window.innerWidth <= 768;
-      setIsMobile(isTouchDevice || isSmallScreen);
+      // const isSmallScreen = window.innerWidth <= 768;
+      // setIsMobile(isTouchDevice || isSmallScreen);
+      setIsMobile(isTouchDevice);
     };
 
     checkMobile();
@@ -60,6 +61,7 @@ function CustomCursor() {
       // Animate cursor to follow mouse
       const moveCursor = (e: MouseEvent) => {
         if (cursorRef.current) {
+          cursorRef.current.hidden = isMobile;
           animate(cursorRef.current, {
             left: e.clientX,
             top: e.clientY,

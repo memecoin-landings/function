@@ -4,10 +4,11 @@ import InstagramIcon from "@/components/common/instagram-icon";
 import TelegramCircleIcon from "@/components/common/telegram-circle-icon";
 import UnknownIcon from "@/components/common/unknown-cw";
 import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
+import { cn } from "@/lib/utils";
 
-export default function Footer({ emailAddress }: { emailAddress: string }) {
+export default function Footer({ className, emailAddress }: { className: string, emailAddress: string }) {
   return (
-    <footer className="w-full bg-black pt-12.5 ">
+    <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 ")}>
       <div className="fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <div className="text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline font-medium leading-[100%] decoration-solid">
@@ -43,7 +44,7 @@ export default function Footer({ emailAddress }: { emailAddress: string }) {
               <div className="w-full md:max-w-[39cqw]">
                 <FooterForm />
 
-                
+
               </div>
             </div>
           </div>

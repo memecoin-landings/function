@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import { Ref } from "react";
 
 export class BgImageParam {
   image: StaticImageData;
@@ -19,12 +20,18 @@ export class BgImageParam {
 export default function BgImageCard({
   data,
   className,
+  ref,
+  ...rest
 }: {
   data: BgImageParam;
+  ref?: Ref<HTMLDivElement>
   className: string;
+  [key: string]: unknown;
 }) {
   return (
     <div
+      {...rest}
+      ref={ref}
       className={`${className} group relative h-[29.25rem] rounded-md flex flex-col items-start justify-end overflow-hidden cursor-pointer`}
     >
       <div className="text-left z-10 w-full px-5 py-5 max-w-[90%]">

@@ -45,10 +45,10 @@ export default function ServicesBlock({ className }: { className?: string }) {
             <span className="inline-block" ref={(el) => { if (el) linksRef.current.push(el) }}>
               <span
                 className={`
-hover:text-[#FF3F1A] inline-block text-left relative transition-colors duration-500
-after:[content:''] after:scale-x-0 after:w-full md:after:h-1.5 after:h-0.5 xs:after:h-1 after:bg-[#FF3F1A] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
-hover:after:scale-x-100
-`}
+                hover:text-[#FF3F1A] inline-block text-left relative transition-colors duration-500
+                after:[content:''] after:scale-x-0 after:w-full md:after:h-1.5 after:h-0.5 xs:after:h-1 after:bg-[#FF3F1A] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
+                hover:after:scale-x-100
+                `}
               >
                 {service.title}
               </span>

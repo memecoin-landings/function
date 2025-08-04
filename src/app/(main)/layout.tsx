@@ -35,13 +35,13 @@ export default function RootLayout({
 }>) {
 
   return (
-        <ToastProvider>
-          <Header />
-          <CookieConsent />
-          <CustomCursor />
-          <SmoothScroll />
-          {children}
-          <Footer emailAddress="hello@functionaldesign.studio" />
-        </ToastProvider>
+    <ToastProvider>
+      <Header />
+      <CookieConsent />
+      <CustomCursor />
+      <SmoothScroll />
+      {children}
+      <Footer className="mt-40" emailAddress="hello@functionaldesign.studio" />
+    </ToastProvider>
   );
 }

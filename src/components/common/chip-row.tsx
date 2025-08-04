@@ -20,7 +20,7 @@ export default function ChipRow({
     <div className={cn("flex flex-wrap gap-3", className)}>
       {chipTexts.map((text, index) => (
         <Chip
-          key={index}
+          key={`${text}_${index}`}
           text={text}
           onClick={() => handleChipClick(index)}
           className={selectedChip === index ? "bg-[#151516]" : ""}

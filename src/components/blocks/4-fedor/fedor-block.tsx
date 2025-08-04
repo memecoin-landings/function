@@ -1,27 +1,57 @@
+"use client"
+
 import Image from "next/image";
 import fedorImage from "../../../../public/ava_1.jpg";
 import TelegramIcon from "@/components/common/icons/telegram-icon";
 import WhatsappIcon from "@/components/common/icons/whatsapp-icon";
 import LinkedinIcon from "@/components/common/icons/linkedin-icon";
+import { useEffect, useRef } from "react";
+import { animate, onScroll, stagger } from "animejs";
+import pushIfNotNull from "@/lib/push-if-not-null";
 
 export default function FedorBlock({ className }: { className?: string }) {
+  const elementsRef = useRef<HTMLElement[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    animate(elementsRef.current, {
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      translateX: { from: stagger(["-25vw", "25vw"]) },
+      duration: 1000,
+      easing: "easeInOutQuad",
+      delay: 0,
+      debug: true,
+      autoplay: onScroll({
+        target: section,
+        container: document.body,
+      }),
+    })
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       className={`${className} w-full fluid-container @container`}
     >
       <div className="w-full flex relative items-center justify-end mb-7.5 md:mb-11.5 xl:mb-18.25">
-        <div className="w-full absolute top-1/2 left-0 transform -translate-y-1/2 z-20 pr-4 pointer-events-none">
-          <div className="@container">
-            <div className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[19cqw] md:text[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap">
-              Fëdor <br />
-              Beltugov —
-            </div>
-          </div>
+        <div ref={pushIfNotNull(elementsRef.current)}
+          className="
+            w-full absolute top-1/2 left-0 transform -translate-y-1/2 z-20 pr-4
+            pointer-events-none @container
+            text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[19cqw] md:text[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap
+          ">
+          Fëdor <br />
+          Beltugov —
         </div>
         <Image
+          ref={pushIfNotNull(elementsRef.current)}
           src={fedorImage}
-          alt=""
-          className="object-cover object-center w-[38cqw] rounded-[0.313rem] grayscale hover:grayscale-0 transition-all duration-350 ease-in"
+          alt="Fedor Beltugov"
+          className="object-cover object-center w-[38cqw] rounded-[0.313rem] grayscale hover:grayscale-0 transition-[filter] duration-350 ease-in"
           layout="cover"
         />
       </div>
