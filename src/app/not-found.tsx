@@ -1,20 +1,27 @@
+import BehanceIcon from "@/components/common/behance-icon";
+import InstagramIcon from "@/components/common/instagram-icon";
+import UnknownIcon from "@/components/common/unknown-cw";
+import CustomCursor from "@/components/custom-cursor";
+import Header from "@/components/layout/header/header";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <main className="h-screen relative overflow-hidden">
+      <Header className="pt-5 xs:pt-7"/>
+      <CustomCursor />
       {/* Container for the entire 404 design */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
+      <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Large 404 SVG - positioned as background */}
-        <div className="relative">
+        <div className="relative sm:block items-center">
           <svg
             width="auto"
             height="auto"
             viewBox="0 0 1207 486"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full xl:h-[30rem] sm:h-[18.75rem] h-[12rem] opacity-100"
+            className="w-[115vw] sm:w-full h-[clamp(12rem,50vh,30rem)] opacity-100"
             style={{
               transform: "rotate(0deg)",
             }}
@@ -26,25 +33,44 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages overlaid on top left of 404 */}
-          <div className="relative sm:absolute bottom-70 sm:bottom-0 ml-11.5 mr-11.5 sm:text-left sm:mb-0 xl:top-[20%] xl:left-[0%] z-20 sm:top-[19%] sm:left-[2%]">
-            <p className="text-white text-[1.5625rem] leading-[1.75rem] xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
+          <div className="relative sm:absolute bottom-105 ml-11.5 mr-11.5 sm:text-left lg:top-[20%] lg:left-[0%] z-20 sm:top-[30.5%] sm:left-[3%]">
+            <p className="text-white text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
             </p>
           </div>
 
           {/* Link overlaid on bottom right of 404 */}
-          <div className="relative bottom-10 text-center sm:absolute sm:block sm:text-left xl:bottom-[-2%] xl:right-[2%] z-20 sm:bottom-[-2.75%] sm:right-[8.75%]" custom-cursor="hover">
+          <div className="relative bottom-40 text-center sm:absolute sm:block sm:text-left lg:bottom-[-2%] lg:right-[2%] z-20 sm:bottom-[16%] sm:right-[8.75%]" custom-cursor="hover">
             <Link
               href="/"
-              className="text-white text-[1.5625rem] xl:text-[3.375rem] xl:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
+              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
             >
               Head back to the good stuff
               {/* using this instead of underline to make it more configurable */}
-              <span className="block w-full xl:h-1 h-0.5 bg-white mt-0.25"></span>
+              <span className="block w-full lg:h-1 h-0.5 bg-white mt-0.25"></span>
             </Link>
           </div>
         </div>
+
+        {/* Move footer outside the main content container to the very bottom of the page */}
+        <footer className="flex flex-row w-full @container items-center pl-11.25 sm:pl-18.25 md:pl-34.5 pb-12.5 absolute left-0 bottom-0">
+          <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center space-x-5 @container pr-[6.3cqw] md:pr-0">
+            <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-[-3%] mb-2.5 md:mb-0 whitespace-nowrap">
+              Discover our work on:
+            </p>
+            <div className="flex flex-row space-x-2.5 md:space-x-5">
+              <InstagramIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+              <BehanceIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+              <UnknownIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+            </div>
+          </div>
+          <div className="flex flex-row w-[58cqw] xs:w-1/2 items-center pt-1">
+            <div className="text-[#727272] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem]">
+              © Functional Design Studio. All rights reserved
+            </div>
+          </div>
+        </footer>
       </div>
     </main>
   );
