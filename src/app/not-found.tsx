@@ -11,7 +11,7 @@ export default function NotFound() {
       <Header className="pt-5 xs:pt-7"/>
       <CustomCursor />
       {/* Container for the entire 404 design */}
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Large 404 SVG - positioned as background */}
         <div className="relative sm:block items-center">
