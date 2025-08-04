@@ -36,7 +36,7 @@ export default function RootLayout({
 
   return (
     <ToastProvider>
-      <Header />
+      <Header className="xs:mt-7 mt-5" />
       <CookieConsent />
       <CustomCursor />
       <SmoothScroll />

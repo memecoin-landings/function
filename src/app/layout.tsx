@@ -68,7 +68,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html className="" lang="en">
       <head>
         <script
           type="application/ld+json"
@@ -84,9 +84,9 @@ export default function RootLayout({
         {/* <noscript><div><img src="https://mc.yandex.ru/watch/103342681" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript> */}
       </head>
       <body
-        className={`${cera.variable} antialiased bg-[#151516]`}
+        className={`${cera.variable} antialiased`}
       >
-          {children}
+        {children}
       </body>
     </html>
   );
