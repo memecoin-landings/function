@@ -21,7 +21,7 @@ export default function NotFound() {
             viewBox="0 0 1207 486"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-[clamp(12rem,50vh,30rem)] opacity-100"
+            className="w-[115vw] sm:w-full h-[clamp(12rem,50vh,30rem)] opacity-100"
             style={{
               transform: "rotate(0deg)",
             }}
