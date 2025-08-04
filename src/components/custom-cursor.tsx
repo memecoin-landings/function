@@ -31,37 +31,12 @@ function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      // const isSmallScreen = window.innerWidth <= 768;
-      // setIsMobile(isTouchDevice || isSmallScreen);
-      setIsMobile(isTouchDevice);
-    };
 
-    checkMobile();
-
-    const handleResize = () => {
-      checkMobile();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Don't initialize cursor functionality on mobile
-    if (isMobile) {
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-
-    // Initialize Anime.js scope
     scopeRef.current = createScope({ root: document.body }).add(() => {
-      // Animate cursor to follow mouse
       const moveCursor = (e: MouseEvent) => {
         if (cursorRef.current) {
-          cursorRef.current.hidden = isMobile;
           animate(cursorRef.current, {
             left: e.clientX,
             top: e.clientY,
@@ -103,21 +78,14 @@ function CustomCursor() {
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
       scopeRef.current?.revert();
     };
-  }, [isMobile]);
-
-  // Don't render cursor on mobile
-  if (isMobile) {
-    return null;
-  }
+  })
 
   return (
     <div
       ref={cursorRef}
       style={{ top: -100, left: -100 }}
-      // shadow-[0px_0px_4px_1px_rgba(230,57,23,0.49)]
       className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center ")}
     >
       {isHovering && <ArrowSVG />}
