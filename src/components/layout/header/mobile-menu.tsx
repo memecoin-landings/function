@@ -9,7 +9,7 @@ import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import UnknownIcon from "@/components/common/unknown-cw";
 
-export default function MobileMenu({ className }: { className?: string }) {
+export default function MobileMenu({ className, openModal }: { className?: string, openModal: () => void }) {
   return (
     <div className={cn(className, "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
       "pt-[max(16.25vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20",
@@ -21,7 +21,7 @@ export default function MobileMenu({ className }: { className?: string }) {
             {item.label}
           </SideMenuItem>
         ))}
-        <SideMenuItem href="#">
+        <SideMenuItem onClick={openModal}>
           Get Price
         </SideMenuItem>
       </div>
@@ -57,14 +57,14 @@ function SideMenuItem({
   children,
   onClick = () => { }
 }: {
-  href: string;
+  href?: string;
   children: React.ReactNode;
   onClick?: () => void;
 }) {
   return (
     <Link
       onClick={onClick}
-      href={href}
+      href={href ?? ""}
       className="hover:text-[#FF3F1A] transition-colors duration-300 text-white text-[2.0625rem] font-medium text-nowrap"
     >
       {children}
