@@ -35,7 +35,7 @@ export default function FedorBlock({ className }: { className?: string }) {
   return (
     <section
       ref={sectionRef}
-      className={`${className} w-full fluid-container @container`}
+      className={`${className} w-full fluid-container @container overflow-hidden`}
     >
       <div className="w-full flex relative items-center justify-end mb-7.5 md:mb-11.5 xl:mb-18.25">
         <div ref={pushIfNotNull(elementsRef.current)}
