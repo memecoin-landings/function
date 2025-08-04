@@ -25,7 +25,7 @@ export default function Header({ className }: { className?: string }) {
       <header
         className={cn("w-full text-white sm:relative fixed z-100", className)}
       >
-        <div className={cn("mx-auto px-5 flex items-center max-h-full overflow-scroll")}>
+        <div className={cn("mx-auto px-5 flex items-center")}>
           {/* Logo */}
           <Link
             href="/#home"
