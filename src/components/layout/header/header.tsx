@@ -37,34 +37,19 @@ export default function Header({ className }: { className?: string }) {
           {/* Desktop Navigation */}
           <nav className="hidden sm:flex shrink-0 items-baseline md:space-x-15 space-x-7.5 flex-nowrap">
             {menuItems.map((item) =>
-              item.label === "Contact Us" ? (
-                <button
-                  key={item.href}
-                  onClick={openModal}
-                  className={cn(
-                    "shrink-0 hover:text-[#FF3F1A] font-cera transition-colors duration-200 my-2.5 text-sm font-medium text-nowrap relative",
-                    "after:[content:''] after:scale-x-0 after:w-full after:h-0.25 after:bg-[#FF3F1A] after:transition-transform after:duration-350 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out",
-                    "hover:after:scale-x-100"
-                  )}
-                >
-                  {item.label}
-                </button>
-              ) : (
-                <HeaderItem
-                  className="shrink-0"
-                  key={item.href}
-                  href={item.href}
-                >
-                  {item.label}
-                </HeaderItem>
-              )
+              <HeaderItem
+                className="shrink-0"
+                key={item.href}
+                href={item.href}
+              >
+                {item.label}
+              </HeaderItem>
             )}
             {/* Get Price Button */}
             <button
               className="hidden sm:block bg-[#F0EDE8] text-[#151516] hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap"
               onClick={openModal}
             >
-
               Get Price
             </button>
           </nav>
@@ -83,6 +68,7 @@ export default function Header({ className }: { className?: string }) {
 
         {/* Mobile Navigation Menu */}
         <MobileMenu
+          openModal={openModal}
           className={cn(isMenuOpen ? "translate-x-0" : "translate-x-[200vw]")}
         />
       </header>
