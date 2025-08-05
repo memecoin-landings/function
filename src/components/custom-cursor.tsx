@@ -14,15 +14,21 @@ const ArrowSVG: React.FC = () => (
     style={{
       position: 'absolute',
       pointerEvents: 'none',
+      width: '100%',
+      height: '100%',
+      shapeRendering: 'crispEdges',
+      textRendering: 'optimizeLegibility',
     }}
   >
     <path
       d="M36 72C55.8823 72 72 55.8823 72 36C72 16.1177 55.8823 0 36 0C16.1177 0 0 16.1177 0 36C0 55.8823 16.1177 72 36 72Z"
       fill="#FF3F1A"
+      style={{ shapeRendering: 'crispEdges' }}
     />
     <path
       d="M31.387 25.4375V28.3292H41.6253L25.4375 44.517L27.4793 46.5588L43.6671 30.371V40.6093H46.5588V25.4375H31.387Z"
       fill="#F0EDE8"
+      style={{ shapeRendering: 'crispEdges' }}
     />
   </svg>
 );
@@ -86,9 +92,18 @@ function CustomCursor() {
     <div
       ref={cursorRef}
       style={{ top: -100, left: -100 }}
-      className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center ")}
+      className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center")}
     >
-      {isHovering && <ArrowSVG />}
+      {isHovering && (
+        <div style={{ 
+          width: '100%', 
+          height: '100%',
+          imageRendering: 'crisp-edges',
+          transform: 'translateZ(0)'
+        }}>
+          <ArrowSVG />
+        </div>
+      )}
     </div>
   );
 }
