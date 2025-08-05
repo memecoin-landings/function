@@ -9,7 +9,7 @@ export default function SectionHeader({
 }) {
   return (
     <h2
-      className={`${className} font-cera md:text-3xl text-base xs:text-xl text-[#727272]`}
+      className={`${className} font-cera md:text-3xl text-base font-medium xs:text-xl text-[#727272]`}
     >
       {children}
     </h2>
