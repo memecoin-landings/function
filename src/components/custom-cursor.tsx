@@ -16,8 +16,8 @@ const ArrowSVG: React.FC = () => (
       pointerEvents: 'none',
       width: '100%',
       height: '100%',
-      shapeRendering: 'crispEdges',
-      textRendering: 'optimizeLegibility',
+      shapeRendering: 'geometricPrecision',
+      textRendering: 'geometricPrecision',
     }}
   >
     <path
