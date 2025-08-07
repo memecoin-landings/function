@@ -1,6 +1,6 @@
 import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
-import UnknownIcon from "@/components/common/unknown-cw";
+import DribbleIcon from "@/components/common/unknown-cw";
 import CustomCursor from "@/components/custom-cursor";
 import Header from "@/components/layout/header/header";
 import Link from "next/link";
@@ -62,7 +62,7 @@ export default function NotFound() {
             <div className="flex flex-row space-x-2.5 md:space-x-5">
               <InstagramIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
               <BehanceIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-              <UnknownIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+              <DribbleIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </div>
           </div>
           <div className="flex flex-row w-[58cqw] xs:w-1/2 items-center pt-1">
