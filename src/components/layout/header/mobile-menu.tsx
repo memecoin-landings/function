@@ -7,7 +7,7 @@ import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import TelegramCircleIcon from "@/components/common/telegram-circle-icon";
 import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
-import UnknownIcon from "@/components/common/unknown-cw";
+import DribbleIcon from "@/components/common/unknown-cw";
 
 export default function MobileMenu({ className, openModal }: { className?: string, openModal: () => void }) {
   return (
@@ -46,7 +46,7 @@ export default function MobileMenu({ className, openModal }: { className?: strin
       <div className="mt-5 flex flex-row *:fill-[#F0EDE8] *:hover:fill-[#FF3F1A] items-center space-x-2.5">
         <BehanceIcon className="w-6.25" />
         <InstagramIcon className="w-6.25" />
-        <UnknownIcon className="w-6.25" />
+        <DribbleIcon className="w-6.25" />
       </div>
     </div>
   )
