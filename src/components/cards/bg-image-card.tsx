@@ -32,7 +32,8 @@ export default function BgImageCard({
     <div
       {...rest}
       ref={ref}
-      className={`${className} group relative h-[29.25rem] rounded-md flex flex-col items-start justify-end overflow-hidden cursor-pointer`}
+      className={`${className} group relative rounded-md flex flex-col items-start justify-end overflow-hidden cursor-pointer`}
+      style={{ aspectRatio: '690/468' }}
     >
       <div className="text-left z-10 w-full px-5 py-5 max-w-[90%]">
         {data.title && (

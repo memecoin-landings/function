@@ -33,7 +33,10 @@ export default function HomeBlock({ className }: { className?: string }) {
   return (
     <section
       ref={sectionRef}
-      className={cn("relative w-full flex flex-col @container fluid-container", className)}
+      className={cn(
+        "relative w-full flex flex-col @container fluid-container",
+        className
+      )}
     >
       <div
         ref={headerRef}
@@ -47,8 +50,7 @@ export default function HomeBlock({ className }: { className?: string }) {
         ref={paragraphRef}
         className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw] opacity-0"
       >
-        Functionally and strategically refined design by a brand identity studio that solves
-        business challenges, drives growth, and is based on in-depth analysis
+        Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
       </p>
     </section>
   );
