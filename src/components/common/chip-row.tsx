@@ -1,29 +1,40 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Chip } from "./chip";
+import { ChipOption } from "@/domain/form-view-model";
 
 export default function ChipRow({
   className,
-  chipTexts,
+  chipOptions,
+  selectedIds,
+  onChipClick,
+  singleSelection = false,
 }: {
   className?: string;
-  chipTexts: string[];
+  chipOptions: ChipOption[];
+  selectedIds: string[];
+  onChipClick: (id: string) => void;
+  singleSelection?: boolean;
 }) {
-  const [selectedChip, setSelectedChip] = useState<number | null>(null);
-
-  const handleChipClick = (index: number) => {
-    setSelectedChip(index);
+  const handleChipClick = (id: string) => {
+    if (singleSelection) {
+      // Для одиночного выбора - заменяем текущий выбор
+      onChipClick(id);
+    } else {
+      // Для множественного выбора - переключаем состояние
+      onChipClick(id);
+    }
   };
 
   return (
     <div className={cn("flex flex-wrap gap-3", className)}>
-      {chipTexts.map((text, index) => (
+      {chipOptions.map((option) => (
         <Chip
-          key={`${text}_${index}`}
-          text={text}
-          onClick={() => handleChipClick(index)}
-          className={selectedChip === index ? "bg-[#151516]" : ""}
+          key={option.id}
+          text={option.text}
+          onClick={() => handleChipClick(option.id)}
+          isSelected={selectedIds.includes(option.id)}
         />
       ))}
     </div>
