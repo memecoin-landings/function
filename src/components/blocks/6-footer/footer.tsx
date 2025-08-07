@@ -16,8 +16,8 @@ export default function Footer({
 }) {
   const whatsAppLink = "https://wa.me/79264266855";
   const telegramLink = "https://t.me/Fedor_Beltugov";
-  const instagramLink ="https://www.instagram.com/beltugov/";
-  const behanceLink ="https://www.behance.net/fbeltugov";
+  const instagramLink = "https://www.instagram.com/beltugov/";
+  const behanceLink = "https://www.behance.net/fbeltugov";
   const dribbleLink = "https://dribbble.com/fbeltugov";
 
   return (
@@ -26,7 +26,7 @@ export default function Footer({
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
             href={"mailto:" + emailAddress}
-            className="text-[#F0EDE8] hover:text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
+            className="text-[#F0EDE8] transition-colors duration-150 hover:text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
           >
             {emailAddress}
           </Link>
