@@ -37,7 +37,7 @@ export default function FooterForm({ className }: { className?: string }) {
           required
         />
         <div className="flex flex-row space-x-5 items-center">
-          <button className="text-[#151516] bg-[#FF3F1A] rounded-full px-5 py-0.5 md:px-7.5 md:py-2.5 text-[0.875rem] md:text-[clamp(1.063rem,4.7cqw,1.375rem)] leading-[2.125rem] ">
+          <button className="text-[#151516] bg-[#F0EDE8] hover:bg-[#FF3F1A] rounded-full px-5 py-0.5 md:px-7.5 md:py-2.5 text-[0.875rem] md:text-[clamp(1.063rem,4.7cqw,1.375rem)] leading-[2.125rem] ">
             Send
           </button>
           <p className="text-[#B6BAAF] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem] tracking-[3%] overflow-visible">
