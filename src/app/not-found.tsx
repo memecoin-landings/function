@@ -18,10 +18,11 @@ export default function NotFound() {
           <svg
             width="auto"
             height="auto"
+            preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 1207 486"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-[115vw] sm:w-full h-[clamp(12rem,50vh,30rem)] opacity-100"
+            className="w-[clamp(12rem,125vw,100%)] h-[clamp(12rem,50vh,30rem)] opacity-100"
             style={{
               transform: "rotate(0deg)",
             }}
@@ -33,7 +34,7 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages overlaid on top left of 404 */}
-          <div className="relative sm:absolute bottom-105 ml-11.5 mr-11.5 sm:text-left lg:top-[20%] lg:left-[0%] z-20 sm:top-[30.5%] sm:left-[3%]">
+          <div className="relative sm:absolute bottom-105 ml-11.5 mr-11.5 sm:mr-0 sm:ml-0 sm:text-left lg:top-[20%] lg:right-[10%] lg:left-[0%] z-20 sm:top-[30.5%] sm:left-[3%]">
             <p className="text-white text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
