@@ -68,7 +68,7 @@ export default function ClientsBlock({ className }: { className?: string }) {
       <SectionHeader>Clients</SectionHeader>
       <ul 
         ref={containerRef}
-        className="sm:mt-7.5 mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.125rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(13.5rem,1fr))] xs:grid-cols-[repeat(auto-fit,minmax(1fr,9rem))] gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5"
+        className="sm:mt-7.5 mt-5 grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5"
       >
         {companies.map((c, i) => (
           <li key={i} className="transition-transform duration-300 ease-in-out hover:scale-110">

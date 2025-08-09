@@ -4,6 +4,13 @@ import { cn } from '@/lib/utils';
 import { animate, createScope } from 'animejs';
 import React, { useEffect, useRef, useState } from 'react';
 
+// Helper function to detect mobile devices
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  
+  return ('ontouchstart' in window);
+};
+
 // Replace this with your actual SVG arrow component or string
 const ArrowSVG: React.FC = () => (
   <svg
@@ -17,10 +24,6 @@ const ArrowSVG: React.FC = () => (
     }}
   >
     <path
-      d="M36 72C55.8823 72 72 55.8823 72 36C72 16.1177 55.8823 0 36 0C16.1177 0 0 16.1177 0 36C0 55.8823 16.1177 72 36 72Z"
-      fill="#FF3F1A"
-    />
-    <path
       d="M31.387 25.4375V28.3292H41.6253L25.4375 44.517L27.4793 46.5588L43.6671 30.371V40.6093H46.5588V25.4375H31.387Z"
       fill="#F0EDE8"
     />
@@ -31,8 +34,16 @@ function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile on component mount
+    setIsMobile(isMobileDevice());
+    
+    // Don't initialize cursor functionality on mobile devices
+    if (isMobileDevice()) {
+      return;
+    }
 
     scopeRef.current = createScope({ root: document.body }).add(() => {
       const moveCursor = (e: MouseEvent) => {
@@ -51,14 +62,16 @@ function CustomCursor() {
         if (target.closest('[custom-cursor="hover"]')) {
           setIsHovering(true);
           animate(cursorRef.current!, {
-            scale: 4.3,
+            width: 72,
+            height: 72,
             ease: 'out(3)',
             duration: 200,
           });
         } else {
           setIsHovering(false);
           animate(cursorRef.current!, {
-            scale: 1,
+            width: 16,
+            height: 16,
             ease: 'out(3)',
             duration: 200,
           });
@@ -80,15 +93,29 @@ function CustomCursor() {
     return () => {
       scopeRef.current?.revert();
     };
-  })
+  }, []);
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
       ref={cursorRef}
       style={{ top: -100, left: -100 }}
-      className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center ")}
+      className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center")}
     >
-      {isHovering && <ArrowSVG />}
+      {isHovering && (
+        <div style={{ 
+          width: '100%', 
+          height: '100%',
+          imageRendering: 'crisp-edges',
+          transform: 'translateZ(0)'
+        }}>
+          <ArrowSVG />
+        </div>
+      )}
     </div>
   );
 }

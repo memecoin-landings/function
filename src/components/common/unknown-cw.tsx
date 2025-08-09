@@ -1,4 +1,4 @@
-export default function UnknownIcon({ className }: { className?: string }) {
+export default function DribbleIcon({ className }: { className?: string }) {
   return (
     <svg
     className={className}
