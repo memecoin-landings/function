@@ -44,7 +44,7 @@ export default function NotFound() {
           </div>
 
           {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-          <div className="px-11.5 lg:px-0 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:right-0 sm:right-9 lg:pb-1 lg:pt-0 sm:pr-10 lg:pr-[10%] sm:text-right" custom-cursor="hover">
+          <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:pb-1 lg:pt-0 sm:pl-48 lg:pl-123 sm:text-right" custom-cursor="hover">
             <Link
               href="/"
               className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[1rem] font-medium font-cera-pro inline-block"
