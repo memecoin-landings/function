@@ -14,45 +14,41 @@ export default function NotFound() {
       <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Large 404 design with overlaid content */}
-        <div className="relative w-full max-w-[1207px] flex flex-col">
+        <div className="relative w-full max-w-[115vw] flex justify-center">
           
-          {/* Humorous messages - positioned above and to the left */}
-          <div className="relative sm:ml-3 lg:ml-32.5 mb-[-2rem] sm:mb-[-4rem] lg:mb-10 lg:mt-10 z-20 px-11.5 sm:px-0">
+          {/* Main 404 SVG - stays in place */}
+          <svg
+            width="auto"
+            height="auto"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 1207 486"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[clamp(12rem,125vw,100%)] h-[clamp(12rem,50vh,30rem)] opacity-100"
+          >
+            <path
+              d="M388.37 319.5V400.44H328.73V477.12H232.88V400.44H0V374.88L144.84 8.52H243.53L119.28 319.5H232.88V188.15H328.73V319.5H388.37ZM416.88 239.27C416.88 167.32 432.74 109.58 464.45 66.03C496.16 22.01 542.31 0 602.9 0C663.49 0 709.4 22.01 740.64 66.03C772.35 109.58 788.21 167.32 788.21 239.27C788.21 311.22 772.12 370.86 739.93 416.77C707.74 462.68 662.07 485.64 602.9 485.64C543.73 485.64 497.35 462.68 465.16 416.77C432.97 370.86 416.88 311.69 416.88 239.27ZM689.52 239.98C689.52 139.16 660.65 88.75 602.9 88.75C545.15 88.75 515.57 139.16 515.57 239.98C515.57 340.8 544.68 396.89 602.9 396.89C661.12 396.89 689.52 344.59 689.52 239.98ZM1206.23 319.5V400.44H1146.59V477.12H1050.74V400.44H817.86V374.88L962.7 8.52H1061.39L937.14 319.5H1050.74V188.15H1146.59V319.5H1206.23Z"
+              fill="#FF3F1A"
+            />
+          </svg>
+
+          {/* Humorous messages - overlaid on top left of 404 using absolute positioning with margins */}
+          <div className="absolute z-20 ml-11.5 mr-11.5 sm:ml-0 sm:mr-53 lg:mr-57 sm:pl-4 lg:pl-0 pt-16 lg:pt-19.5 sm:pt-20 max-w-[90%] sm:max-w-[60%] lg:max-w-[70%]">
             <p className="text-white text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
             </p>
           </div>
 
-          {/* Main 404 SVG */}
-          <div className="flex justify-center">
-            <svg
-
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 1207 486"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[clamp(12rem,125vw,100%)] h-[clamp(12rem,50vh,30rem)] opacity-100"
-              style={{
-                transform: "rotate(0deg)",
-              }}
-            >
-              <path
-                d="M388.37 319.5V400.44H328.73V477.12H232.88V400.44H0V374.88L144.84 8.52H243.53L119.28 319.5H232.88V188.15H328.73V319.5H388.37ZM416.88 239.27C416.88 167.32 432.74 109.58 464.45 66.03C496.16 22.01 542.31 0 602.9 0C663.49 0 709.4 22.01 740.64 66.03C772.35 109.58 788.21 167.32 788.21 239.27C788.21 311.22 772.12 370.86 739.93 416.77C707.74 462.68 662.07 485.64 602.9 485.64C543.73 485.64 497.35 462.68 465.16 416.77C432.97 370.86 416.88 311.69 416.88 239.27ZM689.52 239.98C689.52 139.16 660.65 88.75 602.9 88.75C545.15 88.75 515.57 139.16 515.57 239.98C515.57 340.8 544.68 396.89 602.9 396.89C661.12 396.89 689.52 344.59 689.52 239.98ZM1206.23 319.5V400.44H1146.59V477.12H1050.74V400.44H817.86V374.88L962.7 8.52H1061.39L937.14 319.5H1050.74V188.15H1146.59V319.5H1206.23Z"
-                fill="#FF3F1A"
-              />
-            </svg>
-          </div>
-
-          {/* Link - positioned below and to the right */}
-          <div className="flex justify-center sm:justify-end mt-[-2rem] sm:mt-[-4rem] lg:mt-[-1rem] sm:mr-[8.75%] lg:mr-[2%] z-20 px-11.5 sm:px-0" custom-cursor="hover">
+          {/* Link - overlaid on bottom right of 404 using absolute positioning with margins */}
+          <div className="absolute z-20 bottom-0 right-10 pt-35 lg:pt-0 pr-11.5 sm:pr-32 lg:pr-38 text-center sm:text-right" custom-cursor="hover">
             <Link
               href="/"
-              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
+              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline underline-offset-14 sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
             >
               Head back to the good stuff
               {/* using this instead of underline to make it more configurable */}
-              <span className="block w-full lg:h-1 h-0.5 bg-white mt-0.25"></span>
+              {/*<span className="block w-full lg:h-1 h-0.5 bg-white mt-0"></span>*/}
             </Link>
           </div>
         </div>
