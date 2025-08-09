@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
           
           {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
-          <div className="px-11.5 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-24.5 lg:ml-41 lg:mr-0 sm:pb-40 lg:pb-38 sm:pl-0 lg:pl-0 sm:max-w-[80%]">
+          <div className="px-11.5 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-15 lg:ml-41 lg:mr-0 sm:pb-24 lg:pb-38 sm:pl-0 lg:pl-0 sm:max-w-[80%]">
             <p className="text-white text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
@@ -43,10 +43,10 @@ export default function NotFound() {
           </div>
 
           {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-          <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:right-0 sm:right-10 lg:pb-1 lg:pt-0 sm:pr-10 lg:pr-35 sm:text-right" custom-cursor="hover">
+          <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:right-0 sm:right-9 lg:pb-1 lg:pt-0 sm:pr-10 lg:pr-35 sm:text-right" custom-cursor="hover">
             <Link
               href="/"
-              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
+              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[1rem] font-medium font-cera-pro inline-block"
             >
               Head back to the good stuff
             </Link>
