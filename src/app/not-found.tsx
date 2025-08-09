@@ -14,7 +14,7 @@ export default function NotFound() {
       <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Large 404 design with overlaid content */}
-        <div className="relative w-full max-w-[115vw] flex justify-center">
+        <div className="relative w-full max-w-[115vw] flex flex-col sm:flex-row justify-center">
           
           {/* Main 404 SVG - stays in place */}
           <svg
@@ -24,7 +24,7 @@ export default function NotFound() {
             viewBox="0 0 1207 486"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-[115vw] sm:w-full h-auto opacity-100 lg:pr-29.25 lg:pl-29.25"
+            className="w-[115vw] sm:w-full h-auto opacity-100 lg:pr-29.25 lg:pl-29.25 sm:pr-2.5 sm:pl-2.5"
           >
             <path
               d="M388.37 319.5V400.44H328.73V477.12H232.88V400.44H0V374.88L144.84 8.52H243.53L119.28 319.5H232.88V188.15H328.73V319.5H388.37ZM416.88 239.27C416.88 167.32 432.74 109.58 464.45 66.03C496.16 22.01 542.31 0 602.9 0C663.49 0 709.4 22.01 740.64 66.03C772.35 109.58 788.21 167.32 788.21 239.27C788.21 311.22 772.12 370.86 739.93 416.77C707.74 462.68 662.07 485.64 602.9 485.64C543.73 485.64 497.35 462.68 465.16 416.77C432.97 370.86 416.88 311.69 416.88 239.27ZM689.52 239.98C689.52 139.16 660.65 88.75 602.9 88.75C545.15 88.75 515.57 139.16 515.57 239.98C515.57 340.8 544.68 396.89 602.9 396.89C661.12 396.89 689.52 344.59 689.52 239.98ZM1206.23 319.5V400.44H1146.59V477.12H1050.74V400.44H817.86V374.88L962.7 8.52H1061.39L937.14 319.5H1050.74V188.15H1146.59V319.5H1206.23Z"
@@ -33,18 +33,18 @@ export default function NotFound() {
           </svg>
 
           {/* Humorous messages - overlaid on top left of 404 using absolute positioning with margins */}
-          <div className="absolute z-20 ml-11.5 mr-11.5 sm:ml-0 sm:mr-16 lg:mr-83 pt-16 sm:pl-4 lg:pl-0 lg:pt-24.5 sm:pt-9.5 max-w-[90%] sm:max-w-[80%]">
+          <div className="absolute z-20 ml-11.5 mr-11.5 sm:ml-0 sm:mr-24.5 lg:mr-83 pb-40 sm:pl-0 lg:pl-0 lg:pt-24.5 sm:pt-14.5 max-w-[90%] sm:max-w-[80%]">
             <p className="text-white text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
-              Well, isn&apos;t this just f*ing great?<br className="hidden sm:block" />
+              Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
             </p>
           </div>
 
           {/* Link - overlaid on bottom right of 404 using absolute positioning with margins */}
-          <div className="absolute z-20 bottom-0 right-0 pt-35 pb-1 lg:pt-0 pr-11.5 sm:pr-32 lg:pr-35 text-center sm:text-right" custom-cursor="hover">
+          <div className="absolute z-20 bottom-0 lg:right-0 right-10 pt-35 lg:pb-1 lg:pt-0 sm:pt-0 pr-11.5 sm:pr-10 lg:pr-35 text-center sm:text-right" custom-cursor="hover">
             <Link
               href="/"
-              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline underline-offset-14 sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
+              className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro inline-block"
             >
               Head back to the good stuff
             </Link>
