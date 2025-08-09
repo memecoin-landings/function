@@ -1,3 +1,4 @@
+import { behanceLink, dribbleLink, instagramLink } from "@/components/blocks/6-footer/footer";
 import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import DribbleIcon from "@/components/common/unknown-cw";
@@ -7,17 +8,17 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="h-screen relative overflow-hidden">
+    <main className="sm:h-screen h-[100dvh] relative overflow-hidden">
       <Header className="pt-5 xs:pt-7"/>
       <CustomCursor />
       {/* Container for the entire 404 design */}
       <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Mobile: Vertical layout, Desktop: Overlaid content */}
-        <div className="flex flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
+        <div className="flex lg:mb-30 sm:mb-47.5 flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
           
           {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
-          <div className="px-11.5 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-15 lg:ml-41 lg:mr-0 sm:pb-24 lg:pb-38 sm:pl-0 lg:pl-0 sm:max-w-[80%]">
+          <div className="px-11.5 lg:px-0 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-15 lg:ml-12 lg:pr-80 sm:pb-24 lg:pb-39 sm:pl-0 lg:pl-0  sm:max-w-[80%]">
             <p className="text-white text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
@@ -43,7 +44,7 @@ export default function NotFound() {
           </div>
 
           {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-          <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:right-0 sm:right-9 lg:pb-1 lg:pt-0 sm:pr-10 lg:pr-35 sm:text-right" custom-cursor="hover">
+          <div className="px-11.5 lg:px-0 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:right-0 sm:right-9 lg:pb-1 lg:pt-0 sm:pr-10 lg:pr-[10%] sm:text-right" custom-cursor="hover">
             <Link
               href="/"
               className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[1rem] font-medium font-cera-pro inline-block"
@@ -60,10 +61,16 @@ export default function NotFound() {
               Discover our work on:
             </p>
             <div className="flex flex-row space-x-2.5 md:space-x-5">
-              <InstagramIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-              <BehanceIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-              <DribbleIcon className="w-6.25 md:w-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
-            </div>
+                <Link href={instagramLink}>
+                  <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                </Link>
+                <Link href={behanceLink}>
+                  <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                </Link>
+                <Link href={dribbleLink}>
+                  <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                </Link>
+              </div>
           </div>
           <div className="flex flex-row w-[58cqw] xs:w-1/2 items-center pt-1">
             <div className="text-[#727272] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem]">
