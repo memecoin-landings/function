@@ -7,6 +7,11 @@ import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+export const instagramLink = "https://www.instagram.com/beltugov/";
+export const behanceLink = "https://www.behance.net/fbeltugov";
+export const dribbleLink = "https://dribbble.com/fbeltugov";
+export const whatsAppLink = "https://wa.me/79264266855";
+export const telegramLink = "https://t.me/Fedor_Beltugov";
 export default function Footer({
   className,
   emailAddress,
@@ -14,11 +19,7 @@ export default function Footer({
   className: string;
   emailAddress: string;
 }) {
-  const whatsAppLink = "https://wa.me/79264266855";
-  const telegramLink = "https://t.me/Fedor_Beltugov";
-  const instagramLink = "https://www.instagram.com/beltugov/";
-  const behanceLink = "https://www.behance.net/fbeltugov";
-  const dribbleLink = "https://dribbble.com/fbeltugov";
+
 
   return (
     <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 ")}>
