@@ -14,11 +14,11 @@ export default function NotFound() {
       <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
 
         {/* Mobile: Vertical layout, Desktop: Overlaid content */}
-        <div className="flex flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex sm:justify-center">
+        <div className="flex flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
           
-          {/* Humorous messages - Mobile: Above SVG, Desktop: Overlaid on top left */}
-          <div className="px-11.5 sm:absolute sm:z-20 sm:ml-0 sm:mr-24.5 lg:ml-41 sm:pb-40 lg:pb-38 sm:pl-0 lg:pl-0 sm:max-w-[80%]">
-            <p className="text-white text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
+          {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
+          <div className="px-11.5 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-24.5 lg:ml-41 lg:mr-0 sm:pb-40 lg:pb-38 sm:pl-0 lg:pl-0 sm:max-w-[80%]">
+            <p className="text-white text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
               Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
               How did you even get here?
             </p>
