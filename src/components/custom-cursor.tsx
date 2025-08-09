@@ -4,6 +4,13 @@ import { cn } from '@/lib/utils';
 import { animate, createScope } from 'animejs';
 import React, { useEffect, useRef, useState } from 'react';
 
+// Helper function to detect mobile devices
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  
+  return ('ontouchstart' in window);
+};
+
 // Replace this with your actual SVG arrow component or string
 const ArrowSVG: React.FC = () => (
   <svg
@@ -27,8 +34,16 @@ function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile on component mount
+    setIsMobile(isMobileDevice());
+    
+    // Don't initialize cursor functionality on mobile devices
+    if (isMobileDevice()) {
+      return;
+    }
 
     scopeRef.current = createScope({ root: document.body }).add(() => {
       const moveCursor = (e: MouseEvent) => {
@@ -78,7 +93,12 @@ function CustomCursor() {
     return () => {
       scopeRef.current?.revert();
     };
-  })
+  }, []);
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
