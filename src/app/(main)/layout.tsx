@@ -7,6 +7,7 @@ import Header from "@/components/layout/header/header";
 import Footer from "@/components/blocks/6-footer/footer";
 import SmoothScroll from "@/components/common/smooth-scroll";
 import CookieConsent from "@/components/layout/accept-cookies";
+import Loader from "../../components/layout/loader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -41,7 +42,8 @@ export default function RootLayout({
       <CustomCursor />
       <SmoothScroll />
       {children}
-      <Footer className="mt-40" emailAddress="hello@functionaldesign.studio" />
+      <Footer className="mt-40" />
+      <Loader />
     </ToastProvider>
   );
 }

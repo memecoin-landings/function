@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import getConfig from "@/config";
 import localFont from "next/font/local";
+import Loader from "../components/layout/loader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
