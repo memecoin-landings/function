@@ -19,11 +19,9 @@ export default function Footer({
   className: string;
   emailAddress: string;
 }) {
-
-
   return (
-    <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 ")}>
-      <div className="fluid-container @container">
+    <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden")}>
+      <div className="z-5 relative fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
             href={"mailto:" + emailAddress}
@@ -93,6 +91,10 @@ export default function Footer({
           </div>
         </div>
       </div>
+      <div className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
+
     </footer>
   );
 }
+
+
