@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import { Ref, useState, useEffect } from "react";
+import { Ref, useState } from "react";
 import FormHeader from "./form-header";
 import SubmitForm from "./submit-form";
 import { FormViewModel } from "@/domain/form-view-model";
@@ -13,13 +13,13 @@ export default function FormModal({
   onClose,
 }: {
   className?: string;
-  ref: Ref<HTMLDivElement> | undefined;
+  ref?: Ref<HTMLDivElement> | undefined;
   onClose?: () => void;
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  
+
   // Создаем экземпляр view model
   const [viewModel] = useState(() => new FormViewModel());
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
@@ -28,20 +28,20 @@ export default function FormModal({
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleBrandingSelect = async (brandingId: string) => {
-    if (isAnimating) return; 
-    
+    if (isAnimating) return;
+
     setIsAnimating(true);
-    
+
     if (isSecondRowVisible) {
       setIsSecondRowVisible(false);
-      await new Promise(resolve => setTimeout(resolve, 200)); 
+      await new Promise(resolve => setTimeout(resolve, 200));
     }
-    
+
     viewModel.selectBranding(brandingId);
     setSelectedBranding(viewModel.selectedBranding);
     setSelectedServices([...viewModel.selectedServices]);
     setIsSecondRowVisible(viewModel.isSecondRowVisible);
-    
+
     setTimeout(() => setIsAnimating(false), 300);
   };
 
@@ -54,18 +54,18 @@ export default function FormModal({
   const handleClose = () => {
     // Очищаем view model
     viewModel.clearSelection();
-    
+
     // Очищаем локальное состояние
     setSelectedBranding(null);
     setSelectedServices([]);
     setIsSecondRowVisible(false);
     setIsAnimating(false);
-    
+
     // Очищаем поля формы
     setName("");
     setPhone("");
     setEmail("");
-    
+
     // Вызываем оригинальный onClose
     if (onClose) {
       onClose();
@@ -115,13 +115,12 @@ export default function FormModal({
                 singleSelection={true}
               />
             </div>
-            
+
             {/* Второй ряд с услугами - улучшенная анимация */}
-            <div className={`transition-all duration-500 ease-in-out ${
-              isSecondRowVisible 
-                ? 'opacity-100 translate-y-0 max-h-96' 
-                : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
-            }`}>
+            <div className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
+              ? 'opacity-100 translate-y-0 max-h-96'
+              : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
+              }`}>
               <div className="animate-in fade-in slide-in-from-top-2 duration-300">
                 <h3 className="font-cera-pro  font-medium 
               text-[1.125rem] md:text-[1.875rem]
@@ -136,7 +135,7 @@ export default function FormModal({
                 />
               </div>
             </div>
-            
+
             <div className="h-12.5"></div>
             <InputField
               value={name}
