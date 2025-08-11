@@ -29,12 +29,12 @@ export default function ServicesLinks({ ref, focusColor = "#FF3F1A", showArrowCu
     });
   }, []);
 
-  return (<div ref={ref ?? sectionRef} className={cn("text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container", className)}>
+  return (<div ref={ref ?? sectionRef} className={cn("text-[clamp(1px,5.71cqw,3.8rem)] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container", className)}>
     {repo.list().map((service, index) => (
       <Link
         href="#services"
         key={index}
-        className="text-[5.71cqw] font-medium font-cera inline group"
+        className=" font-medium font-cera inline group"
       >
         <span custom-cursor={showArrowCursor ? "hover" : ""} style={{ "--focusColor": focusColor } as any} className="inline-block" ref={(el) => { if (el) linksRef.current.push(el) }}>
           <span

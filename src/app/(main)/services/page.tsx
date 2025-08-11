@@ -41,7 +41,7 @@ export default function ServicesPage() {
         >
           Services —
         </div>
-        <ServicesLinks ref={paragraphRef} className="-mt-35" showArrowCursor={true} focusColor="#fff" />
+        <ServicesLinks ref={paragraphRef} className="-mt-[1.6em]" showArrowCursor={true} focusColor="#fff" />
       </section>
       <section>
         <FormModal />
