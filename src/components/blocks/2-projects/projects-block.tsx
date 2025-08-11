@@ -4,13 +4,14 @@ import BgImageCard, { BgImageParam } from "@/components/cards/bg-image-card";
 import SectionHeader from "@/components/common/section-header";
 import type React from "react";
 import ProjectLinkButton from "./projects-link-button";
-import projects from "@/domain/projects";
 import { animate, onScroll, stagger } from "animejs";
 import { useEffect, useRef } from "react";
+import ProjectPojoRepository from "../../../infrastructure/project.pojo-repository";
 
 
 export default function ProjectsBlock({ className }: { className?: string }) {
-  const infoBlocks = projects.map((project) => {
+  const repo = ProjectPojoRepository.getInstance();
+  const infoBlocks = repo.list().map((project) => {
     return new BgImageParam(
       project.image,
       project.title,

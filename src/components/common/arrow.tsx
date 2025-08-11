@@ -7,7 +7,7 @@ export default function ArrowSVG({ className }: { className?: string }) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_1860_25)">
+      <g clipPath="url(#clip0_1860_25)">
         <path d="M105.987 0L104.462 1.52244L109.871 6.9228H0V9.0772H109.871L104.462 14.4776L105.987 16L114 8L105.987 0Z" />
       </g>
       <defs>

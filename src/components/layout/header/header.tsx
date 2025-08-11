@@ -39,7 +39,7 @@ export default function Header({ className }: { className?: string }) {
             {menuItems.map((item) =>
               <HeaderItem
                 className="shrink-0"
-                key={item.href}
+                key={item.label}
                 href={item.href}
               >
                 {item.label}

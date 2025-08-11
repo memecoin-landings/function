@@ -23,7 +23,7 @@ export default function FedorBlock({ className }: { className?: string }) {
     animate(elementsRef.current, {
       opacity: [0, 1],
       scale: [0.8, 1],
-      translateX: { from: stagger(["-25vw", "25vw"]) },
+      translateX: { from: stagger(["-25vw", "25vw"]), to: "0" },
       duration: 1000,
       easing: "easeInOutQuad",
       delay: 0,

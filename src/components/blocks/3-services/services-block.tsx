@@ -1,13 +1,14 @@
 "use client";
 
 import SectionHeader from "@/components/common/section-header";
-import services from "@/domain/services";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { animate, onScroll, stagger } from "animejs";
+import ServicePojoRepository from "../../../infrastructure/service.pojo-repository";
 
 export default function ServicesBlock({ className }: { className?: string }) {
+  const repo = ServicePojoRepository.getInstance();
   const sectionRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLElement[]>([]);
 
@@ -36,7 +37,7 @@ export default function ServicesBlock({ className }: { className?: string }) {
     >
       <SectionHeader>Services</SectionHeader>
       <div className="text-justify md:mt-7.5 mt-2.5 w-full font-medium font-cera break-keep break-words leading-[1.25] @container">
-        {services.map((service, index) => (
+        {repo.list().map((service, index) => (
           <Link
             href="#services"
             key={index}
