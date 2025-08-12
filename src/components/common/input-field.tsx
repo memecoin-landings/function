@@ -3,6 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useThemeColors } from "./use-theme-colors";
 
 interface InputFieldProps {
   label?: string;
@@ -27,6 +28,7 @@ export function InputField({
 }: InputFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [internalValue, setInternalValue] = useState(value || "");
+  const colors = useThemeColors();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -37,9 +39,11 @@ export function InputField({
   const hasValue = internalValue.length > 0;
 
   return (
-    <div className={cn("relative mb-6", className)}>
+    <div className={cn("relative", className)}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label
+          className={cn("block text-sm font-medium mb-1", colors.textSecondary)}
+        >
           {label}
         </label>
       )}
@@ -53,20 +57,22 @@ export function InputField({
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
           className={cn(
-            "w-full h-12 bg-transparent border-0 border-b-2 px-0 py-3 md:text-2xl xs:text-[1.0625rem] text-[0.875rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 transition-colors duration-200",
-            isFocused || hasValue ? "border-gray-900" : "border-gray-300"
+            "w-full h-8 bg-transparent border-0 border-b-2 px-5 pb-2.5 md:text-2xl xs:text-[1.0625rem] text-[0.875rem] focus:outline-none focus:ring-0 transition-colors duration-200",
+            colors.inputText,
+            colors.inputPlaceholder,
+            isFocused || hasValue ? colors.inputBorderFocus : colors.inputBorder
           )}
           required={required}
         />
 
         {required && !hasValue && (
-          <span className="absolute right-0 top-3 text-xs text-red-500">
+          <span className="absolute right-0 text-xs text-red-500 pr-5">
             ! Required field
           </span>
         )}
       </div>
 
-      {hint && <p className="mt-2 text-xs text-gray-500">{hint}</p>}
+      {hint && <p className={cn("mt-2 text-xs", colors.textMuted)}>{hint}</p>}
     </div>
   );
 }
