@@ -4,7 +4,6 @@ import React from "react";
 import ServicesLinks from "./services-links";
 
 export default function ServicesBlock({ className }: { className?: string }) {
-
   return (
     <section
       id="services"
