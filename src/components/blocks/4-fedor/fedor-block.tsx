@@ -65,7 +65,6 @@ export default function FedorBlock({ className }: { className?: string }) {
       <div className="text-[#F0EDE8] px-[10cqw] xl:px-[8.2cqw]">
         <div className=" mb-3.75 md:mb-7.5 xl:mb-12.5 max-w-[27rem] md:max-w-[50.5rem] md:min-w-[27rem] md:w-[57.7cqw] @container">
           <p
-            ref={pushIfNotNull(elementsRef.current)}
             className="text-[clamp(0.875rem,4cqw,1.25rem)] md:text-[clamp(1.25rem,4.6cqw,1.875rem)] leading-[clamp(1.188rem,5.6cqw,1.625rem)] md:leading-[clamp(1.625rem,6cqw,2.688rem)]"
           >
             Founder and owner of Function Design Studio. Multidisciplinary

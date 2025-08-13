@@ -22,6 +22,9 @@ export default function ServicesBlock({ className }: { className?: string }) {
       easing: "easeOutQuad",
       delay: stagger(200),
       autoplay: onScroll({
+        sync: true,
+        enter: "bottom-=15% top",
+        leave: "bottom-=15% bottom",
         target: section,
         container: document.body,
       }),
