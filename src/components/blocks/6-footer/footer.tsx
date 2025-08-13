@@ -41,7 +41,7 @@ export default function Footer({
       autoplay: onScroll({
         container: document.body,
         sync: true,
-        debug: true,
+        debug: false,
         enter: "bottom 70%",
         leave: "bottom 95%",
         target: section,
