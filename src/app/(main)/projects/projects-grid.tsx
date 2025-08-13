@@ -29,8 +29,11 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
       delay: stagger(200),
       debug: true,
       autoplay: onScroll({
+        sync: true,
+        debug: false,
         target: section,
-        enter: "50%",
+        enter: "bottom top",
+        leave: "bottom bottom",
         container: document.body,
       }),
     });
