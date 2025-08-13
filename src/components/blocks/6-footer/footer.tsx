@@ -1,3 +1,4 @@
+"use client";
 import BehanceIcon from "@/components/common/behance-icon";
 import FooterForm from "@/components/common/footer-form/footer-form";
 import InstagramIcon from "@/components/common/instagram-icon";
@@ -6,18 +7,46 @@ import DribbleIcon from "@/components/common/unknown-cw";
 import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+
 import Contacts from "../../../domain/contacts";
+import { useEffect, useRef } from "react";
+import { animate, onScroll, stagger } from "animejs";
 
 export default function Footer({
   className,
 }: {
   className: string;
 }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const glowEffect = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const glowElement = glowEffect.current;
+    if (!glowElement) return;
+
+    // Создаем анимацию, но не запускаем её автоматически
+    animate(glowElement, {
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      y: [100, 0], // Анимация снизу вверх
+      duration: 1200,
+      easing: "easeOutCubic",
+      autoplay: onScroll({
+        container: document.body,
+        sync: true,
+        debug: false,
+        enter: "bottom 70%",
+        leave: "bottom 95%",
+        target: section,
+      }),
+    });
+  }, []);
 
   return (
-    <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 ")}>
-      <div className="fluid-container @container">
+    <footer ref={sectionRef} className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden")}>
+      <div className="z-5 relative fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
             href={"mailto:" + Contacts.email}
@@ -87,6 +116,9 @@ export default function Footer({
           </div>
         </div>
       </div>
+      <div ref={glowEffect} className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
     </footer>
   );
 }
+
+
