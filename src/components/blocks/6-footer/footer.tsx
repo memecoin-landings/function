@@ -1,3 +1,4 @@
+"use client";
 import BehanceIcon from "@/components/common/behance-icon";
 import FooterForm from "@/components/common/footer-form/footer-form";
 import InstagramIcon from "@/components/common/instagram-icon";
@@ -6,6 +7,9 @@ import DribbleIcon from "@/components/common/unknown-cw";
 import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { animate, onScroll, stagger } from "animejs";
+import pushIfNotNull from "@/lib/push-if-not-null";
 
 export const instagramLink = "https://www.instagram.com/beltugov/";
 export const behanceLink = "https://www.behance.net/fbeltugov";
@@ -19,8 +23,62 @@ export default function Footer({
   className: string;
   emailAddress: string;
 }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const elementsRef = useRef<HTMLElement[]>([]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // Функция для проверки, достиг ли пользователь конца страницы
+    const checkScrollEnd = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Если пользователь доскроллил до конца (с небольшим запасом)
+      if (scrollTop + windowHeight >= documentHeight - 100) {
+        return true;
+      }
+      return false; 
+    };
+
+    // Создаем анимацию, но не запускаем её автоматически
+    const animation = animate(elementsRef.current, {
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      translateY: [100, 0], // Анимация снизу вверх
+      duration: 1200,
+      easing: "easeOutCubic",
+      delay: stagger(100), // Небольшая задержка между элементами
+      autoplay: false, // Не запускаем автоматически
+    });
+
+    // Функция для запуска анимации
+    const startAnimation = () => {
+      if (checkScrollEnd()) {
+        animation.play();
+        // Убираем слушатель после запуска анимации
+        window.removeEventListener('scroll', startAnimation);
+      }
+    };
+
+    // Добавляем слушатель скролла
+    window.addEventListener('scroll', startAnimation);
+    
+    // Проверяем сразу, может быть пользователь уже в конце страницы
+    if (checkScrollEnd()) {
+      animation.play();
+    }
+
+    // Очистка при размонтировании
+    return () => {
+      window.removeEventListener('scroll', startAnimation);
+    };
+  }, []);
+
   return (
-    <footer className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden")}>
+    <footer ref={sectionRef} className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden")}>
       <div className="z-5 relative fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
@@ -91,7 +149,7 @@ export default function Footer({
           </div>
         </div>
       </div>
-      <div className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
+      <div ref={pushIfNotNull(elementsRef.current)} className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
 
     </footer>
   );
