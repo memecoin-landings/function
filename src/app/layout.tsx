@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import "./globals.css";
 import getConfig from "@/config";
 import localFont from "next/font/local";
+import Loader from "../components/layout/loader";
+import { ThemeProvider } from "@/components/common/theme-context";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
   title: { default: "Function", template: "%s | Function" },
-  description:
-    "Дизайн Function. Фёдор Бельтюгов.",
+  description: "Дизайн Function. Фёдор Бельтюгов.",
   keywords: ["дизайн", "фёдор", "белтюгов", "function"],
   openGraph: {
     type: "website",
     countryName: "Russia",
     title: "Function",
-    description:
-      "Дизайн Function. Фёдор Бельтюгов.",
+    description: "Дизайн Function. Фёдор Бельтюгов.",
     url: getConfig().baseUrl,
     images: "/og.jpg",
   },
@@ -40,7 +40,8 @@ const cera = localFont({
       weight: "600",
       style: "normal",
     },
-  ], variable: "--font-cera"
+  ],
+  variable: "--font-cera",
 });
 
 export default function RootLayout({
@@ -55,8 +56,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Compass",
     url: baseUrl,
-    sameAs: [
-    ],
+    sameAs: [],
     logo: baseUrl + "/favicon.ico",
     contactPoint: {
       "@type": "ContactPoint",
@@ -83,10 +83,8 @@ export default function RootLayout({
         {/* <meta name="yandex-verification" content="44500bcd7d698cec" /> */}
         {/* <noscript><div><img src="https://mc.yandex.ru/watch/103342681" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript> */}
       </head>
-      <body
-        className={`${cera.variable} antialiased`}
-      >
-        {children}
+      <body className={`${cera.variable} antialiased`}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

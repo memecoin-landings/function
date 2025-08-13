@@ -7,20 +7,15 @@ import DribbleIcon from "@/components/common/unknown-cw";
 import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+
+import Contacts from "../../../domain/contacts";
 import { useEffect, useRef } from "react";
 import { animate, onScroll, stagger } from "animejs";
 
-export const instagramLink = "https://www.instagram.com/beltugov/";
-export const behanceLink = "https://www.behance.net/fbeltugov";
-export const dribbleLink = "https://dribbble.com/fbeltugov";
-export const whatsAppLink = "https://wa.me/79264266855";
-export const telegramLink = "https://t.me/Fedor_Beltugov";
 export default function Footer({
   className,
-  emailAddress,
 }: {
   className: string;
-  emailAddress: string;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const glowEffect = useRef<HTMLDivElement>(null);
@@ -54,10 +49,10 @@ export default function Footer({
       <div className="z-5 relative fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
-            href={"mailto:" + emailAddress}
+            href={"mailto:" + Contacts.email}
             className="text-[#F0EDE8] transition-colors duration-150 hover:text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
           >
-            {emailAddress}
+            {Contacts.email}
           </Link>
         </div>
         <div className="px-11.25 pb-12.5 md:pb-25">
@@ -68,14 +63,14 @@ export default function Footer({
               </p>
             </div>
 
-            <Link href={whatsAppLink}>
-              <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5">
+            <Link href={Contacts.socialLinks.whatsapp}>
+              <div className="flex flex-row transition-colors duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5">
                 <WhatsappCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
                 <p>WhatsApp</p>
               </div>
             </Link>
-            <Link href={telegramLink}>
-              <div className="flex flex-row font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5">
+            <Link href={Contacts.socialLinks.telegram}>
+              <div className="flex flex-row transition-colors duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5">
                 <TelegramCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
                 <p>Telegram</p>
               </div>
@@ -102,14 +97,14 @@ export default function Footer({
                 Discover our work on:
               </p>
               <div className="flex flex-row space-x-2.5 md:space-x-5">
-                <Link href={instagramLink}>
-                  <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                <Link href={Contacts.socialLinks.instagram}>
+                  <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={behanceLink}>
-                  <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                <Link href={Contacts.socialLinks.behance}>
+                  <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={dribbleLink}>
-                  <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
+                <Link href={Contacts.socialLinks.dribbble}>
+                  <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
               </div>
             </div>

@@ -17,7 +17,7 @@ export default function MobileMenu({ className, openModal }: { className?: strin
     >
       <div className="flex flex-col items-start space-y-5">
         {menuItems.map((item) => (
-          <SideMenuItem key={item.href} href={item.href}>
+          <SideMenuItem key={item.label} href={item.href}>
             {item.label}
           </SideMenuItem>
         ))}

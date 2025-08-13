@@ -4,8 +4,7 @@ import caspianGoldPic from "@/../public/cover_project-caspian-gold.jpg";
 import fffPic from "@/../public/cover_project-fff.jpg";
 import smartStoryPic from "@/../public/cover_project-smart-stroy.jpg";
 import spilePic from "@/../public/cover_project-spile.jpg";
-
-import Project from "./project";
+import Project from "@/domain/project/project";
 
 const projects: Project[] = [
   new Project("Feel Full Free", fffPic, "", ["Logo", "Product branding"], 6),

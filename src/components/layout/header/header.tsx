@@ -28,7 +28,7 @@ export default function Header({ className }: { className?: string }) {
         <div className={cn("mx-auto px-5 flex items-center")}>
           {/* Logo */}
           <Link
-            href="/#home"
+            href="/"
             className="flex-shrink-0 flex items-center group"
           >
             <FunctionLogo className="origin-left sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
@@ -39,7 +39,7 @@ export default function Header({ className }: { className?: string }) {
             {menuItems.map((item) =>
               <HeaderItem
                 className="shrink-0"
-                key={item.href}
+                key={item.label}
                 href={item.href}
               >
                 {item.label}

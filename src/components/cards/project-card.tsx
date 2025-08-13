@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import { Ref } from "react";
 
-export class BgImageParam {
+export class ProjectCardParams {
   image: StaticImageData;
   title?: string | undefined;
   subtitle?: string | undefined;
@@ -17,13 +17,13 @@ export class BgImageParam {
   }
 }
 
-export default function BgImageCard({
+export default function ProjectCard({
   data,
   className,
   ref,
   ...rest
 }: {
-  data: BgImageParam;
+  data: ProjectCardParams;
   ref?: Ref<HTMLDivElement>
   className: string;
   [key: string]: unknown;
