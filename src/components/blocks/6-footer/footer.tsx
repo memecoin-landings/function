@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { animate, onScroll, stagger } from "animejs";
-import pushIfNotNull from "@/lib/push-if-not-null";
 
 export const instagramLink = "https://www.instagram.com/beltugov/";
 export const behanceLink = "https://www.behance.net/fbeltugov";
@@ -24,57 +23,30 @@ export default function Footer({
   emailAddress: string;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const elementsRef = useRef<HTMLElement[]>([]);
+  const glowEffect = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-
-    // Функция для проверки, достиг ли пользователь конца страницы
-    const checkScrollEnd = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Если пользователь доскроллил до конца (с небольшим запасом)
-      if (scrollTop + windowHeight >= documentHeight - 100) {
-        return true;
-      }
-      return false; 
-    };
+    const glowElement = glowEffect.current;
+    if (!glowElement) return;
 
     // Создаем анимацию, но не запускаем её автоматически
-    const animation = animate(elementsRef.current, {
+    animate(glowElement, {
       opacity: [0, 1],
       scale: [0.8, 1],
-      translateY: [100, 0], // Анимация снизу вверх
+      y: [100, 0], // Анимация снизу вверх
       duration: 1200,
       easing: "easeOutCubic",
-      delay: stagger(100), // Небольшая задержка между элементами
-      autoplay: false, // Не запускаем автоматически
+      autoplay: onScroll({
+        container: document.body,
+        sync: true,
+        debug: true,
+        enter: "bottom 70%",
+        leave: "bottom 95%",
+        target: section,
+      }),
     });
-
-    // Функция для запуска анимации
-    const startAnimation = () => {
-      if (checkScrollEnd()) {
-        animation.play();
-        // Убираем слушатель после запуска анимации
-        window.removeEventListener('scroll', startAnimation);
-      }
-    };
-
-    // Добавляем слушатель скролла
-    window.addEventListener('scroll', startAnimation);
-    
-    // Проверяем сразу, может быть пользователь уже в конце страницы
-    if (checkScrollEnd()) {
-      animation.play();
-    }
-
-    // Очистка при размонтировании
-    return () => {
-      window.removeEventListener('scroll', startAnimation);
-    };
   }, []);
 
   return (
@@ -149,8 +121,7 @@ export default function Footer({
           </div>
         </div>
       </div>
-      <div ref={pushIfNotNull(elementsRef.current)} className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
-
+      <div ref={glowEffect} className="z-0 absolute left-1/2 transform -translate-x-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%]  bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"></div>
     </footer>
   );
 }

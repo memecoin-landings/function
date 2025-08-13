@@ -34,8 +34,12 @@ export default function ProjectsBlock({ className }: { className?: string }) {
       delay: stagger(200),
       debug: true,
       autoplay: onScroll({
+        sync: true,
+        debug: false,
         target: section,
-        enter: "50%",
+        enter: "bottom top",
+        leave: "bottom bottom",
+        // enter: "50%",
         container: document.body,
       }),
     });
