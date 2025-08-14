@@ -8,7 +8,7 @@ export function useThemeColors() {
   return {
     // Цвета текста
     textPrimary: isLight ? "text-black" : "text-white",
-    textSecondary: isLight ? "text-gray-700" : "text-gray-300",
+    textSecondary: isLight ? "text-[#C8C8C8]" : "text-[#727272]",
     textMuted: isLight ? "text-gray-500" : "text-gray-400",
     
     // Цвета фона
@@ -25,8 +25,8 @@ export function useThemeColors() {
     // Цвета для input полей
     inputText: isLight ? "text-[#151516]" : "text-white",
     inputPlaceholder: isLight ? "placeholder-[#C8C8C8]" : "placeholder-[#727272]",
-    inputBorder: isLight ? "border-[#5A5A5A]" : "border-[#F0EDE8]",
-    inputBorderFocus: isLight ? "border-gray-900" : "border-white",
+    inputBorder: isLight ? "border-gray" : "border-[#F0EDE8]",
+    inputBorderFocus: isLight ? "border-[#5A5A5A]" : "border-white",
     
     // Цвета для кнопок
     buttonBg: isLight ? "bg-[#151516]" : "bg-[#F0EDE8]",

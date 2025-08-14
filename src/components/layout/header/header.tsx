@@ -8,15 +8,17 @@ import BurgerIcon from "@/components/icons/burger";
 import MobileMenu from "./mobile-menu";
 import menuItems from "./menu-items";
 import FormModal from "@/components/blocks/form/form-modal";
+import { FormViewModel } from "@/domain/form-view-model";
 
 export default function Header({ className }: { className?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const formRef = useRef<HTMLDivElement>(null)
+  const formRef = useRef<HTMLDivElement>(null);
+  const [formViewModel] = useState(() => new FormViewModel());
 
   const openModal = () => {
     setIsModalOpen(true);
-    formRef.current?.focus()
+    formRef.current?.focus();
   };
 
   return (
@@ -27,16 +29,13 @@ export default function Header({ className }: { className?: string }) {
       >
         <div className={cn("mx-auto px-5 flex items-center")}>
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex-shrink-0 flex items-center group"
-          >
+          <Link href="/" className="flex-shrink-0 flex items-center group">
             <FunctionLogo className="origin-left sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
           </Link>
           <div className="grow-1"></div>
           {/* Desktop Navigation */}
           <nav className="hidden sm:flex shrink-0 items-baseline md:space-x-15 space-x-7.5 flex-nowrap">
-            {menuItems.map((item) =>
+            {menuItems.map((item) => (
               <HeaderItem
                 className="shrink-0"
                 key={item.label}
@@ -44,7 +43,7 @@ export default function Header({ className }: { className?: string }) {
               >
                 {item.label}
               </HeaderItem>
-            )}
+            ))}
             {/* Get Price Button */}
             <button
               className="hidden sm:block bg-[#F0EDE8] text-[#151516] hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap"
@@ -74,7 +73,17 @@ export default function Header({ className }: { className?: string }) {
       </header>
 
       {/* Render modal independently */}
-      <FormModal ref={formRef} className={cn("fixed inset-0 z-500 transition-all duration-300 max-h-screen", isModalOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",)} onClose={() => setIsModalOpen(false)} />
+      <FormModal
+        ref={formRef}
+        className={cn(
+          "fixed inset-0 z-500 transition-all duration-300 max-h-screen",
+          isModalOpen
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95 pointer-events-none"
+        )}
+        onClose={() => setIsModalOpen(false)}
+        viewModel={formViewModel}
+      />
     </>
   );
 }

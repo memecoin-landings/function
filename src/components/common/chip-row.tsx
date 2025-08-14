@@ -28,7 +28,7 @@ export default function ChipRow({
   };
 
   return (
-    <div className={cn("flex flex-wrap gap-3", className)}>
+    <div className={cn("flex flex-wrap gap-5", className)}>
       {chipOptions.map((option) => (
         <Chip
           key={option.id}

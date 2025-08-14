@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { useThemeColors } from "@/components/common/use-theme-colors";
-import { ThemeToggle } from "@/components/common/theme-toggle";
 
 interface FormHeaderProps {
   onClose?: (() => void) | undefined;
@@ -28,7 +27,6 @@ export default function FormHeader({ onClose, className }: FormHeaderProps) {
       </Link>
 
       <div className="flex items-center gap-3">
-        <ThemeToggle className="hidden" />
         <button
           className={cn(
             "inline-flex items-center px-5 text-sm py-0.5 font-normal leading-[2.125rem] text-nowrap tracking-[0%] rounded-full transition-colors",

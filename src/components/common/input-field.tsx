@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { useThemeColors } from "./use-theme-colors";
 
@@ -16,63 +16,78 @@ interface InputFieldProps {
   className?: string;
 }
 
-export function InputField({
-  label,
-  hint,
-  required = false,
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-  className,
-}: InputFieldProps) {
-  const [isFocused, setIsFocused] = useState(false);
-  const [internalValue, setInternalValue] = useState(value || "");
-  const colors = useThemeColors();
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
+  (
+    {
+      label,
+      hint,
+      required = false,
+      placeholder,
+      value,
+      onChange,
+      type = "text",
+      className,
+    },
+    ref
+  ) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const [internalValue, setInternalValue] = useState(value || "");
+    const colors = useThemeColors();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInternalValue(newValue);
-    onChange?.(newValue);
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setInternalValue(newValue);
+      onChange?.(newValue);
+    };
 
-  const hasValue = internalValue.length > 0;
+    const hasValue = internalValue.length > 0;
 
-  return (
-    <div className={cn("relative", className)}>
-      {label && (
-        <label
-          className={cn("block text-sm font-medium mb-1", colors.textSecondary)}
-        >
-          {label}
-        </label>
-      )}
+    return (
+      <div className={cn("relative", className)}>
+        {label && (
+          <label
+            className={cn(
+              "block text-sm font-medium mb-1",
+              colors.textSecondary
+            )}
+          >
+            {label}
+          </label>
+        )}
 
-      <div className="relative">
-        <input
-          type={type}
-          value={internalValue}
-          onChange={handleChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
-          className={cn(
-            "w-full h-8 bg-transparent border-0 border-b-2 px-5 pb-2.5 md:text-2xl xs:text-[1.0625rem] text-[0.875rem] focus:outline-none focus:ring-0 transition-colors duration-200",
-            colors.inputText,
-            colors.inputPlaceholder,
-            isFocused || hasValue ? colors.inputBorderFocus : colors.inputBorder
+        <div className="relative">
+          <input
+            ref={ref}
+            type={type}
+            value={internalValue}
+            onChange={handleChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={placeholder}
+            className={cn(
+              "w-full h-8 bg-transparent border-0 md:border-b-1 border-b-[0.039rem] px-5 pb-2.5 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] focus:outline-none focus:ring-0 transition-colors duration-200",
+              colors.inputText,
+              colors.inputPlaceholder,
+              isFocused || hasValue
+                ? colors.inputBorderFocus
+                : colors.inputBorder
+            )}
+            required={required}
+          />
+
+          {required && !hasValue && (
+            <span className="absolute right-0 bottom-3 text-xs text-red-500 pr-5">
+              ! Required field
+            </span>
           )}
-          required={required}
-        />
+        </div>
 
-        {required && !hasValue && (
-          <span className="absolute right-0 text-xs text-red-500 pr-5">
-            ! Required field
-          </span>
+        {hint && (
+          <p className={cn("mt-2 text-4xl", colors.textMuted)}>{hint}</p>
         )}
       </div>
+    );
+  }
+);
 
-      {hint && <p className={cn("mt-2 text-xs", colors.textMuted)}>{hint}</p>}
-    </div>
-  );
-}
+InputField.displayName = "InputField";

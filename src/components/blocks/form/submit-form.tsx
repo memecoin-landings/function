@@ -5,12 +5,17 @@ import { useThemeColors } from "@/components/common/use-theme-colors";
 interface SubmitFormProps {
   onSend?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
-export default function SubmitForm({ onSend, className }: SubmitFormProps) {
+export default function SubmitForm({
+  onSend,
+  className,
+  disabled = false,
+}: SubmitFormProps) {
   const colors = useThemeColors();
   const handleClick = () => {
-    if (onSend) onSend();
+    if (onSend && !disabled) onSend();
   };
 
   return (
@@ -24,9 +29,11 @@ export default function SubmitForm({ onSend, className }: SubmitFormProps) {
             "hover:bg-[#FF3F1A] hover:text-black",
             "hover:bg-[#FF3F1A] hover:text-black"
           ),
-          className || ""
+          disabled ? "opacity-50 cursor-not-allowed hover:bg-opacity-50" : "",
+          className
         )}
         onClick={handleClick}
+        disabled={disabled}
       >
         Send
       </button>
@@ -36,8 +43,8 @@ export default function SubmitForm({ onSend, className }: SubmitFormProps) {
           colors.textPrimary
         )}
       >
-        By clicking on the «Send» button, I consent to the processing
-        of personal data
+        By clicking on the «Send» button, I consent to the processing of
+        personal data
       </p>
     </div>
   );
