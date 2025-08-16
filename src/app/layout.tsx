@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import getConfig from "@/config";
 import localFont from "next/font/local";
-import Loader from "../components/layout/loader";
 import { ThemeProvider } from "@/components/common/theme-context";
 
 export const metadata: Metadata = {

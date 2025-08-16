@@ -2,7 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Chip } from "./chip";
-import { ChipOption } from "@/domain/form-view-model";
+import { ChipOption } from "@/domain/form-view-model.interface";
 
 export default function ChipRow({
   className,

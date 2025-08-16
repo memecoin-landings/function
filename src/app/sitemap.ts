@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import "reflect-metadata";
 import getConfig from "../config";
-import services from "@/domain/services";
+import ServicePojoRepository from "../infrastructure/service.pojo-repository";
 
 const baseUrl = getConfig().baseUrl;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const repo = ServicePojoRepository.getInstance();
+  const services = repo.list();
   return [
     {
       url: baseUrl,

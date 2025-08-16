@@ -15,6 +15,7 @@ export default class ServicePojoRepository implements ServiceRepository {
   list(): Service[] {
     return services;
   }
+
   getBySlug(slug: string): Service | undefined {
     return services.find((service) => service.slug === slug);
   }

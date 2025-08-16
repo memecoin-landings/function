@@ -10,7 +10,7 @@ import Link from "next/link";
 
 import Contacts from "../../../domain/contacts";
 import { useEffect, useRef } from "react";
-import { animate, onScroll, stagger } from "animejs";
+import { animate, onScroll } from "animejs";
 
 export default function Footer({
   className,

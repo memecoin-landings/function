@@ -1,20 +1,20 @@
 "use client"
 
 import { animate, onScroll, stagger } from "animejs";
-import ServicesLinks from "../../../components/blocks/3-services/services-links";
-import { useEffect, useRef, useState } from "react";
+// import ServicesLinks from "../../../components/blocks/3-services/services-links";
+import { useEffect, useRef } from "react";
 import ProjectsGrid from "./projects-grid";
-import ProjectPojoRepository from "@/infrastructure/project.pojo-repository";
+// import ProjectPojoRepository from "@/infrastructure/project.pojo-repository";
 
 const labels = "Innovation\nStrategy\nIdentity\nBranding\nDesign\nCreation\nSolutions";
 
 export default function ServicesPage() {
-  const repo = ProjectPojoRepository.getInstance();
+  // const repo = ProjectPojoRepository.getInstance();
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const tags = repo.list().map((project) => project.tags).flat();
-  const [selectedTag, setSelectedTag] = useState();
+  // const tags = repo.list().map((project) => project.tags).flat();
+  // const [selectedTag, setSelectedTag] = useState();
 
   useEffect(() => {
     const section = sectionRef.current;

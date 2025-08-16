@@ -48,9 +48,9 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --chown=nextjs:nodejs next* ./
 
-RUN apk add --no-cache curl
-RUN apk add --no-cache ca-certificates
-RUN update-ca-certificates
+# RUN apk add curl
+# RUN apk add ca-certificates
+# RUN update-ca-certificates
 
 USER nextjs
 
