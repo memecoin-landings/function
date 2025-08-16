@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
 import { animate, onScroll, stagger } from "animejs";
 import ServicesLinks from "../../../components/blocks/3-services/services-links";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import FormModal from "../../../components/blocks/form/form-modal";
+import { FormViewModel } from "@/domain/form-view-model";
 
 export default function ServicesPage() {
-
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
+  const [formViewModel] = useState(() => new FormViewModel());
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -41,11 +42,16 @@ export default function ServicesPage() {
         >
           Services —
         </div>
-        <ServicesLinks ref={paragraphRef} className="-mt-[1.6em]" showArrowCursor={true} focusColor="#fff" />
+        <ServicesLinks
+          ref={paragraphRef}
+          className="-mt-[1.6em]"
+          showArrowCursor={true}
+          focusColor="#fff"
+        />
       </section>
       <section>
-        <FormModal />
+        <FormModal viewModel={formViewModel} />
       </section>
     </main>
-  )
+  );
 }

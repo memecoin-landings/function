@@ -2,32 +2,45 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import { Ref, useState } from "react";
+import { Ref, useState, useRef } from "react";
 import FormHeader from "./form-header";
 import SubmitForm from "./submit-form";
-import { FormViewModel } from "@/domain/form-view-model";
+import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 
 export default function FormModal({
   className,
   ref,
   onClose,
+  viewModel,
 }: {
   className?: string;
   ref?: Ref<HTMLDivElement> | undefined;
   onClose?: () => void;
+  viewModel: IFormViewModel;
 }) {
   const colors = useThemeColors();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
 
   // Создаем экземпляр view model
-  const [viewModel] = useState(() => new FormViewModel());
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [isSecondRowVisible, setIsSecondRowVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Функция валидации email с использованием встроенной HTML5 валидации
+  const isValidEmail = (): boolean => {
+    if (!emailRef.current) return false;
+    return emailRef.current.validity.valid;
+  };
+
+  // Обработчик изменения email
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+  };
 
   const handleBrandingSelect = async (brandingId: string) => {
     if (isAnimating) return;
@@ -177,14 +190,18 @@ export default function FormModal({
                   className="mb-13"
                 />
                 <InputField
+                  ref={emailRef}
                   value={email}
-                  onChange={setEmail}
+                  onChange={handleEmailChange}
                   placeholder="Email"
                   type="email"
                   className="mb-12.5"
                   required={true}
                 />
-                <SubmitForm className="" />
+                <SubmitForm
+                  className=""
+                  disabled={!email.trim() || !isValidEmail()}
+                />
               </div>
             </div>
           </div>

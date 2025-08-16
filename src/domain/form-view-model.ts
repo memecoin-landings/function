@@ -1,18 +1,10 @@
-export interface ChipOption {
-    id: string;
-    text: string;
-}
+import { IFormViewModel, ChipOption } from "./form-view-model.interface";
 
-export interface ServiceOption {
-    id: string;
-    text: string;
-    services: ChipOption[];
-}
-
-export class FormViewModel {
+export class FormViewModel implements IFormViewModel {
     private _selectedBranding: string | null = null;
     private _selectedServices: string[] = [];
     private _isSecondRowVisible = false;
+    private _isButtonActive = false;
 
     // Данные для первого ряда (брендинг)
     readonly brandingOptions: ChipOption[] = [
@@ -76,6 +68,9 @@ export class FormViewModel {
 
     get isSecondRowVisible(): boolean {
         return this._isSecondRowVisible;
+    }
+    get isButtonActive(): boolean{
+        return this._isButtonActive;
     }
 
     get currentServiceOptions(): ChipOption[] {
