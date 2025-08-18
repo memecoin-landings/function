@@ -1,20 +1,62 @@
-"use client"
+"use client";
 
 import { animate, onScroll, stagger } from "animejs";
 // import ServicesLinks from "../../../components/blocks/3-services/services-links";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProjectsGrid from "./projects-grid";
+import TopicList from "./topic-list";
 // import ProjectPojoRepository from "@/infrastructure/project.pojo-repository";
 
-const labels = "Innovation\nStrategy\nIdentity\nBranding\nDesign\nCreation\nSolutions";
+const labels = [
+  "Innovation",
+  "Strategy",
+  "Identity",
+  "Branding",
+  "Design",
+  "Creation",
+  "Solutions",
+];
+const topics = [
+  "All projects",
+  "Corporate identity",
+  "Product identity",
+  "Campaign Identity",
+  "Personal identity",
+];
 
 export default function ServicesPage() {
   // const repo = ProjectPojoRepository.getInstance();
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
+  const [selectedTopic, setSelectedTopic] = useState(0);
+  const [currentLabelIndex, setCurrentLabelIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   // const tags = repo.list().map((project) => project.tags).flat();
   // const [selectedTag, setSelectedTag] = useState();
+
+  const handleTopicSelect = (index: number) => {
+    setSelectedTopic(index);
+  };
+
+  // Получаем tag выбранного топика для фильтрации проектов
+  const getSelectedTopicTag = (): string | undefined => {
+    if (selectedTopic === 0) return undefined; // "All projects" - показываем все
+    return topics[selectedTopic]; // Возвращаем название топика как tag
+  };
+
+  // Автоматическая смена labels в цикле
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setCurrentLabelIndex((prevIndex) => (prevIndex + 1) % labels.length);
+
+      // Сброс анимации через 500ms
+      setTimeout(() => setIsAnimating(false), 500);
+    }, 2500); // Смена каждые 2.5 секунды
+
+    return () => clearInterval(interval);
+  }, [labels.length]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -38,23 +80,47 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25.75 xs:pt-18.25 pt-17 pb-25.75 md:pb-18.25 xs:pb-18.25 ">
-      <section ref={sectionRef} className="fluid-container relative @container">
-        <div
-          ref={headerRef}
-          className="font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] xs:pl-0"
-        >
-          OurCreative
-          Approach
-          to
-          <span className={`inline-block h-[1em] relative w-[60cqw] overflow-hidden`}>
-            <span className="absolute left-0 right-0 top-0">{labels}</span>
-          </span>
+    <main className="md:pt-25.75 xs:pt-18.25 pt-17 w-full">
+      <section
+        ref={sectionRef}
+        className="fluid-container relative pb-25.75 md:pb-18.25 xs:pb-18.25"
+      >
+        <div className="flex flex-row">
+          <div
+            ref={headerRef}
+            className="font-bold leading-[9cqw] tracking-[-3%] text-[11.8cqw] xs:pl-0 flex-4"
+          >
+            OurCreative Approach
+            <div className="flex flex-row">
+              to
+              <span className="w-[0.27cqw]"></span>
+              <span
+                className={`inline-block  relative w-[60cqw] overflow-visible`}
+              >
+                <span
+                  key={`${currentLabelIndex}-${isAnimating}`}
+                  className={`absolute left-0 right-0 top-0 text-[#FF3F1A] z-10 ${
+                    isAnimating ? "animate-fadeInOut" : ""
+                  }`}
+                >
+                  {labels[currentLabelIndex]}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="flex-1">
+            <TopicList
+              topics={topics}
+              selectedTopic={selectedTopic}
+              onTopicSelect={handleTopicSelect}
+            />
+          </div>
         </div>
       </section>
       <section>
-        <ProjectsGrid />
+        {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
+        {!getSelectedTopicTag() && <ProjectsGrid />}
       </section>
     </main>
-  )
+  );
 }

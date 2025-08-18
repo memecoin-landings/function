@@ -98,6 +98,17 @@
     }
   }
 
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes button-hover {
 
     0%,
@@ -115,6 +126,9 @@
   }
 }
 
+.animate-fadeInOut {
+  animation: fadeInOut 0.5s ease-in-out;
+}
 
 @utility container {
   margin-inline: auto;
