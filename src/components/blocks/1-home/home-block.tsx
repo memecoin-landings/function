@@ -3,7 +3,7 @@
 import { animate, onScroll, stagger } from "animejs";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
-import NoiseOverlay from "../../NoiseOverlay";
+import WebGLBlurEffect from "../../webgl-blur-component";
 
 export default function HomeBlock({ className }: { className?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -39,22 +39,23 @@ export default function HomeBlock({ className }: { className?: string }) {
         className
       )}
     >
-      <NoiseOverlay className="relative w-full flex flex-col">
-        <div
-          ref={headerRef}
-          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap xs:pl-0 opacity-0"
-        >
-          Unique
-          <br />
-          Solutions —
-        </div>
-        <p
-          ref={paragraphRef}
-          className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw] opacity-0"
-        >
-          Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
-        </p>
-      </NoiseOverlay>
+      <WebGLBlurEffect></WebGLBlurEffect>
+      <div
+        id="home-hero"
+        ref={headerRef}
+        className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap xs:pl-0 opacity-0"
+      >
+        Unique
+        <br />
+        Solutions —
+      </div>
+      <p
+        ref={paragraphRef}
+        className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw] opacity-0"
+      >
+        Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
+      </p>
+
     </section>
   );
 }
