@@ -1,14 +1,16 @@
+"use client"
+
 import html2canvas from 'html2canvas';
 import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { cn } from '../lib/utils';
 
 interface MousePosition {
   x: number;
   y: number;
 }
 
-function WebGLBlurEffect() {
-  const [imageSrc, setImageSrc] = React.useState<string>("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAEAAElEQVR4nOzdd3hU1f8H8M+Z2Z2Z");
+function WebGLBlurEffect({ children, className }: { children: React.ReactNode, className?: string },) {
+  const [imageUrl, setImageUrl] = React.useState<string>("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAAC3b1YQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAGdEVYdFNvZnR3YXJlAFBhaW50Lk5ldHdvcmtzIFZlcnNpb24gMy4xLjAsIGh0dHA6Ly9wYWludC5uZXQvAAB2aUlEQVR4nO3dX2hcVZ3H8e+7p");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const glRef = useRef<WebGLRenderingContext | null>(null);
@@ -16,7 +18,6 @@ function WebGLBlurEffect() {
   const textureRef = useRef<WebGLTexture | null>(null);
   const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5 });
   const animationIdRef = useRef<number | null>(null);
-  const capturedImageRef = useRef<HTMLImageElement>(null);
 
   const vsSource = `
     attribute vec2 aPos;
@@ -88,7 +89,7 @@ function WebGLBlurEffect() {
     const gl = canvas?.getContext('webgl');
 
     if (!gl || !canvas) {
-      console.error('WebGL not supported');
+      console.error('WebGL not supported or canvas is null', gl, canvas);
       return false;
     }
 
@@ -152,28 +153,11 @@ function WebGLBlurEffect() {
   }
 
   async function captureContent(): Promise<void> {
-    if (!contentRef.current) return;
+    if (!contentRef.current) return console.error('Content reference is null');
 
     try {
       // Test html2canvas first
       console.log('Starting html2canvas capture...');
-
-      // Create a simple test canvas first
-      const testCanvas = document.createElement('canvas');
-      testCanvas.width = 400;
-      testCanvas.height = 300;
-      const ctx = testCanvas.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = '#ff0000';
-        ctx.fillRect(0, 0, 400, 300);
-        ctx.fillStyle = '#00ff00';
-        ctx.fillRect(50, 50, 300, 200);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '20px Arial';
-        ctx.fillText('Test Canvas', 150, 150);
-      }
-
-      // First test: try to capture using the test canvas
       const glCanvas = canvasRef.current;
       const gl = glRef.current;
 
@@ -183,11 +167,11 @@ function WebGLBlurEffect() {
       }
 
       console.log('Using test canvas for now...');
-      glCanvas.width = testCanvas.width;
-      glCanvas.height = testCanvas.height;
+      glCanvas.width = contentRef.current.getBoundingClientRect().width;
+      glCanvas.height = contentRef.current.getBoundingClientRect().height;
 
       gl.bindTexture(gl.TEXTURE_2D, textureRef.current);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, testCanvas);
+      // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, testCanvas);
 
       console.log('Texture loaded successfully, starting animation...');
       startAnimation();
@@ -197,16 +181,27 @@ function WebGLBlurEffect() {
         try {
           console.log('html2canvas loaded:', html2canvas, contentRef.current);
 
-          // const htmlCanvas = await html2canvas(contentRef.current);
-          const htmlCanvas = await html2canvas(document.querySelector("#home-hero")! as HTMLElement, { backgroundColor: "#151516" });
+          if (!contentRef.current) {
+            console.error('Content reference is null');
+            return;
+          }
+          const htmlCanvas = await html2canvas(contentRef.current, {
+            height: contentRef.current.clientHeight, width: contentRef.current.clientWidth,
+            scrollX: -window.scrollX,
+            scrollY: -window.scrollY,
+            windowWidth: document.documentElement.offsetWidth,
+            windowHeight: document.documentElement.offsetHeight
+          }
+          );
+          // const htmlCanvas = await html2canvas(contentRef.current, { backgroundColor: "#151516" });
           console.log('html2canvas capture successful:', htmlCanvas.width, 'x', htmlCanvas.height);
-
-          // Show the captured image
-          setImageSrc(htmlCanvas.toDataURL());
+          setImageUrl(htmlCanvas.toDataURL());
+          contentRef.current.children[0]?.classList.add("opacity-0")
 
           // Replace with HTML captured content in WebGL
           glCanvas.width = htmlCanvas.width;
           glCanvas.height = htmlCanvas.height;
+          glCanvas.classList.remove("hidden")
           gl.bindTexture(gl.TEXTURE_2D, textureRef.current);
           gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, htmlCanvas);
           console.log('Switched to html2canvas texture');
@@ -281,61 +276,35 @@ function WebGLBlurEffect() {
     };
   }, []);
 
+  // if (React.isValidElement(children)) {
+  //   children = React.cloneElement(children, { ref: contentRef });
+  // }
+  //
+  // // Если children — массив
+  // if (Array.isArray(children)) {
+  //   children = React.Children.map(children, (child, index) =>
+  //     index === 0 && React.isValidElement(child)
+  //       ? React.cloneElement(child, { ref: contentRef })
+  //       : child
+  //   )
+  // };
+
+
   return (
-    <div className="flex flex-col items-center p-10 gap-10 bg-gray-900 min-h-screen text-white font-sans">
-      <div
-        ref={contentRef}
-        className="bg-gray-800 p-10 w-3/5 rounded-lg"
-      >
-        <h1 className="text-3xl font-bold mb-4">Hello WebGL React Component!</h1>
-        <h2 className="text-2xl mb-4">Interactive Blur Effect</h2>
-        <p className="text-lg leading-relaxed">
-          This React component recreates the WebGL blur shader effect.
-          Move your mouse over the canvas below to see the interactive radial blur in action.
-          The effect creates a beautiful "magnetic" blur that follows your cursor!
-        </p>
-        <div className="mt-6 p-4 bg-gray-700 rounded">
-          <h3 className="text-xl mb-2">Features:</h3>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Real-time WebGL rendering</li>
-            <li>Mouse-interactive blur effect</li>
-            <li>Smooth radial falloff</li>
-            <li>Canvas capture of HTML content</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="flex gap-10 items-start">
-        <div className="flex flex-col items-center gap-2">
-          <h3 className="text-lg">WebGL Blur Effect</h3>
-          <canvas
-            ref={canvasRef}
-            onMouseMove={handleMouseMove}
-            className="border border-gray-500 rounded-lg block cursor-none rotate-x-180"
-          />
-        </div>
-
-        <div className="flex flex-col items-center gap-2">
-          <h3 className="text-lg">Original html2canvas Capture</h3>
-          {/* <Image */}
-          {/*   src={imageSrc} */}
-          {/*   fill */}
-          {/*   objectFit='contain' */}
-          {/*   // width={400} */}
-          {/*   // height={300} */}
-          {/*   ref={capturedImageRef} */}
-          {/*   className="border border-gray-500 rounded-lg" */}
-          {/*   // style={{ maxWidth: '100%', height: 'auto' }} */}
-          {/*   alt="Captured content" */}
-          {/* /> */}
-        </div>
-      </div>
-
-      <div className="text-sm text-gray-400">
-        Check the browser console for html2canvas debugging info
-      </div>
+    // <div className={cn("relative", className)}>
+    <div ref={contentRef} className={cn("relative", className)}>
+      {children}
+      <canvas
+        ref={canvasRef}
+        onMouseMove={handleMouseMove}
+        className="rotate-x-180 absolute top-0 left-0 right-0 h-full z-100 w-full max-w-full max-h-full hidden"
+      />
+      {/* <img src={imageUrl} className="hidden" /> */}
     </div>
   );
+  // return (
+  //   <>{children}</>
+  // )
 }
 
 export default WebGLBlurEffect;

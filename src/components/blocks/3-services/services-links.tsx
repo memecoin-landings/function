@@ -32,7 +32,7 @@ export default function ServicesLinks({ ref, focusColor = "#FF3F1A", showArrowCu
     });
   }, []);
 
-  return (<div ref={ref ?? sectionRef} className={cn("text-[clamp(1px,5.71cqw,3.8rem)] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container", className)}>
+  return (<div ref={ref ?? sectionRef} className={cn("text-[5.71cqw] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container", className)}>
     {repo.list().map((service, index) => (
       <Link
         href="#services"
