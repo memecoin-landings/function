@@ -42,7 +42,7 @@ export default function RootLayout({
       <CustomCursor />
       <SmoothScroll />
       {children}
-      <Footer className="mt-40" />
+      <Footer className="" />
       <Loader />
     </ToastProvider>
   );

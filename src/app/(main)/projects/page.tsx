@@ -80,10 +80,10 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25.75 xs:pt-18.25 pt-17 w-full">
+    <main className="md:pt-25.75 xs:pt-18.25 pt-17 w-full pb-5">
       <section
         ref={sectionRef}
-        className="fluid-container relative pb-25.75 md:pb-18.25 xs:pb-18.25"
+        className="fluid-container relative md:pb-21.75 pb-18.25"
       >
         <div className="flex flex-row">
           <div
@@ -92,14 +92,13 @@ export default function ServicesPage() {
           >
             OurCreative Approach
             <div className="flex flex-row">
-              to
-              <span className="w-[0.27cqw]"></span>
+              to&nbsp;
               <span
-                className={`inline-block  relative w-[60cqw] overflow-visible`}
+                className={`inline-block w-[60cqw] overflow-visible`}
               >
                 <span
                   key={`${currentLabelIndex}-${isAnimating}`}
-                  className={`absolute left-0 right-0 top-0 text-[#FF3F1A] z-10 ${
+                  className={` text-[#FF3F1A] z-10 ${
                     isAnimating ? "animate-fadeInOut" : ""
                   }`}
                 >
