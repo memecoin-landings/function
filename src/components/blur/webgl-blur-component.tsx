@@ -117,12 +117,12 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
 
   function handleMouseMove(e: React.MouseEvent<HTMLCanvasElement>): void {
     const canvas = canvasRef.current;
-    if (!canvas || !animatableMouse?.x || !animatableMouse?.y) return;
+    if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;
 
     const rect = canvas.getBoundingClientRect();
-    console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
-    animatableMouse.x(e.clientX - rect.left)
-    animatableMouse.y(e.clientY - rect.top)
+    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
+    animatableMouse['x'](e.clientX - rect.left)
+    animatableMouse['y'](e.clientY - rect.top)
     // mouseRef.current.x = e.clientX - rect.left;
     // mouseRef.current.y = e.clientY - rect.top; // flip Y coordinate
   }
