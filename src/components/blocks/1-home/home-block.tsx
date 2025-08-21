@@ -3,7 +3,7 @@
 // import { animate, onScroll, stagger } from "animejs";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
-import WebGLBlurEffect from "../../webgl-blur-component";
+import WebGLBlurEffect from "../../blur/webgl-blur-component";
 
 export default function HomeBlock({ className }: { className?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -49,13 +49,13 @@ export default function HomeBlock({ className }: { className?: string }) {
           <br />
           Solutions —
         </div>
-        <p
-          ref={paragraphRef}
-          className="text-5xl @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw]"
-        >
-          Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
-        </p>
       </WebGLBlurEffect>
+      <p
+        ref={paragraphRef}
+        className="text-5xl pointer-events-none @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw]"
+      >
+        Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
+      </p>
     </section>
   );
 }

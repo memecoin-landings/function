@@ -5,7 +5,7 @@ import CustomCursor from "@/components/custom-cursor";
 import Header from "@/components/layout/header/header";
 import Link from "next/link";
 import Contacts from "../domain/contacts";
-import WebGLBlurEffect from "../components/webgl-blur-component";
+import WebGLBlurEffect from "../components/blur/webgl-blur-component";
 
 export default function NotFound() {
   return (
@@ -14,22 +14,22 @@ export default function NotFound() {
         <Header className="pt-5 xs:pt-7" />
         <CustomCursor />
         {/* Container for the entire 404 design */}
-        <WebGLBlurEffect className="bg-[#151516]">
-          <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center">
+        <div className="w-full mt-5 sm:mt-0 h-full flex flex-col items-center justify-center pointer-events-none">
 
-            {/* Mobile: Vertical layout, Desktop: Overlaid content */}
-            <div className="flex lg:mb-30 sm:mb-47.5 flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
+          {/* Mobile: Vertical layout, Desktop: Overlaid content */}
+          <div className="flex lg:mb-30 sm:mb-47.5 flex-col sm:relative sm:w-full sm:max-w-[115vw] sm:flex items-center justify-center">
 
-              {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
-              <div className="px-11.5 lg:px-0 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-15 lg:ml-12 lg:pr-80 sm:pb-24 lg:pb-39 sm:pl-0 lg:pl-0  sm:max-w-[80%]">
-                <p className="text-white text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
-                  Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
-                  How did you even get here?
-                </p>
-              </div>
+            {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
+            <div className="px-11.5 lg:px-0 mb-7.5 max-w-[78%] sm:mb-0 sm:absolute sm:z-20 sm:ml-0 sm:mr-15 lg:ml-12 lg:pr-80 sm:pb-24 lg:pb-39 sm:pl-0 lg:pl-0  sm:max-w-[80%]">
+              <p className="text-white text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] sm:text-[2.25rem] sm:leading-[2.75rem] font-medium font-cera-pro">
+                Well, isn&apos;t this just f*ing great? <br className="hidden sm:block" />
+                How did you even get here?
+              </p>
+            </div>
 
-              {/* Main 404 SVG */}
-              <div className="flex justify-center">
+            {/* Main 404 SVG */}
+            <div className="flex justify-center">
+              <WebGLBlurEffect className="bg-[#151516] pointer-events-auto">
                 <svg
                   width="1207"
                   height="486"
@@ -44,21 +44,21 @@ export default function NotFound() {
                     fill="#FF3F1A"
                   />
                 </svg>
-              </div>
-
-              {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-              <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:pb-1 lg:pt-0 sm:pl-48 lg:pl-123 sm:text-right" custom-cursor="hover">
-                <Link
-                  href="/"
-                  className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[1rem] font-medium font-cera-pro inline-block"
-                >
-                  Head back to the good stuff
-                </Link>
-              </div>
+              </WebGLBlurEffect>
             </div>
 
+            {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
+            <div className="px-11.5 mt-6 text-center sm:absolute sm:z-20 sm:bottom-0 lg:pb-1 lg:pt-0 sm:pl-48 lg:pl-123 sm:text-right" custom-cursor="hover">
+              <Link
+                href="/"
+                className="text-white text-[1.5625rem] lg:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 sm:underline-offset-10 sm:text-[2.25rem] sm:leading-[1rem] font-medium font-cera-pro inline-block  pointer-events-auto"
+              >
+                Head back to the good stuff
+              </Link>
+            </div>
           </div>
-        </WebGLBlurEffect>
+
+        </div>
       </main>
       {/* Move footer outside the main content container to the very bottom of the page */}
       <footer className="flex flex-row w-full @container items-center pl-11.25 sm:pl-18.25 md:pl-34.5 pb-12.5 absolute left-0 bottom-0">
