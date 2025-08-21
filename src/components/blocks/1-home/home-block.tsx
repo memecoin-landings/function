@@ -39,7 +39,7 @@ export default function HomeBlock({ className }: { className?: string }) {
         className
       )}
     >
-      <WebGLBlurEffect className="w-full bg-[#151516] pb-3">
+      <WebGLBlurEffect className="w-full bg-[#151516] pt-[1em]">
         <div
           id="home-hero"
           ref={headerRef}

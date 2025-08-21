@@ -1,8 +1,11 @@
 "use client"
 
+import { toCanvas } from 'html-to-image';
 import html2canvas from 'html2canvas';
 import React, { useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
+import domtoimage from 'dom-to-image';
+import { domToCanvas } from 'modern-screenshot';
 
 interface MousePosition {
   x: number;
@@ -152,6 +155,61 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
     return true;
   }
 
+  function blockToCanvas1(block: HTMLElement): Promise<HTMLCanvasElement> {
+    return html2canvas(block, {
+      height: block.clientHeight, width: block.clientWidth,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight
+    })
+  }
+  function blockToCanvas2(block: HTMLElement): Promise<HTMLCanvasElement> {
+    return toCanvas(block, {
+      // backgroundColor: '#your-bg-color',
+      pixelRatio: window.devicePixelRatio, // Для четкости на Retina
+      cacheBust: true, // Обновить кэш изображений
+      skipFonts: false, // Включить все шрифты
+      includeQueryParams: true,
+      skipAutoScale: false,
+      width: block.offsetWidth, // Точная ширина
+      height: block.offsetHeight, // Точная высота
+      style: {
+        transform: 'scale(1)', // Без масштабирования
+        transformOrigin: 'top left'
+      }
+    });
+  }
+  function blockToCanvas3(block: HTMLElement) {
+    return domtoimage.toPixelData(block, {
+      bgcolor: '#your-bg-color',
+      width: block.offsetWidth,
+      height: block.offsetHeight,
+      style: {
+        'transform': 'scale(1)',
+        'transform-origin': 'top left'
+      },
+      quality: 1.0, // Максимальное качество
+      imagePlaceholder: undefined, // Не заменять изображения
+      cacheBust: true
+    });
+  }
+  function blockToCanvas4(block: HTMLElement): Promise<HTMLCanvasElement> {
+    return domToCanvas(block, {
+      backgroundColor: '#your-bg-color',
+      width: block.offsetWidth,
+      height: block.offsetHeight,
+      scale: window.devicePixelRatio,
+      style: {
+        transform: 'scale(1)',
+        transformOrigin: 'top left',
+        width: block.offsetWidth + 'px',
+        height: block.offsetHeight + 'px'
+      },
+      // includeStyleProperties: ['transform', 'opacity', 'filter']
+    });
+  }
+
   async function captureContent(): Promise<void> {
     if (!contentRef.current) return console.error('Content reference is null');
 
@@ -185,15 +243,8 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
             console.error('Content reference is null');
             return;
           }
-          const htmlCanvas = await html2canvas(contentRef.current, {
-            height: contentRef.current.clientHeight, width: contentRef.current.clientWidth,
-            scrollX: -window.scrollX,
-            scrollY: -window.scrollY,
-            windowWidth: document.documentElement.offsetWidth,
-            windowHeight: document.documentElement.offsetHeight
-          }
-          );
-          // const htmlCanvas = await html2canvas(contentRef.current, { backgroundColor: "#151516" });
+          // const url = block(contentRef.current);
+          const htmlCanvas = await blockToCanvas4(contentRef.current);
           console.log('html2canvas capture successful:', htmlCanvas.width, 'x', htmlCanvas.height);
           setImageUrl(htmlCanvas.toDataURL());
           contentRef.current.children[0]?.classList.add("opacity-0")
