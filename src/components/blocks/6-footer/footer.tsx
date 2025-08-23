@@ -115,7 +115,10 @@ export default function Footer({
     animatableInstance.current = createAnimatable(glowElement, {
       opacity: 0,
       scale: 0.8,
-      y: 100
+      y: 100,
+      duration: 1200,
+      easing: "easeOutCubic",
+      ease: "outCubic"
     });
 
     // Добавляем слушатели событий
