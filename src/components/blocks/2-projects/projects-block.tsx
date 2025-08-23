@@ -10,8 +10,8 @@ export default function ProjectsBlock({ className }: { className?: string }) {
   return (
     <section className={`${className} fluid-container`}>
       <SectionHeader>Projects</SectionHeader>
-      <ProjectLinkButton />
       <ProjectsGrid />
+      <ProjectLinkButton />
     </section>
   );
 }

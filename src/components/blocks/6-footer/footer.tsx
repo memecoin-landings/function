@@ -11,6 +11,7 @@ import Link from "next/link";
 import Contacts from "../../../domain/contacts";
 import { useEffect, useRef } from "react";
 import { animate, onScroll } from "animejs";
+import WebGLBlurEffect from "../../blur/webgl-blur-component";
 
 export default function Footer({
   className,
@@ -45,12 +46,13 @@ export default function Footer({
   }, []);
 
   return (
-    <footer ref={sectionRef} className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden")}>
+    <footer ref={sectionRef} className={cn(className, "w-full bg-black md:pt-25 pt-12.5 relative @container overflow-hidden **:transition-colors")}>
       <div className="z-5 relative fluid-container @container">
         <div className="@container mb-5 md:mb-16.5 w-full text-center ">
           <Link
             href={"mailto:" + Contacts.email}
-            className="text-[#F0EDE8] transition-colors duration-150 hover:text-[#FF3F1A] whitespace-nowrap text-[7.495cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
+            // было 7.495cqw, но на хроме из-за этого вылезал, не понятно в чем дело
+            className="text-[#F0EDE8] duration-150 hover:text-[#FF3F1A] whitespace-nowrap text-[7cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
           >
             {Contacts.email}
           </Link>
@@ -64,13 +66,13 @@ export default function Footer({
             </div>
 
             <Link href={Contacts.socialLinks.whatsapp}>
-              <div className="flex flex-row transition-colors duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5">
+              <div className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5">
                 <WhatsappCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
                 <p>WhatsApp</p>
               </div>
             </Link>
             <Link href={Contacts.socialLinks.telegram}>
-              <div className="flex flex-row transition-colors duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5">
+              <div className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5">
                 <TelegramCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
                 <p>Telegram</p>
               </div>

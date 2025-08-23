@@ -1,0 +1,187 @@
+"use client"
+
+import React, { useEffect, useRef } from 'react';
+import { cn } from '@/lib/utils';
+import { domToCanvas } from 'modern-screenshot';
+import initWebGL from './webgl-utils';
+import { createAnimatable } from 'animejs';
+
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+function WebGLBlurEffect({ children, className }: { children: React.ReactNode, className?: string },) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const glRef = useRef<WebGLRenderingContext | null>(null);
+  const programRef = useRef<WebGLProgram | null>(null);
+  const textureRef = useRef<WebGLTexture | null>(null);
+  const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5 });
+  const animationIdRef = useRef<number | null>(null);
+
+
+  function blockToCanvas(block: HTMLElement): Promise<HTMLCanvasElement> {
+    return domToCanvas(block, {
+      width: block.offsetWidth,
+      height: block.offsetHeight,
+      scale: window.devicePixelRatio,
+      style: {
+        transform: 'scale(1)',
+        transformOrigin: 'top left',
+        width: block.offsetWidth + 'px',
+        height: block.offsetHeight + 'px'
+      },
+    });
+  }
+
+  function hideContent() {
+    contentRef.current?.classList.add("hide-children-except-last")
+  }
+
+  function showContent() {
+    contentRef.current?.classList.remove("hide-children-except-last")
+  }
+
+  async function captureContent(): Promise<void> {
+    if (!contentRef.current) return console.error('Content reference is null');
+
+    try {
+      console.log('Starting html2canvas capture...');
+      const glCanvas = canvasRef.current;
+      const gl = glRef.current;
+
+      if (!gl || !glCanvas) {
+        console.error('WebGL context not ready');
+        return;
+      }
+
+      if (!contentRef.current) {
+        console.error('Content reference is null');
+        return;
+      }
+      const htmlCanvas = await blockToCanvas(contentRef.current);
+      console.log('html2canvas capture successful:', htmlCanvas.width, 'x', htmlCanvas.height);
+      hideContent();
+
+      // Replace with HTML captured content in WebGL
+      glCanvas.width = htmlCanvas.width;
+      glCanvas.height = htmlCanvas.height;
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, htmlCanvas);
+
+      startAnimation();
+
+    } catch (error) {
+      console.error('Error in captureContent:', error);
+    }
+  }
+
+  function draw(time: number): void {
+    const gl = glRef.current;
+    const program = programRef.current;
+    const canvas = canvasRef.current;
+
+    if (!gl || !program || !canvas) return;
+
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Set uniforms
+    const uResolutionLoc = gl.getUniformLocation(program, 'uResolution');
+    const uMouseLoc = gl.getUniformLocation(program, 'uMouse');
+    const uAlphaLoc = gl.getUniformLocation(program, 'uAlpha');
+    const uTimeLoc = gl.getUniformLocation(program, 'uTime');
+
+    gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
+    gl.uniform2f(uMouseLoc, mouseRef.current.x, mouseRef.current.y);
+    gl.uniform1f(uAlphaLoc, 1.0);
+    gl.uniform1f(uTimeLoc, time * 0.001);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+    animationIdRef.current = requestAnimationFrame(draw);
+  }
+
+  function startAnimation(): void {
+    if (animationIdRef.current) {
+      cancelAnimationFrame(animationIdRef.current);
+    }
+    animationIdRef.current = requestAnimationFrame(draw);
+  }
+
+  const animatableMouse = createAnimatable(mouseRef.current, {
+    x: 750, // Define the x duration to be 500ms
+    y: 750, // Define the y duration to be 500ms
+    ease: 'out(5)',
+  });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLCanvasElement>): void {
+    const canvas = canvasRef.current;
+    if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;
+
+    const rect = canvas.getBoundingClientRect();
+    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
+    animatableMouse['x'](e.clientX - rect.left)
+    animatableMouse['y'](e.clientY - rect.top)
+    // mouseRef.current.x = e.clientX - rect.left;
+    // mouseRef.current.y = e.clientY - rect.top; // flip Y coordinate
+  }
+
+  // Пока так но по моему стоит оптимизировать и дебаунсить ресайз
+  function handleResize(): void {
+    const canvas = canvasRef.current;
+    const content = contentRef.current;
+    if (!canvas || !content) return;
+
+    canvas.width = content.offsetWidth * window.devicePixelRatio;
+    canvas.height = content.offsetHeight * window.devicePixelRatio;
+    hideContent()
+    captureContent();
+    showContent();
+
+    // Update WebGL viewport
+    const gl = glRef.current;
+    if (gl) {
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  useEffect(() => {
+    async function initializeEffect(): Promise<void> {
+      const canvas = canvasRef.current;
+      if (!canvas) {
+        console.error('Canvas reference is null');
+        return;
+      }
+      if (!initWebGL(canvas, glRef, programRef, textureRef)) {
+        console.error('Failed to initialize WebGL');
+      }
+      // Small delay to ensure content is rendered
+      // setTimeout(captureContent, 100);
+      captureContent();
+    }
+    window.addEventListener('resize', handleResize);
+
+    initializeEffect();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div ref={contentRef} className={cn("relative", className)}>
+      {children}
+      <canvas
+        ref={canvasRef}
+        onMouseMove={handleMouseMove}
+        className="rotate-x-180 absolute top-0 left-0 right-0 h-full w-full max-w-full max-h-full"
+      />
+    </div>
+  );
+}
+
+export default WebGLBlurEffect;
