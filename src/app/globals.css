@@ -5,12 +5,14 @@
 
 :root {
   --background: #151516;
+  /* --background: white; */
   --foreground: #F0EDE8;
 }
 
 @layer components {
   .fluid-container {
-    @apply mx-auto w-full max-w-495 px-2.5 md:px-5;
+    /* @apply mx-auto w-full max-w-495 px-2.5 md:px-5; */
+    @apply mx-auto w-full px-2.5 md:px-5;
   }
 }
 
@@ -46,8 +48,10 @@
   .animated {
     will-change: transform;
   }
+
   * {
-      cursor: none !important; /* Hide the default cursor */
+    cursor: none !important;
+    /* Hide the default cursor */
   }
 }
 
@@ -80,7 +84,7 @@
   --animate-ride: ride 0.8s ease-in-out;
   --animate-button: button-hover 0.8s ease-in-out;
 
-    --breakpoint-xs: 26.875rem;
+  --breakpoint-xs: 26.875rem;
 
   @keyframes ride {
 
@@ -123,6 +127,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {}
+}
+
+.hide-children-except-last *:not(:last-child) {
+  opacity: 0;
 }
 
 body {
