@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import Contacts from "../../../domain/contacts";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { createAnimatable } from "animejs";
 
 export default function Footer({
   className,
@@ -19,36 +20,42 @@ export default function Footer({
   const sectionRef = useRef<HTMLElement>(null);
   const glowEffect = useRef<HTMLDivElement>(null);
   const [overscrollProgress, setOverscrollProgress] = useState(0);
+  const accumulatedDelta = useRef(0);
+  const isOverscrolling = useRef(false);
+  const animatableInstance = useRef<ReturnType<typeof createAnimatable> | null>(null);
 
   // Проверяем, находимся ли в самом низу страницы
   const checkIfAtBottom = useCallback(() => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    const threshold = 10; // небольшой порог для компенсации пиксельных погрешностей
+    const threshold = 10;
     
-    const atBottom = scrollTop + windowHeight >= documentHeight - threshold;
-    return atBottom;
+    return scrollTop + windowHeight >= documentHeight - threshold;
   }, []);
 
   // Обработка wheel событий для мыши и тачпада
   const handleWheel = useCallback((e: WheelEvent) => {
     if (!checkIfAtBottom()) return;
     
-    // Проверяем, что скроллим вниз
     if (e.deltaY > 0) {
       e.preventDefault();
-      setOverscrollProgress(prev => Math.min(prev + e.deltaY * 0.008, 1));
+      isOverscrolling.current = true;
+      accumulatedDelta.current = Math.min(accumulatedDelta.current + e.deltaY, 100);
+      const progress = Math.min(accumulatedDelta.current / 100, 1);
+      setOverscrollProgress(progress);
     }
   }, [checkIfAtBottom]);
 
-  // Обработка touch событий для мобильных устройств
+  // Обработка touch событий
   const handleTouchStart = useCallback((e: TouchEvent) => {
     if (!checkIfAtBottom()) return;
     
     const touch = e.touches[0];
     if (touch && e.target) {
+      isOverscrolling.current = true;
       (e.target as HTMLElement & { touchStartY?: number }).touchStartY = touch.clientY;
+      accumulatedDelta.current = 0;
     }
   }, [checkIfAtBottom]);
 
@@ -60,31 +67,36 @@ export default function Footer({
     
     if (touch && target.touchStartY) {
       const deltaY = target.touchStartY - touch.clientY;
-      
-      // Если пытаемся скроллить вниз (deltaY > 0)
       if (deltaY > 0) {
         e.preventDefault();
-        setOverscrollProgress(prev => Math.min(prev + deltaY * 0.003, 1));
+        const progress = Math.min(deltaY / 100, 1);
+        setOverscrollProgress(progress);
       }
     }
   }, [checkIfAtBottom]);
 
   const handleTouchEnd = useCallback(() => {
-    // Плавно возвращаем overscroll в исходное состояние
+    isOverscrolling.current = false;
+    accumulatedDelta.current = 0;
     setOverscrollProgress(0);
   }, []);
 
-  // Плавное возвращение overscroll при отпускании wheel
+  // Плавное возвращение при отпускании wheel
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout | undefined;
     
     const resetOverscroll = () => {
+      if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setOverscrollProgress(0);
+        if (isOverscrolling.current) {
+          isOverscrolling.current = false;
+          accumulatedDelta.current = 0;
+          setOverscrollProgress(0);
+        }
       }, 150);
     };
-
-    if (overscrollProgress > 0) {
+    
+    if (overscrollProgress > 0 && isOverscrolling.current) {
       resetOverscroll();
     }
 
@@ -93,38 +105,43 @@ export default function Footer({
     };
   }, [overscrollProgress]);
 
-  // Плавная анимация на основе overscroll прогресса без перезапуска
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
     const glowElement = glowEffect.current;
     if (!glowElement) return;
 
-    const intensity = overscrollProgress;
-    
-    // Применяем стили напрямую для плавности без перезапуска анимации
-    glowElement.style.opacity = intensity.toString();
-    glowElement.style.transform = `translate(-50%, 0) scale(${0.8 + (intensity * 0.2)}) translateY(${100 - (intensity * 100)}px)`;
-    glowElement.style.transition = overscrollProgress === 0 ? 'opacity 0.3s ease-out, transform 0.3s ease-out' : 'none';
-  }, [overscrollProgress]);
+    // Создаем animatable объект
+    animatableInstance.current = createAnimatable(glowElement, {
+      opacity: 0,
+      scale: 0.8,
+      y: 100
+    });
 
-  useEffect(() => {
     // Добавляем слушатели событий
     document.addEventListener('wheel', handleWheel, { passive: false });
     document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
-    window.addEventListener('scroll', checkIfAtBottom);
-
-    // Проверяем изначальное состояние
-    checkIfAtBottom();
 
     return () => {
       document.removeEventListener('wheel', handleWheel);
       document.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
-      window.removeEventListener('scroll', checkIfAtBottom);
     };
-  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, checkIfAtBottom]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+  // Плавное управление анимацией через overscroll прогресс
+  useEffect(() => {
+    if (!animatableInstance.current) return;
+
+    const intensity = overscrollProgress;
+    
+    // Устанавливаем значения напрямую через animatable объект
+    animatableInstance.current.targets[0]!.style.opacity = intensity.toString();
+    animatableInstance.current.targets[0]!.style.transform = `translate(-50%, 0) scale(0.8) translateY(${100 - (intensity * 100)}px)`;
+  }, [overscrollProgress]);
 
   return (
     <>
