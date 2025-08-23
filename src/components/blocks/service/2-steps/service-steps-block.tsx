@@ -3,7 +3,7 @@ import Service from "@/domain/service/service";
 export default function ServiceStepsBlock({ service }: { service: Service }) {
   const steps = service?.steps;
   return (
-    <section className="w-full fluid-container @container">
+    <section className="max-w-495 w-full fluid-container @container">
       {steps?.map((step, index) => (
         <div key={index} className="flex flex-col w-full">
           <div className="flex flex-row space-x-11.5 sm:space-x-0 xl:px-[8.4cqw] mb-10 md:mb-12.5">

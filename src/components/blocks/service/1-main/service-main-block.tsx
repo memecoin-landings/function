@@ -35,7 +35,7 @@ export default function ServiceMainBlock({ service }: { service: Service }) {
   return (
     <section
       ref={sectionRef}
-      className="w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container"
+      className="max-w-495 w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container"
     >
       <div className="flex flex-col xl:px-[8.4cqw]">
         <div ref={headerRef}>
