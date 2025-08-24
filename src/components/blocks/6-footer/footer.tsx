@@ -11,7 +11,6 @@ import Link from "next/link";
 import Contacts from "../../../domain/contacts";
 import { useEffect, useRef } from "react";
 import { animate, onScroll } from "animejs";
-import WebGLBlurEffect from "../../blur/webgl-blur-component";
 
 export default function Footer({
   className,
