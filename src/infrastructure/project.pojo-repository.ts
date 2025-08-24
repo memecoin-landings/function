@@ -13,6 +13,7 @@ export default class ProjectPojoRepository implements ProjectRepository {
   }
 
   list(tag?: string): Project[] {
+    if (tag === "all") return projects;
     return projects.filter((project) => !tag || project.tags.includes(tag));
   }
 

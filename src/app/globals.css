@@ -102,6 +102,17 @@
     }
   }
 
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes button-hover {
 
     0%,
@@ -119,6 +130,9 @@
   }
 }
 
+.animate-fadeInOut {
+  animation: fadeInOut 0.5s ease-in-out;
+}
 
 @utility container {
   margin-inline: auto;
@@ -131,6 +145,23 @@
 
 .hide-children-except-last *:not(:last-child) {
   opacity: 0;
+}
+
+/* Анимация проектов */
+.projects-grid-item {
+  opacity: 0;
+  transform: scale(0.9) translateY(15px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.projects-grid-item.animate-in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.projects-grid-item.initial-state {
+  opacity: 0;
+  transform: scale(0.9) translateY(15px);
 }
 
 body {

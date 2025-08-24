@@ -7,38 +7,40 @@ import spilePic from "@/../public/cover_project-spile.jpg";
 import Project from "@/domain/project/project";
 
 const projects: Project[] = [
-  new Project("Feel Full Free", fffPic, "", ["Logo", "Product branding"], 6),
-  new Project("Spile", spilePic, "", ["Logo", "Product branding"], 5),
-  new Project(
-    "Caspian Gold",
-    caspianGoldPic,
-    "",
-    ["Logo", "Product branding"],
-    4,
+  new Project({title: "Feel Full Free", image: fffPic, topics: ["Corporate identity", "Naming", "Logo", "Brand guidelines", "Key Visual"],tags: [],weight: 6}),
+  new Project({title: "Spile", image: spilePic, topics: ["Product identity", "Naming", "Logo", "Packaging", "Brand guidelines", "Key Visual"],tags: [],weight: 5}),
+  new Project({
+    title: "Caspian Gold",
+    image: caspianGoldPic,
+    topics: ["Product identity", "Naming", "Logo", "Packaging", "Brand guidelines", "Key Visual"],
+    tags: ["Product identity", "Brand support"],
+    weight: 4,
+  }
   ),
-  new Project(
-    "Cancer screening campaign in Moscow",
-    cancerPic,
-    "",
-    ["Logo", "Product branding"],
-    3,
-  ),
-  new Project(
-    "Arshaluys",
-    arshaluysPic,
-    "Logo, Product branding",
-    ["Logo", "Product branding"],
-    2,
-    "arshaluys",
-  ),
-  new Project(
-    "Smartstroy",
-    smartStoryPic,
-    "",
-    ["Logo", "Product branding"],
-    1,
-    "smartstroy",
-  ),
+  new Project({
+    title: "Cancer screening campaign in Moscow",
+    image: cancerPic,
+    topics: ["Campaign Identity", "Brand guidelines", "Key Visual", "Social Media Branding"],
+    tags: ["Campaign Identity", "Brand support"],
+    weight: 3,
+  }),
+  new Project({
+    title: "Arshaluys",
+    image: arshaluysPic,
+    description: "Logo, Product branding",
+    topics: ["Product identity", "Logo", "Packaging", "Brand guidelines", "Key Visual"],
+    tags: ["Product identity", "Brand support"],
+    weight: 2,
+    slug: "arshaluys",
+  }),
+  new Project({
+    title: "Smartstroy",
+    image: smartStoryPic,
+    topics: ["Product identity", "Logo", "Brand guidelines"],
+    tags: ["Product identity", "Brand support"],
+    weight: 1,
+    slug: "smartstroy",
+  }),
 ];
 
 export default projects;
