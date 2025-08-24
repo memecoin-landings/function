@@ -12,8 +12,8 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+export function ThemeProvider({ children, theme: _theme }: { children: ReactNode, theme?: Theme }) {
+  const [theme, setThemeState] = useState<Theme>(_theme ?? "light");
 
   const toggleTheme = () => {
     setThemeState((prev) => (prev === "light" ? "dark" : "light"));
