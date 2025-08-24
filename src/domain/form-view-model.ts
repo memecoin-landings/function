@@ -22,7 +22,7 @@ export class FormViewModel implements IFormViewModel {
             { id: "brand-guidelines", text: "Brand Guidelines" },
             { id: "ui-ux", text: "UI/UX" },
             { id: "key-visual", text: "Key Visual" },
-            { id: "content-design", text: "Content Design" },
+            { id: "social-media-branding", text: "Social Media Branding" },
         ],
         product: [
             { id: "naming", text: "Naming" },
@@ -31,7 +31,7 @@ export class FormViewModel implements IFormViewModel {
             { id: "brand-guidelines", text: "Brand Guidelines" },
             { id: "ui-ux", text: "UI/UX" },
             { id: "key-visual", text: "Key Visual" },
-            { id: "content-design", text: "Content Design" },
+            { id: "social-media-branding", text: "Social Media Branding" },
         ],
         campaign: [
             { id: "naming", text: "Naming" },
@@ -39,21 +39,21 @@ export class FormViewModel implements IFormViewModel {
             { id: "brand-guidelines", text: "Brand Guidelines" },
             { id: "ui-ux", text: "UI/UX" },
             { id: "key-visual", text: "Key Visual" },
-            { id: "content-design", text: "Content Design" },
+            { id: "social-media-branding", text: "Social Media Branding" },
         ],
         personal: [
             { id: "logo", text: "Logo" },
             { id: "brand-guidelines", text: "Brand Guidelines" },
             { id: "ui-ux", text: "UI/UX" },
             { id: "key-visual", text: "Key Visual" },
-            { id: "content-design", text: "Content Design" },
+            { id: "social-media-branding", text: "Social Media Branding" },
         ],
         support: [
             { id: "rebranding", text: "Rebranding" },
             { id: "re-styling", text: "Re-styling" },
             { id: "ui-ux", text: "UI/UX" },
             { id: "key-visual", text: "Key Visual" },
-            { id: "content-design", text: "Content Design" },
+            { id: "social-media-branding", text: "Social Media Branding" },
         ],
     };
 
