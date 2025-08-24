@@ -4,7 +4,13 @@ import Service from "@/domain/service/service";
 import { animate, onScroll, stagger } from "animejs";
 import { useEffect, useRef } from "react";
 
-export default function ServiceMainBlock({ service }: { service: Service }) {
+export default function ServiceMainBlock({
+  service,
+  className,
+}: {
+  service: Service;
+  className?: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
@@ -35,20 +41,20 @@ export default function ServiceMainBlock({ service }: { service: Service }) {
   return (
     <section
       ref={sectionRef}
-      className="max-w-495 w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container"
+      className={` w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container ${className}`}
     >
-      <div className="flex flex-col xl:px-[8.4cqw]">
+      <div className="flex flex-col">
         <div ref={headerRef}>
-          <h2 className="text-[1.875rem] leading-[2.375rem] tracking-[0rem] md:text-[1.875rem] md:leading-[100%] md:tracking-[0%] text-[#727272] font-medium">
+          <h2 className="text-[1.875rem] leading-[2.375rem] tracking-[0rem] md:text-[1.875rem] md:leading-[1] md:tracking-[0%] text-[#727272] pb-2 mdpb-3.5 font-medium">
             Services
           </h2>
-          <h1 className="text-[2.75rem] leading-[100%] tracking-[0%] xs:text-[3.125rem] xs:leading-[100%] md:text-[clamp(3.125rem,6.6cqw,5rem)] font-medium mb-7.5">
+          <h1 className="text-[2.75rem] leading-[1] tracking-[0%] xs:text-[3.125rem] md:text-[clamp(3.125rem,6.6cqw,5rem)] font-medium mb-7.5">
             {service.title}
           </h1>
         </div>
         <p
           ref={paragraphRef}
-          className="max-w-231.75 text-[1.5rem] leading-[2rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
+          className="max-w-[79.5cqw] text-[1.5rem] leading-[2rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
         >
           {service.description}
         </p>

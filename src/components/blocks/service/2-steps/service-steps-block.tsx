@@ -4,7 +4,13 @@ import { onScroll } from "animejs";
 import Service from "@/domain/service/service";
 import { useEffect, useRef } from "react";
 
-export default function ServiceStepsBlock({ service }: { service: Service }) {
+export default function ServiceStepsBlock({
+  service,
+  className,
+}: {
+  service: Service;
+  className?: string;
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLElement[]>([]);
 
@@ -13,7 +19,7 @@ export default function ServiceStepsBlock({ service }: { service: Service }) {
     if (!section) return;
 
     animate(stepsRef.current, {
-      opacity: [0, 1],
+      opacity: [0, 0.2, 1],
       scale: [0.8, 1],
       translateY: [20, 0],
       duration: 300,
@@ -35,7 +41,7 @@ export default function ServiceStepsBlock({ service }: { service: Service }) {
   return (
     <section
       ref={sectionRef}
-      className="max-w-495 w-full fluid-container @container flex flex-col space-y-10 md:space-y-12.5"
+      className={` w-full fluid-container @container flex flex-col space-y-10 md:space-y-12.5 ${className}`}
     >
       {steps?.map((step, index) => (
         <div
@@ -45,7 +51,7 @@ export default function ServiceStepsBlock({ service }: { service: Service }) {
           key={index}
           className="flex flex-col w-full"
         >
-          <div className="max-w-296 flex flex-row space-x-11.5 sm:space-x-0 xl:mx-[8.4cqw] mb-10 md:mb-12.5 @container">
+          <div className="flex flex-row space-x-11.5 sm:space-x-0 mb-10 md:mb-12.5 @container">
             <div className="text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#FF3F1A] sm:pr-[5.2cqw]">
               {`0${index + 1}`}
             </div>
@@ -60,14 +66,14 @@ export default function ServiceStepsBlock({ service }: { service: Service }) {
                   </span>
                 ))}
               </h4>
-              <div className="max-w-172.5 sm:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[1.375rem] md:leading-[2.1875rem] text-[#727272]">
+              <div className="sm:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[1.375rem] md:leading-[2.1875rem] text-[#727272]">
                 <p className="text-[#F0EDE8] mb-2.75">{step.description}</p>
                 <span>{step.duration}</span>
                 <span>{step.revisions}</span>
               </div>
             </div>
           </div>
-          <hr className="max-w-296 xl:mx-[8.4cqw]  h-0 border border-[#454545]" />
+          <hr className=" h-0 border border-[#454545]" />
         </div>
       ))}
     </section>
