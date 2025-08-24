@@ -49,7 +49,7 @@ export default function ServiceStepsBlock({
             if (el) stepsRef.current.push(el);
           }}
           key={index}
-          className="flex flex-col w-full"
+          className="flex flex-col w-full group"
         >
           <div className="flex flex-row space-x-11.5 sm:space-x-0 mb-10 md:mb-12.5 @container">
             <div className="text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#FF3F1A] sm:pr-[5.2cqw]">
@@ -73,7 +73,7 @@ export default function ServiceStepsBlock({
               </div>
             </div>
           </div>
-          <hr className=" h-0 border border-[#454545]" />
+          <hr className=" h-0 group-not-last:border border-0 border-[#454545]" />
         </div>
       ))}
     </section>
