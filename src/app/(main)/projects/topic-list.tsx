@@ -42,18 +42,18 @@ export default function TopicList({
       </div>
       <div className="flex flex-col items-start">
         {topics.map((topic, index) => (
-         <div key={index} className="md:pt-4 xs:pt-2 pt-1">
-           <button
-            onClick={() => onTopicSelect(index)}
-            className="inline group"
-          >
-            <span
-              key={index}
-              ref={(el) => {
-                if (el) topicsRef.current.push(el);
-              }}
-              style={{ "--focusColor": "#FF3F1A" } as React.CSSProperties}
-              className={`
+          <div key={index} className="md:pt-4 xs:pt-2 pt-1">
+            <button
+              onClick={() => onTopicSelect(index)}
+              className="inline group"
+            >
+              <span
+                key={index}
+                ref={(el) => {
+                  if (el) topicsRef.current.push(el);
+                }}
+                style={{ "--focusColor": "#FF3F1A" } as React.CSSProperties}
+                className={`
 font-cera font-medium text-[2.08cqw] tracking-[0%] inline-block text-left relative transition-colors duration-500
 after:[content:''] after:scale-x-0 after:w-full after:h-[0.125rem] after:bg-[var(--focusColor)] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
 ${
@@ -62,10 +62,10 @@ ${
     : "hover:text-[var(--focusColor)] hover:after:scale-x-100"
 }
 `}
-            >
-              {topic}
-            </span>
-          </button>
+              >
+                {topic}
+              </span>
+            </button>
           </div>
         ))}
       </div>

@@ -17,11 +17,12 @@ const labels = [
   "Solutions",
 ];
 const topics = [
-  "All projects",
-  "Corporate identity",
-  "Product identity",
-  "Campaign Identity",
-  "Personal identity",
+  "All projects",
+  "Corporate identity",
+  "Product identity",
+  "Campaign Identity",
+  "Personal identity",
+  "Brand support",
 ];
 
 export default function ServicesPage() {
@@ -41,7 +42,7 @@ export default function ServicesPage() {
 
   // Получаем tag выбранного топика для фильтрации проектов
   const getSelectedTopicTag = (): string | undefined => {
-    if (selectedTopic === 0) return undefined; // "All projects" - показываем все
+    if (selectedTopic === 0) return "all"; // "All projects" - показываем все
     return topics[selectedTopic]; // Возвращаем название топика как tag
   };
 
@@ -83,7 +84,7 @@ export default function ServicesPage() {
     <main className="md:pt-25.75 xs:pt-18.25 pt-17 w-full pb-5">
       <section
         ref={sectionRef}
-        className="fluid-container relative md:pb-21.75 pb-18.25"
+        className="fluid-container relative md:pb-21.75 pb-18.25 pl-5 pr-23"
       >
         <div className="flex flex-row">
           <div
@@ -93,9 +94,7 @@ export default function ServicesPage() {
             OurCreative Approach
             <div className="flex flex-row">
               to&nbsp;
-              <span
-                className={`inline-block w-[60cqw] overflow-visible`}
-              >
+              <span className={`inline-block w-[60cqw] overflow-visible`}>
                 <span
                   key={`${currentLabelIndex}-${isAnimating}`}
                   className={` text-[#FF3F1A] z-10 ${
@@ -116,7 +115,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="pl-5 pr-5">
         {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
         {!getSelectedTopicTag() && <ProjectsGrid />}
       </section>

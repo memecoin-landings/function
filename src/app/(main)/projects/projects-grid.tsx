@@ -1,8 +1,10 @@
-"use client"
+"use client";
 
 import { useEffect, useRef } from "react";
 import ProjectPojoRepository from "../../../infrastructure/project.pojo-repository";
-import ProjectCard, { ProjectCardParams } from "../../../components/cards/project-card";
+import ProjectCard, {
+  ProjectCardParams,
+} from "../../../components/cards/project-card";
 import { animate, onScroll, stagger } from "animejs";
 
 export default function ProjectsGrid({ tag }: { tag?: string }) {
@@ -13,39 +15,91 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
     return new ProjectCardParams(
       project.image,
       project.title,
-      project.tags.join(", "),
-    )
+      project.topics.join(", ")
+    );
   });
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    animate(projectsRef.current, {
-      opacity: [0, 1],
-      scale: [0.8, 1],
-      translateY: [20, 0],
-      duration: 300,
-      easing: "easeOutQuad",
-      delay: stagger(200),
-      debug: true,
-      autoplay: onScroll({
-        sync: true,
-        debug: false,
-        target: section,
-        enter: "bottom top",
-        leave: "bottom bottom",
-        container: document.body,
-      }),
-    });
+    // Анимация только при первом рендере (без tag)
+    if (!tag) {
+      animate(projectsRef.current, {
+        opacity: [0, 1],
+        scale: [0.8, 1],
+        translateY: [20, 0],
+        duration: 300,
+        easing: "easeOutQuad",
+        delay: stagger(200),
+        debug: true,
+        autoplay: onScroll({
+          sync: true,
+          debug: false,
+          target: section,
+          enter: "bottom top",
+          leave: "bottom bottom",
+          container: document.body,
+        }),
+      });
+    }
   }, []);
 
-  return (<div
-    ref={sectionRef}
-    className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5 xs:mt-7.5 mt-2.5">
-    {projects.map((item) => (
-      <ProjectCard ref={(el) => { if (el) projectsRef.current.push(el) }} key={item.title} custom-cursor="hover"
-        className="w-full" data={item} />
-    ))}
-  </div>
-  )
+  // Анимация при смене топика (tag)
+  useEffect(() => {
+    if (!tag) return; // Пропускаем первый рендер
+
+    // Сначала устанавливаем начальное состояние
+    projectsRef.current.forEach((el) => {
+      if (el) {
+        el.classList.remove("animate-in");
+        el.classList.add("initial-state");
+      }
+    });
+
+    // Небольшая задержка для обновления DOM
+    const timer = setTimeout(() => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      // Анимация смены проектов через CSS классы
+      projectsRef.current.forEach((el, index) => {
+        if (el) {
+          setTimeout(() => {
+            el.classList.remove("initial-state");
+            el.classList.add("animate-in");
+          }, index * 150);
+        }
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [tag]);
+
+  return (
+    <div
+      ref={sectionRef}
+      className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5 xs:mt-7.5 mt-2.5"
+    >
+      {projects.map((item, index) => (
+        <ProjectCard
+          ref={(el) => {
+            if (el) {
+              // Обновляем refs при каждом рендере
+              projectsRef.current[index] = el;
+              // Добавляем базовый класс для анимации
+              el.classList.add("projects-grid-item");
+              // Если это первый рендер без tag, добавляем класс для анимации
+              if (!tag) {
+                el.classList.add("animate-in");
+              }
+            }
+          }}
+          key={item.title}
+          custom-cursor="hover"
+          className="w-full"
+          data={item}
+        />
+      ))}
+    </div>
+  );
 }
