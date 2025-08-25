@@ -12,11 +12,12 @@ import Contacts from "../../../domain/contacts";
 import { useEffect, useRef, useCallback } from "react";
 import { createAnimatable } from "animejs";
 
+
 const MAX_DELTA = 1000; // Increase this to make the animation "last longer" (require more scroll)
 const SENSITIVITY_DIVIDER = 4; // Increase this (e.g., 3) to decrease sensitivity (slower accumulation per event)
 const RESET_TIMEOUT = 1000;
 const DAMPING_FACTOR = 0.05; // Lower values = slower, smoother fade out (0.1 was original)
-
+  
 export default function Footer({
   className,
 }: {
