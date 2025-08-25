@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 import Contacts from "../../../domain/contacts";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { createAnimatable } from "animejs";
 
 export default function Footer({
@@ -19,10 +19,14 @@ export default function Footer({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const glowEffect = useRef<HTMLDivElement>(null);
-  const [overscrollProgress, setOverscrollProgress] = useState(0);
   const accumulatedDelta = useRef(0);
   const isOverscrolling = useRef(false);
   const animatableInstance = useRef<ReturnType<typeof createAnimatable> | null>(null);
+  // New: Use refs for progress to avoid re-renders and enable smooth lerp in RAF loop
+  const overscrollProgress = useRef(0);
+  const targetProgress = useRef(0);
+  const rafId = useRef<number | null>(null);
+  const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
   // Проверяем, находимся ли в самом низу страницы
   const checkIfAtBottom = useCallback(() => {
@@ -34,6 +38,27 @@ export default function Footer({
     return scrollTop + windowHeight >= documentHeight - threshold;
   }, []);
 
+  // New: RAF loop for smoothing progress with lerp
+  const animateLoop = useCallback(() => {
+    if (!animatableInstance.current) return;
+
+    // Lerp current progress toward target (0.1 is damping factor; adjust for faster/slower smoothing, e.g., 0.2 for quicker)
+    overscrollProgress.current += (targetProgress.current - overscrollProgress.current) * 0.1;
+
+    const intensity = overscrollProgress.current;
+    
+    // Update styles based on smoothed progress
+    animatableInstance.current.targets[0]!.style.opacity = intensity.toString();
+    animatableInstance.current.targets[0]!.style.transform = `translate(-50%, 0) scale(0.8) translateY(${100 - (intensity * 100)}px)`;
+
+    // Stop loop if settled (close to target and not overscrolling)
+    if (Math.abs(targetProgress.current - overscrollProgress.current) > 0.001 || isOverscrolling.current) {
+      rafId.current = requestAnimationFrame(animateLoop);
+    } else {
+      rafId.current = null;
+    }
+  }, []);
+
   // Обработка wheel событий для мыши и тачпада
   const handleWheel = useCallback((e: WheelEvent) => {
     if (!checkIfAtBottom()) return;
@@ -41,13 +66,17 @@ export default function Footer({
     if (e.deltaY > 0) {
       e.preventDefault();
       isOverscrolling.current = true;
-      accumulatedDelta.current = Math.min(accumulatedDelta.current + e.deltaY, 100);
-      const progress = Math.min(accumulatedDelta.current / 100, 1);
-      setOverscrollProgress(progress);
-    }
-  }, [checkIfAtBottom]);
+      accumulatedDelta.current = Math.min(accumulatedDelta.current + e.deltaY, 1000); // Cap at 100 to max progress=1
+      targetProgress.current = Math.min(accumulatedDelta.current / 1000, 1);
 
-  // Обработка touch событий
+      // Start/restart the smoothing loop if not running
+      if (rafId.current === null) {
+        rafId.current = requestAnimationFrame(animateLoop);
+      }
+    }
+  }, [checkIfAtBottom, animateLoop]);
+
+  // Обработка touch событий (similar updates: set target and start loop)
   const handleTouchStart = useCallback((e: TouchEvent) => {
     if (!checkIfAtBottom()) return;
     
@@ -69,41 +98,47 @@ export default function Footer({
       const deltaY = target.touchStartY - touch.clientY;
       if (deltaY > 0) {
         e.preventDefault();
-        const progress = Math.min(deltaY / 100, 1);
-        setOverscrollProgress(progress);
+        accumulatedDelta.current = Math.min(deltaY, 100); // Use touch delta directly, capped
+        targetProgress.current = Math.min(accumulatedDelta.current / 100, 1);
+
+        // Start/restart the smoothing loop if not running
+        if (rafId.current === null) {
+          rafId.current = requestAnimationFrame(animateLoop);
+        }
       }
     }
-  }, [checkIfAtBottom]);
+  }, [checkIfAtBottom, animateLoop]);
 
   const handleTouchEnd = useCallback(() => {
     isOverscrolling.current = false;
     accumulatedDelta.current = 0;
-    setOverscrollProgress(0);
+    targetProgress.current = 0; // Smooth back to 0
   }, []);
 
-  // Плавное возвращение при отпускании wheel
+  // Плавное возвращение при отпускании wheel (updated to set target=0 and let loop handle smoothing)
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | undefined;
-    
     const resetOverscroll = () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        if (isOverscrolling.current) {
-          isOverscrolling.current = false;
+      if (timeoutId.current) clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(() => {
+        if (!isOverscrolling.current) {
           accumulatedDelta.current = 0;
-          setOverscrollProgress(0);
+          targetProgress.current = 0; // Set target to 0; loop will lerp down smoothly
+          // Ensure loop is running to handle the reset
+          if (rafId.current === null) {
+            rafId.current = requestAnimationFrame(animateLoop);
+          }
         }
       }, 150);
     };
     
-    if (overscrollProgress > 0 && isOverscrolling.current) {
+    if (targetProgress.current > 0 && isOverscrolling.current) {
       resetOverscroll();
     }
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId.current) clearTimeout(timeoutId.current);
     };
-  }, [overscrollProgress]);
+  }, [targetProgress.current, animateLoop]); // Depend on targetProgress.current (but since ref, it's ok)
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -111,8 +146,8 @@ export default function Footer({
     const glowElement = glowEffect.current;
     if (!glowElement) return;
 
-    // Создаем animatable объект
-    animatableInstance.current = createAnimatable(glowElement, {
+    // Создаем animatable объект (unchanged)
+    const animatable = createAnimatable(glowElement, {
       opacity: 0,
       scale: 0.8,
       y: 100,
@@ -120,8 +155,10 @@ export default function Footer({
       easing: "easeOutCubic",
       ease: "outCubic"
     });
+    
+    animatableInstance.current = animatable;
 
-    // Добавляем слушатели событий
+    // Добавляем слушатели событий (unchanged)
     document.addEventListener('wheel', handleWheel, { passive: false });
     document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
@@ -132,19 +169,12 @@ export default function Footer({
       document.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      if (timeoutId.current) clearTimeout(timeoutId.current);
     };
-  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, animateLoop]);
 
-  // Плавное управление анимацией через overscroll прогресс
-  useEffect(() => {
-    if (!animatableInstance.current) return;
-
-    const intensity = overscrollProgress;
-    
-    // Устанавливаем значения напрямую через animatable объект
-    animatableInstance.current.targets[0]!.style.opacity = intensity.toString();
-    animatableInstance.current.targets[0]!.style.transform = `translate(-50%, 0) scale(0.8) translateY(${100 - (intensity * 100)}px)`;
-  }, [overscrollProgress]);
+  // Removed the old useEffect for direct style updates; now handled in RAF loop
 
   return (
     <>
@@ -232,5 +262,3 @@ export default function Footer({
     </>
   );
 }
-
-
