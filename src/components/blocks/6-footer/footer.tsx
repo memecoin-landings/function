@@ -14,6 +14,8 @@ import { createAnimatable } from "animejs";
 
 const MAX_DELTA = 1000; // Increase this to make the animation "last longer" (require more scroll)
 const SENSITIVITY_DIVIDER = 4; // Increase this (e.g., 3) to decrease sensitivity (slower accumulation per event)
+const RESET_TIMEOUT = 1000;
+const DAMPING_FACTOR = 0.05; // Lower values = slower, smoother fade out (0.1 was original)
 
 export default function Footer({
   className,
@@ -44,8 +46,8 @@ export default function Footer({
   const animateLoop = useCallback(() => {
     if (!animatableInstance.current) return;
 
-    // Lerp current progress toward target (0.1 is damping factor; adjust for faster/slower smoothing, e.g., 0.2 for quicker)
-    overscrollProgress.current += (targetProgress.current - overscrollProgress.current) * 0.1;
+    // Lerp current progress toward target using damping factor
+    overscrollProgress.current += (targetProgress.current - overscrollProgress.current) * DAMPING_FACTOR;
 
     const intensity = overscrollProgress.current;
     
@@ -75,6 +77,10 @@ export default function Footer({
       if (rafId.current === null) {
         rafId.current = requestAnimationFrame(animateLoop);
       }
+
+      // Reset the timeout for wheel release
+      if (timeoutId.current) clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(resetToZero, RESET_TIMEOUT);
     }
   }, [checkIfAtBottom, animateLoop]);
 
@@ -112,35 +118,24 @@ export default function Footer({
   }, [checkIfAtBottom, animateLoop]);
 
   const handleTouchEnd = useCallback(() => {
-    isOverscrolling.current = false;
-    accumulatedDelta.current = 0;
-    targetProgress.current = 0; // Smooth back to 0
+    resetToZero();
   }, []);
 
-  // Плавное возвращение при отпускании wheel (updated to set target=0 and let loop handle smoothing)
-  useEffect(() => {
-    const resetOverscroll = () => {
-      if (timeoutId.current) clearTimeout(timeoutId.current);
-      timeoutId.current = setTimeout(() => {
-        if (!isOverscrolling.current) {
-          accumulatedDelta.current = 0;
-          targetProgress.current = 0; // Set target to 0; loop will lerp down smoothly
-          // Ensure loop is running to handle the reset
-          if (rafId.current === null) {
-            rafId.current = requestAnimationFrame(animateLoop);
-          }
-        }
-      }, 150);
-    };
-    
-    if (targetProgress.current > 0 && isOverscrolling.current) {
-      resetOverscroll();
-    }
+  // New: Function to smoothly reset to zero
+  const resetToZero = useCallback(() => {
+    isOverscrolling.current = false;
+    accumulatedDelta.current = 0;
+    targetProgress.current = 0;
+    // Remove instant set - let it smooth animate back to 0
 
-    return () => {
-      if (timeoutId.current) clearTimeout(timeoutId.current);
-    };
-  }, [targetProgress.current, animateLoop]); // Depend on targetProgress.current (but since ref, it's ok)
+    // Start/restart the smoothing loop if not running to animate back to 0
+    if (rafId.current === null) {
+      rafId.current = requestAnimationFrame(animateLoop);
+    }
+  }, [animateLoop]);
+
+  // Updated: UseEffect for wheel timeout now calls resetToZero directly in handleWheel
+  // Removed the previous useEffect for reset, as it's now handled in handlers
 
   useEffect(() => {
     const section = sectionRef.current;
