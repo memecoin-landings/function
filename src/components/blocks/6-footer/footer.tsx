@@ -12,6 +12,9 @@ import Contacts from "../../../domain/contacts";
 import { useEffect, useRef, useCallback } from "react";
 import { createAnimatable } from "animejs";
 
+const MAX_DELTA = 1000; // Increase this to make the animation "last longer" (require more scroll)
+const SENSITIVITY_DIVIDER = 4; // Increase this (e.g., 3) to decrease sensitivity (slower accumulation per event)
+
 export default function Footer({
   className,
 }: {
@@ -22,7 +25,6 @@ export default function Footer({
   const accumulatedDelta = useRef(0);
   const isOverscrolling = useRef(false);
   const animatableInstance = useRef<ReturnType<typeof createAnimatable> | null>(null);
-  // New: Use refs for progress to avoid re-renders and enable smooth lerp in RAF loop
   const overscrollProgress = useRef(0);
   const targetProgress = useRef(0);
   const rafId = useRef<number | null>(null);
@@ -38,7 +40,7 @@ export default function Footer({
     return scrollTop + windowHeight >= documentHeight - threshold;
   }, []);
 
-  // New: RAF loop for smoothing progress with lerp
+  // RAF loop for smoothing progress with lerp
   const animateLoop = useCallback(() => {
     if (!animatableInstance.current) return;
 
@@ -66,8 +68,8 @@ export default function Footer({
     if (e.deltaY > 0) {
       e.preventDefault();
       isOverscrolling.current = true;
-      accumulatedDelta.current = Math.min(accumulatedDelta.current + e.deltaY, 1000); // Cap at 100 to max progress=1
-      targetProgress.current = Math.min(accumulatedDelta.current / 1000, 1);
+      accumulatedDelta.current = Math.min(accumulatedDelta.current + (e.deltaY / SENSITIVITY_DIVIDER), MAX_DELTA); // Adjusted with divider and new max
+      targetProgress.current = Math.min(accumulatedDelta.current / MAX_DELTA, 1);
 
       // Start/restart the smoothing loop if not running
       if (rafId.current === null) {
@@ -98,8 +100,8 @@ export default function Footer({
       const deltaY = target.touchStartY - touch.clientY;
       if (deltaY > 0) {
         e.preventDefault();
-        accumulatedDelta.current = Math.min(deltaY, 100); // Use touch delta directly, capped
-        targetProgress.current = Math.min(accumulatedDelta.current / 100, 1);
+        accumulatedDelta.current = Math.min(deltaY / SENSITIVITY_DIVIDER, MAX_DELTA); // Adjusted with divider and new max
+        targetProgress.current = Math.min(accumulatedDelta.current / MAX_DELTA, 1);
 
         // Start/restart the smoothing loop if not running
         if (rafId.current === null) {
@@ -173,8 +175,6 @@ export default function Footer({
       if (timeoutId.current) clearTimeout(timeoutId.current);
     };
   }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, animateLoop]);
-
-  // Removed the old useEffect for direct style updates; now handled in RAF loop
 
   return (
     <>
