@@ -23,7 +23,7 @@ export default function SubmitForm({
       <button
         className={cn(
           "inline-flex items-center justify-center md:px-7.5 md:py-2.5 px-5 py-0.5 text-sm leading-8.5 md:text-[1.375rem] font-normal text-nowrap tracking-[0%] rounded-full transition-colors",
-          colors.buttonBg,
+          disabled ? colors.buttonDisabledBg : colors.buttonBg,
           colors.buttonText,
           colors.conditional(
             "hover:bg-[#FF3F1A] hover:text-black",
@@ -43,8 +43,8 @@ export default function SubmitForm({
           colors.textPrimary
         )}
       >
-        By clicking on the «Send» button, I consent to the processing of
-        personal data
+        By clicking on the «Send» button, I consent to the processing
+        of personal data{" "}
       </p>
     </div>
   );

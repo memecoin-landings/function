@@ -76,7 +76,7 @@ export default function Header({ className }: { className?: string }) {
       <FormModal
         ref={formRef}
         className={cn(
-          "fixed inset-0 z-500 transition-all duration-300 max-h-screen",
+          "fixed inset-0 z-500 transition-all duration-600 max-h-screen",
           isModalOpen
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
