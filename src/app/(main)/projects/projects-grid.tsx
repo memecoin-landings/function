@@ -52,7 +52,7 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
     projectsRef.current.forEach((el) => {
       if (el) {
         el.classList.remove("animate-in");
-        el.classList.add("initial-state");
+        el.classList.add("flash-initial-state");
       }
     });
 
@@ -62,12 +62,12 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
       if (!section) return;
 
       // Анимация смены проектов через CSS классы
-      projectsRef.current.forEach((el, index) => {
+      projectsRef.current.forEach((el) => {
         if (el) {
           setTimeout(() => {
-            el.classList.remove("initial-state");
-            el.classList.add("animate-in");
-          }, index * 150);
+            el.classList.remove("flash-initial-state");
+            el.classList.add("flash-animate-in");
+          }, 200);
         }
       });
     }, 50);

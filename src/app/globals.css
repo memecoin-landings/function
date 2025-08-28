@@ -150,7 +150,7 @@
 /* Анимация проектов */
 .projects-grid-item {
   opacity: 0;
-  transform: scale(0.9) translateY(15px);
+  /* transform: scale(0.9) translateY(15px); */
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
@@ -161,8 +161,18 @@
 
 .projects-grid-item.initial-state {
   opacity: 0;
+
   transform: scale(0.9) translateY(15px);
 }
+.projects-grid-item.flash-animate-in {
+  /* transform: scale(1) translateY(0); */
+  opacity: 1;
+}
+.projects-grid-item.flash-initial-state {
+  opacity: 0;
+  /* transform: scale(1) translateY(0); */
+}
+
 
 body {
   background: var(--background);
