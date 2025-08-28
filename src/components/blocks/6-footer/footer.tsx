@@ -31,6 +31,8 @@ export default function Footer({
   const targetProgress = useRef(0);
   const rafId = useRef<number | null>(null);
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollY = useRef(0);
+  const scrollVelocity = useRef(0);
 
   // Проверяем, находимся ли в самом низу страницы
   const checkIfAtBottom = useCallback(() => {
@@ -92,7 +94,7 @@ export default function Footer({
     if (touch && e.target) {
       isOverscrolling.current = true;
       (e.target as HTMLElement & { touchStartY?: number }).touchStartY = touch.clientY;
-      accumulatedDelta.current = 0;
+      // Don't reset accumulated delta on touch start to allow continuous overscroll
     }
   }, [checkIfAtBottom]);
 
@@ -106,20 +108,57 @@ export default function Footer({
       const deltaY = target.touchStartY - touch.clientY;
       if (deltaY > 0) {
         e.preventDefault();
-        accumulatedDelta.current = Math.min(deltaY / SENSITIVITY_DIVIDER, MAX_DELTA); // Adjusted with divider and new max
+        // Accumulate delta like wheel events for smooth animation
+        accumulatedDelta.current = Math.min(accumulatedDelta.current + (deltaY / SENSITIVITY_DIVIDER), MAX_DELTA);
         targetProgress.current = Math.min(accumulatedDelta.current / MAX_DELTA, 1);
 
         // Start/restart the smoothing loop if not running
         if (rafId.current === null) {
           rafId.current = requestAnimationFrame(animateLoop);
         }
+
+        // Update touch start position for next move calculation
+        target.touchStartY = touch.clientY;
       }
     }
   }, [checkIfAtBottom, animateLoop]);
 
   const handleTouchEnd = useCallback(() => {
-    resetToZero();
+    // Use timeout like wheel events for smooth fade out
+    if (timeoutId.current) clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(resetToZero, RESET_TIMEOUT);
   }, []);
+
+  // Обработка scroll событий для мобильных устройств
+  const handleScroll = useCallback(() => {
+    if (!checkIfAtBottom()) {
+      lastScrollY.current = window.pageYOffset || document.documentElement.scrollTop;
+      return;
+    }
+
+    const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const velocity = currentScrollY - lastScrollY.current;
+    lastScrollY.current = currentScrollY;
+    scrollVelocity.current = velocity;
+
+    // Обнаруживаем попытку скролла вниз когда уже внизу
+    if (velocity > 0) {
+      isOverscrolling.current = true;
+      // Увеличиваем накопленную дельту более агрессивно для scroll событий
+      const scrollDelta = Math.abs(velocity) * 10;
+      accumulatedDelta.current = Math.min(accumulatedDelta.current + scrollDelta, MAX_DELTA);
+      targetProgress.current = Math.min(accumulatedDelta.current / MAX_DELTA, 1);
+
+      // Start/restart the smoothing loop if not running
+      if (rafId.current === null) {
+        rafId.current = requestAnimationFrame(animateLoop);
+      }
+
+      // Reset the timeout for scroll release
+      if (timeoutId.current) clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(resetToZero, RESET_TIMEOUT);
+    }
+  }, [checkIfAtBottom, animateLoop]);
 
   // New: Function to smoothly reset to zero
   const resetToZero = useCallback(() => {
@@ -143,7 +182,7 @@ export default function Footer({
     const glowElement = glowEffect.current;
     if (!glowElement) return;
 
-    // Создаем animatable объект (unchanged)
+    // Создаем animatable объект
     const animatable = createAnimatable(glowElement, {
       opacity: 0,
       scale: 0.8,
@@ -155,21 +194,23 @@ export default function Footer({
     
     animatableInstance.current = animatable;
 
-    // Добавляем слушатели событий (unchanged)
+    // Добавляем слушатели событий
     document.addEventListener('wheel', handleWheel, { passive: false });
     document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       document.removeEventListener('wheel', handleWheel);
       document.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('scroll', handleScroll);
       if (rafId.current) cancelAnimationFrame(rafId.current);
       if (timeoutId.current) clearTimeout(timeoutId.current);
     };
-  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, animateLoop]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, handleScroll, animateLoop]);
 
   return (
     <>
@@ -247,10 +288,12 @@ export default function Footer({
         </div>
         <div 
           ref={glowEffect} 
-          className="z-0 absolute left-1/2 top-[60%] w-[85.7%] h-[85.7cqw] border rounded-[50%] bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)] [filter:blur(400px)]"
+          className="z-0 absolute left-1/2 w-[85.7%] h-[85.7cqw] border rounded-[50%] bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)]"
           style={{
             opacity: 0,
             transform: 'translate(-50%, 0) scale(0.8) translateY(100px)',
+            filter: 'blur(min(400px, 15vw))', // Уменьшил blur для мобильных
+            top: 'clamp(60%, 80%, 90%)', // Адаптивное позиционирование
           }}
         ></div>
       </footer>
