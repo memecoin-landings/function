@@ -7,7 +7,17 @@ import { animate, onScroll, stagger } from "animejs";
 import ServicePojoRepository from "../../../infrastructure/service.pojo-repository";
 import { cn } from "../../../lib/utils";
 
-export default function ServicesLinks({ ref, focusColor = "#FF3F1A", showArrowCursor = false, className }: { focusColor?: string, showArrowCursor?: boolean, className?: string, ref?: React.RefObject<HTMLDivElement | null> | undefined }) {
+export default function ServicesLinks({
+  ref,
+  focusColor = "#FF3F1A",
+  showArrowCursor = false,
+  className,
+}: {
+  focusColor?: string;
+  showArrowCursor?: boolean;
+  className?: string;
+  ref?: React.RefObject<HTMLDivElement | null> | undefined;
+}) {
   const repo = ServicePojoRepository.getInstance();
   const sectionRef = useRef<HTMLDivElement>(null) ?? ref;
   const linksRef = useRef<HTMLElement[]>([]);
@@ -32,28 +42,41 @@ export default function ServicesLinks({ ref, focusColor = "#FF3F1A", showArrowCu
     });
   }, []);
 
-  return (<div ref={ref ?? sectionRef} className={cn("text-[5.41cqw] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container", className)}>
-    {repo.list().map((service, index) => (
-      <Link
-        href="#services"
-        key={index}
-        className=" font-medium font-cera inline group"
-      >
-        <span custom-cursor={showArrowCursor ? "hover" : ""} style={{ "--focusColor": focusColor } as any} className="inline-block" ref={(el) => { if (el) linksRef.current.push(el) }}>
+  return (
+    <div
+      ref={ref ?? sectionRef}
+      className={cn(
+        "text-[5.41cqw] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container",
+        className
+      )}
+    >
+      {repo.list().map((service, index) => (
+        <Link
+          href={`/services/${service.slug}`}
+          key={index}
+          className=" font-medium font-cera inline group"
+        >
           <span
-            className={`
+            custom-cursor={showArrowCursor ? "hover" : ""}
+            style={{ "--focusColor": focusColor } as any}
+            className="inline-block"
+            ref={(el) => {
+              if (el) linksRef.current.push(el);
+            }}
+          >
+            <span
+              className={`
 hover:text-[var(--focusColor)] inline-block text-left relative transition-colors duration-500
 after:[content:''] after:scale-x-0 after:w-full md:after:h-1.5 after:h-0.5 xs:after:h-1 after:bg-[var(--focusColor)] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
 hover:after:scale-x-100
 `}
-          >
-            {service.title}
-          </span>
-          <span className="group-last:hidden">,</span>
-        </span>
-        {" "}
-      </Link>
-    ))}
-  </div>)
-
+            >
+              {service.title}
+            </span>
+            <span className="group-last:hidden">,</span>
+          </span>{" "}
+        </Link>
+      ))}
+    </div>
+  );
 }
