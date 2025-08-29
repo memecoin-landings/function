@@ -3,4 +3,5 @@ export default interface ServiceSteps {
   description?: string;
   duration?: string;
   revisions?: string;
+  nextStages?: string;
 }

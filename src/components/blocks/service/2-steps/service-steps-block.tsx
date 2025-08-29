@@ -66,10 +66,23 @@ export default function ServiceStepsBlock({
                   </span>
                 ))}
               </h4>
-              <div className="sm:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[1.375rem] md:leading-[2.1875rem] text-[#727272]">
-                <p className="text-[#F0EDE8] mb-2.75">{step.description}</p>
-                <span>{step.duration}</span>
-                <span>{step.revisions}</span>
+              <div className="sm:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[clamp(1rem,2.2cqw,1.375rem)] md:leading-[clamp(1.625rem,3.2cqw,2.1875rem)] text-[#727272]">
+                <p
+                  dangerouslySetInnerHTML={{ __html: step.description ?? "" }}
+                  className="text-[#F0EDE8] mb-2.75"
+                />
+                <div className="flex flex-row flex-wrap space-x-16.75">
+                  <span className="text-[#727272]">{step.duration}</span>
+                  {step.revisions && (
+                    <span className="text-[#727272]">{step.revisions}</span>
+                  )}
+                </div>
+                {step.nextStages && (
+                  <p
+                    dangerouslySetInnerHTML={{ __html: step.nextStages ?? "" }}
+                    className="text-[#F0EDE8] pt-2.75 md:pt-7.5"
+                  />
+                )}
               </div>
             </div>
           </div>
