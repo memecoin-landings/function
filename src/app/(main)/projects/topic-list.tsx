@@ -36,11 +36,11 @@ export default function TopicList({
   }, []);
 
   return (
-    <div ref={sectionRef} className="flex flex-col md:gap-7.5 xs:gap-5 gap-3">
-      <div className="text-[#F0EDE8] font-cera font-normal text-[1.53cqw] leading-[100%] tracking-[0%]">
+    <div ref={sectionRef} className="flex flex-col md:gap-7.5 gap-2.5">
+      <div className="text-[#F0EDE8] font-cera font-normal md:text-[1.375rem] text-[1rem] leading-[100%] tracking-[0%]">
         Choose a Category
       </div>
-      <div className="flex flex-col items-start">
+      <div className="flex md:flex-col flex-row flex-wrap md:items-start items-center md:gap-0 gap-2">
         {topics.map((topic, index) => (
           <div key={index} className="md:pt-4 xs:pt-2 pt-1">
             <button
@@ -54,7 +54,7 @@ export default function TopicList({
                 }}
                 style={{ "--focusColor": "#FF3F1A" } as React.CSSProperties}
                 className={`
-font-cera font-medium text-[2.08cqw] tracking-[0%] inline-block text-left relative transition-colors duration-500
+font-cera font-medium md:text-[1.875rem] text-[1.5rem] tracking-[0%] inline-block text-left relative transition-colors duration-500
 after:[content:''] after:scale-x-0 after:w-full after:h-[0.125rem] after:bg-[var(--focusColor)] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
 ${
   index === selectedTopic
@@ -64,6 +64,15 @@ ${
 `}
               >
                 {topic}
+                {/* Добавляем запятую для экранов меньше md, кроме последнего элемента */}
+                {index < topics.length - 1 && (
+                  <span
+                    className="md:hidden text-[#F0EDE8] font-cera font-medium 
+                  md:text-[1.875rem] text-[1.5rem] tracking-[0%]"
+                  >
+                    ,
+                  </span>
+                )}
               </span>
             </button>
           </div>

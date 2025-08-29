@@ -89,10 +89,10 @@ export default function ServicesPage() {
         ref={sectionRef}
         className="fluid-container relative md:pb-21.75 pb-18.25 pl-5 pr-23"
       >
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <div
             ref={headerRef}
-            className="font-bold leading-[9cqw] tracking-[-3%] text-[11.8cqw] xs:pl-0 flex-4"
+            className="font-bold md:leading-[9cqw] tracking-[-3%] md:text-[11.8cqw] text-[16cqw] leading-[12cqw] xs:pl-0 flex-4"
           >
             OurCreative Approach
             <div className="flex flex-row">
@@ -109,7 +109,7 @@ export default function ServicesPage() {
               </span>
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 md:pt-0 pt-10">
             <TopicList
               topics={topics}
               selectedTopic={selectedTopic}
