@@ -5,6 +5,6 @@ export default class Service {
     public title: string,
     public slug?: string,
     public description?: string,
-    public steps?: ServiceSteps[],
+    public steps?: ServiceSteps[]
   ) {}
 }
