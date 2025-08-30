@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { domToCanvas } from 'modern-screenshot';
 import initWebGL from './webgl-utils';
-import { createAnimatable } from 'animejs';
+import { AnimatableObject, createAnimatable } from 'animejs';
 
 interface MousePosition {
   x: number;
@@ -36,7 +36,7 @@ function WebGLBlurEffect({
   const glRef = useRef<WebGLRenderingContext | null>(null);
   const programRef = useRef<WebGLProgram | null>(null);
   const textureRef = useRef<WebGLTexture | null>(null);
-  const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5 });
+  const mouseRef = useRef<MousePosition>({ x: -1000, y: -1000 });
   const animationIdRef = useRef<number | null>(null);
 
 
@@ -117,7 +117,9 @@ function WebGLBlurEffect({
     const uCenterPointLoc = gl.getUniformLocation(program, 'uCenterPoint');
 
     gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
-    gl.uniform2f(uMouseLoc, mouseRef.current.x, mouseRef.current.y);
+    // console.log(mouseRef.current)
+    if (mouseRef.current)
+      gl.uniform2f(uMouseLoc, mouseRef.current.x, mouseRef.current.y);
     gl.uniform1f(uAlphaLoc, 1.0);
     gl.uniform1f(uTimeLoc, time * 0.001);
     gl.uniform1f(uBlurRadiusLoc, blurRadius);
@@ -138,22 +140,29 @@ function WebGLBlurEffect({
     animationIdRef.current = requestAnimationFrame(draw);
   }, [draw]);
 
-  const animatableMouse = createAnimatable(mouseRef.current, {
-    x: 750, // Define the x duration to be 500ms
-    y: 750, // Define the y duration to be 500ms
-    ease: 'out(5)',
-  });
+  let animatableMouse: AnimatableObject;
 
   function handleMouseMove(e: React.MouseEvent<HTMLCanvasElement>): void {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+
+    const newX = e.clientX - rect.left;
+    const newY = e.clientY - rect.top;
+
+    if (!animatableMouse) {
+      mouseRef.current = { x: newX, y: newY }
+      animatableMouse = createAnimatable(mouseRef.current, {
+        x: 750,
+        y: 750,
+        ease: 'out(5)',
+      });
+    }
     if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;
 
-    const rect = canvas.getBoundingClientRect();
     // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
-    animatableMouse['x'](e.clientX - rect.left)
-    animatableMouse['y'](e.clientY - rect.top)
-    // mouseRef.current.x = e.clientX - rect.left;
-    // mouseRef.current.y = e.clientY - rect.top; // flip Y coordinate
+    animatableMouse['x'](newX)
+    animatableMouse['y'](newY)
   }
 
   // Пока так но по моему стоит оптимизировать и дебаунсить ресайз
@@ -188,6 +197,7 @@ function WebGLBlurEffect({
       // Small delay to ensure content is rendered
       // setTimeout(captureContent, 100);
       captureContent();
+      handleMouseMove()
     }
     window.addEventListener('resize', handleResize);
 
