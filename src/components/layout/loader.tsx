@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import {
   animate,
   createTimeline,
-  createTimer,
   utils,
 } from "animejs";
 import Cookies from "js-cookie";
@@ -17,21 +16,16 @@ export default function Loader() {
     const loaderBg = loaderBgRef.current;
     const loaderBar = loaderBarRef.current;
 
-    const timer = createTimer({
-      delay: 10,
-      duration: 3000,
-      frameRate: 30,
-    });
-
     if (!loaderBg) return;
     if (!loaderBar) return;
 
     const loaderAnim = animate(loaderBar, {
       x: `100vw`,
       easing: "easeInOut",
-      duration: timer.duration,
-      innerHTML: '100',
-      modifier: utils.roundPad(1).round(0)
+      duration: 3000,
+      innerHTML: {
+        to: '100', modifier: utils.roundPad(0)
+      },
     });
 
     createTimeline()
@@ -40,6 +34,7 @@ export default function Loader() {
       .add(loaderBg, {
         opacity: [1, 0],
         duration: 1000,
+        delay: 500,
       })
       .then(() => {
         loaderBg.hidden = true;
