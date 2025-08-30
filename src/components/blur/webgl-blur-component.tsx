@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { domToCanvas } from 'modern-screenshot';
 import initWebGL from './webgl-utils';
@@ -11,7 +11,26 @@ interface MousePosition {
   y: number;
 }
 
-function WebGLBlurEffect({ children, className }: { children: React.ReactNode, className?: string },) {
+interface BlurParams {
+  blurRadius?: number;
+  blurOffset?: number;
+  mouseRadius?: number;
+  effectPower?: number;
+  centerPoint?: number;
+}
+
+function WebGLBlurEffect({ 
+  children, 
+  className, 
+  blurRadius = 20.0,
+  blurOffset = 0.8, 
+  mouseRadius = 0.75,
+  effectPower = 0.82,
+  centerPoint = 0.5 
+}: { 
+  children: React.ReactNode, 
+  className?: string 
+} & BlurParams) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const glRef = useRef<WebGLRenderingContext | null>(null);
@@ -76,7 +95,7 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
     }
   }
 
-  function draw(time: number): void {
+  const draw = useCallback((time: number): void => {
     const gl = glRef.current;
     const program = programRef.current;
     const canvas = canvasRef.current;
@@ -91,23 +110,33 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
     const uMouseLoc = gl.getUniformLocation(program, 'uMouse');
     const uAlphaLoc = gl.getUniformLocation(program, 'uAlpha');
     const uTimeLoc = gl.getUniformLocation(program, 'uTime');
+    const uBlurRadiusLoc = gl.getUniformLocation(program, 'uBlurRadius');
+    const uBlurOffsetLoc = gl.getUniformLocation(program, 'uBlurOffset');
+    const uMouseRadiusLoc = gl.getUniformLocation(program, 'uMouseRadius');
+    const uEffectPowerLoc = gl.getUniformLocation(program, 'uEffectPower');
+    const uCenterPointLoc = gl.getUniformLocation(program, 'uCenterPoint');
 
     gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
     gl.uniform2f(uMouseLoc, mouseRef.current.x, mouseRef.current.y);
     gl.uniform1f(uAlphaLoc, 1.0);
     gl.uniform1f(uTimeLoc, time * 0.001);
+    gl.uniform1f(uBlurRadiusLoc, blurRadius);
+    gl.uniform1f(uBlurOffsetLoc, blurOffset);
+    gl.uniform1f(uMouseRadiusLoc, mouseRadius);
+    gl.uniform1f(uEffectPowerLoc, effectPower);
+    gl.uniform1f(uCenterPointLoc, centerPoint);
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 
     animationIdRef.current = requestAnimationFrame(draw);
-  }
+  }, [blurRadius, blurOffset, mouseRadius, effectPower, centerPoint]);
 
-  function startAnimation(): void {
+  const startAnimation = useCallback((): void => {
     if (animationIdRef.current) {
       cancelAnimationFrame(animationIdRef.current);
     }
     animationIdRef.current = requestAnimationFrame(draw);
-  }
+  }, [draw]);
 
   const animatableMouse = createAnimatable(mouseRef.current, {
     x: 750, // Define the x duration to be 500ms
@@ -171,6 +200,13 @@ function WebGLBlurEffect({ children, className }: { children: React.ReactNode, c
       }
     };
   }, []);
+
+  // Перезапускаем анимацию при изменении параметров блюра
+  useEffect(() => {
+    if (glRef.current && programRef.current) {
+      startAnimation();
+    }
+  }, [blurRadius, blurOffset, mouseRadius, effectPower, centerPoint]);
 
   return (
     <div ref={contentRef} className={cn("relative", className)}>
