@@ -37,9 +37,9 @@ export default function AnimeTextSplit({
     animate(chars, {
       opacity: [0, 1],
       y: [20, 0],
-      duration: 600,
+      duration: 1200,
       ease: "out(3)",
-      delay: stagger(50),
+      delay: stagger(25),
       complete: () => {
         setIsAnimating(false);
       },
@@ -68,7 +68,7 @@ export default function AnimeTextSplit({
 
   useEffect(() => {
     if (texts.length > 0) {
-      animateText(texts[currentIndex]);
+      animateText(texts[currentIndex]!);
     }
   }, [currentIndex, texts]);
 
@@ -99,7 +99,6 @@ export default function AnimeTextSplit({
     <p
       ref={textRef}
       className={`${className} whitespace-nowrap`}
-      //   style={{ minHeight: "1.5em" }}
     />
   );
 }

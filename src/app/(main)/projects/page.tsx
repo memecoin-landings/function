@@ -1,13 +1,10 @@
 "use client";
 
-import { animate, onScroll, stagger, text } from "animejs";
-// import ServicesLinks from "../../../components/blocks/3-services/services-links";
+import { animate, onScroll, stagger } from "animejs";
 import { useEffect, useRef, useState } from "react";
 import ProjectsGrid from "./projects-grid";
 import TopicList from "./topic-list";
 import AnimeTextSplit from "@/components/animation/animate-text";
-// const [$playButton] = utils.$(".play");
-// import ProjectPojoRepository from "@/infrastructure/project.pojo-repository";
 
 const labels = [
   "Innovation",
@@ -26,44 +23,12 @@ const topics = [
   "Personal identity",
 ];
 
-const fadeOutAndChange = (target: any) =>
-  animate(target, {
-    opacity: [0, 1],
-    translateY: ["-30px", "0px"],
-    duration: 600,
-    easing: "easeOutQuart",
-    delay: stagger(1000, { from: "first" }),
-
-    // opacity: [1, 0],
-    // y: [0, -20],
-    // duration: 400,
-    // ease: "out(2)",
-    // delay: stagger(30),
-  });
-
-// const textAnimation = (
-//   target: any,
-//   fadeAnimation: (target: any) => JSAnimation
-// ) =>
-//   animate(target, {
-//     y: [{ to: ["100%", "0%"] }, { to: "-100%", delay: 750, ease: "in(3)" }],
-//     duration: 750,
-//     ease: "out(3)",
-//     delay: stagger(50),
-
-//     complete: () => {
-//       fadeAnimation(target).play();
-//     },
-//   });
 
 export default function ServicesPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLSpanElement>(null);
   const [selectedTopic, setSelectedTopic] = useState(0);
-  const [currentLabelIndex, setCurrentLabelIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleTopicSelect = (index: number) => {
     setSelectedTopic(index);
@@ -73,36 +38,6 @@ export default function ServicesPage() {
     if (selectedTopic === 0) return "all"; // "All projects" - показываем все
     return topics[selectedTopic]; // Возвращаем название топика как tag
   };
-
-  // useEffect(() => {
-  //   if (labelRef.current && !isAnimating) {
-  //     setIsAnimating(true);
-  //     const { chars } = text.split(labelRef.current, {
-  //       chars: {},
-  //     });
-  //     animate(chars, {
-  //       opacity: [0, 1],
-  //       y: [20, 0],
-  //       duration: 600,
-  //       ease: "out(3)",
-  //       delay: stagger(50),
-  //       complete: () => {
-  //         animate(chars, {
-  //           opacity: [1, 0],
-  //           y: [0, -20],
-  //           duration: 400,
-  //           ease: "out(2)",
-  //           delay: stagger(30),
-  //         });
-  //       },
-  //     });
-  //     // textAnimation(chars, fadeOutAndChange).play();
-  //     setTimeout(() => {
-  //       setCurrentLabelIndex((prev) => (prev + 1) % labels.length);
-  //       setIsAnimating(false);
-  //     }, 5000);
-  //   }
-  // }, [currentLabelIndex, isAnimating]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -143,12 +78,9 @@ export default function ServicesPage() {
               to&nbsp;
               <span className={`inline-block w-[60cqw] overflow-visible z-20`}>
                 <span
-                  // ref={labelRef}
-                  key={`${currentLabelIndex}-${isAnimating}`}
                   className="text-[#FF3F1A] z-20"
                 >
                   <AnimeTextSplit texts={labels} />
-                  {/* {labels[currentLabelIndex]} */}
                 </span>
               </span>
             </div>
