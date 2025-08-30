@@ -66,7 +66,7 @@ export default function ServicesPage() {
     <main className="lg:pt-25.75 xs:pt-18.25 pt-17 w-full pb-5">
       <section
         ref={sectionRef}
-        className="fluid-container relative lg:pb-21.75 pb-18.25 pl-5 pr-23"
+        className="fluid-container relative pl-5 pr-23"
       >
         <div className="flex flex-col lg:flex-row">
           <div
@@ -85,7 +85,7 @@ export default function ServicesPage() {
               </span>
             </div>
           </div>
-          <div className="flex-1 lg:pt-0 pt-10">
+          <div className="flex-1 lg:pt-[1.875cqw] pt-10 ">
             <TopicList
               topics={topics}
               selectedTopic={selectedTopic}
@@ -94,7 +94,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section className="pl-5 pr-5">
+      <section className="px-5 md:mt-22 mt-12.5">
         {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
         {!getSelectedTopicTag() && <ProjectsGrid />}
       </section>

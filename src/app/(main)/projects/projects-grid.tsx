@@ -78,7 +78,7 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
   return (
     <div
       ref={sectionRef}
-      className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5 xs:mt-7.5 mt-2.5"
+      className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5"
     >
       {projects.map((item, index) => (
         <ProjectCard
