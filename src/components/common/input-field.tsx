@@ -77,7 +77,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           />
 
           {required && !hasValue && (
-            <span className="absolute right-0 bottom-3 text-xs text-red-500 pr-5">
+            <span className="absolute right-0 bottom-3.5 md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 pr-5">
               ! Required field
             </span>
           )}
