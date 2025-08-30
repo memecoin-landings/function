@@ -42,6 +42,7 @@ export function useThemeColors() {
     buttonText: isLight ? "text-[#F0EDE8]" : "text-[#151516]",
     buttonHoverBg: "bg-[#FF3F1A]",
     buttonHoverText: "text-[#151516]",
+    buttonDisabledText: "text-[#F0EDE8]",
     buttonDisabledBg: isLight ? "bg-[#C8C8C8]" : "bg-[#727272]",
     buttonDisabledHover: "bg-[#969696]",
 
