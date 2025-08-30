@@ -22,7 +22,6 @@ const topics = [
   "Product identity",
   "Campaign Identity",
   "Personal identity",
-  "Brand support",
 ];
 
 export default function ServicesPage() {
@@ -61,7 +60,11 @@ export default function ServicesPage() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section) {
+      debugger;
+      console.log("section is null");
+      return;
+    }
 
     const elements = [headerRef.current, paragraphRef.current].filter(
       (el) => el !== null

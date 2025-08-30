@@ -7,13 +7,22 @@ import spilePic from "@/../public/cover_project-spile.jpg";
 import Project from "@/domain/project/project";
 
 const projects: Project[] = [
-  new Project({title: "Feel Full Free", image: fffPic, topics: ["Corporate identity", "Naming", "Logo", "Brand guidelines", "Key Visual"],tags: [],weight: 6}),
-  new Project({title: "Spile", image: spilePic, topics: ["Product identity", "Naming", "Logo", "Packaging", "Brand guidelines", "Key Visual"],tags: [],weight: 5}),
+  new Project({title: "Feel Full Free", 
+    image: fffPic, 
+    topics: ["Corporate identity", "Naming", "Logo", "Brand guidelines", "Key Visual"],
+    tags: ["Corporate identity"],
+    weight: 6}),
+
+  new Project({title: "Spile", 
+    image: spilePic, 
+    topics: ["Product identity", "Naming", "Logo", "Packaging", "Brand guidelines", "Key Visual"],
+    tags: ["Product identity"],
+    weight: 5}),
   new Project({
     title: "Caspian Gold",
     image: caspianGoldPic,
     topics: ["Product identity", "Naming", "Logo", "Packaging", "Brand guidelines", "Key Visual"],
-    tags: ["Product identity", "Brand support"],
+    tags: ["Product identity"],
     weight: 4,
   }
   ),
@@ -21,7 +30,7 @@ const projects: Project[] = [
     title: "Cancer screening campaign in Moscow",
     image: cancerPic,
     topics: ["Campaign Identity", "Brand guidelines", "Key Visual", "Social Media Branding"],
-    tags: ["Campaign Identity", "Brand support"],
+    tags: ["Campaign Identity"],
     weight: 3,
   }),
   new Project({
@@ -29,7 +38,7 @@ const projects: Project[] = [
     image: arshaluysPic,
     description: "Logo, Product branding",
     topics: ["Product identity", "Logo", "Packaging", "Brand guidelines", "Key Visual"],
-    tags: ["Product identity", "Brand support"],
+    tags: ["Product identity"],
     weight: 2,
     slug: "arshaluys",
   }),
@@ -37,7 +46,7 @@ const projects: Project[] = [
     title: "Smartstroy",
     image: smartStoryPic,
     topics: ["Product identity", "Logo", "Brand guidelines"],
-    tags: ["Product identity", "Brand support"],
+    tags: ["Corporate identity"],
     weight: 1,
     slug: "smartstroy",
   }),

@@ -63,7 +63,10 @@ export default function CommercialOfferForm({
 
   return (
     <div
-      className={cn("flex flex-col xs:flex-row justify-start items-start", className)}
+      className={cn(
+        "flex flex-col xs:flex-row justify-start items-start",
+        className
+      )}
     >
       {/* Left container */}
       <div className="grow-0 items-start text-black justify-start">
@@ -77,7 +80,7 @@ export default function CommercialOfferForm({
           offer
         </p>
       </div>
-      <div className="w-20 shrink-0 grow-0"></div>
+      <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
         <div className="grow-1 max-w-[485px] flex-col pt-3">
@@ -100,10 +103,11 @@ export default function CommercialOfferForm({
 
           {/* Второй ряд с услугами - улучшенная анимация */}
           <div
-            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
-              ? "opacity-100 translate-y-0 max-h-96"
-              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-              }`}
+            className={`transition-all duration-500 ease-in-out ${
+              isSecondRowVisible
+                ? "opacity-100 translate-y-0 max-h-96"
+                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+            }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
@@ -143,14 +147,14 @@ export default function CommercialOfferForm({
                 value={name}
                 onChange={setName}
                 placeholder="Full Name"
-                className="mb-13"
+                className="md:mb-12.5 mb-7.5"
               />
               <InputField
                 value={phone}
                 onChange={setPhone}
                 placeholder="Phone"
                 type="tel"
-                className="mb-13"
+                className="md:mb-12.5 mb-7.5"
               />
               <InputField
                 ref={emailRef}
@@ -158,7 +162,7 @@ export default function CommercialOfferForm({
                 onChange={handleEmailChange}
                 placeholder="Email"
                 type="email"
-                className="mb-12.5"
+                className="md:mb-12.5 mb-7.5"
                 required={true}
               />
               <SubmitForm
