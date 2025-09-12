@@ -5,7 +5,7 @@ import ProjectPojoRepository from "../../../infrastructure/project.pojo-reposito
 import ProjectCard, {
   ProjectCardParams,
 } from "../../../components/cards/project-card";
-import { animate, onScroll, stagger } from "animejs";
+import { animate, onScroll } from "animejs";
 
 export default function ProjectsGrid({ tag }: { tag?: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,11 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
         translateY: [20, 0],
         duration: 300,
         easing: "easeOutQuad",
-        delay: stagger(200),
+        delay: (_, i) => {
+          // Группируем карточки попарно (каждая пара появляется одновременно)
+          const pairIndex = Math.floor(i / 2);
+          return pairIndex * 200; // Задержка между парами
+        },
         debug: true,
         autoplay: onScroll({
           sync: true,
@@ -42,7 +46,7 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
         }),
       });
     }
-  }, []);
+  }, [tag]);
 
   // Анимация при смене топика (tag)
   useEffect(() => {
@@ -78,7 +82,7 @@ export default function ProjectsGrid({ tag }: { tag?: string }) {
   return (
     <div
       ref={sectionRef}
-      className="grid xs:grid-cols-2 grid-cols-1 xs:gap-2.5 gap-1.5"
+      className="grid xs:grid-cols-2 grid-cols-1 gap-5"
     >
       {projects.map((item, index) => (
         <ProjectCard
