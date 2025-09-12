@@ -2,10 +2,11 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
+import formatPhoneNumber from "@/lib/phone-format";
 
 export default function CommercialOfferForm({
   viewModel,
@@ -20,6 +21,12 @@ export default function CommercialOfferForm({
   const [email, setEmail] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const colors = useThemeColors();
+  
+  // Простое форматирование телефона
+  const handlePhoneChange = (value: string) => {
+    const formatted = formatPhoneNumber(value);
+    setPhone(formatted);
+  };
 
   // Создаем экземпляр view model
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
@@ -151,7 +158,7 @@ export default function CommercialOfferForm({
               />
               <InputField
                 value={phone}
-                onChange={setPhone}
+                onChange={handlePhoneChange}
                 placeholder="Phone"
                 type="tel"
                 className="md:mb-12.5 mb-7.5"

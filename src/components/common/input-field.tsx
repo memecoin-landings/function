@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useThemeColors } from "./use-theme-colors";
 
@@ -33,6 +33,11 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     const [isFocused, setIsFocused] = useState(false);
     const [internalValue, setInternalValue] = useState(value || "");
     const colors = useThemeColors();
+
+    // Синхронизируем внутреннее состояние с внешним значением
+    useEffect(() => {
+      setInternalValue(value || "");
+    }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
