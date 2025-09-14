@@ -23,7 +23,6 @@ const topics = [
   "Personal identity",
 ];
 
-
 export default function ServicesPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -64,11 +63,8 @@ export default function ServicesPage() {
 
   return (
     <main className="lg:pt-25.75 xs:pt-18.25 pt-17 w-full pb-5">
-      <section
-        ref={sectionRef}
-        className="fluid-container relative pl-5 pr-23"
-      >
-        <div className="flex flex-col lg:flex-row">
+      <section ref={sectionRef} className="fluid-container relative pl-5 pr-23">
+        <div className="flex flex-col xl:flex-row">
           <div
             ref={headerRef}
             className="font-bold lg:leading-[9cqw] tracking-[-3%] lg:text-[11.8cqw] text-[16cqw] leading-[12cqw] xs:pl-0 flex-4"
@@ -77,15 +73,13 @@ export default function ServicesPage() {
             <div className="flex flex-row">
               to&nbsp;
               <span className={`inline-block w-[60cqw] overflow-visible z-20`}>
-                <span
-                  className="text-[#FF3F1A] z-20"
-                >
+                <span className="text-[#FF3F1A] z-20">
                   <AnimeTextSplit texts={labels} />
                 </span>
               </span>
             </div>
           </div>
-          <div className="flex-1 lg:pt-[1.875cqw] pt-10 ">
+          <div className="flex-1 xl:pt-[1.875cqw] pt-10 ">
             <TopicList
               topics={topics}
               selectedTopic={selectedTopic}
