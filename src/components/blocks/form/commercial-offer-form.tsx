@@ -21,12 +21,6 @@ export default function CommercialOfferForm({
   const [email, setEmail] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const colors = useThemeColors();
-  
-  // Простое форматирование телефона
-  const handlePhoneChange = (value: string) => {
-    const formatted = formatPhoneNumber(value);
-    setPhone(formatted);
-  };
 
   // Создаем экземпляр view model
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
@@ -158,7 +152,7 @@ export default function CommercialOfferForm({
               />
               <InputField
                 value={phone}
-                onChange={handlePhoneChange}
+                onChange={setPhone}
                 placeholder="Phone"
                 type="tel"
                 className="md:mb-12.5 mb-7.5"

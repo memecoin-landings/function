@@ -4,6 +4,7 @@ import type React from "react";
 import { useState, forwardRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useThemeColors } from "./use-theme-colors";
+import formatPhoneNumber from "@/lib/phone-format";
 
 interface InputFieldProps {
   label?: string;
@@ -40,7 +41,13 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
+      let newValue = e.target.value;
+
+      // Автоматически форматируем номер телефона для типа tel
+      if (type === "tel") {
+        newValue = formatPhoneNumber(newValue);
+      }
+
       setInternalValue(newValue);
       onChange?.(newValue);
     };
