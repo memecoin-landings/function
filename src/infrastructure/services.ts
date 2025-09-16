@@ -31,12 +31,12 @@ const services: Service[] = [
           "Development of a brand guidelines document with recommendations on the use of visual elements, and the systematization of all brand assets, including logos, fonts, color schemes, and other components. <br/> <a href='https://google.com' target='_blank'  class='text-[#FF3F1A] underline'>Click here to view a sample brand guidelines PDF.</a>",
         duration: "8+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Product identity",
     "product-identity",
-    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
+    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -63,7 +63,7 @@ const services: Service[] = [
           "Developing brand guidelines with recommendations on how to use visual elements of the product identity, and organizing all source materials, including logos, fonts, color schemes, packaging layouts, and other components.",
         duration: "8+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Campaign identity",
@@ -95,7 +95,7 @@ const services: Service[] = [
           "Creation of a brand guidelines document with recommendations on applying the campaign’s visual identity, along with the systematization of all source materials — including the signature mark, color schemes, typography, graphic elements, photo style, and templates for key deliverables. Preparation of a complete asset package to ensure consistent adaptation of the identity across formats.",
         duration: "8+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Personal identity",
@@ -121,7 +121,7 @@ const services: Service[] = [
           "Adapting the visual concept to various media, including social media design, publication layouts, presentations, business documentation, packaging, and other materials to ensure brand consistency. Developing a guideline with recommendations for using the visual components of the brand and organizing materials for convenient use.",
         duration: "8+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Brand support",
@@ -143,7 +143,7 @@ const services: Service[] = [
         description:
           "Conducting training sessions and workshops for employees to ensure they properly represent and utilize the brand in their activities.",
       },
-    ],
+    ]
   ),
   new Service(
     "Naming",
@@ -164,11 +164,11 @@ const services: Service[] = [
         revisions: "20 options, 2 rounds of revisions",
       },
       {
-        name: ["Trademark Check", "and Registration", "(Optional)"],
+        name: ["Trademark Check", "and Registration", "(Optional)"],
         description:
           "Checking the availability of trademarks. Full legal registration is available through trusted partners in international markets. <br/> <br/>The next stage of brand development:<br/> <a href='/services/corporate-identity' class='text-[#FF3F1A] underline'>Corporate identity</a>, <a href='/services/product-identity' class='text-[#FF3F1A] underline'>Product identity</a>, <a href='/services/personal-identity' class='text-[#FF3F1A] underline'>Personal identity</a>, <a href='/services/logo' class='text-[#FF3F1A] underline'>Logo</a>",
       },
-    ],
+    ]
   ),
   new Service(
     "Logo",
@@ -196,7 +196,7 @@ const services: Service[] = [
         nextStages:
           "The next stage of brand development:<br/> <a href='/services/corporate-identity' class='text-[#FF3F1A] underline'>Corporate identity</a>, <a href='/services/product-identity' class='text-[#FF3F1A] underline'>Product identity</a>, <a href='/services/campaign-identity' class='text-[#FF3F1A] underline'>Campaign identity</a>, <a href='/services/personal-identity' class='text-[#FF3F1A] underline'>Personal identity</a>",
       },
-    ],
+    ]
   ),
   new Service(
     "Packaging",
@@ -228,7 +228,7 @@ const services: Service[] = [
           "Development of a guide with recommendations for packaging usage, including logo placement, typography, color palette, and other design elements. Ensuring compliance with brand standards at all stages of production and application.",
         duration: "8+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Brand guidelines",
@@ -261,7 +261,7 @@ const services: Service[] = [
         nextStages:
           "The guidelines ensure brand integrity and standardize the use of visual elements across all communication levels. The development of Brand Guidelines is a key part of comprehensive work in creating <br/> <a href='/services/corporate-identity' class='text-[#FF3F1A] underline'>Corporate identity</a>, <a href='/services/product-identity' class='text-[#FF3F1A] underline'>Product identity</a>, <a href='/services/campaign-identity' class='text-[#FF3F1A] underline'>Campaign identity</a>, <a href='/services/personal-identity' class='text-[#FF3F1A] underline'>Personal identity</a>",
       },
-    ],
+    ]
   ),
   new Service(
     "UI/UX",
@@ -309,7 +309,7 @@ const services: Service[] = [
         description:
           "Providing technical support after the product launch: monitoring, identifying and fixing errors, optimizing functionality and performance based on analytics and user feedback. Adapting the product to changing requirements and continuous improvement.",
       },
-    ],
+    ]
   ),
   new Service(
     "Key Visual",
@@ -341,12 +341,12 @@ const services: Service[] = [
           "Adaptation of the Key Visual for various formats and communication channels: digital media, outdoor advertising, print materials, events, and other communications. Preparation of source files for use across all platforms, taking into account the requirements of each format.",
         duration: "5+ business days",
       },
-    ],
+    ]
   ),
   new Service(
     "Social Media Branding",
     "social-media-branding",
-    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
+    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -366,7 +366,7 @@ const services: Service[] = [
           "Adapting the visual concept to various content formats: profile layouts, cover images and avatars, post and story design, rubric templates, video content design, and banners. Deliverables can be compiled into a comprehensive brand guideline for seamless implementation and scalability.",
         duration: "12+ business days",
       },
-    ],
+    ]
   ),
 ];
 

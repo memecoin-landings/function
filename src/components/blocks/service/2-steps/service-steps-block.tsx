@@ -51,12 +51,12 @@ export default function ServiceStepsBlock({
           key={index}
           className="flex flex-col w-full group"
         >
-          <div className="flex flex-row space-x-11.5 sm:space-x-0 mb-10 md:mb-12.5 @container">
+          <div className="flex flex-row space-x-11.5  sm:space-x-0 mb-10 md:mb-12.5 @container">
             <div className="text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#FF3F1A] sm:pr-[5.2cqw]">
               {`0${index + 1}`}
             </div>
-            <div className="flex flex-col sm:flex-row sm:justify-between w-full">
-              <h4 className="sm:w-[20cqw] text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#F0EDE8] mb-5.5 sm:pr-[6.1cqw] md:pr-[10cqw]">
+            <div className="flex flex-col sm:flex-row md:justify-between w-full">
+              <h4 className="sm:w-[20cqw] text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[100%] md:tracking-[-3%] font-medium text-[#F0EDE8] mb-5.5 sm:pr-[6.1cqw] ">
                 {step.name?.map((name, index) => (
                   <span key={index} className="lg:whitespace-nowrap">
                     {name}
@@ -66,7 +66,7 @@ export default function ServiceStepsBlock({
                   </span>
                 ))}
               </h4>
-              <div className="sm:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[clamp(1rem,2.2cqw,1.375rem)] md:leading-[clamp(1.625rem,3.2cqw,2.1875rem)] text-[#727272]">
+              <div className="sm:ml-[15cqw] md:ml-0 sm:w-[50.2cqw] md:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[clamp(1rem,2.2cqw,1.375rem)] md:leading-[clamp(1.625rem,3.2cqw,2.1875rem)] text-[#727272]">
                 <p
                   dangerouslySetInnerHTML={{ __html: step.description ?? "" }}
                   className="text-[#F0EDE8] mb-2.75"
@@ -86,7 +86,7 @@ export default function ServiceStepsBlock({
               </div>
             </div>
           </div>
-          <hr className=" h-0 group-not-last:border border-0 border-[#454545]" />
+          <hr className=" h-0 group-not-last:border-b-1 border-0 border-[#454545]" />
         </div>
       ))}
     </section>

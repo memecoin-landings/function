@@ -5,12 +5,17 @@ import type React from "react";
 import ProjectLinkButton from "./projects-link-button";
 import ProjectsGrid from "../../../app/(main)/projects/projects-grid";
 
-export default function ProjectsBlock({ className }: { className?: string }) {
-
+export default function ProjectsBlock({
+  className,
+  tag,
+}: {
+  className?: string;
+  tag?: string;
+}) {
   return (
     <section className={`${className} fluid-container`}>
       <SectionHeader>Projects</SectionHeader>
-      <ProjectsGrid />
+      <ProjectsGrid tag={tag || "all"} />
       <ProjectLinkButton />
     </section>
   );

@@ -16,14 +16,20 @@ export default function ServicePage() {
     <main className="flex flex-col items-center sm:items-start md:pt-25.75 xs:pt-18.25 pt-17 pb-25.75 md:pb-18.25 xs:pb-18.25 w-full">
       <ServiceMainBlock
         service={service!}
-        className="md:pt-12.5 xs:pt-10 pt-10 px-8.75 md:px-[7.6cqw]"
+        className="md:pt-12.5 xs:pt-10 pt-10 md:px-[7.6cqw]"
       />
       <ServiceStepsBlock
         service={service!}
-        className="md:pt-12.5 xs:pt-10 pt-10 px-8.75 md:px-[7.6cqw]"
+        className="md:pt-12.5 xs:pt-10 pt-10 md:px-[7.6cqw]"
       />
-      <ProjectsBlock className="md:mt-39 xs:mt-18 mt-10.5" />
-      <ServicesBlock className="md:mt-39 xs:mt-18 mt-10.5" />
+      <ProjectsBlock
+        tag={service?.slug || "all"}
+        className="md:mt-37.5 xs:mt-18 mt-10.5"
+      />
+      <ServicesBlock
+        currentService={service?.slug}
+        className="md:mt-39 xs:mt-18 mt-10.5 md:pb-50"
+      />
     </main>
   );
 }
