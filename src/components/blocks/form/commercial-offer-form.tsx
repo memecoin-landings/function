@@ -2,10 +2,11 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
+import formatPhoneNumber from "@/lib/phone-format";
 
 export default function CommercialOfferForm({
   viewModel,
