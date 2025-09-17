@@ -147,8 +147,8 @@ function WebGLBlurEffect({
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
 
-    const newX = e.clientX - rect.left;
-    const newY = e.clientY - rect.top;
+    const newX = (e.clientX - rect.left) * window.devicePixelRatio;
+    const newY = (e.clientY - rect.top) * window.devicePixelRatio;
 
     if (!animatableMouse) {
       mouseRef.current = { x: newX, y: newY }
@@ -160,7 +160,7 @@ function WebGLBlurEffect({
     }
     if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;
 
-    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
+    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top, rect.width, rect.height, "position: ", newX, newY);
     animatableMouse['x'](newX)
     animatableMouse['y'](newY)
   }

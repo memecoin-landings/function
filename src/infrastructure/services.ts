@@ -36,7 +36,7 @@ const services: Service[] = [
   new Service(
     "Product identity",
     "product-identity",
-    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
+    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -100,7 +100,7 @@ const services: Service[] = [
   new Service(
     "Personal identity",
     "personal-identity",
-    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
+    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
     [
       {
         name: ["In-Depth", "Interview", "and Research"],
@@ -109,7 +109,7 @@ const services: Service[] = [
         duration: "10+ business days",
       },
       {
-        name: ["Development of", "Visual", "Elements"],
+        name: ["Development", "of Visual", "Elements"],
         description:
           "Creating a logo, color palette, typography, graphic elements, and photo style that best reflect the individuality and values of the brand.",
         duration: "15+ business days",
