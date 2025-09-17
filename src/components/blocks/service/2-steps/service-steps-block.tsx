@@ -41,7 +41,7 @@ export default function ServiceStepsBlock({
   return (
     <section
       ref={sectionRef}
-      className={` w-full fluid-container @container flex flex-col space-y-10 md:space-y-12.5 ${className}`}
+      className={`w-full fluid-container @container flex flex-col space-y-10 md:space-y-12.5 ${className}`}
     >
       {steps?.map((step, index) => (
         <div
@@ -51,7 +51,7 @@ export default function ServiceStepsBlock({
           key={index}
           className="flex flex-col w-full group"
         >
-          <div className="flex flex-row space-x-11.5  sm:space-x-0 mb-10 md:mb-12.5 @container">
+          <div className="flex flex-row space-x-11.5  sm:space-x-0 @container">
             <div className="text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#FF3F1A] sm:pr-[5.2cqw]">
               {`0${index + 1}`}
             </div>
@@ -86,7 +86,7 @@ export default function ServiceStepsBlock({
               </div>
             </div>
           </div>
-          <hr className=" h-0 group-not-last:border-b-1 border-0 border-[#454545]" />
+          <hr className="opacity-90 group-not-last:mt-10 group-not-last:md:mt-12.5 h-0 group-not-last:border-b-1 border-0 border-[#454545]" />
         </div>
       ))}
     </section>

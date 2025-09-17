@@ -7,16 +7,18 @@ import ProjectsGrid from "../../../app/(main)/projects/projects-grid";
 
 export default function ProjectsBlock({
   className,
+  title = "Projects",
   tag,
 }: {
   className?: string;
+  title?: string;
   tag?: string;
 }) {
   return (
     <section className={`${className} fluid-container`}>
-      <SectionHeader>Projects</SectionHeader>
-      <ProjectsGrid tag={tag || "all"} />
-      <ProjectLinkButton />
+      <SectionHeader>{title}</SectionHeader>
+      <ProjectsGrid className="mt-2.5 md:mt-7.5" tag={tag || "all"} />
+      <ProjectLinkButton className="mt-2.5 md:mt-5" />
     </section>
   );
 }

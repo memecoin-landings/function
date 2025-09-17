@@ -34,8 +34,8 @@ export function useThemeColors() {
     inputPlaceholder: isLight
       ? "placeholder-[#C8C8C8]"
       : "placeholder-[#727272]",
-    inputBorder: isLight ? "border-gray" : "border-[#F0EDE8]",
-    inputBorderFocus: isLight ? "border-[#5A5A5A]" : "border-white",
+    inputBorder: isLight ? "border-[#5A5A5A]" : "border-[#F0EDE8A0]",
+    inputBorderFocus: isLight ? "border-[#5A5A5A]" : "border-[#F0EDE8]",
 
     // Цвета для кнопок
     buttonBg: isLight ? "bg-[#151516]" : "bg-[#F0EDE8]",

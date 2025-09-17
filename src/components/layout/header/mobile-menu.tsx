@@ -26,7 +26,7 @@ export default function MobileMenu({ className, openModal }: { className?: strin
         </SideMenuItem>
       </div>
       <div className="mt-20 text-white underline text-sm">
-        <Link href={`mailto:${Contacts.email}`}>{Contacts.email}</Link>
+        <Link target="_blank" href={`mailto:${Contacts.email}`}>{Contacts.email}</Link>
       </div>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
       <div className="mt-5 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5

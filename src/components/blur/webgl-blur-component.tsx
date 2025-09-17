@@ -19,17 +19,17 @@ interface BlurParams {
   centerPoint?: number;
 }
 
-function WebGLBlurEffect({ 
-  children, 
-  className, 
+function WebGLBlurEffect({
+  children,
+  className,
   blurRadius = 20.0,
-  blurOffset = 0.8, 
+  blurOffset = 0.8,
   mouseRadius = 0.75,
   effectPower = 0.82,
-  centerPoint = 0.5 
-}: { 
-  children: React.ReactNode, 
-  className?: string 
+  centerPoint = 0.5
+}: {
+  children: React.ReactNode,
+  className?: string
 } & BlurParams) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -197,7 +197,7 @@ function WebGLBlurEffect({
       // Small delay to ensure content is rendered
       // setTimeout(captureContent, 100);
       captureContent();
-      handleMouseMove()
+      // handleMouseMove()
     }
     window.addEventListener('resize', handleResize);
 

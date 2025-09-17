@@ -71,7 +71,7 @@ export default function ServicesLinks({
 hover:text-[var(--focusColor)] inline-block text-left relative transition-colors duration-500
 after:[content:''] after:scale-x-0 after:w-full md:after:h-1.5 after:h-0.5 xs:after:h-1 after:bg-[var(--focusColor)] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
 hover:after:scale-x-100
-${currentService === service.slug && "text-[#454545]"}
+${currentService === service.slug && "after:bg-[#454545]! hover:text-[#454545]! text-[#454545]"}
 `}
             >
               {service.title}

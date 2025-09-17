@@ -11,6 +11,7 @@ import Link from "next/link";
 import Contacts from "../../../domain/contacts";
 import { useEffect, useRef, useCallback } from "react";
 import { createAnimatable } from "animejs";
+import { ThemeProvider } from "@/components/common/theme-context";
 
 const MAX_DELTA = 100; // Increase this to make the animation "last longer" (require more scroll)
 const SENSITIVITY_DIVIDER = 2; // Increase this (e.g., 3) to decrease sensitivity (slower accumulation per event)
@@ -54,9 +55,8 @@ export default function Footer({ className }: { className: string }) {
 
     // Update styles based on smoothed progress
     animatableInstance.current.targets[0]!.style.opacity = intensity.toString();
-    animatableInstance.current.targets[0]!.style.transform = `translate(-50%, 0) scale(0.8) translateY(${
-      100 - intensity * 100
-    }px)`;
+    animatableInstance.current.targets[0]!.style.transform = `translate(-50%, 0) scale(0.8) translateY(${100 - intensity * 100
+      }px)`;
 
     // Stop loop if settled (close to target and not overscrolling)
     if (
@@ -307,13 +307,15 @@ export default function Footer({ className }: { className: string }) {
 
               <div className="flex flex-row w-[58cqw] xs:w-1/2 xs:max-w-[98cqw] ">
                 <div className="w-full md:w-38cqw md:max-w-[28.313rem]">
-                  <FooterForm />
+                  <ThemeProvider theme="dark">
+                    <FooterForm className="" />
+                  </ThemeProvider>
                 </div>
               </div>
             </div>
             <div className="flex flex-row w-full @container items-center pb-12.5">
               <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center space-x-5 @container pr-[6.3cqw] md:pr-0">
-                <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] tracking-[-3%] mb-2.5 md:mb-0 whitespace-nowrap">
+                <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] tracking-[-3%] mb-2.5 sm:mb-0 whitespace-nowrap">
                   Discover our work on:
                 </p>
                 <div className="flex flex-row space-x-2.5 md:space-x-5">

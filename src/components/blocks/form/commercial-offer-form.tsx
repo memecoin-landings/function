@@ -65,7 +65,7 @@ export default function CommercialOfferForm({
   return (
     <div
       className={cn(
-        "flex flex-col xs:flex-row justify-start items-start",
+        "flex flex-col sm:flex-row justify-start items-start pb-10",
         className
       )}
     >
@@ -77,14 +77,14 @@ export default function CommercialOfferForm({
             colors.textPrimary
           )}
         >
-          Request for <br />a commercial <br className="hidden xs:block" />
+          Request for <br />a commercial <br className="hidden sm:block" />
           offer
         </p>
       </div>
-      <div className="w-7.5 shrink-0 grow-0"></div>
+      <div className="w-7.5 sm:w-20 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[485px] flex-col pt-3">
+        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 sm:pt-1.75 pt-7.5">
           <div>
             <h3
               className={cn(
@@ -104,17 +104,15 @@ export default function CommercialOfferForm({
 
           {/* Второй ряд с услугами - улучшенная анимация */}
           <div
-            className={`transition-all duration-500 ease-in-out ${
-              isSecondRowVisible
-                ? "opacity-100 translate-y-0 max-h-96"
-                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-            }`}
+            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
+              ? "opacity-100 translate-y-0 max-h-96"
+              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+              }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
                 className={cn(
-                  "pt-7.5 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] mb-5 text-nowrap",
-                  colors.textPrimary
+                  "pt-7.5 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] mb-5 text-nowrap", colors.textPrimary
                 )}
               >
                 What We Offer
@@ -133,7 +131,7 @@ export default function CommercialOfferForm({
             <div className="grow-0 items-start text-black justify-start">
               <p
                 className={cn(
-                  "xs:hidden font-cera-pro font-medium md:text-[2.5rem] xs:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] xs:leading-8 leading-7.5 tracking-normal text-nowrap",
+                  "sm:hidden font-cera-pro font-medium md:text-[2.5rem] sm:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] sm:leading-8 leading-7.5 tracking-normal text-nowrap",
                   colors.textPrimary
                 )}
               >
@@ -142,7 +140,7 @@ export default function CommercialOfferForm({
               </p>
             </div>
             {/* Spacer between containers */}
-            <div className="xs:hidden w-9 shrink-0 grow-1"></div>
+            <div className="sm:hidden w-9 shrink-0 grow-1"></div>
             <div>
               <InputField
                 value={name}
@@ -153,6 +151,7 @@ export default function CommercialOfferForm({
               <InputField
                 value={phone}
                 onChange={setPhone}
+                formatFn={formatPhoneNumber}
                 placeholder="Phone"
                 type="tel"
                 className="md:mb-12.5 mb-7.5"

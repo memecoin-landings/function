@@ -76,7 +76,7 @@ export default function FormModal({
           colors.bgPrimary
         )}
       >
-        <div className="p-6">
+        <div className="sm:p-6 p-5">
           <FormHeader onClose={handleClose} />
           <CommercialOfferForm
             className="md:pt-16 xs:pt-13.5 pt-12 md:px-40 sm:px-13 px-6.25"

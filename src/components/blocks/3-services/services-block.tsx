@@ -5,8 +5,10 @@ import ServicesLinks from "./services-links";
 
 export default function ServicesBlock({
   className,
+  title = "Services",
   currentService,
 }: {
+  title?: string;
   className?: string;
   currentService?: string | undefined;
 }) {
@@ -18,9 +20,8 @@ export default function ServicesBlock({
         className
       )}
     >
-      <SectionHeader>Services</SectionHeader>
+      {title !== "" && <SectionHeader className="md:mb-7.5 mb-2.5 ">{title}</SectionHeader>}
       <ServicesLinks
-        className="md:mt-7.5 mt-2.5 "
         currentService={currentService}
       />
     </section>

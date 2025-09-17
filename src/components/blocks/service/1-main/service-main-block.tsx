@@ -8,8 +8,8 @@ import { useEffect, useRef, useState } from "react";
 import FormModal from "../../form/form-modal";
 
 export default function ServiceMainBlock({
-  service,
   className,
+  service,
 }: {
   service: Service;
   className?: string;
@@ -66,7 +66,7 @@ export default function ServiceMainBlock({
     <>
       <section
         ref={sectionRef}
-        className={` w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container ${className}`}
+        className={cn(`w-full fluid-container flex flex-row @container`, className)}
       >
         <div className="flex flex-col w-full">
           <div ref={headerRef}>

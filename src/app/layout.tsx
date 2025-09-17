@@ -41,6 +41,8 @@ const cera = localFont({
     },
   ],
   variable: "--font-cera",
+  preload: true,
+  fallback: ["sans-serif"],
 });
 
 export default function RootLayout({

@@ -1,7 +1,6 @@
 export default function ArrowSVG({ className }: { className?: string }) {
   return (
     <svg
-      width="114"
       height="16"
       viewBox="0 0 114 16"
       className={className}

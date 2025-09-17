@@ -76,13 +76,13 @@ export default function FedorBlock({ className }: { className?: string }) {
               Get in touch with me through:
             </div>
             <div className="flex flex-row space-x-3.75 ml-3.75 lg:space-x-5 lg:ml-5 *:transition-colors duration-300">
-              <Link href={Contacts.socialLinks.whatsapp}>
+              <Link target="_blank" href={Contacts.socialLinks.whatsapp}>
                 <WhatsappIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
-              <Link href={Contacts.socialLinks.telegram}>
+              <Link target="_blank" href={Contacts.socialLinks.telegram}>
                 <TelegramIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
-              <Link href={Contacts.socialLinks.linkedin}>
+              <Link target="_blank" href={Contacts.socialLinks.linkedin}>
                 <LinkedinIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
             </div>

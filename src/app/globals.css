@@ -91,7 +91,8 @@
   --animate-ride: ride 0.8s ease-in-out;
   --animate-button: button-hover 0.8s ease-in-out;
 
-  --breakpoint-xs: 26.875rem;
+  --breakpoint-xs: 26.9375rem;
+  --breakpoint-md: 48.0625rem;
 
   @keyframes ride {
 
