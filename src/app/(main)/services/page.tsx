@@ -35,22 +35,22 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25.75 xs:pt-18.25 pt-32 md:pb-50 sm:pb-25 pb-20">
+    <main className="md:pt-25.75 xs:pt-16.25 pt-31.5 md:pb-50 sm:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
         <div
           ref={headerRef}
-          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap xs:pl-0"
+          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] xs:text-[18.25cqw] md:text-[18.7cqw] text-[17.6cqw] whitespace-nowrap xs:pl-0 pl-2.5"
         >
           Services —
         </div>
         <ServicesLinks
           ref={paragraphRef}
-          className="-mt-[1.345em] fluid-container "
+          className="-mt-[1.345em] fluid-container leading-[1.15]! "
           showArrowCursor={true}
           focusColor="#fff"
         />
       </section>
-      <section className="px-8.75 md:px-[7.6cqw] md:mt-37 sm:mt-23 mt-17.5">
+      <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 sm:mt-24.5 mt-17.5">
         <ThemeProvider theme="dark">
           <CommercialOfferForm viewModel={formViewModel} />
         </ThemeProvider>

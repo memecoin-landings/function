@@ -65,7 +65,7 @@ export default function CommercialOfferForm({
   return (
     <div
       className={cn(
-        "flex flex-col sm:flex-row justify-start items-start pb-10",
+        "flex flex-col sm:flex-row justify-start items-start",
         className
       )}
     >
@@ -81,14 +81,14 @@ export default function CommercialOfferForm({
           offer
         </p>
       </div>
-      <div className="w-7.5 sm:w-20 shrink-0 grow-0"></div>
+      <div className="w-7.5 sm:w-22.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 sm:pt-1.75 pt-7.5">
+        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5">
           <div>
             <h3
               className={cn(
-                "font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] mb-5 text-nowrap",
+                "font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] md:mb-5 mb-5 xs:mb-4.5 text-nowrap",
                 colors.textPrimary
               )}
             >
@@ -102,7 +102,6 @@ export default function CommercialOfferForm({
             />
           </div>
 
-          {/* Второй ряд с услугами - улучшенная анимация */}
           <div
             className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
               ? "opacity-100 translate-y-0 max-h-96"
@@ -112,7 +111,7 @@ export default function CommercialOfferForm({
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
                 className={cn(
-                  "pt-7.5 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] mb-5 text-nowrap", colors.textPrimary
+                  "xs:pt-7 pt-7 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] xs:mb-4.5 mb-4.25 text-nowrap", colors.textPrimary
                 )}
               >
                 What We Offer
@@ -126,7 +125,7 @@ export default function CommercialOfferForm({
             </div>
           </div>
 
-          <div className="h-12.5"></div>
+          <div className="xs:h-10 h-12.5"></div>
           <div className="flex flex-row justify-center items-start">
             <div className="grow-0 items-start text-black justify-start">
               <p
@@ -146,7 +145,7 @@ export default function CommercialOfferForm({
                 value={name}
                 onChange={setName}
                 placeholder="Full Name"
-                className="md:mb-12.5 mb-7.5"
+                className="md:mb-12.5 mb-5.5"
               />
               <InputField
                 value={phone}
@@ -154,7 +153,7 @@ export default function CommercialOfferForm({
                 formatFn={formatPhoneNumber}
                 placeholder="Phone"
                 type="tel"
-                className="md:mb-12.5 mb-7.5"
+                className="md:mb-12.5 mb-5.5"
               />
               <InputField
                 ref={emailRef}

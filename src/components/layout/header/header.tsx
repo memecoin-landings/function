@@ -80,6 +80,7 @@ export default function Header({ className }: { className?: string }) {
         {/* Mobile Navigation Menu */}
         <MobileMenu
           openModal={openModal}
+          onClose={() => setIsMenuOpen(false)}
           className={cn(isMenuOpen ? "translate-x-0" : "translate-x-[200vw]")}
         />
       </header>

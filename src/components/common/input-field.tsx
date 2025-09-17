@@ -56,7 +56,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     };
 
     return (
-      <div className={cn("relative", className)}>
+      <>
         {label && (
           <label
             className={cn(
@@ -68,7 +68,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           </label>
         )}
 
-        <div className="relative">
+        <div className={cn("relative", className)}>
           <input
             name={name}
             ref={ref}
@@ -79,7 +79,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
             className={cn(
-              "md:px-5 sm:px-3.75 px-2.5 pb-2.25 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-[-3%]",
+              "md:px-5 sm:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-[-3%]",
               "focus:outline-none transition-colors duration-150 w-full bg-transparent border-0 border-b-1",
               colors.inputText,
               colors.inputPlaceholder,
@@ -91,7 +91,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           />
 
           {required && !hasValue && (
-            <span className="absolute right-0 bottom-3.5 md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 pr-5">
+            <span className="absolute right-0 bottom-3.5 tracking-[-3%] md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 md:pr-5 xs:pr-3.75 pr-2.5">
               ! Required field
             </span>
           )}
@@ -100,7 +100,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         {hint && (
           <p className={cn("mt-2 text-4xl", colors.textMuted)}>{hint}</p>
         )}
-      </div>
+      </>
     );
   }
 );

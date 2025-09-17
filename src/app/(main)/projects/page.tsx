@@ -62,12 +62,12 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="lg:pt-25.75 xs:pt-18.25 pt-17 w-full pb-5">
-      <section ref={sectionRef} className="fluid-container relative pl-5 pr-23">
-        <div className="flex flex-col xl:flex-row">
+    <main className="md:pt-25.75 xs:pt-15.75 pt-30 w-full md:pb-5 pb-2.5">
+      <section ref={sectionRef} className="fluid-container relative md:pl-5 md:pr-[6.3cqw]">
+        <div className="flex flex-col md:flex-row">
           <div
             ref={headerRef}
-            className="font-bold lg:leading-[9cqw] tracking-[-3%] lg:text-[11.8cqw] text-[16cqw] leading-[12cqw] xs:pl-0 flex-4"
+            className="font-bold md:leading-[9cqw] tracking-[-3%] md:text-[11.8cqw] text-[16.3cqw] leading-[12.3cqw] xs:pl-0 flex-4"
           >
             OurCreative Approach
             <div className="flex flex-row">
@@ -79,7 +79,7 @@ export default function ServicesPage() {
               </span>
             </div>
           </div>
-          <div className="flex-1 xl:pt-[1.875cqw] pt-10 ">
+          <div className="flex-1 md:pt-[1.875cqw] sm:mt-9 mt-9">
             <TopicList
               topics={topics}
               selectedTopic={selectedTopic}
@@ -88,7 +88,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section className="xl:px-5 px-2.5 md:mt-22 mt-12.5">
+      <section className="xl:px-5 px-2.5 md:mt-22 mt-13.25">
         {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
         {!getSelectedTopicTag() && <ProjectsGrid />}
       </section>
