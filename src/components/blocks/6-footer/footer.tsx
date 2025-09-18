@@ -17,7 +17,7 @@ export default function Footer({ className }: { className: string }) {
     <footer
       className={cn(
         className,
-        "w-full bg-black md:pt-25 pt-11.5 relative @container **:transition-colors"
+        "w-full bg-black md:pt-25 pt-11.5 relative @container overflow-hidden **:transition-colors"
       )}
     >
       <div className="z-5 relative fluid-container @container">
