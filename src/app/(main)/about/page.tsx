@@ -1,6 +1,6 @@
 import ServicesBlock from "@/components/blocks/3-services/services-block";
 import ClientsBlock from "@/components/blocks/4-clients/clients-block";
-import StrategicIdentityBlock from "@/components/blocks/1-strategic-identity/page";
+import StrategicIdentityBlock from "@/components/blocks/1-strategic-identity/block";
 
 export default function AboutPage() {
   return (
