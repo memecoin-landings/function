@@ -36,7 +36,7 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
     >
       <div className="@container">
         {/* Image with overlaid title */}
-        <div className="relative w-full mb-8 md:mb-16">
+        <div className="relative w-full mb-8 md:mb-7.5">
         <Image
             ref={pushIfNotNull(elementsRef.current)}
             src={fedorImage}
@@ -53,12 +53,13 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
         </div>
 
         {/* Content section below image */}
-        <div>
+        <div className="">
           {/* Description */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
+            className="mb-12.5"
           >
-            <p className="font-cera font-normal not-italic text-[30px] leading-[39px] tracking-[0%] text-[#F0EDE8] text-left pl-5 pr-[23.4375rem]">
+            <p className="font-cera font-normal not-italic text-[2.1cqw] leading-[3.6cqw] tracking-[0%] text-[#F0EDE8] text-left pl-5 pr-[23.4375rem]">
             Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I’ve been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
             </p>
           </div>
@@ -66,18 +67,18 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
           {/* CTA Links */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="flex flex-col sm:flex-row gap-4 justify-left items-left pt-4 pl-5"
+            className="flex flex-col sm:flex-row gap-4 justify-left items-left  pl-5"
           >
             <Link
               href="#"
-              className="inline-flex items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[3.375rem] font-medium leading-[4.125rem]"
+              className="inline-flex items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[3.125cqw] font-medium leading-[3.875cqw]"
             >
               Get Price
             </Link>
-            <span className="text-white text-[3.375rem] leading-[4.125rem]">or</span>
+            <span className="text-white text-[3.125cqw] leading-[3.875cqw]">or</span>
             <Link
               href="/projects"
-              className="inline-flex items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[3.375rem] font-medium leading-[4.125rem]"
+              className="inline-flex items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[3.125cqw] font-medium leading-[3.875cqw]"
             >
               View Projects
             </Link>
