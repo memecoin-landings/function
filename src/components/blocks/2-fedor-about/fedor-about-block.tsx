@@ -71,14 +71,14 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
           >
             <Link
               href="#"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               Get Price
             </Link>
             <span className="text-white text-[5vw] sm:text-[3.125cqw] leading-[6vw] sm:leading-[3.875cqw]">or</span>
             <Link
               href="/projects"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               View Projects
             </Link>
