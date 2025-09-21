@@ -10,7 +10,7 @@ export default function StrategicIdentityBlock() {
         >Strategic Identity</h1>
       </WebGLBlurEffect>
       <h2 className="text-5xl pointer-events-none @container font-medium text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 pl-5 pr-34.5"
-      >The studio&apos;s mission is to create functional and aesthetically refined brand identities that address key business challenges, drive growth, and open new markets. Combining analytics, art, and creativity, we deliver unique solutions that achieve tangible results.</h2>
+      >The studio&apos;s mission is to create functional and aesthetically refined brand identities that address key business challenges, drive growth, and open new markets. Combining analytics, art, and creativity, we deliver unique solutions that achieve tangible results.</h2>
     </section>
   );
 }
