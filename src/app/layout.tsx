@@ -3,6 +3,7 @@ import "./globals.css";
 import getConfig from "@/config";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/common/theme-context";
+import ToastProvider from "@/components/common/toast-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -85,7 +86,9 @@ export default function RootLayout({
         {/* <noscript><div><img src="https://mc.yandex.ru/watch/103342681" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript> */}
       </head>
       <body className={`${cera.variable} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
