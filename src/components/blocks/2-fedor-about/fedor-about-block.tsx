@@ -53,7 +53,7 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
         </div>
 
         {/* Content section below image */}
-        <div className="">
+        <div className="mb-2 sm:mb-4">
           {/* Description */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
@@ -71,14 +71,14 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
           >
             <button
               onClick={openModal}
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-2 sm:decoration-4 lg:underline-offset-14 sm:underline-offset-10 underline-offset-5 transition-colors duration-200 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               Get Price
             </button>
             <span className="text-white text-[5vw] sm:text-[3.125cqw] leading-[6vw] sm:leading-[3.875cqw]">or</span>
             <Link
               href="/projects"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-2 sm:decoration-4 lg:underline-offset-14 sm:underline-offset-10 underline-offset-5 transition-colors duration-200 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               View Projects
             </Link>
