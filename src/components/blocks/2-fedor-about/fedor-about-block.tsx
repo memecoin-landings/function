@@ -36,7 +36,7 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
     >
       <div className="@container">
         {/* Image with overlaid title */}
-        <div className="relative w-full mb-6 sm:mb-8 md:mb-7.5">
+        <div className="relative w-full mb-12 sm:mb-8 md:mb-7.5">
         <Image
             ref={pushIfNotNull(elementsRef.current)}
             src={fedorImage}
@@ -59,8 +59,8 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
             ref={pushIfNotNull(elementsRef.current)}
             className="mb-8 sm:mb-12.5"
           >
-            <p className="font-cera font-normal not-italic text-[4vw] sm:text-[2.1cqw] leading-[5.5vw] sm:leading-[2.4375rem] tracking-[0%] text-[#F0EDE8] text-left px-4 sm:pl-5 sm:pr-[23.4375rem]">
-            Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I've been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
+            <p className="font-cera font-normal not-italic text-[4vw] sm:text-[2.1cqw] leading-[5.5cqw] sm:leading-[2.78cqw] tracking-[0%] text-[#F0EDE8] text-left px-4 sm:pl-5 sm:pr-[23.4375rem]">
+            Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I’ve been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
             </p>
           </div>
 
@@ -71,14 +71,14 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
           >
             <Link
               href="#"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               Get Price
             </Link>
             <span className="text-white text-[5vw] sm:text-[3.125cqw] leading-[6vw] sm:leading-[3.875cqw]">or</span>
             <Link
               href="/projects"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               View Projects
             </Link>
