@@ -63,17 +63,17 @@ export default function NotFound() {
       {/* Move footer outside the main content container to the very bottom of the page */}
       <footer className="flex flex-row w-full @container items-center pl-11.25 sm:pl-18.25 md:pl-34.5 pb-12.5 absolute left-0 bottom-0">
         <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center space-x-5 @container pr-[6.3cqw] md:pr-0">
-          <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-[-3%] mb-2.5 md:mb-0 whitespace-nowrap">
+          <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-[-3%] mb-2.5 sm:mb-0 whitespace-nowrap">
             Discover our work on:
           </p>
           <div className="flex flex-row space-x-2.5 md:space-x-5">
-            <Link href={Contacts.socialLinks.whatsapp}>
+            <Link target="_blank" href={Contacts.socialLinks.whatsapp}>
               <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link href={Contacts.socialLinks.behance}>
+            <Link target="_blank" href={Contacts.socialLinks.behance}>
               <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link href={Contacts.socialLinks.dribbble}>
+            <Link target="_blank" href={Contacts.socialLinks.dribbble}>
               <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
           </div>

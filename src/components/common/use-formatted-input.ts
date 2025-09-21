@@ -15,6 +15,11 @@ export const useFormattedInput = (
     setPrettyValue(formattedValue);
     if (onChange) onChange(e);
   };
+  const onValueChange = (newValue: string) => {
+    let formattedValue = newValue;
+    if (formatInput) formattedValue = formatInput(newValue);
+    setPrettyValue(formattedValue);
+  };
 
-  return { onUpdate, prettyValue };
+  return { onUpdate, prettyValue, onValueChange };
 };

@@ -41,7 +41,7 @@ export default function Loader() {
         Cookies.set("showedLoaderOnce", "true", { expires: 7, path: "/" });
       });
   });
-  if (Cookies.get("showedLoaderOnce") === "false") return null;
+  if (Cookies.get("showedLoaderOnce") === "true") return null;
   return (
     <div
       ref={loaderBgRef}

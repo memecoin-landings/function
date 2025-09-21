@@ -9,15 +9,15 @@ import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import DribbleIcon from "@/components/common/unknown-cw";
 
-export default function MobileMenu({ className, openModal }: { className?: string, openModal: () => void }) {
+export default function MobileMenu({ className, openModal, onClose }: { className?: string, openModal: () => void, onClose: () => void }) {
   return (
     <div className={cn(className, "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
-      "pt-[max(16.25vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20",
+      "pt-[max(10.5vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20",
     )}
     >
-      <div className="flex flex-col items-start space-y-5">
+      <div className="flex flex-col items-start space-y-2.75">
         {menuItems.map((item) => (
-          <SideMenuItem key={item.label} href={item.href}>
+          <SideMenuItem onClick={onClose} key={item.label} href={item.href}>
             {item.label}
           </SideMenuItem>
         ))}
@@ -25,11 +25,9 @@ export default function MobileMenu({ className, openModal }: { className?: strin
           Get Price
         </SideMenuItem>
       </div>
-      <div className="mt-20 text-white underline text-sm">
-        <Link href={`mailto:${Contacts.email}`}>{Contacts.email}</Link>
-      </div>
+      <Link target="_blank" href={`mailto:${Contacts.email}`} className="mt-18.75 text-white underline text-sm tracking-[-3%]">{Contacts.email}</Link>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
-      <div className="mt-5 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5
+      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-[-3%]
         *:hover:fill-[#FF3F1A] *:hover:text-[#FF3F1A] *:flex *:flex-row *:items-center flex-wrap
         pr-5
         ">
@@ -42,10 +40,10 @@ export default function MobileMenu({ className, openModal }: { className?: strin
           <p>Telegram</p>
         </div>
       </div>
-      <div className="text-[#727272] mt-10 text-sm">Discover our work on:</div>
+      <div className="text-[#727272] mt-8.5 text-sm tracking-[-3%]">Discover our work on:</div>
       <div className="mt-5 flex flex-row *:fill-[#F0EDE8] *:hover:fill-[#FF3F1A] items-center space-x-2.5">
-        <BehanceIcon className="w-6.25" />
         <InstagramIcon className="w-6.25" />
+        <BehanceIcon className="w-6.25" />
         <DribbleIcon className="w-6.25" />
       </div>
     </div>

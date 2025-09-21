@@ -19,17 +19,17 @@ interface BlurParams {
   centerPoint?: number;
 }
 
-function WebGLBlurEffect({ 
-  children, 
-  className, 
+function WebGLBlurEffect({
+  children,
+  className,
   blurRadius = 20.0,
-  blurOffset = 0.8, 
+  blurOffset = 0.8,
   mouseRadius = 0.75,
   effectPower = 0.82,
-  centerPoint = 0.5 
-}: { 
-  children: React.ReactNode, 
-  className?: string 
+  centerPoint = 0.5
+}: {
+  children: React.ReactNode,
+  className?: string
 } & BlurParams) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -147,8 +147,8 @@ function WebGLBlurEffect({
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
 
-    const newX = e.clientX - rect.left;
-    const newY = e.clientY - rect.top;
+    const newX = (e.clientX - rect.left) * window.devicePixelRatio;
+    const newY = (e.clientY - rect.top) * window.devicePixelRatio;
 
     if (!animatableMouse) {
       mouseRef.current = { x: newX, y: newY }
@@ -160,7 +160,7 @@ function WebGLBlurEffect({
     }
     if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;
 
-    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top);
+    // console.log('Mouse move:', e.clientX, e.clientY, 'Canvas rect:', rect.left, rect.top, rect.width, rect.height, "position: ", newX, newY);
     animatableMouse['x'](newX)
     animatableMouse['y'](newY)
   }
@@ -197,7 +197,7 @@ function WebGLBlurEffect({
       // Small delay to ensure content is rendered
       // setTimeout(captureContent, 100);
       captureContent();
-      handleMouseMove()
+      // handleMouseMove()
     }
     window.addEventListener('resize', handleResize);
 

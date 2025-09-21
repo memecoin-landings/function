@@ -8,8 +8,8 @@ import { useEffect, useRef, useState } from "react";
 import FormModal from "../../form/form-modal";
 
 export default function ServiceMainBlock({
-  service,
   className,
+  service,
 }: {
   service: Service;
   className?: string;
@@ -27,6 +27,18 @@ export default function ServiceMainBlock({
     setIsModalOpen(true);
     formRef.current?.focus();
   };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isModalOpen]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -54,9 +66,9 @@ export default function ServiceMainBlock({
     <>
       <section
         ref={sectionRef}
-        className={` w-full fluid-container flex flex-row pt-12.5 pb-17.5 md:pb-37.5 @container ${className}`}
+        className={cn(`w-full fluid-container flex flex-row @container`, className)}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <div ref={headerRef}>
             <h2 className="text-[1.875rem] leading-[2.375rem] tracking-[0rem] md:text-[1.875rem] md:leading-[1] md:tracking-[0%] text-[#727272] pb-2 mdpb-3.5 font-medium">
               Services
@@ -67,7 +79,7 @@ export default function ServiceMainBlock({
           </div>
           <p
             ref={paragraphRef}
-            className="max-w-[79.5cqw] text-[1.5rem] leading-[2rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
+            className="md:max-w-[79.5cqw] text-[1.5rem] leading-[2rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
           >
             {service.description}
           </p>

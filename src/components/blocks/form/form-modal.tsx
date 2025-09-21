@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Ref } from "react";
+import { Ref, useEffect, useRef } from "react";
 import FormHeader from "./form-header";
 import CommercialOfferForm from "./commercial-offer-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
@@ -18,6 +18,7 @@ export default function FormModal({
   viewModel: IFormViewModel;
 }) {
   const colors = useThemeColors();
+  const modalRef = useRef<HTMLDivElement>(null);
 
   // Обработчик закрытия с очисткой состояния
   const handleClose = () => {
@@ -30,17 +31,58 @@ export default function FormModal({
     }
   };
 
+  // Перехватываем скролл в модальном окне
+  useEffect(() => {
+    const modalElement = modalRef.current;
+    if (!modalElement) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = e.deltaY;
+      modalElement.scrollTop += delta;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      // Разрешаем touch события для скролла внутри модального окна
+      e.stopPropagation();
+    };
+
+    modalElement.addEventListener("wheel", handleWheel, { passive: false });
+    modalElement.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+
+    return () => {
+      modalElement.removeEventListener("wheel", handleWheel);
+      modalElement.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
   return (
     <div className={className}>
       <div
-        ref={ref}
+        ref={(node) => {
+          modalRef.current = node;
+          if (ref) {
+            if (typeof ref === "function") {
+              ref(node);
+            } else {
+              ref.current = node;
+            }
+          }
+        }}
         className={cn(
-          "relative shadow-xl w-full h-full max-h-full p-6 overflow-scroll",
+          "relative shadow-xl w-full h-full overflow-y-auto overscroll-contain",
           colors.bgPrimary
         )}
       >
-        <FormHeader onClose={handleClose} />
-        <CommercialOfferForm className="md:pt-16 xs:pt-13.5 pt-12 md:px-40 sm:px-13 px-6.25" viewModel={viewModel} />
+        <div className="sm:p-6 p-5">
+          <FormHeader onClose={handleClose} />
+          <CommercialOfferForm
+            className="md:pt-16 xs:pt-13.5 pt-12 md:px-40 sm:px-13 px-6.25"
+            viewModel={viewModel}
+          />
+        </div>
       </div>
     </div>
   );

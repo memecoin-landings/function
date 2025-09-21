@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import FunctionLogo from "@/components/icons/logo";
 import BurgerIcon from "@/components/icons/burger";
@@ -20,6 +20,18 @@ export default function Header({ className }: { className?: string }) {
     setIsModalOpen(true);
     formRef.current?.focus();
   };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isModalOpen]);
 
   return (
     <>
@@ -68,6 +80,7 @@ export default function Header({ className }: { className?: string }) {
         {/* Mobile Navigation Menu */}
         <MobileMenu
           openModal={openModal}
+          onClose={() => setIsMenuOpen(false)}
           className={cn(isMenuOpen ? "translate-x-0" : "translate-x-[200vw]")}
         />
       </header>

@@ -10,7 +10,7 @@ const services: Service[] = [
         name: ["Research", "and Analysis"],
         description:
           "Brand, target audience, competitor, market, and current trend analysis. Creation of a mood board to define the visual direction of the brand identity.",
-        duration: "10 days",
+        duration: "20+ business days",
       },
       {
         name: ["Brand Visual", "Concept"],
@@ -36,7 +36,7 @@ const services: Service[] = [
   new Service(
     "Product identity",
     "product-identity",
-    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
+    "Creating an identity that reflects the uniqueness of the product and enhances its competitive advantages in the market. A complete process — from research and concept development to preparation of materials and guidelines — aimed at forming a cohesive and recognizable brand image.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -100,7 +100,7 @@ const services: Service[] = [
   new Service(
     "Personal identity",
     "personal-identity",
-    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
+    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
     [
       {
         name: ["In-Depth", "Interview", "and Research"],
@@ -109,7 +109,7 @@ const services: Service[] = [
         duration: "10+ business days",
       },
       {
-        name: ["Development of", "Visual", "Elements"],
+        name: ["Development", "of Visual", "Elements"],
         description:
           "Creating a logo, color palette, typography, graphic elements, and photo style that best reflect the individuality and values of the brand.",
         duration: "15+ business days",
@@ -164,7 +164,7 @@ const services: Service[] = [
         revisions: "20 options, 2 rounds of revisions",
       },
       {
-        name: ["Trademark Check", "and Registration", "(Optional)"],
+        name: ["Trademark Check", "and Registration", "(Optional)"],
         description:
           "Checking the availability of trademarks. Full legal registration is available through trusted partners in international markets. <br/> <br/>The next stage of brand development:<br/> <a href='/services/corporate-identity' class='text-[#FF3F1A] underline'>Corporate identity</a>, <a href='/services/product-identity' class='text-[#FF3F1A] underline'>Product identity</a>, <a href='/services/personal-identity' class='text-[#FF3F1A] underline'>Personal identity</a>, <a href='/services/logo' class='text-[#FF3F1A] underline'>Logo</a>",
       },
@@ -346,7 +346,7 @@ const services: Service[] = [
   new Service(
     "Social Media Branding",
     "social-media-branding",
-    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
+    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
     [
       {
         name: ["Research", "and Analysis"],
