@@ -4,7 +4,6 @@ import ServicesBlock from "@/components/blocks/3-services/services-block";
 import ClientsBlock from "@/components/blocks/4-clients/clients-block";
 import StrategicIdentityBlock from "@/components/blocks/1-strategic-identity/block";
 import FedorAboutBlock from "@/components/blocks/2-fedor-about/fedor-about-block";
-import Link from "next/link";
 import { useState, useRef } from "react";
 import FormModal from "@/components/blocks/form/form-modal";
 import { FormViewModel } from "@/domain/form-view-model";
