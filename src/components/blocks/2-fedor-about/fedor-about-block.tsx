@@ -7,7 +7,7 @@ import { animate, onScroll, stagger } from "animejs";
 import pushIfNotNull from "@/lib/push-if-not-null";
 import Link from "next/link";
 
-export default function FedorAboutBlock({ className }: { className?: string }) {
+export default function FedorAboutBlock({ className, openModal }: { className?: string; openModal?: () => void }) {
   const elementsRef = useRef<HTMLElement[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -69,12 +69,12 @@ export default function FedorAboutBlock({ className }: { className?: string }) {
             ref={pushIfNotNull(elementsRef.current)}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-left items-left px-4 sm:pl-5"
           >
-            <Link
-              href="#"
+            <button
+              onClick={openModal}
               className="w-fit items-left text-white hover:text-[#FF3F1A] border-b-2 border-white hover:border-[#FF3F1A] transition-colors duration-200 pb-1 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
             >
               Get Price
-            </Link>
+            </button>
             <span className="text-white text-[5vw] sm:text-[3.125cqw] leading-[6vw] sm:leading-[3.875cqw]">or</span>
             <Link
               href="/projects"
