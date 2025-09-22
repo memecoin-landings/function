@@ -7,88 +7,159 @@ interface AnimeTextSplitProps {
   texts: string[];
   className?: string;
   switchDelay?: number;
+  typingSpeed?: number;
+  erasingSpeed?: number;
 }
 
 export default function AnimeTextSplit({
   texts,
   className = "",
   switchDelay = 3000,
+  typingSpeed = 80,
+  erasingSpeed = 50,
 }: AnimeTextSplitProps) {
   const textRef = useRef<HTMLParagraphElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const animateText = (textContent: string) => {
+  // Create randomized stagger delays for more realistic typing
+  const createRandomStagger = (baseDelay: number, variance: number = 0.5) => {
+    return (el: any, i: number) => {
+      const randomFactor = 1 + (Math.random() - 0.5) * variance;
+      return baseDelay * i * randomFactor;
+    };
+  };
+
+  const typeText = async (textContent: string) => {
     if (!textRef.current) return;
 
-    // Clear previous content
+    // Clear previous content but keep cursor
+    const cursor = cursorRef.current;
     textRef.current.innerHTML = "";
 
-    // Create new text content
+    // Create container for text and cursor
     const textElement = document.createElement("span");
     textElement.textContent = textContent;
     textRef.current.appendChild(textElement);
+
+    if (cursor) {
+      textRef.current.appendChild(cursor);
+    }
 
     const { chars } = text.split(textElement, {
       chars: { wrap: "visible" },
     });
 
-    // Set initial state for fade in
-    animate(chars, {
-      opacity: [0, 1],
-      y: [20, 0],
-      duration: 1200,
-      ease: "out(3)",
-      delay: stagger(25),
-      complete: () => {
-        setIsAnimating(false);
-      },
+    // Initially hide all characters
+    chars.forEach((char: HTMLElement) => {
+      char.style.display = "none";
+    });
+
+    // Type characters one by one with random delays
+    return new Promise<void>((resolve) => {
+      chars.forEach((char: HTMLElement, index: number) => {
+        const delay = createRandomStagger(typingSpeed, 0.6)(char, index);
+
+        setTimeout(() => {
+          char.style.display = "inline-block";
+
+          // Check if this is the last character
+          if (index === chars.length - 1) {
+            resolve();
+          }
+        }, delay);
+      });
     });
   };
 
-  const fadeOutAndChange = () => {
+  const eraseText = async () => {
+    if (!textRef.current) return;
+
+    const textSpan = textRef.current.querySelector('span:not(.typing-cursor)');
+    if (!textSpan) return;
+
+    const { chars } = text.split(textSpan as HTMLElement, {
+      chars: { wrap: "visible" },
+    });
+
+    const cursor = cursorRef.current;
+
+    // Erase characters from right to left with random delays
+    return new Promise<void>((resolve) => {
+      const reversedChars = chars.reverse();
+
+      reversedChars.forEach((char: HTMLElement, index: number) => {
+        const delay = createRandomStagger(erasingSpeed, 0.4)(char, index);
+
+        setTimeout(() => {
+          char.style.display = "none";
+
+          // Check if this is the last character to be erased
+          if (index === reversedChars.length - 1) {
+            resolve();
+          }
+        }, delay);
+      });
+    });
+  };
+
+  const createCursor = () => {
+    if (!textRef.current || cursorRef.current) return;
+
+    // Create new cursor
+    const cursor = document.createElement("span");
+    cursor.className = "typing-cursor";
+    cursor.textContent = "|";
+    cursor.style.opacity = "1";
+    cursor.style.display = "inline-block";
+    textRef.current.appendChild(cursor);
+    cursorRef.current = cursor;
+
+    // Animate cursor blinking
+    animate(cursor, {
+      opacity: [1, 0, 1],
+      duration: 1000,
+      loop: true,
+      ease: "linear",
+    });
+  };
+
+  const animateWordChange = async () => {
     if (!textRef.current || isAnimating) return;
 
     setIsAnimating(true);
 
-    // Fade out current text
-    animate(textRef.current.children, {
-      opacity: [1, 0],
-      y: [0, -20],
-      duration: 400,
-      ease: "out(2)",
-      delay: stagger(30),
-      complete: () => {
-        // Change to next text after fade out
-        const nextIndex = (currentIndex + 1) % texts.length;
-        setCurrentIndex(nextIndex);
-      },
-    });
+    try {
+      // Phase 1: Erase current text
+      await eraseText();
+
+      // Phase 2: Small pause
+      await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 300));
+
+      // Phase 3: Type new text
+      const nextIndex = (currentIndex + 1) % texts.length;
+      await typeText(texts[nextIndex]!);
+
+      setCurrentIndex(nextIndex);
+    } finally {
+      setIsAnimating(false);
+    }
   };
 
+  // Initialize first text
   useEffect(() => {
-    if (texts.length > 0) {
-      animateText(texts[currentIndex]!);
+    if (texts.length > 0 && !isAnimating) {
+      createCursor();
+      typeText(texts[currentIndex]!);
     }
-  }, [currentIndex, texts]);
+  }, [texts]);
 
-  // Start the cycle when component mounts
-  useEffect(() => {
-    if (texts.length > 1) {
-      // Initial delay before starting the cycle
-      const timer = setTimeout(() => {
-        fadeOutAndChange();
-      }, switchDelay);
-
-      return () => clearTimeout(timer);
-    }
-  }, [texts.length, switchDelay]);
-
-  // Schedule next fade out after current text is shown
+  // Schedule word changes
   useEffect(() => {
     if (texts.length > 1 && !isAnimating) {
       const timer = setTimeout(() => {
-        fadeOutAndChange();
+        animateWordChange();
       }, switchDelay);
 
       return () => clearTimeout(timer);
@@ -98,7 +169,7 @@ export default function AnimeTextSplit({
   return (
     <p
       ref={textRef}
-      className={`${className} whitespace-nowrap`}
+      className={`${className} whitespace-nowrap inline-flex items-center`}
     />
   );
 }
