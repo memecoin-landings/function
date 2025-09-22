@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
 import React from "react";
 import Toast from "./toast";
 
-export const ToastContext = React.createContext<ToastContextType | undefined>(undefined);
+export const ToastContext = React.createContext<ToastContextType | undefined>(
+  undefined
+);
 
 interface Toast {
   id: string;
@@ -17,10 +19,18 @@ export interface ToastContextType {
   removeToast: (id: string) => void;
 }
 
-export default function ToastProvider({ children }: { children: React.ReactNode }) {
+export default function ToastProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [toasts, setToasts] = React.useState<Toast[]>([]);
 
-  const showToast = (message: string, isError: boolean = false, duration: number = 4000) => {
+  const showToast = (
+    message: string,
+    isError: boolean = false,
+    duration: number = 4000
+  ) => {
     const id = Math.random().toString(36).substr(2, 9);
     setToasts((prev) => [...prev, { id, message, isError, duration }]);
   };
@@ -32,7 +42,7 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
   return (
     <ToastContext.Provider value={{ showToast, removeToast }}>
       {children}
-      <div className="fixed bottom-4 right-4 z-110 space-y-2">
+      <div className="fixed bottom-4 right-4 z-[999] space-y-2">
         {toasts.map((toast) => (
           <Toast
             key={toast.id}

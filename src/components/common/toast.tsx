@@ -34,13 +34,18 @@ export default function Toast({
 
   return (
     <div
-      className={`flex items-center p-4 rounded-lg shadow-lg max-w-xs transition-all duration-300 transform ${isError ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
-        } ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}
+      className={`flex items-center p-4 rounded-lg shadow-xl max-w-sm transition-all duration-300 transform backdrop-blur-sm ${
+        isError
+          ? "bg-red-500/90 text-white border border-red-400"
+          : "bg-green-500/90 text-white border border-green-400"
+      } ${
+        isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+      }`}
     >
-      <span className="flex-1">{message}</span>
+      <span className="flex-1 font-medium">{message}</span>
       <button
         onClick={() => setIsVisible(false)}
-        className="ml-2 text-sm font-semibold hover:text-gray-900"
+        className="ml-3 text-lg font-bold hover:text-gray-200 transition-colors"
       >
         ✕
       </button>
