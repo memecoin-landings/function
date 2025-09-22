@@ -2,8 +2,8 @@
 import "reflect-metadata";
 
 import { container } from "tsyringe";
-// import LeadTable from "@/infrastructure/lead-table";
-import EmailService from "@/server/email-service";
+import LeadTable from "@/infrastructure/lead-table";
+// import EmailService from "@/server/email-service";
 
 export type CommercialOfferFormData = {
   name: string;
@@ -22,8 +22,8 @@ export type CommercialOfferDto = {
   timestamp: Date;
 };
 
-// const leadTable = container.resolve(LeadTable);
-const emailService = container.resolve(EmailService);
+const leadTable = container.resolve(LeadTable);
+// const emailService = container.resolve(EmailService);
 
 export default async function submitCommercialOfferAction(
   formData: CommercialOfferFormData
@@ -35,10 +35,10 @@ export default async function submitCommercialOfferAction(
 
   try {
     // Отправляем данные в Google Таблицу
-    // await leadTable.addCommercialOffer(dto);
+    await leadTable.addCommercialOffer(dto);
     
     // Отправляем email уведомление
-    await emailService.sendCommercialOfferEmail(dto);
+    // await emailService.sendCommercialOfferEmail(dto);
     
     return { success: true, message: "Заявка отправлена успешно!" };
   } catch (err: unknown) {

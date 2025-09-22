@@ -69,17 +69,6 @@ export default function CommercialOfferForm({
   const handleSubmit = async () => {
     if (isSubmitting) return;
 
-    // Валидация
-    if (!name.trim()) {
-      showToast("Пожалуйста, введите ваше имя", true);
-      return;
-    }
-
-    if (!phone.trim()) {
-      showToast("Пожалуйста, введите номер телефона", true);
-      return;
-    }
-
     if (!email.trim() || !isValidEmail()) {
       showToast("Пожалуйста, введите корректный email", true);
       return;
