@@ -83,8 +83,6 @@ export default function AnimeTextSplit({
       chars: { wrap: "visible" },
     });
 
-    const cursor = cursorRef.current;
-
     // Erase characters from right to left with random delays
     return new Promise<void>((resolve) => {
       const reversedChars = chars.reverse();
