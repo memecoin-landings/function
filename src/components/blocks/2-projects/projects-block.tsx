@@ -17,7 +17,7 @@ export default function ProjectsBlock({
   return (
     <section className={`${className} fluid-container`}>
       <SectionHeader>{title}</SectionHeader>
-      <ProjectsGrid className="mt-2.5 md:mt-7.5" tag={tag || "all"} />
+      <ProjectsGrid className="mt-2.5 md:mt-7.5" tag={tag} />
       <ProjectLinkButton className="mt-2.5 md:mt-5" />
     </section>
   );
