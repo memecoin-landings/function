@@ -10,7 +10,7 @@ const projects: Project[] = [
   new Project({
     title: "Feel Full Free",
     image: fffPic,
-    topics: [
+    services: [
       "Corporate identity",
       "Naming",
       "Logo",
@@ -30,7 +30,7 @@ const projects: Project[] = [
   new Project({
     title: "Spile",
     image: spilePic,
-    topics: [
+    services: [
       "Product identity",
       "Naming",
       "Logo",
@@ -51,7 +51,7 @@ const projects: Project[] = [
   new Project({
     title: "Caspian Gold",
     image: caspianGoldPic,
-    topics: [
+    services: [
       "Product identity",
       "Naming",
       "Logo",
@@ -72,7 +72,7 @@ const projects: Project[] = [
   new Project({
     title: "Cancer screening campaign in Moscow",
     image: cancerPic,
-    topics: [
+    services: [
       "Campaign Identity",
       "Brand guidelines",
       "Key Visual",
@@ -90,7 +90,7 @@ const projects: Project[] = [
     title: "Arshaluys",
     image: arshaluysPic,
     description: "Logo, Product branding",
-    topics: [
+    services: [
       "Product identity",
       "Logo",
       "Packaging",
@@ -110,8 +110,8 @@ const projects: Project[] = [
   new Project({
     title: "Smartstroy",
     image: smartStoryPic,
-    topics: ["Product identity", "Logo", "Brand guidelines"],
-    tags: ["product-identity", "logo", "brand-guidelines"],
+    services: ["Corporate identity", "Logo", "Brand guidelines"],
+    tags: ["corporate-identity", "logo", "brand-guidelines"],
     weight: 1,
     slug: "smartstroy",
   }),

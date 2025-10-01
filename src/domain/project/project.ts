@@ -12,20 +12,19 @@ export default class Project {
     title,
     image,
     description,
-    topics,
+    services: topics,
     tags,
     weight,
     slug,
   }: {
-    title: string,
-    image: StaticImageData,
-    description?: string | undefined,
-    topics?: string[] | undefined,
-    tags?: string[] | undefined,
-    weight: number,
-    slug?: string | undefined,
-  }
-  ) {
+    title: string;
+    image: StaticImageData;
+    description?: string | undefined;
+    services?: string[] | undefined;
+    tags?: string[] | undefined;
+    weight: number;
+    slug?: string | undefined;
+  }) {
     this.title = title;
     this.description = description ?? "";
     this.image = image;
