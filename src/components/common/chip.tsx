@@ -21,7 +21,7 @@ export function Chip({
   return (
     <button
       className={cn(
-        "inline-flex items-center px-5 text-sm py-0.5 font-normal leading-[2.125rem] text-nowrap tracking-[0%] rounded-full transition-colors",
+        "inline-flex items-center px-5 text-sm py-0.5 font-normal leading-[2.125rem] text-nowrap tracking-[0%] rounded-full duration-200 transition-colors",
         isSelected
           ? `${colors.chipSelectedBg} ${colors.chipSelectedText}`
           : `${colors.chipBg} ${colors.chipText}`,
