@@ -1,47 +1,119 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import {
-  animate,
-  createTimeline,
-  utils,
-} from "animejs";
+import { animate, createTimeline, createAnimatable, utils } from "animejs";
 import Cookies from "js-cookie";
+import { usePageLoadingStatus } from "@/hooks/usePageLoadingStatus";
 
 export default function Loader() {
   const loaderBgRef = useRef<HTMLDivElement>(null);
   const loaderBarRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<any>(null);
 
+  const { shouldShow, domReady, imagesLoaded, fontsLoaded, isComplete } =
+    usePageLoadingStatus();
+
+  // const hasCookie = Cookies.get("showedLoaderOnce") === "true" && false;
+
+  // Initialize animatable
   useEffect(() => {
-    const loaderBg = loaderBgRef.current;
-    const loaderBar = loaderBarRef.current;
+    if (!shouldShow) return;
 
-    if (!loaderBg) return;
+    const loaderBar = loaderBarRef.current;
     if (!loaderBar) return;
 
-    const loaderAnim = animate(loaderBar, {
+    progressRef.current = createAnimatable(loaderBar, {
+      value: 0,
+      ease: "out(2)",
+      duration: 1000,
+    });
+
+    progressRef.current.animations.value.onRender = () => {
+      const progress = progressRef.current.value();
+      const valueSpan = loaderBar.querySelector(".value");
+      if (valueSpan) {
+        valueSpan.textContent = Math.round(progress).toString();
+      }
+      loaderBar.style.transform = `translateX(${progress}vw)`;
+    };
+  }, [shouldShow]);
+
+  // Initial fade-in
+  useEffect(() => {
+    if (!shouldShow) return;
+
+    const loaderBg = loaderBgRef.current;
+    if (!loaderBg) return;
+
+    console.log("[Loader] Showing loader");
+    animate(loaderBg, {
+      opacity: [0, 1],
+      duration: 10,
+      easing: "easeOutQuad",
+    });
+  }, [shouldShow]);
+
+  // Update progress when loading states change
+  useEffect(() => {
+    if (!shouldShow || !progressRef.current) return;
+
+    let targetProgress = 0;
+    if (domReady) targetProgress += 50;
+    if (imagesLoaded) targetProgress += 25;
+    if (fontsLoaded) targetProgress += 25;
+
+    console.log("[Loader] Updating progress to:", targetProgress);
+
+    progressRef.current.value(targetProgress);
+
+    // If not complete, slowly creep forward to avoid feeling stuck
+    if (targetProgress < 100) {
+      const creepInterval = setInterval(() => {
+        const current = progressRef.current.value();
+        // Slowly add progress but don't exceed the next threshold
+        const nextThreshold = targetProgress + 10;
+        if (current < nextThreshold) {
+          if (Math.random() > 0.2)
+            progressRef.current.value(current + Math.random() * 5);
+        }
+      }, 750);
+
+      return () => clearInterval(creepInterval);
+    }
+  }, [domReady, imagesLoaded, fontsLoaded, shouldShow]);
+
+  // Exit animation when complete
+  useEffect(() => {
+    if (!shouldShow || !isComplete) return;
+
+    const loaderBg = loaderBgRef.current;
+    const loaderBar = loaderBarRef.current;
+    if (!loaderBg || !loaderBar) return;
+
+    console.log("[Loader] Starting exit animation");
+
+    const exitAnim = animate(loaderBar, {
       x: `100vw`,
       easing: "easeInOut",
-      duration: 3000,
-      innerHTML: {
-        to: '100', modifier: utils.roundPad(0)
-      },
+      duration: 1000,
     });
 
     createTimeline()
-      .add(loaderBg, { opacity: [0, 1], duration: 10, easing: "easeOutQuad" })
-      .sync(loaderAnim)
+      .sync(exitAnim)
       .add(loaderBg, {
         opacity: [1, 0],
         duration: 1000,
-        delay: 500,
+        delay: 300,
       })
       .then(() => {
+        console.log("[Loader] Exit complete");
         loaderBg.hidden = true;
         Cookies.set("showedLoaderOnce", "true", { expires: 7, path: "/" });
       });
-  });
-  if (Cookies.get("showedLoaderOnce") === "true") return null;
+  }, [isComplete, shouldShow]);
+
+  if (!shouldShow) return null;
+
   return (
     <div
       ref={loaderBgRef}
@@ -53,7 +125,7 @@ export default function Loader() {
         id="loader-bar"
         className="fixed transform translate-x-[-100vw] w-screen bg-[#FF3F1A] h-screen font-bold text-[100px] flex items-center justify-end"
       >
-        <span className="value ">{`ƒ (${0}%)`}</span>
+        ƒ(<span className="value">0</span>%)
       </div>
     </div>
   );
