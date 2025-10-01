@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { FormViewModel } from "@/domain/form-view-model";
 import CommercialOfferForm from "../../../components/blocks/form/commercial-offer-form";
 import { ThemeProvider } from "../../../components/common/theme-context";
+import WebGLBlurEffect from "@/components/blur/webgl-blur-component";
 
 export default function ServicesPage() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -17,7 +18,7 @@ export default function ServicesPage() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const elements = [headerRef.current, paragraphRef.current].filter(
+    const elements = [paragraphRef.current].filter(
       (el) => el !== null
     );
 
@@ -35,14 +36,16 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25.75 xs:pt-16.25 pt-31.5 md:pb-50 sm:pb-25 pb-20">
+    <main className="md:pt-23.75 xs:pt-14.25 pt-29.5 md:pb-50 sm:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
-        <div
-          ref={headerRef}
-          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] xs:text-[18.25cqw] md:text-[18.7cqw] text-[17.6cqw] whitespace-nowrap xs:pl-0 pl-2.5"
-        >
-          Services —
-        </div>
+        <WebGLBlurEffect className="pt-2 bg-[#151516] ">
+          <div
+            ref={headerRef}
+            className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] xs:text-[18.25cqw] md:text-[18.7cqw] text-[17.6cqw] whitespace-nowrap xs:pl-0 pl-2.5"
+          >
+            Services —
+          </div>
+        </WebGLBlurEffect>
         <ServicesLinks
           ref={paragraphRef}
           className="-mt-[1.345em] fluid-container leading-[1.15]! "
