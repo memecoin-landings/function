@@ -3,7 +3,7 @@
 import { animate, onScroll, stagger } from "animejs";
 import { useEffect, useRef, useState } from "react";
 import ProjectsGrid from "./projects-grid";
-import TopicList from "./topic-list";
+import CategoryList from "./topic-list";
 import AnimeTextSplit from "@/components/animation/animate-text";
 
 const labels = [
@@ -15,27 +15,28 @@ const labels = [
   "Creation",
   "Solutions",
 ];
-const topics = [
-  "All projects",
-  "Corporate identity",
-  "Product identity",
-  "Campaign Identity",
-  "Personal identity",
+const categories: [string, string | undefined][] = [
+  ["All projects", undefined],
+  ["Corporate identity", "corporate-identity"],
+  ["Product identity", "product-identity"],
+  ["Campaign Identity", "campaign-identity"],
+  ["Personal identity", "personal-identity"],
 ];
 
 export default function ServicesPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const [selectedTopic, setSelectedTopic] = useState(0);
+  const [selectedCategory, setSelectedTopic] = useState(0);
 
-  const handleTopicSelect = (index: number) => {
+  const handleCategorySelect = (index: number) => {
     setSelectedTopic(index);
   };
 
   const getSelectedTopicTag = (): string | undefined => {
-    if (selectedTopic === 0) return "all"; // "All projects" - показываем все
-    return topics[selectedTopic]; // Возвращаем название топика как tag
+    if (selectedCategory in categories)
+      return categories[selectedCategory]![1]; // Возвращаем название топика как tag
+    return undefined
   };
 
   useEffect(() => {
@@ -80,15 +81,15 @@ export default function ServicesPage() {
             </div>
           </div>
           <div className="flex-1 md:pt-[1.875cqw] sm:mt-9 mt-9">
-            <TopicList
-              topics={topics}
-              selectedTopic={selectedTopic}
-              onTopicSelect={handleTopicSelect}
+            <CategoryList
+              categories={categories.map(([c]) => c)}
+              selectedCategory={selectedCategory}
+              onCategorySelect={handleCategorySelect}
             />
           </div>
         </div>
       </section>
-      <section className="xl:px-5 px-2.5 md:mt-22 mt-13.25">
+      <section className="md:px-5 px-2.5 md:mt-22 mt-13.25">
         {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
         {!getSelectedTopicTag() && <ProjectsGrid />}
       </section>

@@ -3,14 +3,14 @@
 import { useEffect, useRef } from "react";
 import { animate, onScroll, stagger } from "animejs";
 
-export default function TopicList({
-  topics,
-  selectedTopic,
-  onTopicSelect,
+export default function CategorySelector({
+  categories: topics,
+  selectedCategory: selectedTopic,
+  onCategorySelect: onTopicSelect,
 }: {
-  topics: string[];
-  selectedTopic: number;
-  onTopicSelect: (index: number) => void;
+  categories: string[];
+  selectedCategory: number;
+  onCategorySelect: (index: number) => void;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const topicsRef = useRef<HTMLElement[]>([]);

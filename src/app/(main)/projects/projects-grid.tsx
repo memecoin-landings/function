@@ -8,11 +8,13 @@ import ProjectCard, {
 import { animate, onScroll } from "animejs";
 import { cn } from "@/lib/utils";
 
-export default function ProjectsGrid({ className, tag }: { tag?: string, className?: string }) {
+export default function ProjectsGrid({ className, tag, allowDefault = false }: { tag?: string | undefined, className?: string, allowDefault?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLElement[]>([]);
   const repo = ProjectPojoRepository.getInstance();
-  const projects = repo.list(tag).map((project) => {
+  let projects = repo.list(tag);
+  if (!projects.length && allowDefault) projects = repo.list();
+  const projectCardsParams = projects.map((project) => {
     return new ProjectCardParams(
       project.image,
       project.title,
@@ -85,7 +87,7 @@ export default function ProjectsGrid({ className, tag }: { tag?: string, classNa
       ref={sectionRef}
       className={cn("grid xs:grid-cols-2 grid-cols-1 md:gap-5 gap-2.5", className)}
     >
-      {projects.map((item, index) => (
+      {projectCardsParams.map((item, index) => (
         <ProjectCard
           ref={(el) => {
             if (el) {
