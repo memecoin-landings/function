@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate, text, stagger } from "animejs";
+import { animate, text } from "animejs";
 
 interface AnimeTextSplitProps {
   texts: string[];
@@ -11,7 +11,7 @@ interface AnimeTextSplitProps {
   erasingSpeed?: number;
 }
 
-export default function AnimeTextSplit({
+export default function TypewriterAnimatedLabel({
   texts,
   className = "",
   switchDelay = 3000,
@@ -25,8 +25,8 @@ export default function AnimeTextSplit({
 
   // Create randomized stagger delays for more realistic typing
   const createRandomStagger = (baseDelay: number, variance: number = 0.5) => {
-    return (el: any, i: number) => {
-      const randomFactor = 1 + (Math.random() - 0.5) * variance;
+    return (_: unknown, i: number) => {
+      const randomFactor = 1 + (Math.random() - 0.3) * variance;
       return baseDelay * i * randomFactor;
     };
   };
@@ -123,13 +123,17 @@ export default function AnimeTextSplit({
     });
   };
 
+  const shuffleTexts = () => {
+    texts.sort(() => Math.random() - 0.5)
+  }
+
   const animateWordChange = async () => {
     if (!textRef.current || isAnimating) return;
+    if (currentIndex === 0) shuffleTexts()
 
     setIsAnimating(true);
 
     try {
-      // Phase 1: Erase current text
       await eraseText();
 
       // Phase 2: Small pause
