@@ -179,19 +179,7 @@ export default function CommercialOfferForm({
 
           <div className="xs:h-10 h-12.5"></div>
           <div className="flex flex-row justify-center items-start">
-            <div className="grow-0 items-start text-black justify-start">
-              <p
-                className={cn(
-                  "sm:hidden font-cera-pro font-medium md:text-[2.5rem] sm:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] sm:leading-8 leading-7.5 tracking-normal text-nowrap",
-                  colors.textPrimary
-                )}
-              >
-                Order
-                <br />a service
-              </p>
-            </div>
             {/* Spacer between containers */}
-            <div className="sm:hidden w-9 shrink-0 grow-1"></div>
             <div>
               <InputField
                 value={name}
