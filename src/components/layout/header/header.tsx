@@ -9,8 +9,10 @@ import MobileMenu from "./mobile-menu";
 import menuItems from "./menu-items";
 import FormModal from "@/components/blocks/form/form-modal";
 import { FormViewModel } from "@/domain/form-view-model";
+import { usePathname } from "next/dist/client/components/navigation";
 
 export default function Header({ className }: { className?: string }) {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
@@ -37,12 +39,12 @@ export default function Header({ className }: { className?: string }) {
     <>
       {/* Render header only if modal is not open */}
       <header
-        className={cn("w-full text-white sm:relative fixed z-100", className)}
+        className={cn(`w-full ${pathname == "/contacts" ? "text-[#FF3F1A] fill-white" : "text-white"}  sm:relative fixed z-100`, className)}
       >
         <div className={cn("mx-auto px-5 flex items-center")}>
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center group">
-            <FunctionLogo className="origin-left sm:scale-100 scale-119 fill-white group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300" />
+            <FunctionLogo className={`origin-left sm:scale-100 scale-119 ${pathname == "/contacts" ? "fill-[#FF3F1A]" : "fill-white"} group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300`} />
           </Link>
           <div className="grow-1"></div>
           {/* Desktop Navigation */}
@@ -58,7 +60,7 @@ export default function Header({ className }: { className?: string }) {
             ))}
             {/* Get Price Button */}
             <button
-              className="hidden sm:block bg-[#F0EDE8] text-[#151516] hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap"
+              className={`hidden sm:block ${pathname == "/contacts" ? "bg-[#FF3F1A]" : "bg-[#F0EDE8]"}  text-[#151516] hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap`}
               onClick={openModal}
             >
               Get Price

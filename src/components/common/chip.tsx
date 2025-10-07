@@ -27,7 +27,8 @@ export function Chip({
           : `${colors.chipBg} ${colors.chipText}`,
         colors.conditional(
           "hover:bg-[#FF3F1A] hover:text-black",
-          "hover:bg-[#FF3F1A] hover:text-black"
+          "hover:bg-[#FF3F1A] hover:text-black",
+          "hover:bg-[#FF3F1A] hover:text-[#F0EDE8]"
         ),
         className || ""
       )}
