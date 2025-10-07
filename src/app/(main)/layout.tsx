@@ -43,7 +43,7 @@ export default function RootLayout({
       <SmoothScroll />
       {children}
       <Footer className="" />
-      {/* <Loader /> */}
+      <Loader />
     </ToastProvider>
   );
 }

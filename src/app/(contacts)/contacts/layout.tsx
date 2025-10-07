@@ -18,7 +18,7 @@ export default function ContactsLayout({
         <CustomCursor />
         <SmoothScroll />
         {children}
-        {/* <Loader /> */}
+        <Loader />
       </ToastProvider>
     );
   }

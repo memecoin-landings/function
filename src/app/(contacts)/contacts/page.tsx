@@ -20,17 +20,16 @@ export default function ContactsPage() {
   }, []);
   const [formViewModel] = useState(() => new FormViewModel());
   return (
-    <main className="fluid-container bg-white pt-[8.063rem] xl:pt-[12.75rem] fl">
+    <main className="bg-white pt-[8.063rem] md:pt-[10.375rem]  xl:pt-[12.75rem] pb-12.5 md:pb-15 xl:pb-20">
       <ContactsHeadBlock />
-      <div className="md:mt-37 sm:mt-24.5 mt-17.5 font-bold text-[4.688rem] text-[#FF3F1A] xl:text-[16.875rem] leading-[3.938rem] xl:leading-[13.75rem] tracking-[-3%]">
+      <div className="md:mt-37 sm:mt-24.5 mt-17.5 font-bold text-[4.688rem] md:text-[8.75rem] text-[#FF3F1A] xl:text-[16.875rem] leading-[3.938rem] md:leading-[7.373rem] xl:leading-[13.75rem] tracking-[-3%]">
         Start your <br /> project
       </div>
-
-      <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 sm:mt-24.5 mt-17.5">
+      <section className="fluid-container pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 sm:mt-24.5 mt-8.75">
         <ThemeProvider theme="orange">
           <CommercialOfferForm viewModel={formViewModel} />
         </ThemeProvider>
-        <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-[-3%] ">
+        <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-[-3%] pt-12.5 md:pt-14.25">
           <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 sm:mb-0 whitespace-nowrap tracking-[-3%] text-[#FF3F1A]">
             Discover our work on:
           </p>

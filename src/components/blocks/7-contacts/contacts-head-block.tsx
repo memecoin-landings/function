@@ -5,7 +5,7 @@ import TelegramCircleIcon from "@/components/common/telegram-circle-icon";
 
 export default function ContactsHeadBlock() {
   return (
-    <div className="relative  @container text-[#FF3F1A] fill-[#FF3F1A]">
+    <div className="relative fluid-container @container text-[#FF3F1A] fill-[#FF3F1A]">
       <Link
         href={"mailto:" + Contacts.email}
         target="_blank"
