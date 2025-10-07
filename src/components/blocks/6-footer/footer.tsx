@@ -42,7 +42,7 @@ export default function Footer({ className }: { className: string }) {
             Telegram
           </Link>
         </div>
-        <div className="flex flex-col px-8.75 sm:px-16 md:px-[8.5cqw] xs:mt-15 mt-12.25 md:mt-25 ">
+        <div className="flex flex-col px-8.75 xs:px-16 md:px-[8.5cqw] xs:mt-15 mt-12.25 md:mt-25 ">
           <div className="flex flex-row w-full">
             <p className="w-[42.2cqw] text-[1.563rem] font-medium leading-[1.938rem] xs:text-[4.8cqw] xs:leading-[6.1cqw] md:text-[3.8cqw] md:leading-[4.7cqw]">
               Order<br />a&nbsp;service
@@ -54,7 +54,7 @@ export default function Footer({ className }: { className: string }) {
           </div>
           <div className="flex flex-row w-full xs:items-center md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
             <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-[-3%] ">
-              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 sm:mb-0 whitespace-nowrap tracking-[-3%]">
+              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 xs:mb-0 whitespace-nowrap tracking-[-3%]">
                 Discover our work on:
               </p>
               <div className="flex flex-row space-x-2.5 md:space-x-5">
@@ -69,7 +69,7 @@ export default function Footer({ className }: { className: string }) {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row w-[58cqw] xs:w-1/2 sm:items-center pt-1 text-[#727272] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem]">
+            <div className="flex flex-row w-[58cqw] xs:w-1/2 xs:items-center pt-1 text-[#727272] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem]">
               © Functional Design Studio. All rights reserved
             </div>
           </div>

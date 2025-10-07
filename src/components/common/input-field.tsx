@@ -79,7 +79,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
             className={cn(
-              "md:px-5 sm:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-[-3%]",
+              "md:px-5 xs:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-[-3%]",
               "focus:outline-none transition-colors duration-150 w-full bg-transparent border-0 border-b-1",
               colors.inputText,
               colors.inputPlaceholder,

@@ -40,7 +40,7 @@ export default function CategorySelector({
       <div className="text-[#F0EDE8] font-cera font-normal md:text-[1.5cqw] text-[1rem] md:tracking-[0%] tracking-[-3%]">
         Choose a Category
       </div>
-      <div className="flex md:flex-col flex-row flex-wrap md:items-start items-center md:gap-y-[1.9cqw] sm:gap-y-1.5 gap-y-2 gap-x-1.25 md:mt-[2cqw] xs:mt-3.5 mt-2.5">
+      <div className="flex md:flex-col flex-row flex-wrap md:items-start items-center md:gap-y-[1.9cqw] xs:gap-y-1.5 gap-y-2 gap-x-1.25 md:mt-[2cqw] xs:mt-3.5 mt-2.5">
         {topics.map((topic, index) => (
           <button
             key={index}

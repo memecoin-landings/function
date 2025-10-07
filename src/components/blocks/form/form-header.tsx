@@ -20,7 +20,7 @@ export default function FormHeader({ onClose, className }: FormHeaderProps) {
       <Link href="/#home" className="flex-shrink-0 flex items-center group">
         <FunctionLogo
           className={cn(
-            "origin-left sm:scale-100 scale-119 group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300",
+            "origin-left xs:scale-100 scale-119 group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300",
             colors.conditional("fill-black", "fill-white")
           )}
         />

@@ -16,7 +16,7 @@ export default function ServicePage() {
     redirect("/not-found")
   }
   return (
-    <main className="flex flex-col items-center sm:items-start md:pt-38.5 xs:pt-23.5 pt-27.25 md:pb-50 xs:pb-25 pb-17.5 w-full">
+    <main className="flex flex-col items-center xs:items-start md:pt-38.5 xs:pt-23.5 pt-27.25 md:pb-50 xs:pb-25 pb-17.5 w-full">
       <ServiceMainBlock
         className="md:px-[9.6cqw]"
         service={service}

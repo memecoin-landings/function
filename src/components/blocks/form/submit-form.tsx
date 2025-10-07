@@ -40,7 +40,7 @@ export default function SubmitForm({
       </button>
       <p
         className={cn(
-          "ml-5 md:ml-7.5 md:text-sm sm:text-[0.5625rem] text-[0.4375rem] md:leading-5 sm:leading-3.25 leading-2.5 tracking-[-3%]",
+          "ml-5 md:ml-7.5 md:text-sm xs:text-[0.5625rem] text-[0.4375rem] md:leading-5 xs:leading-3.25 leading-2.5 tracking-[-3%]",
           colors.textPrimary
         )}
       >

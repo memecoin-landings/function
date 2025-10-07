@@ -115,7 +115,7 @@ export default function CommercialOfferForm({
   return (
     <div
       className={cn(
-        "flex flex-col sm:flex-row justify-start items-start",
+        "flex flex-col xs:flex-row justify-start items-start",
         className
       )}
     >
@@ -127,14 +127,14 @@ export default function CommercialOfferForm({
             colors.textPrimary
           )}
         >
-          Request for <br />a commercial <br className="hidden sm:block" />
+          Request for <br />a commercial <br className="hidden xs:block" />
           offer
         </p>
       </div>
-      <div className="w-7.5 sm:w-22.5 shrink-0 grow-0"></div>
+      <div className="w-7.5 xs:w-22.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5">
+        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 xs:pt-1.25 pt-7.5">
           <div>
             <h3
               className={cn(
@@ -153,11 +153,10 @@ export default function CommercialOfferForm({
           </div>
 
           <div
-            className={`transition-all duration-500 ease-in-out ${
-              isSecondRowVisible
-                ? "opacity-100 translate-y-0 max-h-96"
-                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-            }`}
+            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
+              ? "opacity-100 translate-y-0 max-h-96"
+              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+              }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
