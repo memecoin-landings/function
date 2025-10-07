@@ -178,7 +178,7 @@ export default function CommercialOfferForm({
           </div>
 
           <div className="xs:h-10 h-12.5"></div>
-          <div className="flex flex-row justify-center items-start">
+          <div className="flex flex-row justify-start items-start">
             {/* Spacer between containers */}
             <div>
               <InputField
