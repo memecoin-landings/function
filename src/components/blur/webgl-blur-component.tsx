@@ -212,13 +212,13 @@ function WebGLBlurEffect({
     };
   }, []);
 
-  // Перезапускаем анимацию при изменении параметров блюра
-  useEffect(() => {
-    if (glRef.current && programRef.current) {
-      startAnimation();
-    }
-  }, [blurRadius, blurOffset, mouseRadius, effectPower, centerPoint]);
-
+  // // Перезапускаем анимацию при изменении параметров блюра
+  // useEffect(() => {
+  //   if (glRef.current && programRef.current) {
+  //     startAnimation();
+  //   }
+  // }, [blurRadius, blurOffset, mouseRadius, effectPower, centerPoint]);
+  //
   return (
     <div ref={contentRef} className={cn("relative", className)}>
       {children}
