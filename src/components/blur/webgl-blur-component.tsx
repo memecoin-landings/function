@@ -22,11 +22,11 @@ interface BlurParams {
 function WebGLBlurEffect({
   children,
   className,
-  blurRadius = 20.0,
-  blurOffset = 0.8,
-  mouseRadius = 0.75,
-  effectPower = 0.82,
-  centerPoint = 0.5
+  blurRadius = 50.0,
+  blurOffset = 1.85,
+  mouseRadius = 1.15,
+  effectPower = 1.5,
+  centerPoint = 0.55
 }: {
   children: React.ReactNode,
   className?: string
@@ -156,6 +156,7 @@ function WebGLBlurEffect({
         x: 750,
         y: 750,
         ease: 'out(5)',
+        duration: 1000
       });
     }
     if (!canvas || !animatableMouse['x'] || !animatableMouse['y']) return;

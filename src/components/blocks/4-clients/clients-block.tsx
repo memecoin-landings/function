@@ -35,15 +35,15 @@ const companies = [
 
 export default function ClientsBlock({ className }: { className?: string }) {
   const containerRef = useRef<HTMLUListElement>(null);
-  const { ref: sectionRef, isInView } = useScrollReveal({ 
+  const { ref: sectionRef, isInView } = useScrollReveal({
     threshold: 0.2,
   });
 
   useEffect(() => {
     if (isInView && containerRef.current) {
-      
+
       const listItems = containerRef.current.querySelectorAll('li');
-      
+
       listItems.forEach(item => {
         (item as HTMLElement).style.opacity = '0';
         (item as HTMLElement).style.transform = 'scale(0.8) translateY(30px)';
@@ -66,9 +66,9 @@ export default function ClientsBlock({ className }: { className?: string }) {
   return (
     <section ref={sectionRef} className={`${className} w-full fluid-container`}>
       <SectionHeader>Clients</SectionHeader>
-      <ul 
+      <ul
         ref={containerRef}
-        className="sm:mt-7.5 mt-5 grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5"
+        className="xs:mt-7.5 mt-5 grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-2.5 gap-y-5 xs:gap-x-1.75 xs:gap-y-8.75 md:gap-x-5 md:gap-y-5"
       >
         {companies.map((c, i) => (
           <li key={i} className="transition-transform duration-300 ease-in-out hover:scale-110">

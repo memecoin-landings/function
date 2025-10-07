@@ -1,5 +1,5 @@
-"use client";
 
+"use client";
 // import { animate, onScroll, stagger } from "animejs";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
@@ -52,7 +52,7 @@ export default function HomeBlock({ className }: { className?: string }) {
       </WebGLBlurEffect>
       <p
         ref={paragraphRef}
-        className="text-5xl pointer-events-none @container text-[3.75cqw] leading-[4.5cqw] mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw]"
+        className="pointer-events-none @container md:text-[3.75cqw] md:leading-[4.5cqw] xs:text-[4.6875cqw] xs:leading-[5.72cqw] text-2xl leading-[1.9375rem] -mt-[7.55cqw] xs:-mt-[6.65cqw] md:mt-[-1.51em] relative z-10 font-medium md:pr-[9.58cqw]"
       >
         Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
       </p>

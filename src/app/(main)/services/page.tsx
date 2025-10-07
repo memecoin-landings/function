@@ -36,7 +36,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-23.75 xs:pt-14.25 pt-29.5 md:pb-50 sm:pb-25 pb-20">
+    <main className="md:pt-23.75 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
         <WebGLBlurEffect className="pt-2 bg-[#151516] ">
           <div
@@ -53,7 +53,7 @@ export default function ServicesPage() {
           focusColor="#fff"
         />
       </section>
-      <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 sm:mt-24.5 mt-17.5">
+      <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 xs:mt-24.5 mt-17.5">
         <ThemeProvider theme="dark">
           <CommercialOfferForm viewModel={formViewModel} />
         </ThemeProvider>

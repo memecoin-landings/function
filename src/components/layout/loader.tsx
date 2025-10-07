@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animate, createTimeline, createAnimatable, utils } from "animejs";
+import { animate, createTimeline, createAnimatable } from "animejs";
 import Cookies from "js-cookie";
 import { usePageLoadingStatus } from "@/hooks/usePageLoadingStatus";
 
 export default function Loader() {
   const loaderBgRef = useRef<HTMLDivElement>(null);
   const loaderBarRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const progressRef = useRef<any>(null);
 
   const { shouldShow, domReady, imagesLoaded, fontsLoaded, isComplete } =
@@ -123,9 +124,9 @@ export default function Loader() {
       <div
         ref={loaderBarRef}
         id="loader-bar"
-        className="fixed transform translate-x-[-100vw] w-screen bg-[#FF3F1A] h-screen font-bold text-[100px] flex items-center justify-end"
+        className="fixed transform translate-x-[-100vw] w-screen bg-[#FF3F1A] h-screen font-bold text-[2.5rem] xs:text-[3.75rem] md:text-[6.25rem] px-2.5 md:px-5 flex items-center justify-end"
       >
-        ƒ(<span className="value">0</span>%)
+        ƒ (<span className="value">0</span>%)
       </div>
     </div>
   );

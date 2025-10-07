@@ -4,7 +4,7 @@ import { animate, onScroll, stagger } from "animejs";
 import { useEffect, useRef, useState } from "react";
 import ProjectsGrid from "./projects-grid";
 import CategoryList from "./topic-list";
-import AnimeTextSplit from "@/components/animation/animate-text";
+import TypewriterAnimatedLabel from "@/components/animation/animate-text";
 
 const labels = [
   "Innovation",
@@ -75,12 +75,12 @@ export default function ServicesPage() {
               to&nbsp;
               <span className={`inline-block w-[60cqw] overflow-visible z-20`}>
                 <span className="text-[#FF3F1A] z-20">
-                  <AnimeTextSplit texts={labels} />
+                  <TypewriterAnimatedLabel texts={labels} />
                 </span>
               </span>
             </div>
           </div>
-          <div className="flex-1 md:pt-[1.875cqw] sm:mt-9 mt-9">
+          <div className="flex-1 md:pt-[1.875cqw] xs:mt-9 mt-9">
             <CategoryList
               categories={categories.map(([c]) => c)}
               selectedCategory={selectedCategory}
