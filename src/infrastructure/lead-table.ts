@@ -31,7 +31,7 @@ export default class LeadTable {
 
     const jwt = new JWT({
       email: getConfig().table.email,
-      // key: data.private_key.replace(/\\n/g, "\n"),
+      key: data.private_key.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
     console.log("connecting");
