@@ -36,49 +36,49 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
     >
       <div className="@container">
         {/* Image with overlaid title */}
-        <div className="relative w-full mb-12 sm:mb-8 md:mb-7.5">
+        <div className="relative w-full mb-2.5 xs:mb-8 md:mb-7.5">
           <Image
             ref={pushIfNotNull(elementsRef.current)}
             src={fedorImage}
             alt="Fedor Beltugov"
-            className="object-cover object-center w-full sm:w-[42.25cqw] rounded-[0.313rem] grayscale hover:grayscale-0 transition-[filter] duration-350 ease-in px-4 sm:pl-34.5 sm:px-0"
+            className="object-cover object-center xs:w-[42.25cqw] w-[38.37cqw] h-full rounded-[0.313rem] grayscale hover:grayscale-0 transition-[filter] duration-350 ease-in ml-11.25 xs:ml-18.25"
             layout="cover"
           />
 
           {/* Overlaid title */}
           <h1
-            className="text-white font-cera font-bold text-[8vw] sm:text-[11.75cqw] leading-[7vw] sm:leading-[10cqw] tracking-[-3%] mt-[-0.5em] sm:mt-[-0.725em] relative z-10 text-left px-4 sm:px-0"
+            className="text-white font-cera font-bold md:text-[11.81cqw] xs:text-[11.5cqw] text-[10.5cqw] md:leading-[9.03cqw] leading-none tracking-[-3%] md:mt-[-0.69em] xs:mt-[-0.82em] mt-[-0.81em] md:ml-0 xs:ml-2.5 ml-2.5 xs:mr-0 mr-5.25 relative z-10 text-left"
           > Behind the&nbsp;Studio
           </h1>
         </div>
 
         {/* Content section below image */}
-        <div className="mb-2 sm:mb-4">
+        <div className="mb-2 xs:mb-4">
           {/* Description */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="mb-8 sm:mb-12.5"
+            className="mb-2.5 xs:mb-7.5"
           >
-            <p className="font-cera font-normal not-italic text-[4vw] sm:text-[2.1cqw] leading-[5.5cqw] sm:leading-[2.78cqw] tracking-[0%] text-[#F0EDE8] text-left px-4 sm:pl-5 sm:pr-[23.4375rem]">
-              Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I’ve been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
+            <p className="font-cera font-normal not-italic md:text-[2.08cqw] xs:text-[2.60cqw] text-[3.26cqw] md:leading-[2.71cqw] xs:leading-[3.39cqw] leading-[4.42cqw] tracking-[0%] text-[#F0EDE8] text-left md:pl-5 xs:pl-2.5 pl-2.5 md:pr-[23.4375rem] xs:pr-34 pr-11.25">
+            Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I’ve been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
             </p>
           </div>
 
           {/* CTA Links */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-left items-left px-4 sm:pl-5"
+            className="flex flex-row xs:flex-row gap-1.5 xs:gap-2 justify-left items-left md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5"
           >
             <button
               onClick={openModal}
-              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none"
             >
               Get Price
             </button>
-            <span className="text-white text-[5vw] sm:text-[3.125cqw] leading-[6vw] sm:leading-[3.875cqw]">or</span>
+            <span className="text-white md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] md:leading-[4.58cqw] leading-none">or</span>
             <Link
               href="/projects"
-              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]"
+              className="w-fit items-left text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none"
             >
               View Projects
             </Link>

@@ -19,17 +19,17 @@ export default function AboutPage() {
     formRef.current?.focus();
   };
   return (
-    <main className="flex flex-col items-center sm:items-start md:pt-25.75 xs:pt-18.25 pt-17.5 pb-25.75 md:pb-51.25 xs:pb-26">
-      <StrategicIdentityBlock />
-      <FedorAboutBlock className="md:mt-42.5 xs:mt-25 mt-17.5" openModal={openModal} />
+    <main className="flex flex-col items-start ">
+      <StrategicIdentityBlock className="md:mt-50 xs:mt-27 mt-17.5" />
+      <FedorAboutBlock className="md:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
       <ClientsBlock className="md:mt-42.5 xs:mt-25 mt-17.5" />
       <ServicesBlock className="md:mt-39 xs:mt-18 mt-10.5" />
 
       <button
         onClick={openModal}
-        className="sm:pl-5 w-fit sm:mt-12.5 mt-8 items-left"
+        className="sm:pl-5 w-fit md:mb-50 xs:mb-25 md:mt-12.5 xs:mt-7.5 mt-5 ml-2.5 mb-17.5 items-left"
       >
-        <span className="text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 text-[5vw] sm:text-[3.125cqw] font-medium leading-[6vw] sm:leading-[3.875cqw]">
+        <span className="text-white hover:text-[#FF3F1A] underline decoration-white hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 md:text-[4.125rem] xs:text-[2.25rem] text-[1.25rem] font-medium leading-[6vw] sm:leading-[3.875cqw]">
           Let&apos;s Build Your Brand
         </span>
       </button>
