@@ -6,19 +6,20 @@ import Header from "@/components/layout/header/header";
 import Loader from "@/components/layout/loader";
 
 export default function ContactsLayout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-  
-    return (
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+
+  return (
+    <div className="bg-[#F0EDE8] xs:pt-7 pt-5 ">
       <ToastProvider>
-        <Header className="xs:mt-7 mt-5 bg-white" />
+        <Header className="" />
         <CookieConsent />
         <CustomCursor />
         <SmoothScroll />
         {children}
         <Loader />
-      </ToastProvider>
-    );
-  }
+      </ToastProvider></div>
+  );
+}
