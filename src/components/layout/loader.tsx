@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, createTimeline, createAnimatable } from "animejs";
 import Cookies from "js-cookie";
 import { usePageLoadingStatus } from "@/hooks/usePageLoadingStatus";
@@ -10,6 +10,7 @@ export default function Loader() {
   const loaderBarRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const progressRef = useRef<any>(null);
+  const [forceFinish, setForceFinish] = useState(false);
 
   const { shouldShow, domReady, imagesLoaded, fontsLoaded, isComplete } =
     usePageLoadingStatus();
@@ -79,13 +80,18 @@ export default function Loader() {
         }
       }, 750);
 
-      return () => clearInterval(creepInterval);
+      const timeout = setTimeout(() => {
+        progressRef.current.value(100);
+        setForceFinish(true);
+      }, 5000); // Safety timeout to stop creeping after 30s
+
+      return () => { clearInterval(creepInterval); clearTimeout(timeout); };
     }
-  }, [domReady, imagesLoaded, fontsLoaded, shouldShow]);
+  }, [domReady, imagesLoaded, fontsLoaded, shouldShow, forceFinish]);
 
   // Exit animation when complete
   useEffect(() => {
-    if (!shouldShow || !isComplete) return;
+    if ((!shouldShow || !isComplete) && !forceFinish) return;
 
     const loaderBg = loaderBgRef.current;
     const loaderBar = loaderBarRef.current;
@@ -111,7 +117,7 @@ export default function Loader() {
         loaderBg.hidden = true;
         Cookies.set("showedLoaderOnce", "true", { expires: 7, path: "/" });
       });
-  }, [isComplete, shouldShow]);
+  }, [isComplete, shouldShow, forceFinish]);
 
   if (!shouldShow) return null;
 

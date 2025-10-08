@@ -10,15 +10,9 @@ import DribbleIcon from "@/components/common/unknown-cw";
 import Contacts from "@/domain/contacts";
 import { FormViewModel } from "@/domain/form-view-model";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ContactsPage() {
-  useEffect(() => {
-    document.documentElement.style.backgroundColor = 'white';
-    return () => {
-      document.documentElement.style.backgroundColor = "";
-    };
-  }, []);
   const [formViewModel] = useState(() => new FormViewModel());
   return (
     <main className="bg-[#F0EDE8] pt-[8.063rem] md:pt-[10.375rem]  xl:pt-[12.75rem] pb-12.5 md:pb-15 xl:pb-20">
