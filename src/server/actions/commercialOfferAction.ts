@@ -26,7 +26,7 @@ const leadTable = container.resolve(LeadTable);
 // const emailService = container.resolve(EmailService);
 
 export default async function submitCommercialOfferAction(
-  formData: CommercialOfferFormData
+  formData: CommercialOfferFormData,
 ): Promise<{ success: boolean; message: string }> {
   const dto: CommercialOfferDto = {
     ...formData,
@@ -36,16 +36,20 @@ export default async function submitCommercialOfferAction(
   try {
     // Отправляем данные в Google Таблицу
     await leadTable.addCommercialOffer(dto);
-    
+
     // Отправляем email уведомление
     // await emailService.sendCommercialOfferEmail(dto);
-    
-    return { success: true, message: "Заявка отправлена успешно!" };
+
+    return {
+      success: true,
+      message: "Sent successfully! We will contact you as soon as possible!",
+    };
   } catch (err: unknown) {
     console.error("Ошибка при отправке заявки: ", err);
-    return { 
-      success: false, 
-      message: "Не удалось отправить заявку! Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую." 
+    return {
+      success: false,
+      message:
+        "Failed to send. Please try again, or contact us using other methods.",
     };
   }
 }
