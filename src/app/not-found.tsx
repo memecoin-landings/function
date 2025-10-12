@@ -67,7 +67,7 @@ export default function NotFound() {
             Discover our work on:
           </p>
           <div className="flex flex-row space-x-2.5 md:space-x-5">
-            <Link target="_blank" href={Contacts.socialLinks.whatsapp}>
+            <Link target="_blank" href={Contacts.socialLinks.instagram}>
               <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
             <Link target="_blank" href={Contacts.socialLinks.behance}>
