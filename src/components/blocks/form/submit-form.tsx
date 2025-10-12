@@ -29,7 +29,7 @@ export default function SubmitForm({
           colors.conditional(
             "hover:bg-[#FF3F1A] hover:text-black",
             "hover:bg-[#FF3F1A] hover:text-black",
-            "hover:bg-[#FF3F1A] hover:text-[#F0EDE8]"
+            "hover:bg-black hover:text-[#F0EDE8]"
           ),
           disabled ? "cursor-not-allowed" : "",
           className
