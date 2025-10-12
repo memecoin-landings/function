@@ -67,18 +67,18 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
           {/* CTA Links */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="flex flex-row xs:flex-row gap-1.5 xs:gap-2.5 md:gap-3.75 justify-left items-left md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5"
+            className="md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5 text-[#F0EDE8] decoration-[#F0EDE8] hover:decoration-[#FF3F1A] md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] "
           >
             <button
               onClick={openModal}
-              className="w-fit items-left text-[#F0EDE8] hover:text-[#FF3F1A] underline decoration-[#F0EDE8] hover:decoration-[#FF3F1A] md:decoration-[0.065em] decoration-[0.085em] underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] transition-colors duration-200 md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none"
+              className="inline hover:text-[#FF3F1A] underline md:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
             >
               Get Price
             </button>
-            <span className="text-[#F0EDE8] md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] md:leading-[4.58cqw] leading-none">or</span>
+            <span> or </span>
             <Link
               href="/projects"
-              className="w-fit items-left text-[#F0EDE8] hover:text-[#FF3F1A] underline decoration-[#F0EDE8] hover:decoration-[#FF3F1A] md:decoration-[0.065em] decoration-[0.085em] underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] transition-colors duration-200 md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none"
+              className="inline hover:text-[#FF3F1A] underline md:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
             >
               View Projects
             </Link>
