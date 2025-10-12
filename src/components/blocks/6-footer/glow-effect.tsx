@@ -128,7 +128,7 @@ export default function GlowEffect() {
   return (
     <div
       ref={glowEffect}
-      className="z-100 absolute left-1/2 w-[110vw] will-change-[opacity,_transform] border-red-900 md:blur-[15vw] blur-[40px] md:w-[85vw] h-[85.7cqw] bottom-0 bg-cover rounded-[50%] bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)]"
+      className="z-1 absolute left-1/2 w-[110vw] will-change-[opacity,_transform] border-red-900 md:blur-[15vw] blur-[40px] md:w-[85vw] h-[85.7cqw] bottom-0 bg-cover rounded-[50%] bg-[radial-gradient(circle_at_0%_100%,#FF3F1A_0%,#FF5921_100%)]"
       style={{
         opacity: "var(--progress, 0)",
         transform: "translate(-50%, 100%) scaleY(min(calc(1 + var(--progress, 0) * 0.2),2))  ",

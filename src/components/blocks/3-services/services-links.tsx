@@ -48,7 +48,7 @@ export default function ServicesLinks({
     <div
       ref={ref ?? sectionRef}
       className={cn(
-        "text-[5.41cqw] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container",
+        "text-[5.41cqw] text-justify w-full font-medium font-cera break-keep break-words leading-[1.25] @container pb-3",
         className
       )}
     >

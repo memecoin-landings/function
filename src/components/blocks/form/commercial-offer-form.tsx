@@ -120,7 +120,7 @@ export default function CommercialOfferForm({
       )}
     >
       {/* Left container */}
-      <div className="grow-0 items-start text-black justify-start">
+      <div className="grow-0 items-start text-[#151516] justify-start">
         <p
           className={cn(
             "font-cera-pro font-medium md:text-[2.5rem] xs:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] xs:leading-8 leading-7.5 tracking-normal text-nowrap",
@@ -131,10 +131,10 @@ export default function CommercialOfferForm({
           offer
         </p>
       </div>
-      <div className="w-7.5 xs:w-22.5 shrink-0 grow-0"></div>
+      <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[485px] flex-col md:pt-2.25 xs:pt-1.25 pt-7.5">
+        <div className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 xs:pt-1.25 pt-7.5">
           <div>
             <h3
               className={cn(
@@ -153,10 +153,11 @@ export default function CommercialOfferForm({
           </div>
 
           <div
-            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
-              ? "opacity-100 translate-y-0 max-h-96"
-              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-              }`}
+            className={`transition-all duration-500 ease-in-out ${
+              isSecondRowVisible
+                ? "opacity-100 translate-y-0 max-h-96"
+                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+            }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
@@ -185,6 +186,7 @@ export default function CommercialOfferForm({
                 onChange={setName}
                 placeholder="Full Name"
                 className="md:mb-12.5 mb-5.5"
+                required={true}
               />
               <InputField
                 value={phone}
@@ -193,6 +195,7 @@ export default function CommercialOfferForm({
                 placeholder="Phone"
                 type="tel"
                 className="md:mb-12.5 mb-5.5"
+                required={true}
               />
               <InputField
                 ref={emailRef}
@@ -205,7 +208,13 @@ export default function CommercialOfferForm({
               />
               <SubmitForm
                 className=""
-                disabled={!email.trim() || !isValidEmail() || isSubmitting}
+                disabled={
+                  !email.trim() ||
+                  !isValidEmail() ||
+                  isSubmitting ||
+                  !name.trim() ||
+                  !phone.trim()
+                }
                 onSend={handleSubmit}
               />
             </div>

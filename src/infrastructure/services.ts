@@ -28,7 +28,7 @@ const services: Service[] = [
       {
         name: ["Brand Guidelines", "and Materials"],
         description:
-          "Development of a brand guidelines document with recommendations on the use of visual elements, and the systematization of all brand assets, including logos, fonts, color schemes, and other components. <br/> <a href='https://google.com' target='_blank'  class='text-[#FF3F1A] underline'>Click here to view a sample brand guidelines PDF.</a>",
+          "Development of a brand guidelines document with recommendations on the use of visual elements, and the systematization of all brand assets, including logos, fonts, color schemes, and other components. <br/> <a href='/guideline_RUS.pdf' target='_blank'  class='text-[#FF3F1A] underline'>Click here to view a sample brand guidelines PDF.</a>",
         duration: "8+ business days",
       },
     ],
@@ -191,7 +191,7 @@ const services: Service[] = [
       {
         name: ["Logobook", "and Logo Assets"],
         description:
-          "Development of a logobook with recommendations on logo usage across various media and in different formats and scales. Includes safe zone guidelines, typography, color palette, and source files in both vector and raster formats.<br/> <a href='https://google.com' target='_blank' class='text-[#FF3F1A] underline'>Click here to view a sample logobook PDF.</a>",
+          "Development of a logobook with recommendations on logo usage across various media and in different formats and scales. Includes safe zone guidelines, typography, color palette, and source files in both vector and raster formats.<br/> <a href='/guideline_RUS.pdf' target='_blank' class='text-[#FF3F1A] underline'>Click here to view a sample logobook PDF.</a>",
         duration: "5+ business days",
         nextStages:
           "The next stage of brand development:<br/> <a href='/services/corporate-identity' class='text-[#FF3F1A] underline'>Corporate identity</a>, <a href='/services/product-identity' class='text-[#FF3F1A] underline'>Product identity</a>, <a href='/services/campaign-identity' class='text-[#FF3F1A] underline'>Campaign identity</a>, <a href='/services/personal-identity' class='text-[#FF3F1A] underline'>Personal identity</a>",

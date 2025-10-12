@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // Helper function to detect mobile devices
 const isMobileDevice = () => {
   if (typeof window === 'undefined') return false;
-  
+
   return ('ontouchstart' in window);
 };
 
@@ -39,7 +39,7 @@ function CustomCursor() {
   useEffect(() => {
     // Check if device is mobile on component mount
     setIsMobile(isMobileDevice());
-    
+
     // Don't initialize cursor functionality on mobile devices
     if (isMobileDevice()) {
       return;
@@ -72,7 +72,14 @@ function CustomCursor() {
           animate(cursorRef.current!, {
             width: 16,
             height: 16,
+            backgroundColor: '#FF3F1A',
             ease: 'out(3)',
+            duration: 200,
+          });
+        }
+        if (target.closest("[custom-cursor='black']")) {
+          animate(cursorRef.current!, {
+            backgroundColor: '#151516',
             duration: 200,
           });
         }
@@ -107,8 +114,8 @@ function CustomCursor() {
       className={cn("fixed w-4 h-4 bg-[#FF3F1A] rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center")}
     >
       {isHovering && (
-        <div style={{ 
-          width: '100%', 
+        <div style={{
+          width: '100%',
           height: '100%',
           imageRendering: 'crisp-edges',
           transform: 'translateZ(0)'
