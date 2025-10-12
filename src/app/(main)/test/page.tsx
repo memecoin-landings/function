@@ -9,7 +9,7 @@ export default function HomeBlock() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  
+
   const [blurParams, setBlurParams] = useState({
     blurRadius: 20.0,
     blurOffset: 0.8,
@@ -46,8 +46,8 @@ export default function HomeBlock() {
         "w-full flex flex-col @container fluid-container max-w-screen overflow-hidden",
       )}
     >
-      <WebGLBlurEffect 
-        className="w-full bg-[#151516] pt-[1em]" 
+      <WebGLBlurEffect
+        className="w-full bg-[#151516] pt-[1em]"
         {...blurParams}
       >
         <div
@@ -66,14 +66,14 @@ export default function HomeBlock() {
       >
         Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
       </p>
-      
+
       {/* Blur Controls */}
       <div className="fixed top-4 right-4 bg-black/80 p-4 rounded-lg z-50 min-w-[300px] backdrop-blur-sm">
-        <h3 className="text-white font-bold mb-4">Blur Parameters</h3>
-        
+        <h3 className="text-[#F0EDE8] font-bold mb-4">Blur Parameters</h3>
+
         <div className="space-y-4">
           <div>
-            <label className="block text-white text-sm mb-1">
+            <label className="block text-[#F0EDE8] text-sm mb-1">
               Blur Radius: {blurParams.blurRadius.toFixed(1)}
             </label>
             <input
@@ -86,9 +86,9 @@ export default function HomeBlock() {
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           </div>
-          
+
           <div>
-            <label className="block text-white text-sm mb-1">
+            <label className="block text-[#F0EDE8] text-sm mb-1">
               Blur Offset: {blurParams.blurOffset.toFixed(2)}
             </label>
             <input
@@ -101,9 +101,9 @@ export default function HomeBlock() {
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           </div>
-          
+
           <div>
-            <label className="block text-white text-sm mb-1">
+            <label className="block text-[#F0EDE8] text-sm mb-1">
               Mouse Radius: {blurParams.mouseRadius.toFixed(2)}
             </label>
             <input
@@ -116,9 +116,9 @@ export default function HomeBlock() {
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           </div>
-          
+
           <div>
-            <label className="block text-white text-sm mb-1">
+            <label className="block text-[#F0EDE8] text-sm mb-1">
               Effect Power: {blurParams.effectPower.toFixed(2)}
             </label>
             <input
@@ -131,9 +131,9 @@ export default function HomeBlock() {
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           </div>
-          
+
           <div>
-            <label className="block text-white text-sm mb-1">
+            <label className="block text-[#F0EDE8] text-sm mb-1">
               Center Point: {blurParams.centerPoint.toFixed(2)}
             </label>
             <input
@@ -147,9 +147,9 @@ export default function HomeBlock() {
             />
           </div>
         </div>
-        
+
         <div className="flex gap-2 mt-4">
-          <button 
+          <button
             onClick={() => setBlurParams({
               blurRadius: 20.0,
               blurOffset: 0.8,
@@ -157,11 +157,11 @@ export default function HomeBlock() {
               effectPower: 0.82,
               centerPoint: 0.5
             })}
-            className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+            className="px-3 py-1 bg-blue-600 text-[#F0EDE8] rounded text-sm hover:bg-blue-700"
           >
             Reset
           </button>
-          <button 
+          <button
             onClick={() => setBlurParams({
               blurRadius: Math.random() * 40 + 5, // 5-45
               blurOffset: Math.random() * 1.5, // 0-1.5
@@ -169,7 +169,7 @@ export default function HomeBlock() {
               effectPower: Math.random() * 1.5 + 0.3, // 0.3-1.8
               centerPoint: Math.random() * 0.8 + 0.1 // 0.1-0.9
             })}
-            className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
+            className="px-3 py-1 bg-green-600 text-[#F0EDE8] rounded text-sm hover:bg-green-700"
           >
             Random
           </button>

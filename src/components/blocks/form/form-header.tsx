@@ -21,7 +21,7 @@ export default function FormHeader({ onClose, className }: FormHeaderProps) {
         <FunctionLogo
           className={cn(
             "origin-left xs:scale-100 scale-119 group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300",
-            colors.conditional("fill-black", "fill-white")
+            colors.conditional("fill-[#151516]", "fill-[#F0EDE8]")
           )}
         />
       </Link>
@@ -33,8 +33,8 @@ export default function FormHeader({ onClose, className }: FormHeaderProps) {
             colors.buttonBg,
             colors.buttonText,
             colors.conditional(
-              "hover:bg-[#FF3F1A] hover:text-black",
-              "hover:bg-[#FF3F1A] hover:text-black"
+              "hover:bg-[#FF3F1A] hover:text-[#151516]",
+              "hover:bg-[#FF3F1A] hover:text-[#151516]"
             ),
             className
           )}

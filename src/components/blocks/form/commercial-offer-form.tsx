@@ -120,7 +120,7 @@ export default function CommercialOfferForm({
       )}
     >
       {/* Left container */}
-      <div className="grow-0 items-start text-black justify-start">
+      <div className="grow-0 items-start text-[#151516] justify-start">
         <p
           className={cn(
             "font-cera-pro font-medium md:text-[2.5rem] xs:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] xs:leading-8 leading-7.5 tracking-normal text-nowrap",
