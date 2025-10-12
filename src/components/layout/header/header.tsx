@@ -60,7 +60,7 @@ export default function Header({ className }: { className?: string }) {
             ))}
             {/* Get Price Button */}
             <button
-              className={`hidden sm:block ${pathname == "/contacts" ? "bg-[#FF3F1A] text-[#F0EDE8]" : "bg-[#F0EDE8] text-[#151516] "}  hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap`}
+              className={`hidden xs:block ${pathname == "/contacts" ? "bg-[#FF3F1A] text-[#F0EDE8] hover:bg-black" : "bg-[#F0EDE8] text-[#151516] "}  hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap`}
               onClick={openModal}
             >
               Get Price
