@@ -32,14 +32,14 @@ export default function ContactsPage() {
               Discover our work on:
             </p>
             <div className="flex flex-row space-x-2.5 md:space-x-5">
-              <Link href={Contacts.socialLinks.instagram} target="_blank">
-                <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#FF3F1A] transition-colors duration-150 hover:fill-black" />
+              <Link href={Contacts.socialLinks.instagram} target="_blank" custom-cursor="black">
+                <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
-              <Link href={Contacts.socialLinks.behance} target="_blank">
-                <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#FF3F1A] transition-colors duration-150 hover:fill-black" />
+              <Link href={Contacts.socialLinks.behance} target="_blank" custom-cursor="black">
+                <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
-              <Link href={Contacts.socialLinks.dribbble} target="_blank">
-                <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75   fill-[#FF3F1A] transition-colors duration-150 hover:fill-black" />
+              <Link href={Contacts.socialLinks.dribbble} target="_blank" custom-cursor="black">
+                <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75   fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
             </div>
           </div>

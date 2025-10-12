@@ -39,12 +39,12 @@ export default function Header({ className }: { className?: string }) {
     <>
       {/* Render header only if modal is not open */}
       <header
-        className={cn(`w-full ${pathname == "/contacts" ? "text-[#FF3F1A] fill-white" : "text-white"}  sm:relative fixed z-100`, className)}
+        className={cn(`w-full ${pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]"}  sm:relative fixed z-100`, className)}
       >
         <div className={cn("mx-auto px-5 flex items-center")}>
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center group">
-            <FunctionLogo className={`origin-left sm:scale-100 scale-119 ${pathname == "/contacts" ? "fill-[#FF3F1A]" : "fill-white"} group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300`} />
+            <FunctionLogo className={`origin-left sm:scale-100 scale-119 ${pathname == "/contacts" ? "fill-[#FF3F1A]" : "fill-[#F0EDE8]"} group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300`} />
           </Link>
           <div className="grow-1"></div>
           {/* Desktop Navigation */}
@@ -60,7 +60,8 @@ export default function Header({ className }: { className?: string }) {
             ))}
             {/* Get Price Button */}
             <button
-              className={`hidden xs:block ${pathname == "/contacts" ? "bg-[#FF3F1A] text-[#F0EDE8] hover:bg-black" : "bg-[#F0EDE8] text-[#151516] "}  hover:bg-[#FF3F1A] transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap`}
+              {...(pathname === "/contacts" ? { "custom-cursor": "black" } : {})}
+              className={`hidden xs:block ${pathname == "/contacts" ? "bg-[#FF3F1A] text-[#F0EDE8] hover:bg-[#151516]" : "bg-[#F0EDE8] text-[#151516] hover:bg-[#FF3F1A] "}  transition-colors duration-200 py-0.5 rounded-full leading-8.5 px-5 text-sm font-medium text-nowrap`}
               onClick={openModal}
             >
               Get Price
@@ -72,7 +73,7 @@ export default function Header({ className }: { className?: string }) {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={cn(
               isMenuOpen ? "rotate-90" : "",
-              " transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white",
+              " transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F0EDE8]",
             )}
           >
             <BurgerIcon className="fill-[#F0EDE8] transition-colors duration-300 group-hover:fill-[#FF3F1A]" />

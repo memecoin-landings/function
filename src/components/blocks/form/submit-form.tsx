@@ -21,15 +21,16 @@ export default function SubmitForm({
   return (
     <div className={cn("flex flex-row items-center justify-center", className)}>
       <button
+        {...colors.buttonProps}
         className={cn(
           "inline-flex items-center justify-center md:px-7.5 md:py-2.5 px-5 py-0.5 text-sm leading-8.5 md:text-[1.375rem] font-normal text-nowrap tracking-[0%] rounded-full transition-colors",
           disabled ? colors.buttonDisabledBg : colors.buttonBg,
           // disabled ? colors.buttonDisabledText : colors.buttonText,
           colors.buttonText,
           colors.conditional(
-            "hover:bg-[#FF3F1A] hover:text-black",
-            "hover:bg-[#FF3F1A] hover:text-black",
-            "hover:bg-black hover:text-[#F0EDE8]"
+            "hover:bg-[#FF3F1A] hover:text-[#151516]",
+            "hover:bg-[#FF3F1A] hover:text-[#151516]",
+            "hover:bg-[#151516] hover:text-[#F0EDE8]"
           ),
           disabled ? "cursor-not-allowed" : "",
           className

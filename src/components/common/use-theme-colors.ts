@@ -2,9 +2,9 @@ import { useTheme } from "./theme-context";
 
 /*
   Tailwind safelist для тёмной темы:
-  text-white text-[#727272] text-gray-400 bg-[#151516] bg-[#727272] 
-  text-black bg-[#F0EDE8] placeholder-[#727272] border-[#F0EDE8] 
-  border-white bg-[#F0EDE8] text-[#151516]
+  text-[#F0EDE8] text-[#727272] text-gray-400 bg-[#151516] bg-[#727272] 
+  text-[#151516] bg-[#F0EDE8] placeholder-[#727272] border-[#F0EDE8] [#151516]
+  border-[#F0EDE8] bg-[#F0EDE8] text-[#151516]
 */
 
 export function useThemeColors() {
@@ -13,7 +13,7 @@ export function useThemeColors() {
   const themeColors = {
     light: {
       // Цвета текста
-      textPrimary: "text-black",
+      textPrimary: "text-[#151516]",
       textSecondary: "text-[#C8C8C8]",
       textMuted: "text-gray-500",
       // Цвета фона
@@ -33,10 +33,11 @@ export function useThemeColors() {
       buttonText: "text-[#F0EDE8]",
       buttonDisabledText: "text-[#F0EDE8]",
       buttonDisabledBg: "bg-[#C8C8C8]",
+      buttonProps: {},
     },
     dark: {
       // Цвета текста
-      textPrimary: "text-white",
+      textPrimary: "text-[#F0EDE8]",
       textSecondary: "text-[#727272]",
       textMuted: "text-gray-400",
       // Цвета фона
@@ -45,9 +46,9 @@ export function useThemeColors() {
       chipBg: "bg-[#727272]",
       chipText: "text-[#F0EDE8]",
       chipSelectedBg: "bg-[#F0EDE8]",
-      chipSelectedText: "text-black",
+      chipSelectedText: "text-[#151516]",
       // Цвета для input полей
-      inputText: "text-white",
+      inputText: "text-[#F0EDE8]",
       inputPlaceholder: "placeholder-[#727272]",
       inputBorder: "border-[#F0EDE8A0]",
       inputBorderFocus: "border-[#F0EDE8]",
@@ -56,6 +57,7 @@ export function useThemeColors() {
       buttonText: "text-[#151516]",
       buttonDisabledText: "text-[#F0EDE8]",
       buttonDisabledBg: "bg-[#727272]",
+      buttonProps: {},
     },
     orange: {
       // Цвета текста
@@ -77,8 +79,9 @@ export function useThemeColors() {
       // Цвета для кнопок
       buttonBg: "bg-[#FF3F1A]",
       buttonText: "text-[#F0EDE8]",
-      buttonDisabledText: "text-white",
+      buttonDisabledText: "text-[#F0EDE8]",
       buttonDisabledBg: "bg-[#C8C8C8]",
+      buttonProps: { "custom-cursor": "black" },
     },
   };
 
@@ -89,7 +92,7 @@ export function useThemeColors() {
     conditional: (
       lightClass: string,
       darkClass: string,
-      orangeClass?: string
+      orangeClass?: string,
     ) => {
       const classes = {
         light: lightClass,

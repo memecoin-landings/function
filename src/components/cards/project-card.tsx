@@ -40,14 +40,14 @@ export default function ProjectCard({
         opacity-0 translate-y-full transition-all duration-500 ease-out delay-150">
         {data.title && (
           <p
-            className="text-white md:text-3xl text-xl font-medium "
+            className="text-[#F0EDE8] md:text-3xl text-xl font-medium "
           >
             {data.title}
           </p>
         )}
         {data.subtitle && (
           <p
-            className="text-white md:text-[0.875rem] text-[0.625rem] md:pt-2.5 pt-1 tracking-[-3%] whitespace-normal overflow-hidden"
+            className="text-[#F0EDE8] md:text-[0.875rem] text-[0.625rem] md:pt-2.5 pt-1 tracking-[-3%] whitespace-normal overflow-hidden"
           >
             {data.subtitle}
           </p>

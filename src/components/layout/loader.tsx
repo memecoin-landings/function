@@ -125,7 +125,7 @@ export default function Loader() {
     <div
       ref={loaderBgRef}
       id="loader"
-      className="opacity-0 z-500 fixed flex items-center justify-center inset-0 bg-black"
+      className="opacity-0 z-500 fixed flex items-center justify-center inset-0 bg-[#151516]"
     >
       <div
         ref={loaderBarRef}

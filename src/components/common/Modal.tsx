@@ -23,7 +23,7 @@ export default function Modal({
           className="absolute top-0 right-0 left-0 bottom-0"
           onClick={onClose}
         />
-        <div className="bg-white px-7.5 py-7.5 mx-4 relative">
+        <div className="bg-[#F0EDE8] px-7.5 py-7.5 mx-4 relative">
           <div
             className="absolute top-7 right-6 p-1 cursor-pointer"
             onClick={onClose}

@@ -25,7 +25,7 @@ export default function MobileMenu({ className, openModal, onClose }: { classNam
           Get Price
         </SideMenuItem>
       </div>
-      <Link target="_blank" href={`mailto:${Contacts.email}`} className="mt-18.75 text-white underline text-sm tracking-[-3%]">{Contacts.email}</Link>
+      <Link target="_blank" href={`mailto:${Contacts.email}`} className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-[-3%]">{Contacts.email}</Link>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
       <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-[-3%]
         *:hover:fill-[#FF3F1A] *:hover:text-[#FF3F1A] *:flex *:flex-row *:items-center flex-wrap
@@ -63,7 +63,7 @@ function SideMenuItem({
     <Link
       onClick={onClick}
       href={href ?? ""}
-      className="hover:text-[#FF3F1A] transition-colors duration-300 text-white text-[2.0625rem] font-medium text-nowrap"
+      className="hover:text-[#FF3F1A] transition-colors duration-300 text-[#F0EDE8] text-[2.0625rem] font-medium text-nowrap"
     >
       {children}
     </Link>
