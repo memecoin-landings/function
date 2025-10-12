@@ -71,7 +71,7 @@ export default function FooterForm({ className }: { className?: string }) {
     } catch (error) {
       console.error("Error submitting form:", error);
       showToast(
-        "Произошла ошибка при отправке формы. Попробуйте еще раз.",
+        "Failed to send. Please try again.",
         true
       );
     } finally {

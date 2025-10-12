@@ -36,9 +36,9 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-23.75 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
+    <main className="md:pt-3.75 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
-        <WebGLBlurEffect className="pt-2 bg-[#151516] ">
+        <WebGLBlurEffect className="md:pt-20 bg-[#151516] ">
           <div
             ref={headerRef}
             className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] xs:text-[18.25cqw] md:text-[18.7cqw] text-[17.6cqw] whitespace-nowrap xs:pl-0 pl-2.5"
@@ -50,7 +50,7 @@ export default function ServicesPage() {
           ref={paragraphRef}
           className="-mt-[1.345em] fluid-container leading-[1.15]! "
           showArrowCursor={true}
-          focusColor="#fff"
+          focusColor="#F0EDE8"
         />
       </section>
       <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 xs:mt-24.5 mt-17.5">
