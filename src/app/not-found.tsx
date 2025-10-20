@@ -1,13 +1,15 @@
+"use client";
 import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import DribbleIcon from "@/components/common/unknown-cw";
 import CustomCursor from "@/components/custom-cursor";
 import Header from "@/components/layout/header/header";
 import Link from "next/link";
-import Contacts from "../domain/contacts";
 import WebGLBlurEffect from "../components/blur/webgl-blur-component";
+import Contacts from "../domain/contacts";
 
 export default function NotFound() {
+  const contacts = Contacts.default;
   return (
     <>
       <main className="xs:h-screen h-[100dvh] relative overflow-hidden">
@@ -67,13 +69,13 @@ export default function NotFound() {
             Discover our work on:
           </p>
           <div className="flex flex-row space-x-2.5 md:space-x-5">
-            <Link target="_blank" href={Contacts.socialLinks.instagram}>
+            <Link target="_blank" href={contacts.socialLinks.instagram}>
               <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link target="_blank" href={Contacts.socialLinks.behance}>
+            <Link target="_blank" href={contacts.socialLinks.behance}>
               <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link target="_blank" href={Contacts.socialLinks.dribbble}>
+            <Link target="_blank" href={contacts.socialLinks.dribbble}>
               <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
           </div>

@@ -8,11 +8,12 @@ import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-import Contacts from "../../../domain/contacts";
 import { ThemeProvider } from "@/components/common/theme-context";
 import GlowEffect from "./glow-effect";
+import { useContacts } from "@/hooks/use-contacts";
 
 export default function Footer({ className }: { className: string }) {
+  const contacts = useContacts();
   return (
     <footer
       className={cn(
@@ -22,22 +23,22 @@ export default function Footer({ className }: { className: string }) {
     >
       <div className="z-5 relative fluid-container @container">
         <Link
-          href={"mailto:" + Contacts.email}
+          href={"mailto:" + contacts.email}
           target="_blank"
           // было 7.495cqw, но на хроме из-за этого вылезал, не понятно в чем дело
           className="mx-auto block text-center text-[#F0EDE8] duration-150 hover:text-[#FF3F1A] whitespace-nowrap md:text-[7cqw] text-[7.32cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
         >
-          {Contacts.email}
+          {contacts.email}
         </Link>
         <div className="flex flex-row items-center space-x-5 justify-center text-[0.75rem] xs:text-[0.875rem] tracking-[-3%] mt-4.25 xs:mt-7.75 md:mt-12.5 ">
           <div className="text-[3cqw] xs:text-[1.9cqw] md:text-[1.25rem] text-nowrap">
             Contact via Messenger:
           </div>
-          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5" href={Contacts.socialLinks.whatsapp} target="_blank">
+          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5" href={contacts.socialLinks.whatsapp ?? "#"} target="_blank">
             <WhatsappCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
             WhatsApp
           </Link>
-          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5" href={Contacts.socialLinks.telegram} target="_blank">
+          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5" href={contacts.socialLinks.telegram ?? "#"} target="_blank">
             <TelegramCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
             Telegram
           </Link>
@@ -58,13 +59,13 @@ export default function Footer({ className }: { className: string }) {
                 Discover our work on:
               </p>
               <div className="flex flex-row space-x-2.5 md:space-x-5 max-md:mt-2.5">
-                <Link href={Contacts.socialLinks.instagram} target="_blank">
+                <Link href={contacts.socialLinks.instagram ?? "#"} target="_blank">
                   <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={Contacts.socialLinks.behance} target="_blank">
+                <Link href={contacts.socialLinks.behance ?? "#"} target="_blank">
                   <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={Contacts.socialLinks.dribbble} target="_blank">
+                <Link href={contacts.socialLinks.dribbble ?? "#"} target="_blank">
                   <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
               </div>

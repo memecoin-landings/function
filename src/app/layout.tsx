@@ -4,8 +4,6 @@ import getConfig from "@/config";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/common/theme-context";
 import ToastProvider from "@/components/common/toast-provider";
-import { motion } from "framer-motion";
-import router from "next/dist/client/router";
 import FadeTransitionProvider from "@/components/layout/fade";
 
 export const metadata: Metadata = {

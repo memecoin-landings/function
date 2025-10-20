@@ -9,10 +9,10 @@ import { useEffect, useRef } from "react";
 import { animate, onScroll, stagger } from "animejs";
 import pushIfNotNull from "@/lib/push-if-not-null";
 import Link from "next/link";
-import Contacts from "../../../domain/contacts";
+import { useContacts } from "@/hooks/use-contacts";
 
 export default function FedorBlock({ className }: { className?: string }) {
-
+  const contacts = useContacts();
   const elementsRef = useRef<HTMLElement[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -76,13 +76,13 @@ export default function FedorBlock({ className }: { className?: string }) {
               Get in touch with me through:
             </div>
             <div className="flex flex-row space-x-3.75 ml-3.75 lg:space-x-5 lg:ml-5 *:transition-colors duration-300">
-              <Link target="_blank" href={Contacts.socialLinks.whatsapp}>
+              <Link target="_blank" href={contacts.socialLinks.whatsapp}>
                 <WhatsappIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
-              <Link target="_blank" href={Contacts.socialLinks.telegram}>
+              <Link target="_blank" href={contacts.socialLinks.telegram}>
                 <TelegramIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
-              <Link target="_blank" href={Contacts.socialLinks.linkedin}>
+              <Link target="_blank" href={contacts.socialLinks.linkedin}>
                 <LinkedinIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
               </Link>
             </div>

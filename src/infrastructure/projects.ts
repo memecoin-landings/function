@@ -1,10 +1,14 @@
+// DEPRECATED: This file is no longer used. Projects are now loaded from Strapi.
+// Keeping it commented for reference in case we need to migrate data to Strapi.
+
+import Project from "@/domain/project/project";
+/*
 import arshaluysPic from "@/../public/cover_project-arshaluys.jpg";
 import cancerPic from "@/../public/cover_project-cancer.jpg";
 import caspianGoldPic from "@/../public/cover_project-caspian-gold.jpg";
 import fffPic from "@/../public/cover_project-fff.jpg";
 import smartStoryPic from "@/../public/cover_project-smart-stroy.jpg";
 import spilePic from "@/../public/cover_project-spile.jpg";
-import Project from "@/domain/project/project";
 
 const projects: Project[] = [
   new Project({
@@ -118,3 +122,6 @@ const projects: Project[] = [
 ];
 
 export default projects;
+*/
+
+export default [] as Project[];

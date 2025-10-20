@@ -7,13 +7,14 @@ import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import { ThemeProvider } from "@/components/common/theme-context";
 import DribbleIcon from "@/components/common/unknown-cw";
-import Contacts from "@/domain/contacts";
 import { FormViewModel } from "@/domain/form-view-model";
 import Link from "next/link";
 import { useState } from "react";
+import { useContacts } from "@/hooks/use-contacts";
 
 export default function ContactsPage() {
   const [formViewModel] = useState(() => new FormViewModel());
+  const contacts = useContacts();
   return (
     <main className="bg-[#F0EDE8] pt-32 xs:pt-17.5 md:pt-25 pb-12.5 md:pb-15 xl:pb-20">
       <ContactsHeadBlock />
@@ -32,13 +33,13 @@ export default function ContactsPage() {
               Discover our work on:
             </p>
             <div className="flex flex-row space-x-2.5 md:space-x-5">
-              <Link href={Contacts.socialLinks.instagram} target="_blank" custom-cursor="black">
+              <Link href={contacts.socialLinks.instagram} target="_blank" custom-cursor="black">
                 <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
-              <Link href={Contacts.socialLinks.behance} target="_blank" custom-cursor="black">
+              <Link href={contacts.socialLinks.behance} target="_blank" custom-cursor="black">
                 <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
-              <Link href={Contacts.socialLinks.dribbble} target="_blank" custom-cursor="black">
+              <Link href={contacts.socialLinks.dribbble} target="_blank" custom-cursor="black">
                 <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75   fill-[#FF3F1A] transition-colors duration-150 hover:fill-[#151516]" />
               </Link>
             </div>

@@ -1,13 +1,14 @@
-import Image, { StaticImageData } from "next/image";
+import NextImage from "next/image";
 import { Ref } from "react";
+import DomainImage from "../../domain/image";
 
 export class ProjectCardParams {
-  image: StaticImageData;
+  image: DomainImage;
   title?: string | undefined;
   subtitle?: string | undefined;
 
   constructor(
-    image: StaticImageData,
+    image: DomainImage,
     title?: string | undefined,
     subtitle?: string | undefined
   ) {
@@ -54,8 +55,8 @@ export default function ProjectCard({
         )}
       </div>
       <div className="absolute inset-0">
-        <Image
-          src={data.image}
+        <NextImage
+          src={data.image.getMiddlestSmallFirst()?.url ?? ""}
           alt={data.title ?? ""}
           fill
           priority

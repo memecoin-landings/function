@@ -1,109 +1,110 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import ProjectPojoRepository from "../../../infrastructure/project.pojo-repository";
+import { useEffect, useRef, useState } from "react";
 import ProjectCard, {
   ProjectCardParams,
 } from "../../../components/cards/project-card";
-import { animate, onScroll } from "animejs";
+import { animate } from "animejs";
 import { cn } from "@/lib/utils";
+import Image from "../../../domain/image";
 
-export default function ProjectsGrid({ className, tag, allowDefault = false }: { tag?: string | undefined, className?: string, allowDefault?: boolean }) {
+export default function ProjectsGrid({
+  className,
+  tag,
+  allowDefault = false,
+  limit,
+  skip
+}: {
+  animated?: boolean;
+  tag?: string | undefined;
+  className?: string;
+  allowDefault?: boolean;
+  limit?: number;
+  skip?: number;
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLElement[]>([]);
-  const repo = ProjectPojoRepository.getInstance();
-  let projects = repo.list(tag);
-  if (!projects.length && allowDefault) projects = repo.list();
-  const projectCardsParams = projects.map((project) => {
-    return new ProjectCardParams(
-      project.image,
-      project.title,
-      project.topics.join(", ")
-    );
-  });
+  const [projectCardsParams, setProjectCardsParams] = useState<ProjectCardParams[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const loadProjects = async () => {
+      setIsLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (tag) params.append("tag", tag);
+        if (limit !== undefined) params.append("limit", limit.toString());
+        if (skip !== undefined) params.append("skip", skip.toString());
 
-    // Анимация только при первом рендере (без tag)
-    if (!tag) {
-      animate(projectsRef.current, {
-        opacity: [0, 1],
-        scale: [0.8, 1],
-        translateY: [20, 0],
-        duration: 300,
-        easing: "easeOutQuad",
-        delay: (_, i) => {
-          // Группируем карточки попарно (каждая пара появляется одновременно)
-          const pairIndex = Math.floor(i / 2);
-          return pairIndex * 200; // Задержка между парами
-        },
-        debug: true,
-        autoplay: onScroll({
-          sync: true,
-          debug: false,
-          target: section,
-          enter: "bottom top",
-          leave: "bottom bottom",
-          container: document.body,
-        }),
-      });
-    }
-  }, [tag]);
-
-  // Анимация при смене топика (tag)
-  useEffect(() => {
-    if (!tag) return; // Пропускаем первый рендер
-
-    // Сначала устанавливаем начальное состояние
-    projectsRef.current.forEach((el) => {
-      if (el) {
-        el.classList.remove("animate-in");
-        el.classList.add("flash-initial-state");
-      }
-    });
-
-    // Небольшая задержка для обновления DOM
-    const timer = setTimeout(() => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      // Анимация смены проектов через CSS классы
-      projectsRef.current.forEach((el) => {
-        if (el) {
-          setTimeout(() => {
-            el.classList.remove("flash-initial-state");
-            el.classList.add("flash-animate-in");
-          }, 200);
+        const response = await fetch(`/api/projects?${params.toString()}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
         }
-      });
-    }, 50);
 
-    return () => clearTimeout(timer);
-  }, [tag]);
+        let projects = await response.json();
+
+        if (projects.length === 0 && allowDefault) {
+          const defaultResponse = await fetch("/api/projects");
+          if (defaultResponse.ok) {
+            projects = await defaultResponse.json();
+          }
+        }
+
+        const cardParams = projects.map((project: {
+          title: string;
+          image: { url: string; width: number; height: number };
+          categories: string[];
+        }) => {
+          const image = new Image({
+            url: project.image.url,
+            width: project.image.width,
+            height: project.image.height,
+            formats: {},
+          } as never, "");
+
+          return new ProjectCardParams(
+            image,
+            project.title,
+            project.categories.join(", ")
+          );
+        });
+
+        setProjectCardsParams(cardParams);
+      } catch (error) {
+        console.error("Failed to load projects:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProjects();
+  }, [tag, limit, skip, allowDefault]);
+
+  useEffect(() => {
+    console.log(isLoading)
+    if (!isLoading) {
+      animate(".projects-grid-card", {
+        opacity: [0, 1],
+        duration: 1000,
+        ease: "out(5)"
+      })
+    } else {
+      animate(".projects-grid-card", {
+        opacity: [1, 0],
+        duration: 1000
+      })
+    }
+  }, [isLoading]);
 
   return (
     <div
       ref={sectionRef}
       className={cn("grid xs:grid-cols-2 grid-cols-1 md:gap-5 gap-2.5", className)}
     >
-      {projectCardsParams.map((item, index) => (
+      {projectCardsParams.map((item) => (
         <ProjectCard
-          ref={(el) => {
-            if (el) {
-              // Обновляем refs при каждом рендере
-              projectsRef.current[index] = el;
-              // Добавляем базовый класс для анимации
-              el.classList.add("projects-grid-item");
-              // Если это первый рендер без tag, добавляем класс для анимации
-              if (!tag) {
-                el.classList.add("animate-in");
-              }
-            }
-          }}
           key={item.title}
           custom-cursor="hover"
-          className="w-full"
+          className="w-full projects-grid-card opacity-0"
           data={item}
         />
       ))}

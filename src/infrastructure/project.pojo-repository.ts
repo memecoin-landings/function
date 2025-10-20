@@ -12,9 +12,20 @@ export default class ProjectPojoRepository implements ProjectRepository {
     return ProjectPojoRepository.instance;
   }
 
-  list(tag?: string): Project[] {
-    if (tag === "all") return projects;
-    return projects.filter((project) => !tag || project.tags.includes(tag));
+  list(tag?: string, limit?: number, skip?: number): Project[] {
+    let filtered = tag === "all" || !tag
+      ? projects
+      : projects.filter((project) => project.tags.includes(tag));
+
+    // Apply skip and limit
+    if (skip !== undefined) {
+      filtered = filtered.slice(skip);
+    }
+    if (limit !== undefined) {
+      filtered = filtered.slice(0, limit);
+    }
+
+    return filtered;
   }
 
   getBySlug(slug: string): Project | undefined {

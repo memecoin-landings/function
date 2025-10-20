@@ -11,6 +11,9 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    ignores: ["src/infrastructure/strapi/**"], // Исключаем все файлы в папке strapi
+  },
 ];
 
 export default eslintConfig;

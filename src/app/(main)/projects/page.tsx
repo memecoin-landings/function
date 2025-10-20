@@ -90,8 +90,7 @@ export default function ServicesPage() {
         </div>
       </section>
       <section className="md:px-5 px-2.5 md:mt-22 mt-13.25">
-        {getSelectedTopicTag() && <ProjectsGrid tag={getSelectedTopicTag()!} />}
-        {!getSelectedTopicTag() && <ProjectsGrid />}
+        <ProjectsGrid tag={getSelectedTopicTag()} />
       </section>
     </main>
   );

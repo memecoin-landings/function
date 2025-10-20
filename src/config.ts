@@ -5,12 +5,15 @@ dotenv.config();
 export default function getConfig() {
   return {
     baseUrl: "https://function.com",
+    strapi: {
+      baseUrl: process.env["STRAPI_BASE_URL"] ?? "http://localhost:1337",
+      publicUrl:
+        process.env["PUBLIC_STRAPI_URL"] ??
+        process.env["STRAPI_BASE_URL"] ??
+        "http://localhost:1337",
+      apiToken: process.env["STRAPI_TOKEN"] ?? "",
+    },
     debug: process.env["DEBUG"],
-    dadataToken: process.env["DADATA_TOKEN"] ?? "",
-    dadataRegions: process.env["DADATA_REGIONS"]?.split(",") ?? [
-      "Москва",
-      "Московская",
-    ],
     table: {
       email: process.env["GOOGLE_SPREADSHEET_EMAIL"] ?? "",
       tokenPath: process.env["GOOGLE_SPREADSHEET_API_KEY_PATH"] ?? "",

@@ -1,36 +1,36 @@
-import { StaticImageData } from "next/image";
+import Image from "../image";
 
 export default class Project {
   public title: string;
-  public image: StaticImageData;
-  public description: string;
-  public topics: string[] = [];
+  public image: Image;
+  public body: unknown;
+  public categories: string[] = [];
   public tags: string[] = [];
   public weight: number = 0;
   public slug?: string;
   constructor({
     title,
     image,
-    description,
-    services: topics,
+    body,
+    categories,
     tags,
     weight,
     slug,
   }: {
     title: string;
-    image: StaticImageData;
-    description?: string | undefined;
-    services?: string[] | undefined;
+    image: Image;
+    body?: unknown;
+    categories?: string[] | undefined;
     tags?: string[] | undefined;
-    weight: number;
+    weight?: number;
     slug?: string | undefined;
   }) {
     this.title = title;
-    this.description = description ?? "";
+    this.body = body;
     this.image = image;
     this.tags = tags ?? [];
-    this.weight = weight;
+    this.weight = weight ?? 0;
     this.slug = slug ?? title.toLowerCase().replace(/\s+/g, "-");
-    this.topics = topics ?? [];
+    this.categories = categories ?? [];
   }
 }
