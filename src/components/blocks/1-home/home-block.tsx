@@ -35,7 +35,7 @@ export default function HomeBlock({ className }: { className?: string }) {
     <section
       ref={sectionRef}
       className={cn(
-        "w-full flex flex-col @container fluid-container max-w-screen overflow-hidden",
+        "w-full flex flex-col @container fluid-container max-w-screen overflow-hidden -mt-[1em]",
         className
       )}
     >

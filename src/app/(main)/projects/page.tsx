@@ -63,7 +63,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25.75 xs:pt-15.75 pt-30 w-full md:pb-5 pb-2.5">
+    <main className="md:pt-25 xs:pt-15.75 pt-30 w-full md:pb-5 pb-2.5">
       <section ref={sectionRef} className="fluid-container relative md:pl-5 md:pr-[6.3cqw]">
         <div className="flex flex-col md:flex-row">
           <div

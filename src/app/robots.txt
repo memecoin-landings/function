@@ -1,4 +1,4 @@
 # Allow all crawlers
 User-agent: *
 Allow: /
-Sitemap: https://compass-bus.ru/sitemap.xml
+Sitemap: https://function.goodhumored.ru/sitemap.xml

@@ -4,6 +4,9 @@ import getConfig from "@/config";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/common/theme-context";
 import ToastProvider from "@/components/common/toast-provider";
+import { motion } from "framer-motion";
+import router from "next/dist/client/router";
+import FadeTransitionProvider from "@/components/layout/fade";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
@@ -97,11 +100,13 @@ export default function RootLayout({
         {/* <meta name="yandex-verification" content="44500bcd7d698cec" /> */}
         {/* <noscript><div><img src="https://mc.yandex.ru/watch/103342681" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript> */}
       </head>
-      <body className={`${cera.variable} antialiased`}>
-        <ThemeProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </ThemeProvider>
+      <body className={`${cera.variable} antialiased page-transition`}>
+        <FadeTransitionProvider>
+          <ThemeProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </ThemeProvider>
+        </FadeTransitionProvider>
       </body>
-    </html>
+    </html >
   );
 }

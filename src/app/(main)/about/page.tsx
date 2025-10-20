@@ -19,8 +19,8 @@ export default function AboutPage() {
     formRef.current?.focus();
   };
   return (
-    <main className="flex flex-col items-start ">
-      <StrategicIdentityBlock className="md:mt-25 xs:mt-17.5 mt-32" />
+    <main className="flex flex-col items-start md:pt-25 xs:pt-17.5 pt-32">
+      <StrategicIdentityBlock className="" />
       <FedorAboutBlock className="md:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
       <ClientsBlock className="md:mt-42.5 xs:mt-25 mt-17.5" />
       <ServicesBlock className="md:mt-39 xs:mt-18 mt-10.5" />

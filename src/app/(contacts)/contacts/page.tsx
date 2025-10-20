@@ -15,7 +15,7 @@ import { useState } from "react";
 export default function ContactsPage() {
   const [formViewModel] = useState(() => new FormViewModel());
   return (
-    <main className="bg-[#F0EDE8] pt-[8.063rem] md:pt-[10.375rem]  xl:pt-[12.75rem] pb-12.5 md:pb-15 xl:pb-20">
+    <main className="bg-[#F0EDE8] pt-32 xs:pt-17.5 md:pt-25 pb-12.5 md:pb-15 xl:pb-20">
       <ContactsHeadBlock />
       <WebGLBlurEffect className="md:mt-37 xs:mt-24.5 mt-17.5 md:pb-16 pb-4  bg-[#F0EDE8]">
         <div className="max-xs:px-2.5 font-bold xs:text-[18.23cqw] text-[17.44cqw]  md:text-[18.75cqw] text-[#FF3F1A]  leading-[14.65cqw] xs:leading-[15.36cqw] md:leading-[15.28cqw] tracking-[-3%] capitalize">

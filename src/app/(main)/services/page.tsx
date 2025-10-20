@@ -36,7 +36,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-3.75 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
+    <main className="md:pt-5 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
         <WebGLBlurEffect className="md:pt-20 bg-[#151516] ">
           <div
