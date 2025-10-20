@@ -2,7 +2,7 @@
 import Form from "next/form";
 import formatPhoneNumber from "@/lib/phone-format";
 import { InputField } from "../input-field";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useToast from "../use-toast";
 import submitCommercialOfferAction from "@/server/actions/commercialOfferAction";
 import { FormViewModel } from "@/domain/form-view-model";
@@ -15,12 +15,20 @@ export default function FooterForm({ className }: { className?: string }) {
   const [email, setEmail] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const [sent, setSent] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   // Создаем экземпляр view model
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { showToast } = useToast();
+
+  useEffect(() => {
+    setIsValid(name.trim() !== "" &&
+      phone.trim() !== "" &&
+      email.trim() !== "" &&
+      isValidEmail());
+  }, [name, phone, email]);
 
   // Функция валидации email с использованием встроенной HTML5 валидации
   const isValidEmail = (): boolean => {
@@ -116,7 +124,7 @@ export default function FooterForm({ className }: { className?: string }) {
             />
           </div>
           <div className="flex flex-row space-x-5 md:space-x-7.5 items-center mt-7.5 md:mt-12.5">
-            <button className="text-[#151516] bg-[#F0EDE8] hover:bg-[#FF3F1A] rounded-full px-5 py-0.5 md:px-7.5 md:py-2.5 text-[0.875rem] md:text-[4.7cqw] leading-[2.125rem]  transition-colors duration-150  ">
+            <button disabled={!isValid} className="text-[#151516] disabled:bg-[#727272] bg-[#F0EDE8] not-disabled:hover:bg-[#FF3F1A] rounded-full px-5 py-0.5 md:px-7.5 md:py-2.5 text-[0.875rem] md:text-[4.7cqw] leading-[2.125rem]  transition-colors duration-150  ">
               Send
             </button>
             <p className="text-[#B6BAAF] text-[0.438rem] xs:text-[0.563rem] md:text-[0.875rem] tracking-[-3%] overflow-visible">

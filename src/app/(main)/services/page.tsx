@@ -41,14 +41,16 @@ export default function ServicesPage() {
         <WebGLBlurEffect className="md:pt-20 bg-[#151516] ">
           <div
             ref={headerRef}
-            className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] xs:text-[18.25cqw] md:text-[18.7cqw] text-[17.6cqw] whitespace-nowrap xs:pl-0 pl-2.5"
+            className="text-[#FF3F1A] font-bold md:leading-[15.22cqw] xs:leading-[15.36cqw] leading-[15.37cqw] tracking-[-3%] xs:text-[18.229cqw] md:text-[18.75cqw] text-[18.29cqw] whitespace-nowrap xs:pl-0 pl-2.5"
           >
-            Services —
+            Brand that
+            <br />
+            Works —
           </div>
         </WebGLBlurEffect>
         <ServicesLinks
           ref={paragraphRef}
-          className="-mt-[1.345em] fluid-container leading-[1.15]! "
+          className="md:-mt-[1.224em] -mt-[1.265em] fluid-container leading-[1.15]! "
           showArrowCursor={true}
           focusColor="#F0EDE8"
         />

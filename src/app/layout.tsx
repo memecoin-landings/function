@@ -78,6 +78,18 @@ export default function RootLayout({
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={baseUrl.toString()} key="canonical" />
+        {/* <!-- Hybrid favicon setup: SVG + PNG + ICO with dark-mode support --> */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" media="(prefers-color-scheme: light)" />
+        <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />
+        {/* <!-- Windows --> */}
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+
         {/* <script */}
         {/*   type="text/javascript" */}
         {/*   dangerouslySetInnerHTML={{ __html: yandexMetrika }} */}

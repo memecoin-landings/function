@@ -20,7 +20,7 @@ export function useThemeColors() {
       bgPrimary: "bg-[#F0EDE8]",
       // Цвета для chip компонентов
       chipBg: "bg-[#C8C8C8]",
-      chipText: "text-[#151516]",
+      chipText: "text-[#F0EDE8]",
       chipSelectedBg: "bg-[#151516]",
       chipSelectedText: "text-[#F0EDE8]",
       // Цвета для input полей
@@ -32,7 +32,7 @@ export function useThemeColors() {
       buttonBg: "bg-[#151516]",
       buttonText: "text-[#F0EDE8]",
       buttonDisabledText: "text-[#F0EDE8]",
-      buttonDisabledBg: "bg-[#C8C8C8]",
+      buttonDisabledBg: "hover:!bg-[#C8C8C8] bg-[#C8C8C8]",
       buttonProps: {},
     },
     dark: {
@@ -56,7 +56,7 @@ export function useThemeColors() {
       buttonBg: "bg-[#F0EDE8]",
       buttonText: "text-[#151516]",
       buttonDisabledText: "text-[#F0EDE8]",
-      buttonDisabledBg: "bg-[#727272]",
+      buttonDisabledBg: "hover:!bg-[#727272] bg-[#727272]",
       buttonProps: {},
     },
     orange: {

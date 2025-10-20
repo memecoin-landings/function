@@ -30,7 +30,7 @@ export default function Loader() {
       duration: 1000,
     });
 
-    progressRef.current.animations.value.onRender = () => {
+   progressRef.current.animations.value.onRender = () => {
       const progress = progressRef.current.value();
       const valueSpan = loaderBar.querySelector(".value");
       if (valueSpan) {

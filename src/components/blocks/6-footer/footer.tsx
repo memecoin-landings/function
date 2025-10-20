@@ -52,12 +52,12 @@ export default function Footer({ className }: { className: string }) {
               <FooterForm className="flex flex-row w-[58cqw] max-xs:ml-9.5 xs:w-1/2 xs:max-w-[98cqw] md:w-38cqw md:max-w-[28.313rem] xs:mt-2 md:mt-1" />
             </ThemeProvider>
           </div>
-          <div className="flex flex-row w-full xs:items-center md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
+          <div className="flex flex-row w-full md:items-center items-start md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
             <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-[-3%] ">
               <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 xs:mb-0 whitespace-nowrap tracking-[-3%]">
                 Discover our work on:
               </p>
-              <div className="flex flex-row space-x-2.5 md:space-x-5">
+              <div className="flex flex-row space-x-2.5 md:space-x-5 max-md:mt-2.5">
                 <Link href={Contacts.socialLinks.instagram} target="_blank">
                   <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>

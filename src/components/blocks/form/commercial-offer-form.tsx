@@ -115,7 +115,7 @@ export default function CommercialOfferForm({
   return (
     <div
       className={cn(
-        "flex flex-col xs:flex-row justify-start items-start",
+        "flex flex-col sm:flex-row justify-start items-start",
         className
       )}
     >
@@ -123,22 +123,22 @@ export default function CommercialOfferForm({
       <div className="grow-0 items-start text-[#151516] justify-start">
         <p
           className={cn(
-            "font-cera-pro font-medium md:text-[2.5rem] xs:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] xs:leading-8 leading-7.5 tracking-normal text-nowrap",
+            "font-cera-pro font-medium md:text-[2.5rem] sm:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] sm:leading-8 leading-7.5 tracking-normal text-nowrap",
             colors.textPrimary
           )}
         >
-          Request for <br />a commercial <br className="hidden xs:block" />
+          Request for <br />a commercial <br className="hidden sm:block" />
           offer
         </p>
       </div>
       <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 xs:pt-1.25 pt-7.5">
+        <div className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5">
           <div>
             <h3
               className={cn(
-                "font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] md:mb-5 mb-5 xs:mb-4.5 text-nowrap",
+                "font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] md:mb-5 mb-5 sm:mb-4.5 text-nowrap",
                 colors.textPrimary
               )}
             >
@@ -153,16 +153,15 @@ export default function CommercialOfferForm({
           </div>
 
           <div
-            className={`transition-all duration-500 ease-in-out ${
-              isSecondRowVisible
-                ? "opacity-100 translate-y-0 max-h-96"
-                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-            }`}
+            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
+              ? "opacity-100 translate-y-0 max-h-96"
+              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+              }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
                 className={cn(
-                  "xs:pt-7 pt-7 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] xs:mb-4.5 mb-4.25 text-nowrap",
+                  "sm:pt-7 pt-7 font-cera-pro font-medium text-[1.125rem] md:text-[1.875rem] sm:mb-4.5 mb-4.25 text-nowrap",
                   colors.textPrimary
                 )}
               >
@@ -177,7 +176,7 @@ export default function CommercialOfferForm({
             </div>
           </div>
 
-          <div className="xs:h-10 h-12.5"></div>
+          <div className="sm:h-10 h-12.5"></div>
           <div className="flex flex-row justify-start items-start">
             {/* Spacer between containers */}
             <div>
