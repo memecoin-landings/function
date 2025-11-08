@@ -47,7 +47,7 @@ export default function FedorBlock({ className }: { className?: string }) {
             className="
             w-full absolute top-1/2 left-0 transform -translate-y-1/2 z-20 pr-4
             pointer-events-none @container
-            text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[19cqw] md:text[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap
+            text-[#FF3F1A] font-bold leading-[16cqw] tracking-mid text-[19cqw] md:text[18.7cqw] xl:text-[19.2cqw] whitespace-nowrap
             "
           >
             Fëdor <br />
@@ -72,18 +72,18 @@ export default function FedorBlock({ className }: { className?: string }) {
             </p>
           </div>
           <div className="flex flex-row items-center">
-            <div className="text-[#F0EDE8] text-[0.75rem] tracking-[-3%] md:text-[0.875rem] lg:text-[1.25rem]">
+            <div className="text-[#F0EDE8] text-[0.75rem] tracking-mid md:text-[0.875rem] lg:text-[1.25rem]">
               Get in touch with me through:
             </div>
             <div className="flex flex-row space-x-3.75 ml-3.75 lg:space-x-5 lg:ml-5 *:transition-colors duration-300">
-              <Link target="_blank" href={contacts.socialLinks.whatsapp}>
-                <WhatsappIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
+              <Link target="_blank" href={contacts.socialLinks.whatsapp ?? "/#"}>
+                <WhatsappIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors" />
               </Link>
-              <Link target="_blank" href={contacts.socialLinks.telegram}>
-                <TelegramIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
+              <Link target="_blank" href={contacts.socialLinks.telegram ?? "/#"}>
+                <TelegramIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors" />
               </Link>
-              <Link target="_blank" href={contacts.socialLinks.linkedin}>
-                <LinkedinIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors duration-150 " />
+              <Link target="_blank" href={contacts.socialLinks.linkedin ?? "/#"}>
+                <LinkedinIcon className="fill-[#F0EDE8] hover:fill-[#FF3F1A] w-6.25 lg:w-8.75 transition-colors" />
               </Link>
             </div>
           </div>

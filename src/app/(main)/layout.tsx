@@ -9,6 +9,8 @@ import SmoothScroll from "@/components/common/smooth-scroll";
 import CookieConsent from "@/components/layout/accept-cookies";
 import Loader from "../../components/layout/loader";
 
+// export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
   title: { default: "Function", template: "%s | Function" },

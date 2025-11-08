@@ -79,7 +79,7 @@ export default function ServiceMainBlock({
           </div>
           <p
             ref={paragraphRef}
-            className="md:max-w-[79.5cqw] text-[1.5rem] leading-[2rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
+            className="md:max-w-[79.5cqw] text-[1.5rem] leading-[2rem] tracking-mid md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[clamp(2rem,4.2cqw,2.8125rem)] mb-7.5 font-medium"
           >
             {service.description}
           </p>

@@ -53,7 +53,7 @@ export default function HomeBlock() {
         <div
           id="home-hero"
           ref={headerRef}
-          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap xs:pl-0"
+          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-mid text-[18.7cqw] whitespace-nowrap xs:pl-0"
         >
           Unique
           <br />

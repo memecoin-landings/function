@@ -3,20 +3,17 @@ import { cn } from "@/lib/utils";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 
 interface SubmitFormProps {
-  onSend?: () => void;
+  onClick?: () => void;
   className?: string;
   disabled?: boolean;
 }
 
 export default function SubmitForm({
-  onSend,
+  onClick,
   className,
   disabled = false,
 }: SubmitFormProps) {
   const colors = useThemeColors();
-  const handleClick = () => {
-    if (onSend && !disabled) onSend();
-  };
 
   return (
     <div className={cn("flex flex-row items-center justify-center", className)}>
@@ -35,14 +32,14 @@ export default function SubmitForm({
           disabled ? "cursor-not-allowed" : "",
           className
         )}
-        onClick={handleClick}
-        disabled={disabled}
+        onClick={onClick}
+      // disabled={disabled}
       >
         Send
       </button>
       <p
         className={cn(
-          "ml-5 md:ml-7.5 md:text-sm xs:text-[0.5625rem] text-[0.4375rem] md:leading-5 xs:leading-3.25 leading-2.5 tracking-[-3%]",
+          "ml-5 md:ml-7.5 md:text-sm xs:text-[0.5625rem] text-[0.4375rem] md:leading-5 xs:leading-3.25 leading-2.5 tracking-mid",
           colors.textPrimary
         )}
       >

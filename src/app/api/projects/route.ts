@@ -24,13 +24,9 @@ export async function GET(request: NextRequest) {
         title: project.title,
         slug: project.slug,
         image: {
-          url: project.image.getMedium()?.url ?? project.image.getSource()?.url,
-          width:
-            project.image.getMedium()?.width ??
-            project.image.getSource()?.width,
-          height:
-            project.image.getMedium()?.height ??
-            project.image.getSource()?.height,
+          url: project.image.getSource()?.url,
+          width: project.image.getSource()?.width,
+          height: project.image.getSource()?.height,
         },
         body: project.body,
         categories: project.categories,

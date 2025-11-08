@@ -3,14 +3,13 @@ export default class Contacts {
   public phone: string;
   public address: string;
   public socialLinks: {
-    linkedin?: string;
-    behance?: string;
-    dribbble?: string;
-    whatsapp?: string;
-    telegram?: string;
-    instagram?: string;
+    linkedin: string;
+    behance: string;
+    dribbble: string;
+    whatsapp: string;
+    telegram: string;
+    instagram: string;
   };
-
   constructor({
     email,
     phone,

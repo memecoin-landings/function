@@ -41,7 +41,7 @@ export default function ServicesPage() {
         <WebGLBlurEffect className="md:pt-20 bg-[#151516] ">
           <div
             ref={headerRef}
-            className="text-[#FF3F1A] font-bold md:leading-[15.22cqw] xs:leading-[15.36cqw] leading-[15.37cqw] tracking-[-3%] xs:text-[18.229cqw] md:text-[18.75cqw] text-[18.29cqw] whitespace-nowrap xs:pl-0 pl-2.5"
+            className="text-[#FF3F1A] font-bold md:leading-[15.22cqw] xs:leading-[15.36cqw] leading-[15.37cqw] tracking-mid xs:text-[18.229cqw] md:text-[18.75cqw] text-[18.29cqw] whitespace-nowrap xs:pl-0 pl-2.5"
           >
             Brand that
             <br />

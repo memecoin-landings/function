@@ -1,3 +1,5 @@
+"use client";
+
 import { animate, stagger } from "animejs";
 import { onScroll } from "animejs";
 
@@ -52,11 +54,11 @@ export default function ServiceStepsBlock({
           className="flex flex-col w-full group"
         >
           <div className="flex flex-row space-x-11.5  xs:space-x-0 @container">
-            <div className="text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[1.875rem] md:leading-[100%] md:tracking-[-3%] font-medium text-[#FF3F1A] xs:pr-[5.2cqw]">
+            <div className="text-[1.5rem] leading-[1.875rem] tracking-mid md:text-[1.875rem] md:leading-[100%] md:tracking-mid font-medium text-[#FF3F1A] xs:pr-[5.2cqw]">
               {`0${index + 1}`}
             </div>
             <div className="flex flex-col xs:flex-row md:justify-between w-full">
-              <h4 className="xs:w-[20cqw] text-[1.5rem] leading-[1.875rem] tracking-[-3%] md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[100%] md:tracking-[-3%] font-medium text-[#F0EDE8] mb-5.5 xs:pr-[6.1cqw] ">
+              <h4 className="xs:w-[20cqw] text-[1.5rem] leading-[1.875rem] tracking-mid md:text-[clamp(1.5rem,3.2cqw,1.875rem)] md:leading-[100%] md:tracking-mid font-medium text-[#F0EDE8] mb-5.5 xs:pr-[6.1cqw] ">
                 {step.name?.map((name, index) => (
                   <span key={index} className="lg:whitespace-nowrap">
                     {name}
@@ -66,7 +68,7 @@ export default function ServiceStepsBlock({
                   </span>
                 ))}
               </h4>
-              <div className="xs:ml-[15cqw] md:ml-0 xs:w-[50.2cqw] md:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-[-3%] md:text-[clamp(1rem,2.2cqw,1.375rem)] md:leading-[clamp(1.625rem,3.2cqw,2.1875rem)] text-[#727272]">
+              <div className="xs:ml-[15cqw] md:ml-0 xs:w-[50.2cqw] md:w-[58.2cqw] flex flex-col space-y-0.5 text-[1rem] leading-[1.625rem] tracking-mid md:text-[clamp(1rem,2.2cqw,1.375rem)] md:leading-[clamp(1.625rem,3.2cqw,2.1875rem)] text-[#727272]">
                 <p
                   dangerouslySetInnerHTML={{ __html: step.description ?? "" }}
                   className="text-[#F0EDE8] mb-2.75"

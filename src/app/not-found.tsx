@@ -6,10 +6,10 @@ import CustomCursor from "@/components/custom-cursor";
 import Header from "@/components/layout/header/header";
 import Link from "next/link";
 import WebGLBlurEffect from "../components/blur/webgl-blur-component";
-import Contacts from "../domain/contacts";
+import { useContacts } from "@/hooks/use-contacts";
 
 export default function NotFound() {
-  const contacts = Contacts.default;
+  const contacts = useContacts()
   return (
     <>
       <main className="xs:h-screen h-[100dvh] relative overflow-hidden">
@@ -65,17 +65,17 @@ export default function NotFound() {
       {/* Move footer outside the main content container to the very bottom of the page */}
       <footer className="flex flex-row w-full @container items-center pl-11.25 xs:pl-18.25 md:pl-34.5 pb-12.5 absolute left-0 bottom-0">
         <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center space-x-5 @container pr-[6.3cqw] md:pr-0">
-          <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-[-3%] mb-2.5 xs:mb-0 whitespace-nowrap">
+          <p className="text-[8.6cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,1.7cqw,1.25rem)] tracking-mid mb-2.5 xs:mb-0 whitespace-nowrap">
             Discover our work on:
           </p>
           <div className="flex flex-row space-x-2.5 md:space-x-5">
             <Link target="_blank" href={contacts.socialLinks.instagram}>
               <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link target="_blank" href={contacts.socialLinks.behance}>
+            <Link target="_blank" href={contacts.socialLinks.behance!}>
               <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
-            <Link target="_blank" href={contacts.socialLinks.dribbble}>
+            <Link target="_blank" href={contacts.socialLinks.dribbble!}>
               <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] " />
             </Link>
           </div>

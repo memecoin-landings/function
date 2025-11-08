@@ -2,14 +2,15 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import menuItems from "./menu-items";
 import Link from "next/link";
-import Contacts from "@/domain/contacts";
 import WhatsappCircleIcon from "@/components/common/whatsapp-circle-icon";
 import TelegramCircleIcon from "@/components/common/telegram-circle-icon";
 import BehanceIcon from "@/components/common/behance-icon";
 import InstagramIcon from "@/components/common/instagram-icon";
 import DribbleIcon from "@/components/common/unknown-cw";
+import { useContacts } from "@/hooks/use-contacts";
 
 export default function MobileMenu({ className, openModal, onClose }: { className?: string, openModal: () => void, onClose: () => void }) {
+  const contacts = useContacts();
   return (
     <div className={cn(className, "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
       "pt-[max(10.5vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20",
@@ -25,9 +26,9 @@ export default function MobileMenu({ className, openModal, onClose }: { classNam
           Get Price
         </SideMenuItem>
       </div>
-      <Link target="_blank" href={`mailto:${Contacts.email}`} className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-[-3%]">{Contacts.email}</Link>
+      <Link target="_blank" href={`mailto:${contacts.email}`} className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-mid">{contacts.email}</Link>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
-      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-[-3%]
+      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-mid
         *:hover:fill-[#FF3F1A] *:hover:text-[#FF3F1A] *:flex *:flex-row *:items-center flex-wrap
         pr-5
         ">
@@ -40,7 +41,7 @@ export default function MobileMenu({ className, openModal, onClose }: { classNam
           <p>Telegram</p>
         </div>
       </div>
-      <div className="text-[#727272] mt-8.5 text-sm tracking-[-3%]">Discover our work on:</div>
+      <div className="text-[#727272] mt-8.5 text-sm tracking-mid">Discover our work on:</div>
       <div className="mt-5 flex flex-row *:fill-[#F0EDE8] *:hover:fill-[#FF3F1A] items-center space-x-2.5">
         <InstagramIcon className="w-6.25" />
         <BehanceIcon className="w-6.25" />

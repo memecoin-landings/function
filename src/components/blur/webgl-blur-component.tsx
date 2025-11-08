@@ -66,12 +66,12 @@ function WebGLBlurEffect({
     if (!contentRef.current) return console.error('Content reference is null');
 
     try {
-      console.log('Starting html2canvas capture...');
+      // console.log('Starting html2canvas capture...');
       const glCanvas = canvasRef.current;
       const gl = glRef.current;
 
       if (!gl || !glCanvas) {
-        console.error('WebGL context not ready');
+        // console.error('WebGL context not ready');
         return;
       }
 
@@ -80,7 +80,7 @@ function WebGLBlurEffect({
         return;
       }
       const htmlCanvas = await blockToCanvas(contentRef.current);
-      console.log('html2canvas capture successful:', htmlCanvas.width, 'x', htmlCanvas.height);
+      // console.log('html2canvas capture successful:', htmlCanvas.width, 'x', htmlCanvas.height);
       hideContent();
 
       // Replace with HTML captured content in WebGL

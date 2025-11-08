@@ -26,11 +26,11 @@ export default function Footer({ className }: { className: string }) {
           href={"mailto:" + contacts.email}
           target="_blank"
           // было 7.495cqw, но на хроме из-за этого вылезал, не понятно в чем дело
-          className="mx-auto block text-center text-[#F0EDE8] duration-150 hover:text-[#FF3F1A] whitespace-nowrap md:text-[7cqw] text-[7.32cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid"
+          className="mx-auto block text-center text-[#F0EDE8] duration-150 hover:text-[#FF3F1A] whitespace-nowrap md:text-[7cqw] text-[7.32cqw] tracking-mid underline-offset-[1.9cqw] underline font-medium decoration-solid"
         >
           {contacts.email}
         </Link>
-        <div className="flex flex-row items-center space-x-5 justify-center text-[0.75rem] xs:text-[0.875rem] tracking-[-3%] mt-4.25 xs:mt-7.75 md:mt-12.5 ">
+        <div className="flex flex-row items-center space-x-5 justify-center text-[0.75rem] xs:text-[0.875rem] tracking-mid mt-4.25 xs:mt-7.75 md:mt-12.5 ">
           <div className="text-[3cqw] xs:text-[1.9cqw] md:text-[1.25rem] text-nowrap">
             Contact via Messenger:
           </div>
@@ -54,8 +54,8 @@ export default function Footer({ className }: { className: string }) {
             </ThemeProvider>
           </div>
           <div className="flex flex-row w-full md:items-center items-start md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
-            <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-[-3%] ">
-              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 xs:mb-0 whitespace-nowrap tracking-[-3%]">
+            <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-mid ">
+              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 xs:mb-0 whitespace-nowrap tracking-mid">
                 Discover our work on:
               </p>
               <div className="flex flex-row space-x-2.5 md:space-x-5 max-md:mt-2.5">

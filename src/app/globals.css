@@ -93,6 +93,7 @@
 
   --breakpoint-xs: 26.9375rem;
   --breakpoint-md: 48.0625rem;
+  --tracking-mid: -0.03em;
 
   @keyframes ride {
 

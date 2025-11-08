@@ -35,15 +35,15 @@ export default function HomeBlock({ className }: { className?: string }) {
     <section
       ref={sectionRef}
       className={cn(
-        "w-full flex flex-col @container fluid-container max-w-screen overflow-hidden -mt-[1em]",
+        "w-full flex flex-col @container fluid-container max-w-screen md:-mt-20 overflow-hidden",
         className
       )}
     >
-      <WebGLBlurEffect className="w-full bg-[#151516] pt-[1em]">
+      <WebGLBlurEffect className="w-[calc(100%+5rem)] bg-[#151516] md:pt-20 px-10 -mx-10">
         <div
           id="home-hero"
           ref={headerRef}
-          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-[-3%] text-[18.7cqw] whitespace-nowrap xs:pl-0"
+          className="text-[#FF3F1A] font-bold leading-[16cqw] tracking-mid text-[18.7cqw] whitespace-nowrap xs:pl-0"
         >
           Unique
           <br />

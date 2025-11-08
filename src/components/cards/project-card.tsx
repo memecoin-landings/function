@@ -48,7 +48,7 @@ export default function ProjectCard({
         )}
         {data.subtitle && (
           <p
-            className="text-[#F0EDE8] md:text-[0.875rem] text-[0.625rem] md:pt-2.5 pt-1 tracking-[-3%] whitespace-normal overflow-hidden"
+            className="text-[#F0EDE8] md:text-[0.875rem] text-[0.625rem] md:pt-2.5 pt-1 tracking-mid whitespace-normal overflow-hidden"
           >
             {data.subtitle}
           </p>

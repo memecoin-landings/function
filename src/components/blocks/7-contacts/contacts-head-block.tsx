@@ -15,11 +15,11 @@ export default function ContactsHeadBlock() {
         href={"mailto:" + contacts.email}
         target="_blank"
         // было 7.495cqw, но на хроме из-за этого вылезал, не понятно в чем дело
-        className="mx-auto block duration-150 whitespace-nowrap md:text-[7cqw] text-[7.32cqw] tracking-[-3%] underline-offset-[1.9cqw] underline font-medium decoration-solid text-center  hover:text-[#151516] "
+        className="mx-auto block duration-150 whitespace-nowrap md:text-[7cqw] text-[7.32cqw] tracking-mid underline-offset-[1.9cqw] underline font-medium decoration-solid text-center  hover:text-[#151516] "
       >
         {contacts.email}
       </Link>
-      <div className="flex flex-row items-center space-x-5 justify-center text-[0.75rem] xs:text-[0.875rem] tracking-[-3%] mt-4.25 xs:mt-7.75 md:mt-12.5 ">
+      <div className="flex flex-row items-center space-x-5 justify-center text-[0.75rem] xs:text-[0.875rem] tracking-mid mt-4.25 xs:mt-7.75 md:mt-12.5 ">
         <div className="text-[3cqw] xs:text-[1.9cqw] md:text-[1.25rem] text-nowrap">
           Contact via Messenger:
         </div>

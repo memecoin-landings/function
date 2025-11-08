@@ -10,7 +10,7 @@ export type CommercialOfferFormData = {
   phone: string;
   email: string;
   branding: string | null;
-  services: string[];
+  services: string;
 };
 
 export type CommercialOfferDto = {
@@ -30,6 +30,7 @@ export default async function submitCommercialOfferAction(
 ): Promise<{ success: boolean; message: string }> {
   const dto: CommercialOfferDto = {
     ...formData,
+    services: formData.services ? formData.services.split(",") : [],
     timestamp: new Date(),
   };
 

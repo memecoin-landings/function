@@ -8,6 +8,25 @@ import { animate } from "animejs";
 import { cn } from "@/lib/utils";
 import Image from "../../../domain/image";
 
+//["Corporate identity", "corporate-identity"],
+// ["Product identity", "product-identity"],
+// ["Campaign Identity", "campaign-identity"],
+// ["Personal identity", "personal-identity"],
+const tags: Record<string, string> =
+{
+  "corporate-identity": "Corporate identity",
+  "product-identity": "Product identity",
+  "key-visual": "Key Visual",
+  "brand-guidelines": "Brand Guidelines",
+  "social-media-branding": "Social Media Branding",
+  "naming": "Naming",
+  "logo": "Logo",
+  "campaign-identity": "Campaign Identity",
+  "personal-identity": "Personal identity",
+  "packaging": "Packaging",
+}
+
+
 export default function ProjectsGrid({
   className,
   tag,
@@ -30,12 +49,14 @@ export default function ProjectsGrid({
     const loadProjects = async () => {
       setIsLoading(true);
       try {
+        // console.log("Loading projects with tag:", tag);
         const params = new URLSearchParams();
         if (tag) params.append("tag", tag);
         if (limit !== undefined) params.append("limit", limit.toString());
         if (skip !== undefined) params.append("skip", skip.toString());
 
         const response = await fetch(`/api/projects?${params.toString()}`);
+        // console.log(`/api/projects?${params.toString()}`, "Fetch response:", response);
         if (!response.ok) {
           throw new Error("Failed to fetch projects");
         }
@@ -52,7 +73,8 @@ export default function ProjectsGrid({
         const cardParams = projects.map((project: {
           title: string;
           image: { url: string; width: number; height: number };
-          categories: string[];
+          tags: string[];
+          category: string;
         }) => {
           const image = new Image({
             url: project.image.url,
@@ -64,7 +86,7 @@ export default function ProjectsGrid({
           return new ProjectCardParams(
             image,
             project.title,
-            project.categories.join(", ")
+            project.tags.map(tag => (tags[tag] ?? tag)).join(", ")
           );
         });
 

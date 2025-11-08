@@ -5,6 +5,8 @@ import ServicePojoRepository from "../infrastructure/service.pojo-repository";
 
 const baseUrl = getConfig().baseUrl;
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const repo = ServicePojoRepository.getInstance();
   const services = repo.list();

@@ -4,7 +4,7 @@ const services: Service[] = [
   new Service(
     "Corporate identity",
     "corporate-identity",
-    "Creating a brand identity that reflects the uniqueness of the brand and strengthens its competitive advantages. A complete process — from research and concept development to finalized materials and brand guidelines — aimed at shaping a cohesive and recognizable brand image.",
+    "Creating a brand identity that reflects the uniqueness of the brand and strengthens its competitive advantages. A complete process — from research and concept development to finalized materials and brand guidelines — aimed at shaping a cohesive and recognizable brand image.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -68,7 +68,7 @@ const services: Service[] = [
   new Service(
     "Campaign identity",
     "campaign-identity",
-    "Development of identity systems for international and national forums, events, festivals, exhibitions, promotional and social campaigns, as well as special projects. A complete workflow — from research and concept development to design assets and brand guidelines — aimed at shaping a consistent, recognizable identity and ensuring effective visual communication across the entire campaign.",
+    "Development of identity systems for international and national forums, events, festivals, exhibitions, promotional and social campaigns, as well as special projects. A complete workflow — from research and concept development to design assets and brand guidelines — aimed at shaping a consistent, recognizable identity and ensuring effective visual communication across the entire campaign.",
     [
       {
         name: ["Research", "and Analysis"],
@@ -92,7 +92,7 @@ const services: Service[] = [
       {
         name: ["Brand Guidelines", "and Materials"],
         description:
-          "Creation of a brand guidelines document with recommendations on applying the campaign’s visual identity, along with the systematization of all source materials — including the signature mark, color schemes, typography, graphic elements, photo style, and templates for key deliverables. Preparation of a complete asset package to ensure consistent adaptation of the identity across formats.",
+          "Creation of a brand guidelines document with recommendations on applying the campaign’s visual identity, along with the systematization of all source materials — including the signature mark, color schemes, typography, graphic elements, photo style, and templates for key deliverables. Preparation of a complete asset package to ensure consistent adaptation of the identity across formats.",
         duration: "8+ business days",
       },
     ],
@@ -100,7 +100,7 @@ const services: Service[] = [
   new Service(
     "Personal identity",
     "personal-identity",
-    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
+    "Creation of a unique identity that reflects the individuality, values, and professional strengths of the person. A full cycle of work — from in-depth research of the individual and target audience to the development of visual elements and a brand guideline — aimed at shaping a cohesive, recognizable image and strengthening the personal brand.",
     [
       {
         name: ["In-Depth", "Interview", "and Research"],
@@ -346,7 +346,7 @@ const services: Service[] = [
   new Service(
     "Social Media Branding",
     "social-media-branding",
-    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
+    "Creating a tailored social media identity that reflects your brand’s uniqueness and strengthens its competitive edge in the digital space. A full cycle of work — from developing the visual concept and content system to preparing templates and guidelines — ensures a consistent and recognizable brand presence across social media platforms.",
     [
       {
         name: ["Research", "and Analysis"],

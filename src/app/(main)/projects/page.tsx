@@ -63,14 +63,14 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-25 xs:pt-15.75 pt-30 w-full md:pb-5 pb-2.5">
+    <main className="md:pt-26 xs:pt-15.75 pt-30 w-full md:pb-5 pb-2.5">
       <section ref={sectionRef} className="fluid-container relative md:pl-5 md:pr-[6.3cqw]">
         <div className="flex flex-col md:flex-row">
           <div
             ref={headerRef}
-            className="font-bold md:leading-[9cqw] tracking-[-3%] md:text-[11.8cqw] text-[16.3cqw] leading-[12.3cqw] xs:pl-0 flex-4"
+            className="font-bold md:leading-[9cqw] tracking-mid md:text-[11.8cqw] text-[16.3cqw] leading-[12.3cqw] xs:pl-0 flex-4"
           >
-            OurCreative Approach
+            Our Creative Approach
             <div className="flex flex-row">
               to&nbsp;
               <span className={`inline-block w-[60cqw] overflow-visible z-20`}>

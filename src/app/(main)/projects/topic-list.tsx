@@ -37,7 +37,7 @@ export default function CategorySelector({
 
   return (
     <div ref={sectionRef} className="flex flex-col">
-      <div className="text-[#F0EDE8] font-cera font-normal md:text-[1.5cqw] text-[1rem] md:tracking-[0%] tracking-[-3%]">
+      <div className="text-[#F0EDE8] font-cera font-normal md:text-[1.5cqw] text-[1rem] md:tracking-[0%] tracking-mid">
         Choose a Category
       </div>
       <div className="flex md:flex-col flex-row flex-wrap md:items-start items-center md:gap-y-[1.9cqw] xs:gap-y-1.5 gap-y-2 gap-x-1.25 md:mt-[2cqw] xs:mt-3.5 mt-2.5">
@@ -49,7 +49,7 @@ export default function CategorySelector({
             }}
             onClick={() => onTopicSelect(index)}
             style={{ "--focusColor": "#FF3F1A" } as React.CSSProperties}
-            className="group groupfont-cera font-medium md:text-[2cqw] md:leading-[2.6cqw] xs:leading-7.5 leading-7.25 text-[1.5rem] md:tracking-[0%] tracking-[-3%] inline-block text-left relative transition-colors duration-500"
+            className="group groupfont-cera font-medium md:text-[2cqw] md:leading-[2.6cqw] xs:leading-7.5 leading-7.25 text-[1.5rem] md:tracking-[0%] tracking-mid inline-block text-left relative transition-colors duration-500"
           >
             <span
               className={`inline-block relative

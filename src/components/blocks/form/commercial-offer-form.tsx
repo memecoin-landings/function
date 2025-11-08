@@ -7,7 +7,7 @@ import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 import formatPhoneNumber from "@/lib/phone-format";
-import submitCommercialOfferAction from "@/server/actions/commercialOfferAction";
+import submitCommercialOfferAction, { CommercialOfferFormData } from "@/server/actions/commercialOfferAction";
 import useToast from "@/components/common/use-toast";
 
 export default function CommercialOfferForm({
@@ -18,11 +18,9 @@ export default function CommercialOfferForm({
   onSubmit?: () => void;
   className?: string;
 }) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const colors = useThemeColors();
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Создаем экземпляр view model
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
@@ -31,17 +29,13 @@ export default function CommercialOfferForm({
   const [isAnimating, setIsAnimating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { showToast } = useToast();
-
-  // Функция валидации email с использованием встроенной HTML5 валидации
-  const isValidEmail = (): boolean => {
-    if (!emailRef.current) return false;
-    return emailRef.current.validity.valid;
-  };
-
-  // Обработчик изменения email
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState(false);
+  const [phoneValid, setPhoneValid] = useState(false);
+  const [nameValid, setNameValid] = useState(false);
+  const [invalidSend, setInvalidSend] = useState(false);
 
   const handleBrandingSelect = async (brandingId: string) => {
     if (isAnimating) return;
@@ -67,39 +61,33 @@ export default function CommercialOfferForm({
   };
 
   const handleSubmit = async () => {
-    if (isSubmitting) return;
-
-    if (!email.trim() || !isValidEmail()) {
-      showToast("Пожалуйста, введите корректный email", true);
-      return;
-    }
+    if (isSubmitting || !formRef.current) return;
 
     setIsSubmitting(true);
+    if (!(nameValid && phoneValid && emailValid)) {
+      setInvalidSend(true);
+      showToast(
+        "Пожалуйста, заполните все обязательные поля корректно.",
+        true
+      );
+      setIsSubmitting(false);
+      return;
+    }
+    setInvalidSend(false);
 
     try {
-      const formData = {
-        name: name.trim(),
-        phone: phone.trim(),
-        email: email.trim(),
-        branding: selectedBranding,
-        services: selectedServices,
-      };
-
+      const formData = Object.fromEntries(new FormData(formRef.current).entries()) as unknown as CommercialOfferFormData;
       const result = await submitCommercialOfferAction(formData);
 
+      showToast(result.message, !result.success);
       if (result.success) {
-        showToast(result.message, false);
-
-        // Очищаем форму
+        formRef.current.reset();
         setName("");
         setPhone("");
         setEmail("");
-        viewModel.clearSelection();
         setSelectedBranding(null);
         setSelectedServices([]);
         setIsSecondRowVisible(false);
-      } else {
-        showToast(result.message, true);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -134,7 +122,7 @@ export default function CommercialOfferForm({
       <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <div className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5">
+        <form ref={formRef} className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5" action={() => { }}>
           <div>
             <h3
               className={cn(
@@ -145,6 +133,7 @@ export default function CommercialOfferForm({
               What&apos;s Your Branding?
             </h3>
             <ChipRow
+              name="branding"
               chipOptions={viewModel.brandingOptions}
               selectedIds={selectedBranding ? [selectedBranding] : []}
               onChipClick={handleBrandingSelect}
@@ -168,6 +157,7 @@ export default function CommercialOfferForm({
                 What We Offer
               </h3>
               <ChipRow
+                name="services"
                 chipOptions={viewModel.currentServiceOptions}
                 selectedIds={selectedServices}
                 onChipClick={handleServiceToggle}
@@ -181,25 +171,35 @@ export default function CommercialOfferForm({
             {/* Spacer between containers */}
             <div>
               <InputField
+                name="name"
                 value={name}
                 onChange={setName}
+                onValidChange={setNameValid}
+                showRequiredHint={invalidSend}
                 placeholder="Full Name"
                 className="md:mb-12.5 mb-5.5"
                 required={true}
               />
               <InputField
+                name="phone"
                 value={phone}
                 onChange={setPhone}
                 formatFn={formatPhoneNumber}
+                onValidChange={setPhoneValid}
+                showRequiredHint={invalidSend}
+                pattern="\+[0-9\s]{10,17}"
                 placeholder="Phone"
                 type="tel"
                 className="md:mb-12.5 mb-5.5"
                 required={true}
               />
               <InputField
-                ref={emailRef}
+                name="email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={setEmail}
+                ref={emailRef}
+                onValidChange={setEmailValid}
+                showRequiredHint={invalidSend}
                 placeholder="Email"
                 type="email"
                 className="md:mb-12.5 mb-7.5"
@@ -208,17 +208,13 @@ export default function CommercialOfferForm({
               <SubmitForm
                 className=""
                 disabled={
-                  !email.trim() ||
-                  !isValidEmail() ||
-                  isSubmitting ||
-                  !name.trim() ||
-                  !phone.trim()
+                  !(nameValid && phoneValid && emailValid) || isSubmitting
                 }
-                onSend={handleSubmit}
+                onClick={handleSubmit}
               />
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

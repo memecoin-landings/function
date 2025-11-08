@@ -14,8 +14,11 @@ interface InputFieldProps {
   formatFn?: (value: string) => string;
   value?: string;
   onChange?: (value: string) => void;
+  onValidChange?: (isValid: boolean) => void;
   type?: "text" | "email" | "tel" | "password";
   className?: string;
+  pattern?: string;
+  showRequiredHint: boolean;
 }
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -26,7 +29,10 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       hint,
       formatFn,
       required = false,
+      pattern,
+      onValidChange,
       placeholder,
+      showRequiredHint = true,
       value,
       onChange,
       type = "text",
@@ -52,6 +58,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       let newValue = e.target.value;
       if (formatFn) newValue = formatFn(newValue);
       setInternalValue(newValue);
+      onValidChange?.(e.target.validity.valid);
       onChange?.(newValue);
     };
 
@@ -73,14 +80,15 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             name={name}
             ref={ref}
             type={type}
+            pattern={pattern}
             value={internalValue}
             onChange={handleChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
             className={cn(
-              "md:px-5 xs:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-[-3%]",
-              "focus:outline-none transition-colors duration-150 w-full bg-transparent border-0 border-b-1",
+              "md:px-5 xs:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-mid",
+              "focus:outline-none transition-colors duration-150 w-full bg-transparent border-0 border-b-1 peer",
               colors.inputText,
               colors.inputPlaceholder,
               isFocused || hasValue
@@ -89,12 +97,11 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             )}
             required={required}
           />
-
-          {required && !hasValue && (
-            <span className="absolute right-0 bottom-3.5 tracking-[-3%] md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 md:pr-5 xs:pr-3.75 pr-2.5">
-              ! Required field
-            </span>
-          )}
+          <span className={cn(
+            showRequiredHint ? "peer-invalid:opacity-100! peer-focus:opacity-0! opacity-0" : "opacity-0",
+            "transition-opacity! duration-400! absolute right-0 bottom-3.5 tracking-mid md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 md:pr-5 xs:pr-3.75 pr-2.5")}>
+            ! Required field
+          </span>
         </div>
 
         {hint && (

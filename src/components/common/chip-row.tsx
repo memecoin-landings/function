@@ -6,12 +6,14 @@ import { ChipOption } from "@/domain/form-view-model.interface";
 
 export default function ChipRow({
   className,
+  name,
   chipOptions,
   selectedIds,
   onChipClick,
   singleSelection = false,
 }: {
   className?: string;
+  name: string;
   chipOptions: ChipOption[];
   selectedIds: string[];
   onChipClick: (id: string) => void;
@@ -29,6 +31,7 @@ export default function ChipRow({
 
   return (
     <div className={cn("flex flex-wrap gap-5", className)}>
+      <input type="hidden" name={name} value={selectedIds.join(",")} />
       {chipOptions.map((option) => (
         <Chip
           key={option.id}

@@ -34,12 +34,12 @@ export default class LeadTable {
       key: data.private_key.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-    console.log("connecting");
+    // console.log("connecting");
     this._doc = new GoogleSpreadsheet(getConfig().table.id, jwt);
     const loadPromise = this._doc.loadInfo(true);
-    loadPromise.then(() => {
-      console.log("connected");
-    });
+    // loadPromise.then(() => {
+    //   console.log("connected");
+    // });
     this._commercialOfferSheet = loadPromise.then(() => this._doc.sheetsByIndex[0]!);
   }
 

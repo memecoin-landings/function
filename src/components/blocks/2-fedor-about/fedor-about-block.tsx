@@ -47,7 +47,7 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
 
           {/* Overlaid title */}
           <h1
-            className="text-[#F0EDE8] font-cera font-bold md:text-[11.1cqw] xs:text-[11.5cqw] text-[10.5cqw] md:leading-[9.03cqw] leading-none tracking-[-3%] md:mt-[-0.72em] xs:mt-[-0.82em] mt-[-0.81em] md:ml-0 xs:ml-2.5 ml-2.5 xs:mr-0 md:mr-19.75 mr-5.25 relative z-10 text-left"
+            className="text-[#F0EDE8] font-cera font-bold md:text-[11.1cqw] xs:text-[11.5cqw] text-[10.5cqw] md:leading-[9.03cqw] leading-none tracking-mid md:mt-[-0.72em] xs:mt-[-0.82em] mt-[-0.81em] md:ml-0 xs:ml-2.5 ml-2.5 xs:mr-0 md:mr-19.75 mr-5.25 relative z-10 text-left"
           > Behind the&nbsp;Studio
           </h1>
         </div>
@@ -67,7 +67,7 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
           {/* CTA Links */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5 text-[#F0EDE8] decoration-[#F0EDE8] hover:decoration-[#FF3F1A] md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] "
+            className="md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5 text-[#F0EDE8] decoration-[#F0EDE8] *:hover:decoration-[#FF3F1A] md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] "
           >
             <button
               onClick={openModal}

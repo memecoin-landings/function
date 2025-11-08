@@ -1,28 +1,33 @@
-"use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProjectsBlock from "@/components/blocks/2-projects/projects-block";
 import ServicesBlock from "@/components/blocks/3-services/services-block";
 import ServiceMainBlock from "@/components/blocks/service/1-main/service-main-block";
 import ServiceStepsBlock from "@/components/blocks/service/2-steps/service-steps-block";
 import ServicePojoRepository from "@/infrastructure/service.pojo-repository";
-import { redirect, useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 
-export default function ServicePage() {
-  const { slug } = useParams();
+export const dynamic = "force-static";
+
+interface ServicePageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ServicePage({ params }: ServicePageProps) {
+  const { slug } = await params
   const service = ServicePojoRepository.getInstance()
     .list()
     .find((service) => service.slug === slug);
   if (!service) {
-    redirect("/not-found")
+    notFound(); // стандартный вызов Next.js для 404
   }
   return (
     <main className="flex flex-col items-center xs:items-start md:pt-25 xs:pt-17.5 pt-32 md:pb-50 xs:pb-25 pb-17.5 w-full">
       <ServiceMainBlock
         className="md:px-[9.6cqw]"
-        service={service}
+        service={{ ...service } as any}
       />
       <ServiceStepsBlock
-        service={service}
+        service={{ ...service } as any}
         className="md:mt-37.5 xs:mt-25 mt-17.5 md:px-[9.6cqw]"
       />
       <ProjectsBlock

@@ -5,6 +5,8 @@ import CookieConsent from "@/components/layout/accept-cookies";
 import Header from "@/components/layout/header/header";
 import Loader from "@/components/layout/loader";
 
+// export const dynamic = "force-dynamic";
+
 export default function ContactsLayout({
   children,
 }: Readonly<{
