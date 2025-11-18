@@ -62,12 +62,27 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       onChange?.(newValue);
     };
 
+    const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+      const target = e.currentTarget;
+      let newValue = target.value;
+      if (formatFn) newValue = formatFn(newValue);
+      setInternalValue(newValue);
+      onValidChange?.(target.validity.valid);
+      onChange?.(newValue);
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(false);
+      const target = e.currentTarget;
+      onValidChange?.(target.validity.valid);
+    };
+
     return (
       <>
         {label && (
           <label
             className={cn(
-              "block text-sm font-medium mb-1",
+              "block text-[1rem] font-medium mb-1",
               colors.textSecondary
             )}
           >
@@ -83,11 +98,12 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             pattern={pattern}
             value={internalValue}
             onChange={handleChange}
+            onInput={handleInput}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            onBlur={handleBlur}
             placeholder={placeholder}
             className={cn(
-              "md:px-5 xs:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[0.875rem] tracking-mid",
+              "md:px-5 xs:px-3.75 px-2.5 py-1.75 md:text-[1.57rem] xs:text-[1.0625rem] text-[1rem] tracking-mid",
               "focus:outline-none transition-colors duration-150 w-full bg-transparent border-0 border-b-1 peer",
               colors.inputText,
               colors.inputPlaceholder,
@@ -97,9 +113,14 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             )}
             required={required}
           />
-          <span className={cn(
-            showRequiredHint ? "peer-invalid:opacity-100! peer-focus:opacity-0! opacity-0" : "opacity-0",
-            "transition-opacity! duration-400! absolute right-0 bottom-3.5 tracking-mid md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 md:pr-5 xs:pr-3.75 pr-2.5")}>
+          <span
+            className={cn(
+              showRequiredHint
+                ? "peer-invalid:opacity-100! peer-focus:opacity-0! opacity-0"
+                : "opacity-0",
+              "transition-opacity! duration-400! absolute right-0 bottom-3.5 tracking-mid md:text-[0.875rem] xs:text-[0.5625rem] text-[0.4375rem] text-red-500 md:pr-5 xs:pr-3.75 pr-2.5"
+            )}
+          >
             ! Required field
           </span>
         </div>
