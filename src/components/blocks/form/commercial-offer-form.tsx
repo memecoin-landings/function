@@ -2,12 +2,14 @@
 import { cn } from "@/lib/utils";
 import ChipRow from "@/components/common/chip-row";
 import { InputField } from "@/components/common/input-field";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 import formatPhoneNumber from "@/lib/phone-format";
-import submitCommercialOfferAction, { CommercialOfferFormData } from "@/server/actions/commercialOfferAction";
+import submitCommercialOfferAction, {
+  CommercialOfferFormData,
+} from "@/server/actions/commercialOfferAction";
 import useToast from "@/components/common/use-toast";
 
 export default function CommercialOfferForm({
@@ -36,6 +38,34 @@ export default function CommercialOfferForm({
   const [phoneValid, setPhoneValid] = useState(false);
   const [nameValid, setNameValid] = useState(false);
   const [invalidSend, setInvalidSend] = useState(false);
+
+  // Простая проверка валидности при автозаполнении
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+
+    const checkValidity = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (!target || target.tagName !== "INPUT") return;
+
+      const isValid = target.validity.valid && target.value.trim().length > 0;
+
+      if (target.name === "name") {
+        setNameValid(isValid);
+      } else if (target.name === "phone") {
+        setPhoneValid(isValid);
+      } else if (target.name === "email") {
+        setEmailValid(isValid);
+      }
+    };
+
+    // Событие animationstart срабатывает при автозаполнении в Chrome
+    form.addEventListener("animationstart", checkValidity, true);
+
+    return () => {
+      form.removeEventListener("animationstart", checkValidity, true);
+    };
+  }, []);
 
   const handleBrandingSelect = async (brandingId: string) => {
     if (isAnimating) return;
@@ -66,17 +96,16 @@ export default function CommercialOfferForm({
     setIsSubmitting(true);
     if (!(nameValid && phoneValid && emailValid)) {
       setInvalidSend(true);
-      showToast(
-        "Пожалуйста, заполните все обязательные поля корректно.",
-        true
-      );
+      showToast("Пожалуйста, заполните все обязательные поля корректно.", true);
       setIsSubmitting(false);
       return;
     }
     setInvalidSend(false);
 
     try {
-      const formData = Object.fromEntries(new FormData(formRef.current).entries()) as unknown as CommercialOfferFormData;
+      const formData = Object.fromEntries(
+        new FormData(formRef.current).entries()
+      ) as unknown as CommercialOfferFormData;
       const result = await submitCommercialOfferAction(formData);
 
       showToast(result.message, !result.success);
@@ -122,7 +151,11 @@ export default function CommercialOfferForm({
       <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <form ref={formRef} className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5" action={() => { }}>
+        <form
+          ref={formRef}
+          className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5"
+          action={() => {}}
+        >
           <div>
             <h3
               className={cn(
@@ -142,10 +175,11 @@ export default function CommercialOfferForm({
           </div>
 
           <div
-            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
-              ? "opacity-100 translate-y-0 max-h-96"
-              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-              }`}
+            className={`transition-all duration-500 ease-in-out ${
+              isSecondRowVisible
+                ? "opacity-100 translate-y-0 max-h-96"
+                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+            }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
@@ -167,7 +201,7 @@ export default function CommercialOfferForm({
           </div>
 
           <div className="sm:h-10 h-12.5"></div>
-          <div className="flex flex-row justify-start items-start">
+          <div className="flex flex-col justify-start items-stretch">
             {/* Spacer between containers */}
             <div>
               <InputField
