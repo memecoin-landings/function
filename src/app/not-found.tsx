@@ -16,13 +16,13 @@ export default function NotFound() {
         <Header className="pt-5 xs:pt-7" />
         <CustomCursor />
         {/* Container for the entire 404 design */}
-        <div className="w-full mt-5 xs:mt-0 h-full flex flex-col items-center justify-center pointer-events-none">
+        <div className="w-full mt-5 xs:mt-0 h-full flex flex-col xs:items-center justify-center pointer-events-none">
 
           {/* Mobile: Vertical layout, Desktop: Overlaid content */}
-          <div className="flex lg:mb-30 xs:mb-47.5 flex-col xs:relative xs:w-full xs:max-w-[115vw] xs:flex items-center justify-center">
+          <div className="flex lg:mb-30 xs:mb-47.5 flex-col xs:relative xs:w-full xs:max-w-[115vw] xs:flex xs:items-center justify-center">
 
             {/* Humorous messages - Mobile: Centered with 45px margins, Desktop: Overlaid on top left */}
-            <div className="px-11.5 lg:px-0 mb-7.5 max-w-[78%] xs:mb-0 xs:absolute xs:z-20 xs:ml-0 xs:mr-15 lg:ml-12 lg:pr-80 xs:pb-24 lg:pb-39 xs:pl-0 lg:pl-0  xs:max-w-[80%]">
+            <div className="px-11.5 lg:px-0 mb-7.5 max-w-[90%] xs:mb-0 xs:absolute xs:z-20 xs:ml-0 xs:mr-15 lg:ml-12 lg:pr-80 xs:pb-24 lg:pb-39 xs:pl-0 lg:pl-0  xs:max-w-[80%]">
               <p className="text-[#F0EDE8] text-left text-[1.5625rem] leading-[1.75rem] lg:text-[3.375rem] lg:leading-[4.125rem] xs:text-[2.25rem] xs:leading-[2.75rem] font-medium font-cera-pro">
                 Well, isn&apos;t this just f*ing great? <br className="hidden xs:block" />
                 How did you even get here?
