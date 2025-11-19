@@ -5,7 +5,7 @@ import fedorImage from "../../../../public/ava_1.jpg";
 import TelegramIcon from "@/components/common/icons/telegram-icon";
 import WhatsappIcon from "@/components/common/icons/whatsapp-icon";
 import LinkedinIcon from "@/components/common/icons/linkedin-icon";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, onScroll, stagger } from "animejs";
 import pushIfNotNull from "@/lib/push-if-not-null";
 import Link from "next/link";
@@ -15,6 +15,7 @@ export default function FedorBlock({ className }: { className?: string }) {
   const contacts = useContacts();
   const elementsRef = useRef<HTMLElement[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
+  const [isImageTouched, setIsImageTouched] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -57,8 +58,10 @@ export default function FedorBlock({ className }: { className?: string }) {
             ref={pushIfNotNull(elementsRef.current)}
             src={fedorImage}
             alt="Fedor Beltugov"
-            className="object-cover object-center w-[38cqw] rounded-[0.313rem] grayscale hover:grayscale-0 transition-[filter] duration-350 ease-in"
+            className={`object-cover object-center w-[38cqw] rounded-[0.313rem] ${isImageTouched ? 'grayscale-0' : 'grayscale'} hover:grayscale-0 transition-[filter] duration-350 ease-in`}
             layout="cover"
+            onTouchStart={() => setIsImageTouched(!isImageTouched)}
+            onTouchEnd={() => {}}
           />
         </div>
         <div className="text-[#F0EDE8] px-[10cqw] xl:px-[8.2cqw]">
