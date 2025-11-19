@@ -70,7 +70,7 @@ export default function FooterForm({ className }: { className?: string }) {
   return (
     <div className={`${className} w-full @container`}>
       {!sent ?
-        (<Form ref={formRef} action={() => { }} >
+        (<Form noValidate ref={formRef} action={() => { }} >
           <div className="xs:pr-[20%] md:pr-0 pr-0">
             {/* Name */}
             <InputField

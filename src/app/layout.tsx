@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     title: "Function Design Studio — Strategic Brand Identity",
     description: "Creating functional, strategic brand identities that blend analytics, aesthetics, and precision — solving real business challenges and driving brand growth.",
     url: getConfig().baseUrl,
-    images: "/OpenGraph.jpg",
+    images: "/opengraph-image.jpg",
     siteName: "FunctionStudio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Function Design Studio — Strategic Brand Identity",
     description: "Creating functional, strategic brand identities that blend analytics, aesthetics, and precision — solving real business challenges and driving brand growth.",
-    images: "/OpenGraph.jpg",
+    images: "/twitter-image.jpg",
   },
   alternates: {
     canonical: new URL(getConfig().baseUrl),

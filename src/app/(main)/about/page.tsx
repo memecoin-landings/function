@@ -27,7 +27,7 @@ export default function AboutPage() {
 
       <button
         onClick={openModal}
-        className="md:px-5 xs:px-2.5 w-fit md:mb-50 xs:mb-25 md:mt-12.5 xs:mt-7.5 mt-5 mb-17.5 items-left"
+        className="md:px-5 px-2.5 w-fit md:mb-50 xs:mb-25 md:mt-12.5 xs:mt-12 mt-5 mb-17.5 items-left"
       >
         <span className="text-[#F0EDE8] hover:text-[#FF3F1A] underline decoration-[#F0EDE8] hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 md:text-[3.675cqw] text-[4.6875cqw] font-medium leading-[6vw] xs:leading-[3.875cqw]">
           Let&apos;s Build Your Brand

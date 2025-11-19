@@ -67,7 +67,7 @@ export default function CommercialOfferForm({
     if (!(nameValid && phoneValid && emailValid)) {
       setInvalidSend(true);
       showToast(
-        "Пожалуйста, заполните все обязательные поля корректно.",
+        "Some fields are missing or invalid. Please check and try again.",
         true
       );
       setIsSubmitting(false);
@@ -92,7 +92,7 @@ export default function CommercialOfferForm({
     } catch (error) {
       console.error("Error submitting form:", error);
       showToast(
-        "Произошла ошибка при отправке формы. Попробуйте еще раз.",
+        "Failed to submit the form. Please try again later.",
         true
       );
     } finally {
@@ -122,7 +122,7 @@ export default function CommercialOfferForm({
       <div className="w-7.5 shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
-        <form ref={formRef} className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5" action={() => { }}>
+        <form noValidate ref={formRef} className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5" action={() => { }}>
           <div>
             <h3
               className={cn(
