@@ -16,7 +16,7 @@ export default function SubmitForm({
   const colors = useThemeColors();
 
   return (
-    <div className={cn("flex flex-row items-center justify-center", className)}>
+    <div className={cn("flex flex-row items-center justify-start", className)}>
       <button
         {...colors.buttonProps}
         className={cn(
@@ -33,7 +33,7 @@ export default function SubmitForm({
           className
         )}
         onClick={onClick}
-      // disabled={disabled}
+        // disabled={disabled}
       >
         Send
       </button>
@@ -43,8 +43,20 @@ export default function SubmitForm({
           colors.textPrimary
         )}
       >
-        By clicking on the «Send» button, I consent to the processing
-        of personal data{" "}
+        {/* Версия для маленьких экранов (< 430px) - 3 строки */}
+        <span className="block xs:hidden">
+          By clicking on the «Send» button,
+          <br />
+          I consent to the processing
+          <br />
+          of personal data
+        </span>
+        {/* Версия для больших экранов (>= 430px) - 2 строки */}
+        <span className="hidden xs:block">
+          By clicking on the «Send» button, I consent
+          <br />
+          to the processing of personal data
+        </span>
       </p>
     </div>
   );

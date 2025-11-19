@@ -49,14 +49,15 @@ export default function CategorySelector({
             }}
             onClick={() => onTopicSelect(index)}
             style={{ "--focusColor": "#FF3F1A" } as React.CSSProperties}
-            className="group groupfont-cera font-medium md:text-[2cqw] md:leading-[2.6cqw] xs:leading-7.5 leading-7.25 text-[1.5rem] md:tracking-[0%] tracking-mid inline-block text-left relative transition-colors duration-500"
+            className="group groupfont-cera font-medium md:text-[2cqw] md:leading-[2.6cqw] xs:leading-7.5 leading-[0.083cqw] text-[0.05cqw] md:tracking-[0%] tracking-mid inline-block text-left relative transition-colors duration-500"
           >
             <span
               className={`inline-block relative
                 after:[content:''] after:scale-x-0 after:w-full after:h-[0.075em] after:bg-[var(--focusColor)] after:transition-transform after:duration-750 after:origin-left after:absolute after:bottom-0 after:left-0 ease-in-out
-                ${index === selectedTopic
-                  ? "text-[#FF3F1A] after:scale-x-100"
-                  : "hover:text-[var(--focusColor)] hover:after:scale-x-100"
+                ${
+                  index === selectedTopic
+                    ? "text-[#FF3F1A] after:scale-x-100"
+                    : "hover:text-[var(--focusColor)] hover:after:scale-x-100"
                 }
               `}
             >

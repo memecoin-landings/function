@@ -18,9 +18,7 @@ export default function ServicesPage() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const elements = [paragraphRef.current].filter(
-      (el) => el !== null
-    );
+    const elements = [paragraphRef.current].filter((el) => el !== null);
 
     animate(elements, {
       opacity: [0, 1],
@@ -58,9 +56,12 @@ export default function ServicesPage() {
           focusColor="#F0EDE8"
         />
       </section>
-      <section className="pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw] md:mt-37 xs:mt-24.5 mt-17.5">
+      <section className="md:px-8 xs:px-4 px-3 mx-auto md:mt-37 xs:mt-24.5 mt-17.5">
         <ThemeProvider theme="dark">
-          <CommercialOfferForm viewModel={formViewModel} />
+          <CommercialOfferForm
+            className="md:px-[4cqw] xs:px-[3cqw] px-[2cqw]"
+            viewModel={formViewModel}
+          />
         </ThemeProvider>
       </section>
     </main>
