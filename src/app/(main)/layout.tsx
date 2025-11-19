@@ -13,18 +13,23 @@ import Loader from "../../components/layout/loader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getConfig().baseUrl),
-  title: { default: "Function", template: "%s | Function" },
-  description:
-    "Дизайн Function. Фёдор Бельтюгов.",
+  title: "Function Design Studio — Strategic Brand Identity",
+  description: "Creating functional, strategic brand identities that blend analytics, aesthetics, and precision — solving real business challenges and driving brand growth.",
   keywords: ["дизайн", "фёдор", "белтюгов", "function"],
   openGraph: {
     type: "website",
     countryName: "Russia",
-    title: "Function",
-    description:
-      "Дизайн Function. Фёдор Бельтюгов.",
+    title: "Function Design Studio — Strategic Brand Identity",
+    description: "Creating functional, strategic brand identities that blend analytics, aesthetics, and precision — solving real business challenges and driving brand growth.",
     url: getConfig().baseUrl,
-    images: "/og.jpg",
+    images: "/opengraph-image.jpg",
+    siteName: "FunctionStudio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Function Design Studio — Strategic Brand Identity",
+    description: "Creating functional, strategic brand identities that blend analytics, aesthetics, and precision — solving real business challenges and driving brand growth.",
+    images: "/twitter-image.jpg",
   },
   alternates: {
     canonical: new URL(getConfig().baseUrl),

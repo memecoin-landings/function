@@ -28,24 +28,24 @@ export default function MobileMenu({ className, openModal, onClose }: { classNam
       </div>
       <Link target="_blank" href={`mailto:${contacts.email}`} className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-mid">{contacts.email}</Link>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
-      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-mid
+      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] text-[#F0EDE8] items-center text-sm gap-5 tracking-mid
         *:hover:fill-[#FF3F1A] *:hover:text-[#FF3F1A] *:flex *:flex-row *:items-center flex-wrap
         pr-5
         ">
-        <div>
+        <Link href={contacts.socialLinks.whatsapp ?? "#"} target="_blank">
           <WhatsappCircleIcon className="w-6.25 mr-2.5" />
           <p>WhatsApp</p>
-        </div>
-        <div>
+        </Link>
+        <Link href={contacts.socialLinks.telegram ?? "#"} target="_blank">
           <TelegramCircleIcon className="w-6.25 mr-2.5" />
           <p>Telegram</p>
-        </div>
+        </Link>
       </div>
       <div className="text-[#727272] mt-8.5 text-sm tracking-mid">Discover our work on:</div>
       <div className="mt-5 flex flex-row *:fill-[#F0EDE8] *:hover:fill-[#FF3F1A] items-center space-x-2.5">
-        <InstagramIcon className="w-6.25" />
-        <BehanceIcon className="w-6.25" />
-        <DribbleIcon className="w-6.25" />
+        <Link href={contacts.socialLinks.whatsapp ?? "#"} target="_blank"><InstagramIcon className="w-6.25" /></Link>
+        <Link href={contacts.socialLinks.behance ?? "#"} target="_blank"><BehanceIcon className="w-6.25" /></Link>
+        <Link href={contacts.socialLinks.dribbble ?? "#"} target="_blank"><DribbleIcon className="w-6.25" /></Link>
       </div>
     </div>
   )
