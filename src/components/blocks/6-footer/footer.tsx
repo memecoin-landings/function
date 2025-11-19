@@ -34,11 +34,19 @@ export default function Footer({ className }: { className: string }) {
           <div className="text-[3cqw] xs:text-[1.9cqw] md:text-[1.25rem] text-nowrap">
             Contact via Messenger:
           </div>
-          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5" href={contacts.socialLinks.whatsapp ?? "#"} target="_blank">
+          <Link
+            className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
+            href={contacts.socialLinks.whatsapp ?? "#"}
+            target="_blank"
+          >
             <WhatsappCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
             WhatsApp
           </Link>
-          <Link className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5" href={contacts.socialLinks.telegram ?? "#"} target="_blank">
+          <Link
+            className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A] md:text-[1.25rem] items-center space-x-2.5"
+            href={contacts.socialLinks.telegram ?? "#"}
+            target="_blank"
+          >
             <TelegramCircleIcon className="overflow-visible w-6.25 h-6.25 md:w-8.75 md:h-8.75 mr-2.5" />
             Telegram
           </Link>
@@ -46,7 +54,9 @@ export default function Footer({ className }: { className: string }) {
         <div className="flex flex-col px-8.75 xs:px-16 md:px-[8.5cqw] xs:mt-15 mt-12.25 md:mt-25 ">
           <div className="flex flex-row w-full">
             <p className="w-[42.2cqw] text-[1.563rem] font-medium leading-[1.938rem] xs:text-[4.8cqw] xs:leading-[6.1cqw] md:text-[3.8cqw] md:leading-[4.7cqw]">
-              Order<br />a&nbsp;service
+              Order
+              <br />
+              a&nbsp;service
             </p>
 
             <ThemeProvider theme="dark">
@@ -55,17 +65,26 @@ export default function Footer({ className }: { className: string }) {
           </div>
           <div className="flex flex-row w-full md:items-center items-start md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
             <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-mid ">
-              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 xs:mb-0 whitespace-nowrap tracking-mid">
+              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 md:mb-2.5 whitespace-nowrap tracking-mid">
                 Discover our work on:
               </p>
-              <div className="flex flex-row space-x-2.5 md:space-x-5 max-md:mt-2.5">
-                <Link href={contacts.socialLinks.instagram ?? "#"} target="_blank">
+              <div className="flex flex-row space-x-2.5 sm:space-x-5 ">
+                <Link
+                  href={contacts.socialLinks.instagram ?? "#"}
+                  target="_blank"
+                >
                   <InstagramIcon className="w-6.25 md:w-8.75 md:h-8.75 fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={contacts.socialLinks.behance ?? "#"} target="_blank">
+                <Link
+                  href={contacts.socialLinks.behance ?? "#"}
+                  target="_blank"
+                >
                   <BehanceIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
-                <Link href={contacts.socialLinks.dribbble ?? "#"} target="_blank">
+                <Link
+                  href={contacts.socialLinks.dribbble ?? "#"}
+                  target="_blank"
+                >
                   <DribbleIcon className="w-6.25 md:w-8.75 md:h-8.75  fill-[#F0EDE8] hover:fill-[#FF3F1A] transition-colors duration-150 " />
                 </Link>
               </div>

@@ -9,12 +9,23 @@ import InstagramIcon from "@/components/common/instagram-icon";
 import DribbleIcon from "@/components/common/unknown-cw";
 import { useContacts } from "@/hooks/use-contacts";
 
-export default function MobileMenu({ className, openModal, onClose }: { className?: string, openModal: () => void, onClose: () => void }) {
+export default function MobileMenu({
+  className,
+  openModal,
+  onClose,
+}: {
+  className?: string;
+  openModal: () => void;
+  onClose: () => void;
+}) {
   const contacts = useContacts();
   return (
-    <div className={cn(className, "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
-      "pt-[max(10.5vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20",
-    )}
+    <div
+      className={cn(
+        className,
+        "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
+        "pt-[max(10.5vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20"
+      )}
     >
       <div className="flex flex-col items-start space-y-2.75">
         {menuItems.map((item) => (
@@ -22,39 +33,61 @@ export default function MobileMenu({ className, openModal, onClose }: { classNam
             {item.label}
           </SideMenuItem>
         ))}
-        <SideMenuItem onClick={openModal}>
-          Get Price
-        </SideMenuItem>
+        <SideMenuItem onClick={openModal}>Get Price</SideMenuItem>
       </div>
-      <Link target="_blank" href={`mailto:${contacts.email}`} className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-mid">{contacts.email}</Link>
+      <Link
+        target="_blank"
+        href={`mailto:${contacts.email}`}
+        className="mt-18.75 text-[#F0EDE8] underline text-sm tracking-mid"
+      >
+        {contacts.email}
+      </Link>
       <div className="text-[#727272] mt-10 text-sm">Contact via Messenger:</div>
-      <div className="mt-3 flex flex-row font-medium fill-[#F0EDE8] text-[#F0EDE8] items-center text-sm gap-5 tracking-mid
+      <div
+        className="mt-3 flex flex-row font-medium fill-[#F0EDE8] items-center text-sm gap-5 tracking-mid
         *:hover:fill-[#FF3F1A] *:hover:text-[#FF3F1A] *:flex *:flex-row *:items-center flex-wrap
         pr-5
-        ">
-        <Link href={contacts.socialLinks.whatsapp ?? "#"} target="_blank">
+        "
+      >
+        <Link
+          className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
+          href={contacts.socialLinks.whatsapp ?? "#"}
+          target="_blank"
+        >
           <WhatsappCircleIcon className="w-6.25 mr-2.5" />
           <p>WhatsApp</p>
         </Link>
-        <Link href={contacts.socialLinks.telegram ?? "#"} target="_blank">
+        <Link
+          className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
+          href={contacts.socialLinks.whatsapp ?? "#"}
+          target="_blank"
+        >
           <TelegramCircleIcon className="w-6.25 mr-2.5" />
           <p>Telegram</p>
         </Link>
       </div>
-      <div className="text-[#727272] mt-8.5 text-sm tracking-mid">Discover our work on:</div>
+      <div className="text-[#727272] mt-8.5 text-sm tracking-mid">
+        Discover our work on:
+      </div>
       <div className="mt-5 flex flex-row *:fill-[#F0EDE8] *:hover:fill-[#FF3F1A] items-center space-x-2.5">
-        <Link href={contacts.socialLinks.whatsapp ?? "#"} target="_blank"><InstagramIcon className="w-6.25" /></Link>
-        <Link href={contacts.socialLinks.behance ?? "#"} target="_blank"><BehanceIcon className="w-6.25" /></Link>
-        <Link href={contacts.socialLinks.dribbble ?? "#"} target="_blank"><DribbleIcon className="w-6.25" /></Link>
+        <Link href={contacts.socialLinks.instagram ?? "#"} target="_blank">
+          <InstagramIcon className="w-6.25" />
+        </Link>
+        <Link href={contacts.socialLinks.behance ?? "#"} target="_blank">
+          <BehanceIcon className="w-6.25" />
+        </Link>
+        <Link href={contacts.socialLinks.dribbble ?? "#"} target="_blank">
+          <DribbleIcon className="w-6.25" />
+        </Link>
       </div>
     </div>
-  )
+  );
 }
 
 function SideMenuItem({
   href,
   children,
-  onClick = () => { }
+  onClick = () => {},
 }: {
   href?: string;
   children: React.ReactNode;
@@ -70,4 +103,3 @@ function SideMenuItem({
     </Link>
   );
 }
-
