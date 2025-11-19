@@ -96,7 +96,10 @@ export default function CommercialOfferForm({
     setIsSubmitting(true);
     if (!(nameValid && phoneValid && emailValid)) {
       setInvalidSend(true);
-      showToast("Пожалуйста, заполните все обязательные поля корректно.", true);
+      showToast(
+        "Some fields are missing or invalid. Please check and try again.",
+        true
+      );
       setIsSubmitting(false);
       return;
     }
@@ -121,7 +124,7 @@ export default function CommercialOfferForm({
     } catch (error) {
       console.error("Error submitting form:", error);
       showToast(
-        "Произошла ошибка при отправке формы. Попробуйте еще раз.",
+        "Failed to submit the form. Please try again later.",
         true
       );
     } finally {

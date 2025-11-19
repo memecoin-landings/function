@@ -76,7 +76,9 @@ export default function Header({ className }: { className?: string }) {
               " transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F0EDE8]",
             )}
           >
-            <BurgerIcon className="fill-[#F0EDE8] transition-colors duration-300 group-hover:fill-[#FF3F1A]" />
+            <BurgerIcon className={cn(
+              pathname == "/contacts" ? "fill-[#FF3F1A] group-hover:fill-[#151516]" : "fill-[#F0EDE8] group-hover:fill-[#FF3F1A]",
+              "transition-colors duration-300 ")} />
           </button>
         </div>
 

@@ -21,13 +21,13 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col items-start md:pt-25 xs:pt-17.5 pt-32">
       <StrategicIdentityBlock className="" />
-      <FedorAboutBlock className="md:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
-      <ClientsBlock className="md:mt-42.5 xs:mt-25 mt-17.5" />
-      <ServicesBlock className="md:mt-39 xs:mt-18 mt-10.5" />
+      <FedorAboutBlock className="lg:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
+      <ClientsBlock className="lg:mt-42.5 xs:mt-25 mt-17.5" />
+      <ServicesBlock className="lg:mt-39 xs:mt-18 mt-10.5" />
 
       <button
         onClick={openModal}
-        className="md:px-5 xs:px-2.5 w-fit md:mb-50 xs:mb-25 md:mt-12.5 xs:mt-7.5 mt-5 mb-17.5 items-left"
+        className="md:px-5 px-2.5 w-fit md:mb-50 xs:mb-25 md:mt-12.5 xs:mt-12 mt-5 mb-17.5 items-left"
       >
         <span className="text-[#F0EDE8] hover:text-[#FF3F1A] underline decoration-[#F0EDE8] hover:decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] transition-colors duration-200 md:text-[3.675cqw] text-[4.6875cqw] font-medium leading-[6vw] xs:leading-[3.875cqw]">
           Let&apos;s Build Your Brand

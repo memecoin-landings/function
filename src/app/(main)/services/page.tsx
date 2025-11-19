@@ -34,13 +34,16 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="md:pt-5 xs:pt-14.25 pt-29.5 md:pb-50 xs:pb-25 pb-20">
+    <main className="md:pt-25 xs:pt-17.5 pt-29.5 md:pb-50 xs:pb-25 pb-20">
       <section ref={sectionRef} className="relative @container">
-        <WebGLBlurEffect className="md:pt-20 bg-[#151516] ">
+        <WebGLBlurEffect className="md:pt-20 md:-mt-20 bg-[#151516] ">
           <div
             ref={headerRef}
             className="text-[#FF3F1A] font-bold md:leading-[15.22cqw] xs:leading-[15.36cqw] leading-[15.37cqw] tracking-mid xs:text-[18.229cqw] md:text-[18.75cqw] text-[18.29cqw] whitespace-nowrap xs:pl-0 pl-2.5"
           >
+            {/* Unique */}
+            {/* <br /> */}
+            {/* Solutions — */}
             Brand that
             <br />
             Works —
