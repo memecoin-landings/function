@@ -59,7 +59,7 @@ export default function ServicesPage() {
       <section className="md:px-8 xs:px-4 px-3 mx-auto md:mt-37 xs:mt-24.5 mt-17.5">
         <ThemeProvider theme="dark">
           <CommercialOfferForm
-            className="md:px-[4cqw] xs:px-[3cqw] px-[2cqw]"
+            className="pl-[8.5cqw]"
             viewModel={formViewModel}
           />
         </ThemeProvider>
