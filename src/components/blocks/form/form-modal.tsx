@@ -79,9 +79,9 @@ export default function FormModal({
         <div className="mx-auto px-5 xs:mt-7 mt-5">
           <FormHeader onClose={handleClose} />
         </div>
-        <div className="md:p-8 xs:p-4 p-3 max-w-7xl mx-auto">
+        <div className="md:p-8 xs:p-4 p-3 mx-auto">
           <CommercialOfferForm
-            className="md:pt-16 xs:pt-13.5 pt-12 md:px-[4cqw] xs:px-[3cqw] px-[2cqw]"
+            className="md:pt-16 xs:pt-13.5 pt-12 md:px-[4cqw] pl-[8.5cqw] xs:px-[3cqw]"
             viewModel={viewModel}
           />
         </div>

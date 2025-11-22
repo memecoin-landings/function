@@ -30,7 +30,7 @@ export default function ChipRow({
   };
 
   return (
-    <div className={cn("flex flex-wrap gap-5", className)}>
+    <div className={cn("flex flex-wrap xs:gap-5 gap-3", className)}>
       <input type="hidden" name={name} value={selectedIds.join(",")} />
       {chipOptions.map((option) => (
         <Chip

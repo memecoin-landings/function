@@ -123,10 +123,7 @@ export default function CommercialOfferForm({
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      showToast(
-        "Failed to submit the form. Please try again later.",
-        true
-      );
+      showToast("Failed to submit the form. Please try again later.", true);
     } finally {
       setIsSubmitting(false);
     }
@@ -151,7 +148,7 @@ export default function CommercialOfferForm({
           offer
         </p>
       </div>
-      <div className="w-7.5 shrink-0 grow-0"></div>
+      <div className="w-7.5 sm:w-[11cqw] shrink-0 grow-0"></div>
       {/* Right container */}
       <div className="flex flex-col items-center grow-1">
         <form
@@ -204,51 +201,53 @@ export default function CommercialOfferForm({
           </div>
 
           <div className="sm:h-10 h-12.5"></div>
-          <div className="flex flex-col justify-start items-stretch">
-            {/* Spacer between containers */}
-            <div>
-              <InputField
-                name="name"
-                value={name}
-                onChange={setName}
-                onValidChange={setNameValid}
-                showRequiredHint={invalidSend}
-                placeholder="Full Name"
-                className="md:mb-12.5 mb-5.5"
-                required={true}
-              />
-              <InputField
-                name="phone"
-                value={phone}
-                onChange={setPhone}
-                formatFn={formatPhoneNumber}
-                onValidChange={setPhoneValid}
-                showRequiredHint={invalidSend}
-                pattern="\+[0-9\s]{10,17}"
-                placeholder="Phone"
-                type="tel"
-                className="md:mb-12.5 mb-5.5"
-                required={true}
-              />
-              <InputField
-                name="email"
-                value={email}
-                onChange={setEmail}
-                ref={emailRef}
-                onValidChange={setEmailValid}
-                showRequiredHint={invalidSend}
-                placeholder="Email"
-                type="email"
-                className="md:mb-12.5 mb-7.5"
-                required={true}
-              />
-              <SubmitForm
-                className=""
-                disabled={
-                  !(nameValid && phoneValid && emailValid) || isSubmitting
-                }
-                onClick={handleSubmit}
-              />
+          <div className="max-w-67.5 xs:max-w-60.75 md:max-w-full sm:pr-0 pr-10">
+            <div className="flex flex-col justify-start items-stretch">
+              {/* Spacer between containers */}
+              <div>
+                <InputField
+                  name="name"
+                  value={name}
+                  onChange={setName}
+                  onValidChange={setNameValid}
+                  showRequiredHint={invalidSend}
+                  placeholder="Full Name"
+                  className="md:mb-12.5 mb-5.5"
+                  required={true}
+                />
+                <InputField
+                  name="phone"
+                  value={phone}
+                  onChange={setPhone}
+                  formatFn={formatPhoneNumber}
+                  onValidChange={setPhoneValid}
+                  showRequiredHint={invalidSend}
+                  pattern="\+[0-9\s]{10,17}"
+                  placeholder="Phone"
+                  type="tel"
+                  className="md:mb-12.5 mb-5.5"
+                  required={true}
+                />
+                <InputField
+                  name="email"
+                  value={email}
+                  onChange={setEmail}
+                  ref={emailRef}
+                  onValidChange={setEmailValid}
+                  showRequiredHint={invalidSend}
+                  placeholder="Email"
+                  type="email"
+                  className="md:mb-12.5 mb-7.5"
+                  required={true}
+                />
+                <SubmitForm
+                  className=""
+                  disabled={
+                    !(nameValid && phoneValid && emailValid) || isSubmitting
+                  }
+                  onClick={handleSubmit}
+                />
+              </div>
             </div>
           </div>
         </form>

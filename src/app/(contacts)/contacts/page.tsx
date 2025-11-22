@@ -25,7 +25,7 @@ export default function ContactsPage() {
           Start your <br /> project
         </div>
       </WebGLBlurEffect>
-      <section className="fluid-container pl-11 px-8.75 xs:px-18.25 md:px-[7.6cqw]">
+      <section className="fluid-container pl-8.75 xs:pl-18.25 md:px-[7.6cqw]">
         <ThemeProvider theme="orange">
           <CommercialOfferForm viewModel={formViewModel} />
         </ThemeProvider>
