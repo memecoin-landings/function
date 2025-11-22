@@ -50,7 +50,7 @@ export default function MobileMenu({
         "
       >
         <Link
-          className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
+          className="flex flex-row duration-150  font-medium text-[#F0EDE8] fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
           href={contacts.socialLinks.whatsapp ?? "#"}
           target="_blank"
         >
@@ -58,8 +58,8 @@ export default function MobileMenu({
           <p>WhatsApp</p>
         </Link>
         <Link
-          className="flex flex-row duration-150  font-medium fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
-          href={contacts.socialLinks.whatsapp ?? "#"}
+          className="flex flex-row duration-150  font-medium text-[#F0EDE8] fill-[#F0EDE8] hover:fill-[#FF3F1A] hover:text-[#FF3F1A]  md:text-[1.25rem] items-center space-x-2.5"
+          href={contacts.socialLinks.telegram ?? "#"}
           target="_blank"
         >
           <TelegramCircleIcon className="w-6.25 mr-2.5" />
@@ -87,7 +87,7 @@ export default function MobileMenu({
 function SideMenuItem({
   href,
   children,
-  onClick = () => {},
+  onClick = () => { },
 }: {
   href?: string;
   children: React.ReactNode;

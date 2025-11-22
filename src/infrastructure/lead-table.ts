@@ -34,24 +34,35 @@ export default class LeadTable {
       key: data.private_key.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-    // console.log("connecting");
+    // console.log("connecting", getConfig().table.id, jwt);
+    console.log("connecting");
     this._doc = new GoogleSpreadsheet(getConfig().table.id, jwt);
-    const loadPromise = this._doc.loadInfo(true);
-    // loadPromise.then(() => {
-    //   console.log("connected");
-    // });
-    this._commercialOfferSheet = loadPromise.then(() => this._doc.sheetsByIndex[0]!);
+    const loadPromise = this._doc.loadInfo();
+    loadPromise.then(() => {
+      console.log(
+        "connected",
+        this._doc.sheetCount,
+        this._doc.authMode,
+        this._doc.title,
+      );
+    });
+    this._commercialOfferSheet = loadPromise.then(
+      () => this._doc.sheetsByIndex[0]!,
+    );
   }
 
   public async addCommercialOffer(offer: CommercialOfferDto) {
-    if (!(await this._commercialOfferSheet)) {
+    const table = await this._commercialOfferSheet;
+    if (!table) {
       console.error("commercial offer table is not yet initialized!");
       return;
     }
-    
-    console.log(`adding commercial offer:`, offer);
-    return (await this._commercialOfferSheet)
-      .addRow(this.getCommercialOfferRow(offer))
+
+    const row = this.getCommercialOfferRow(offer);
+    console.log(`adding commercial offer:`, offer, row);
+    // await table.addRow(row, { raw: true });
+    table
+      .addRow(row, { raw: true })
       .then(() => console.log("commercial offer added"));
   }
 
@@ -59,7 +70,7 @@ export default class LeadTable {
     return [
       offer.timestamp.toLocaleString(dateFormat, dateOptions),
       offer.name,
-      "'" + offer.phone.toString(),
+      offer.phone.toString(),
       offer.email,
       offer.branding || "",
       offer.services.join(", "),

@@ -1,8 +1,9 @@
 "use server";
 import "reflect-metadata";
 
-import { container } from "tsyringe";
 import LeadTable from "@/infrastructure/lead-table";
+import { container } from "tsyringe";
+import WithTimeout from "../../lib/with-timeout";
 // import EmailService from "@/server/email-service";
 
 export type CommercialOfferFormData = {
@@ -36,7 +37,7 @@ export default async function submitCommercialOfferAction(
 
   try {
     // Отправляем данные в Google Таблицу
-    await leadTable.addCommercialOffer(dto);
+    await WithTimeout(500)(leadTable.addCommercialOffer(dto));
 
     // Отправляем email уведомление
     // await emailService.sendCommercialOfferEmail(dto);

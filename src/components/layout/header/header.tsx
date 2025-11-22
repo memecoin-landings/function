@@ -73,7 +73,7 @@ export default function Header({ className }: { className?: string }) {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={cn(
               isMenuOpen ? "rotate-90" : "",
-              " transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 rounded-md group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F0EDE8]",
+              " transition-transform duration-300 sm:hidden inline-flex items-center justify-center p-2 group",
             )}
           >
             <BurgerIcon className={cn(
