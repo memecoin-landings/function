@@ -37,12 +37,12 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
     >
       <div className="@container">
         {/* Image with overlaid title */}
-        <div className="relative w-full mb-4 xs:mb-8.75 md:mb-7.5">
+        <div className="relative w-full mb-4 xs:mb-8.75 lg:mb-7.5">
           <Image
             ref={pushIfNotNull(elementsRef.current)}
             src={fedorImage}
             alt="Fedor Beltugov"
-            className={`object-cover object-center xs:w-[31.64cqw] w-[38.37cqw] md:w-[31.53cqw] h-full rounded-[0.313rem] ${isImageTouched ? 'grayscale-0' : 'grayscale'} hover:grayscale-0 transition-[filter] duration-350 ease-in ml-11.25 xs:ml-18.25 md:ml-34.5`}
+            className={`object-cover object-center xs:w-[31.64cqw] w-[38.37cqw] lg:w-[31.53cqw] h-full rounded-[0.313rem] ${isImageTouched ? 'grayscale-0' : 'grayscale'} hover:grayscale-0 transition-[filter] duration-350 ease-in ml-11.25 xs:ml-18.25 lg:ml-34.5`}
             layout="cover"
             onTouchStart={() => setIsImageTouched(!isImageTouched)}
             onTouchEnd={() => {}}
@@ -50,7 +50,7 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
 
           {/* Overlaid title */}
           <h1
-            className="text-[#F0EDE8] font-cera font-bold md:text-[11.1cqw] xs:text-[11.5cqw] text-[11.5cqw] md:leading-[9.03cqw] leading-none tracking-mid md:mt-[-0.72em] xs:mt-[-0.82em] mt-[-0.81em] md:ml-0 xs:ml-2.5 ml-2.5 xs:mr-0 md:mr-19.75 mr-5.25 relative z-10 text-left"
+            className="text-[#F0EDE8] font-cera font-bold lg:text-[11.1cqw] xs:text-[11.5cqw] text-[11.5cqw] lg:leading-[9.03cqw] leading-none tracking-mid lg:mt-[-0.72em] xs:mt-[-0.82em] mt-[-0.81em] lg:ml-0 xs:ml-2.5 ml-2.5 xs:mr-0 lg:mr-19.75 mr-5.25 relative z-10 text-left"
           > Behind the&nbsp;Studio
           </h1>
         </div>
@@ -60,9 +60,9 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
           {/* Description */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="mb-5.5 xs:mb-7.5 md:mb-12.5"
+            className="mb-5.5 xs:mb-7.5 lg:mb-12.5"
           >
-            <p className="font-cera font-normal not-italic md:text-[2.08cqw] xs:text-[2.60cqw] text-[3.26cqw] md:leading-[2.71cqw] xs:leading-[3.39cqw] leading-[4.42cqw] tracking-[0%] text-[#F0EDE8] text-left md:pl-5 xs:pl-2.5 pl-2.5 md:pr-[23.4375rem] xs:pr-34 pr-11.25">
+            <p className="font-cera font-normal not-italic lg:text-[2.08cqw] xs:text-[2.60cqw] text-[3.26cqw] lg:leading-[2.71cqw] xs:leading-[3.39cqw] leading-[4.42cqw] tracking-[0%] text-[#F0EDE8] text-left lg:pl-5 xs:pl-2.5 pl-2.5 lg:pr-[23.4375rem] xs:pr-34 pr-11.25">
               Fedor Beltyugov, the founder of Function Design Studio, is an art director, designer, and strategist. Since 2008, I’ve been crafting brand identities that drive business goals and elevate brand value. I personally oversee every project from concept to completion. My experience spans working with global corporations, local businesses, and personal brands.
             </p>
           </div>
@@ -70,18 +70,18 @@ export default function FedorAboutBlock({ className, openModal }: { className?: 
           {/* CTA Links */}
           <div
             ref={pushIfNotNull(elementsRef.current)}
-            className="md:pl-5 xs:pl-2.5 pl-2.5 md:pr-0 xs:pr-0 pr-2.5 text-[#F0EDE8] decoration-[#F0EDE8] *:hover:decoration-[#FF3F1A] md:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium md:leading-[4.58cqw] leading-none underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] md:underline-offset-[1cqw] "
+            className="lg:pl-5 xs:pl-2.5 pl-2.5 lg:pr-0 xs:pr-0 pr-2.5 text-[#F0EDE8] decoration-[#F0EDE8] *:hover:decoration-[#FF3F1A] lg:text-[3.75cqw] xs:text-[4.69cqw] text-[4.65cqw] font-medium lg:leading-[4.58cqw] leading-none underline-offset-[1.2cqw] xs:underline-offset-[1.2cqw] lg:underline-offset-[1cqw] "
           >
             <button
               onClick={openModal}
-              className="inline hover:text-[#FF3F1A] underline md:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
+              className="inline hover:text-[#FF3F1A] underline lg:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
             >
               Get Price
             </button>
             <span> or </span>
             <Link
               href="/projects"
-              className="inline hover:text-[#FF3F1A] underline md:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
+              className="inline hover:text-[#FF3F1A] underline lg:decoration-[0.065em] decoration-[0.085em] transition-colors duration-200"
             >
               View Projects
             </Link>
