@@ -51,7 +51,7 @@ export default function Footer({ className }: { className: string }) {
             Telegram
           </Link>
         </div>
-        <div className="flex flex-col px-8.75 xs:px-16 md:px-[8.5cqw] xs:mt-15 mt-12.25 md:mt-25 ">
+        <div className="flex flex-col px-8.75 xs:px-16 md:px-[8.5cqw] xs:mt-15 mt-12.25 md:mt-25">
           <div className="flex flex-row w-full">
             <p className="w-[42.2cqw] text-[1.563rem] font-medium leading-[1.938rem] xs:text-[4.8cqw] xs:leading-[6.1cqw] md:text-[3.8cqw] md:leading-[4.7cqw]">
               Order
@@ -64,8 +64,8 @@ export default function Footer({ className }: { className: string }) {
             </ThemeProvider>
           </div>
           <div className="flex flex-row w-full md:items-center items-start md:mt-20 xs:mt-17 mt-12.5 pb-12.5">
-            <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 pr-[6.3cqw] md:pr-0 tracking-mid ">
-              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] mb-2.5 md:mb-2.5 whitespace-nowrap tracking-mid">
+            <div className="flex flex-col xs:flex-row xs:flex-wrap w-[42cqw] xs:w-1/2 xs:items-center md:space-x-5 space-x-2.5 xs:gap-y-3 pr-[6.3cqw] lg:pr-0 tracking-mid ">
+              <p className="text-[2.7cqw] xs:text-[0.875rem] md:text-[clamp(0.875rem,2.4cqw,1.25rem)] whitespace-nowrap tracking-mid">
                 Discover our work on:
               </p>
               <div className="flex flex-row space-x-2.5 sm:space-x-5 ">
