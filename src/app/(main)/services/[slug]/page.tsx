@@ -8,6 +8,13 @@ import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 
+export async function generateStaticParams() {
+  const services = ServicePojoRepository.getInstance().list();
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
 }

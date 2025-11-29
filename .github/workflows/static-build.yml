@@ -1,0 +1,90 @@
+name: Static Build and Deploy
+
+on:
+  # Trigger via webhook from Strapi
+  repository_dispatch:
+    types: [strapi-content-updated]
+  
+  # Manual trigger
+  workflow_dispatch:
+  
+  # Auto-trigger on main branch push
+  push:
+    branches: [ main, static-export ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build static data and site
+      run: npm run build
+      env:
+        STRAPI_BASE_URL: ${{ secrets.STRAPI_BASE_URL }}
+        STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+        PUBLIC_STRAPI_URL: ${{ secrets.PUBLIC_STRAPI_URL }}
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: static-site
+        path: out/
+        retention-days: 30
+        
+    # Deploy to your hosting provider
+    # Examples for different providers:
+    
+    # For Vercel (if you want to use Vercel static hosting)
+    # - name: Deploy to Vercel
+    #   uses: amondnet/vercel-action@v25
+    #   with:
+    #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+    #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+    #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+    #     working-directory: ./out
+    
+    # For AWS S3 + CloudFront
+    # - name: Deploy to S3
+    #   uses: jakejarvis/s3-sync-action@master
+    #   with:
+    #     args: --delete
+    #   env:
+    #     AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_REGION: 'us-east-1'
+    #     SOURCE_DIR: 'out'
+    
+    # - name: Invalidate CloudFront
+    #   uses: chetan/invalidate-cloudfront-action@v2
+    #   env:
+    #     DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+    #     PATHS: '/*'
+    #     AWS_REGION: 'us-east-1'
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
+    # For custom server deployment via SSH
+    # - name: Deploy via SSH
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     script: |
+    #       cd /var/www/html
+    #       rm -rf *
+    #       # Upload files here or sync from artifact
+    #       systemctl reload nginx

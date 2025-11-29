@@ -7,9 +7,7 @@ import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 import formatPhoneNumber from "@/lib/phone-format";
-import submitCommercialOfferAction, {
-  CommercialOfferFormData,
-} from "@/server/actions/commercialOfferAction";
+import { submitContactForm, ContactFormData, storeContactFormLocally } from "@/lib/external-api";
 import useToast from "@/components/common/use-toast";
 
 export default function CommercialOfferForm({
@@ -106,24 +104,49 @@ export default function CommercialOfferForm({
     setInvalidSend(false);
 
     try {
-      const formData = Object.fromEntries(
-        new FormData(formRef.current).entries()
-      ) as unknown as CommercialOfferFormData;
-      const result = await submitCommercialOfferAction(formData);
+      const contactData: ContactFormData = {
+        name,
+        phone,
+        email,
+        branding: selectedBranding,
+        services: selectedServices,
+      };
 
-      showToast(result.message, !result.success);
-      if (result.success) {
-        formRef.current.reset();
-        setName("");
-        setPhone("");
-        setEmail("");
-        setSelectedBranding(null);
-        setSelectedServices([]);
-        setIsSecondRowVisible(false);
+      // Try external API first
+      const result = await submitContactForm(contactData);
+
+      // If external API fails, store locally as fallback
+      if (!result.success) {
+        storeContactFormLocally(contactData);
+        showToast("Form saved locally. We'll process it when possible.", false);
+      } else {
+        showToast(result.message, false);
       }
+
+      // Reset form on any successful processing
+      formRef.current?.reset();
+      setName("");
+      setPhone("");
+      setEmail("");
+      setSelectedBranding(null);
+      setSelectedServices([]);
+      setIsSecondRowVisible(false);
+      viewModel.clearSelection();
+      
     } catch (error) {
       console.error("Error submitting form:", error);
-      showToast("Failed to submit the form. Please try again later.", true);
+      
+      // Fallback: Store locally
+      const contactData: ContactFormData = {
+        name,
+        phone,
+        email,
+        branding: selectedBranding,
+        services: selectedServices,
+      };
+      storeContactFormLocally(contactData);
+      
+      showToast("Form saved locally. We'll process it when possible.", false);
     } finally {
       setIsSubmitting(false);
     }

@@ -11,13 +11,15 @@ export function useContacts(): Contacts {
     const loadContacts = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("/api/contacts");
-        if (!response.ok) {
-          throw new Error("Failed to fetch contacts");
+        // Try to load from static data first
+        const response = await fetch("/data/contacts.json");
+        if (response.ok) {
+          const data = (await response.json()) as Contacts;
+          setContacts(data);
+        } else {
+          // Fallback to default contacts
+          setContacts(Contacts.default);
         }
-        const data = (await response.json()) as Contacts;
-        // setContacts(new Contacts(data));
-        setContacts(data);
       } catch (error) {
         console.error("Failed to load contacts:", error);
         // Fallback to default on error

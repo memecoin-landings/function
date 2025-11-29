@@ -7,6 +7,7 @@ import ProjectCard, {
 import { animate } from "animejs";
 import { cn } from "@/lib/utils";
 import Image from "../../../domain/image";
+import { getStaticProjects, filterProjects, StaticProject } from "@/lib/static-data";
 
 //["Corporate identity", "corporate-identity"],
 // ["Product identity", "product-identity"],
@@ -49,33 +50,14 @@ export default function ProjectsGrid({
     const loadProjects = async () => {
       setIsLoading(true);
       try {
-        // console.log("Loading projects with tag:", tag);
-        const params = new URLSearchParams();
-        if (tag) params.append("tag", tag);
-        if (limit !== undefined) params.append("limit", limit.toString());
-        if (skip !== undefined) params.append("skip", skip.toString());
-
-        const response = await fetch(`/api/projects?${params.toString()}`);
-        // console.log(`/api/projects?${params.toString()}`, "Fetch response:", response);
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects");
-        }
-
-        let projects = await response.json();
+        const allProjects = await getStaticProjects();
+        let projects = filterProjects(allProjects, tag, limit, skip);
 
         if (projects.length === 0 && allowDefault) {
-          const defaultResponse = await fetch("/api/projects");
-          if (defaultResponse.ok) {
-            projects = await defaultResponse.json();
-          }
+          projects = filterProjects(allProjects, undefined, limit, skip);
         }
 
-        const cardParams = projects.map((project: {
-          title: string;
-          image: { url: string; width: number; height: number };
-          tags: string[];
-          category: string;
-        }) => {
+        const cardParams = projects.map((project: StaticProject) => {
           const image = new Image({
             url: project.image.url,
             width: project.image.width,

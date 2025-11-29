@@ -4,24 +4,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  // output: "export",
-  // // ОТКЛЮЧАЕМ next/image
-  // images: {
-  //   unoptimized: true,
-  // },
+  output: "export",
   images: {
-    domains: process.env["IMAGE_HOSTS"]?.split(",") ?? [],
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-      },
-    ],
+    unoptimized: true,
   },
   experimental: {
-    viewTransition: true, // Включаем API
+    viewTransition: true,
   },
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;
