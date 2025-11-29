@@ -153,7 +153,7 @@ export default function CommercialOfferForm({
       <div className="flex flex-col items-center grow-1">
         <form
           ref={formRef}
-          className="grow-1 max-w-[30.3125rem] flex-col md:pt-2.25 sm:pt-1.25 pt-7.5"
+          className="grow-1 max-w-[30.3125rem] flex-col sm:pt-1.25 pt-7.5"
           action={() => {}}
         >
           <div>
