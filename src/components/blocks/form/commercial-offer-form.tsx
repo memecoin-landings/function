@@ -209,6 +209,7 @@ export default function CommercialOfferForm({
                 <InputField
                   name="name"
                   value={name}
+                  autocomplete="name"
                   onChange={setName}
                   onValidChange={setNameValid}
                   showRequiredHint={invalidSend}
@@ -219,6 +220,7 @@ export default function CommercialOfferForm({
                 <InputField
                   name="phone"
                   value={phone}
+                  autocomplete="tel tel-country-code tel-national"
                   onChange={setPhone}
                   formatFn={formatPhoneNumber}
                   onValidChange={setPhoneValid}
@@ -232,6 +234,7 @@ export default function CommercialOfferForm({
                 <InputField
                   name="email"
                   value={email}
+                  autocomplete="email"
                   onChange={setEmail}
                   ref={emailRef}
                   onValidChange={setEmailValid}

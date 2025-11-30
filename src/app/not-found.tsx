@@ -30,7 +30,7 @@ export default function NotFound() {
             </div>
 
             {/* Main 404 SVG */}
-            <div className="flex justify-center overflow-visible">
+            <div className="flex justify-center overflow-hidden">
               <WebGLBlurEffect className="bg-[#151516] pointer-events-auto py-[50px] xs:py-[60px] lg:py-[80px]">
                 <svg
                   width="1207"
@@ -50,10 +50,13 @@ export default function NotFound() {
             </div>
 
             {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-            <div className="px-11.5 mt-6 text-center xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
+            <div className="px-11.5 mt-6 text-left xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
               <Link
                 href="/"
-                className="text-[#F0EDE8] text-[1.5625rem] md:text-[2.3rem] xl:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14 xs:underline-offset-10 xs:text-[2.25rem] xs:leading-[1rem] font-medium font-cera-pro inline-block  pointer-events-auto"
+                className="text-[#F0EDE8] text-[1.5625rem]
+                md:text-[2.3rem] xl:text-[3.375rem] lg:leading-1 underline lg:underline-offset-14
+                xs:underline-offset-10 xs:text-[2.25rem] md:leading-[1rem] font-medium font-cera-pro inline-block  pointer-events-auto
+                "
               >
                 Head back to the good stuff
               </Link>
