@@ -27,6 +27,6 @@ jobs:
         run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm start &
-      - run: pnpm exec percy snapshot http://localhost:3000/sitemap.xml --wait-for-timeout 1000
+      - run: pnpm exec percy snapshot http://localhost:3000/sitemap.xml
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
