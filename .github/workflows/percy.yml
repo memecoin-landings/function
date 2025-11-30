@@ -25,8 +25,7 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - run: pnpm install --save-dev @percy/cli
       - run: pnpm build
-      - run: pnpx percy snapshot .next # or any directory such as public/
+      - run: pnpm exec percy snapshot .next # or any directory such as public/
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
