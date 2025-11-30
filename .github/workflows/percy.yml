@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   build:
-    name: CI
+    name: percy
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -26,6 +26,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm exec percy snapshot .next # or any directory such as public/
+      - run: pnpm start &
+      - run: pnpm exec percy snapshot http://localhost:3000/sitemap.xml
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
