@@ -8,15 +8,25 @@ on:
 jobs:
   build:
     name: CI
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: '18'
-      - run: npm ci
-      - run: npm install --save-dev @percy/cli
-      - run: npm run build
-      - run: npx percy snapshot .next # or any directory such as public/
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - run: pnpm install --save-dev @percy/cli
+      - run: pnpm build
+      - run: pnpx percy snapshot .next # or any directory such as public/
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
