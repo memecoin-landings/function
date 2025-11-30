@@ -25,6 +25,7 @@ export default function CommercialOfferForm({
   const formRef = useRef<HTMLFormElement>(null);
 
   // Создаем экземпляр view model
+  const [sent, setSent] = useState(false);
   const [selectedBranding, setSelectedBranding] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [isSecondRowVisible, setIsSecondRowVisible] = useState(false);
@@ -120,6 +121,7 @@ export default function CommercialOfferForm({
         setSelectedBranding(null);
         setSelectedServices([]);
         setIsSecondRowVisible(false);
+        setSent(true)
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -129,32 +131,32 @@ export default function CommercialOfferForm({
     }
   };
 
-  return (
-    <div
-      className={cn(
-        "flex flex-col sm:flex-row justify-start items-start",
-        className
-      )}
-    >
-      {/* Left container */}
-      <div className="grow-0 items-start text-[#151516] justify-start">
-        <p
-          className={cn(
-            "font-cera-pro font-medium md:text-[2.5rem] sm:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] sm:leading-8 leading-7.5 tracking-normal text-nowrap",
-            colors.textPrimary
-          )}
-        >
-          Request for <br />a commercial <br className="hidden sm:block" />
-          offer
-        </p>
-      </div>
-      <div className="w-7.5 sm:w-[11cqw] shrink-0 grow-0"></div>
-      {/* Right container */}
-      <div className="flex flex-col items-center grow-1">
+  return (<div
+    className={cn(
+      "flex flex-col sm:flex-row justify-start items-start",
+      className
+    )}
+  >
+    {/* Left container */}
+    <div className="grow-0 items-start text-[#151516] justify-start">
+      <p
+        className={cn(
+          "font-cera-pro font-medium md:text-[2.5rem] sm:text-[1.625rem] text-[1.5625rem] md:leading-[3.125rem] sm:leading-8 leading-7.5 tracking-normal text-nowrap",
+          colors.textPrimary
+        )}
+      >
+        Request for <br />a commercial <br className="hidden sm:block" />
+        offer
+      </p>
+    </div>
+    <div className="w-7.5 sm:w-[11cqw] shrink-0 grow-0"></div>
+    {/* Right container */}
+    <div className="flex flex-col items-center grow-1">
+      {!sent ? (
         <form
           ref={formRef}
           className="grow-1 max-w-[30.3125rem] flex-col sm:pt-1.25 pt-7.5"
-          action={() => {}}
+          action={() => { }}
         >
           <div>
             <h3
@@ -175,11 +177,10 @@ export default function CommercialOfferForm({
           </div>
 
           <div
-            className={`transition-all duration-500 ease-in-out ${
-              isSecondRowVisible
-                ? "opacity-100 translate-y-0 max-h-96"
-                : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
-            }`}
+            className={`transition-all duration-500 ease-in-out ${isSecondRowVisible
+              ? "opacity-100 translate-y-0 max-h-96"
+              : "opacity-0 translate-y-4 max-h-0 overflow-hidden"
+              }`}
           >
             <div className="animate-in fade-in slide-in-from-top-2 duration-300">
               <h3
@@ -251,7 +252,15 @@ export default function CommercialOfferForm({
             </div>
           </div>
         </form>
-      </div>
+      ) : (
+        <div className={cn(colors.textPrimary, "text-2xl font-medium tracking-mid")}>
+          Thank you. <br />
+          Your message has been received.
+          <br /><br />
+          <button className="underline underline-offset-6 font-normal hover:text-[#FF3F1A]" onClick={() => setSent(false)}>New message</button>
+        </div>
+      )}
     </div>
-  );
+  </div>
+  )
 }
