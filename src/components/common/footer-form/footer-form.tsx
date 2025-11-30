@@ -77,6 +77,7 @@ export default function FooterForm({ className }: { className?: string }) {
               value={name}
               onChange={setName}
               onValidChange={(setNameValid)}
+              autocomplete="name"
               type="text"
               showRequiredHint={invalidSend}
               required
@@ -89,6 +90,7 @@ export default function FooterForm({ className }: { className?: string }) {
               onChange={setPhone}
               onValidChange={(setPhoneValid)}
               pattern="\+[0-9\s]{10,17}"
+              autocomplete="tel tel-country-code tel-national"
               type="tel"
               showRequiredHint={invalidSend}
               required
@@ -99,6 +101,7 @@ export default function FooterForm({ className }: { className?: string }) {
             />
             <InputField
               value={email}
+              autocomplete="email"
               onChange={setEmail}
               onValidChange={(setEmailValid)}
               type="email"

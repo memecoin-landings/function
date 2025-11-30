@@ -19,6 +19,7 @@ interface InputFieldProps {
   className?: string;
   pattern?: string;
   showRequiredHint: boolean;
+  autocomplete?: string;
 }
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -34,6 +35,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       placeholder,
       showRequiredHint = true,
       value,
+      autocomplete,
       onChange,
       type = "text",
       className,
@@ -95,6 +97,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             name={name}
             ref={ref}
             type={type}
+            autoComplete={autocomplete}
             pattern={pattern}
             value={internalValue}
             onChange={handleChange}
