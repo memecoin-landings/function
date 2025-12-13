@@ -150,29 +150,16 @@ export default function TestimonialsBlock({ className }: { className?: string })
         </div>
       </div>
 
-      <div className="flex justify-end items-center gap-3 xs:gap-2 mt-7.5 xs:mt-5">
+      <div className="flex justify-end items-center mt-7.5 xs:mt-5">
         <button
           onClick={goToNext}
           className="flex items-center gap-2 xs:gap-1.5 group cursor-pointer"
         >
-          <span className="text-[#FF3F1A] md:text-base text-sm xs:text-sm font-medium group-hover:opacity-80 transition-opacity duration-200">
+          <span className="group-hover:text-[#FF3F1A] text-[#F0EDE8] md:text-base text-sm xs:text-sm font-medium transition-colors duration-300">
             Next Testimonials
           </span>
-          <ArrowSVG className="fill-[#FF3F1A] group-hover:translate-x-1 transition-transform duration-300 w-20! md:w-28.5!" />
+          <ArrowSVG className="fill-[#F0EDE8] group-hover:fill-[#FF3F1A] group-hover:translate-x-1 transition-all duration-300 w-20! md:w-28.5!" />
         </button>
-        <div className="flex gap-1.5 xs:gap-1">
-          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-            <div
-              key={index}
-              className={cn(
-                "rounded-full transition-all duration-300",
-                index === currentIndex
-                  ? "w-2 h-2 bg-[#FF3F1A]"
-                  : "w-1.5 h-1.5 bg-[#727272]"
-              )}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
