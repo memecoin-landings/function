@@ -24,8 +24,8 @@ export default function AboutPage() {
       <StrategicIdentityBlock className="" />
       <FedorAboutBlock className="lg:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
       <ClientsBlock className="lg:mt-42.5 xs:mt-25 mt-17.5" />
-      <ServicesBlock className="lg:mt-39 xs:mt-18 mt-10.5" />
       <TestimonialsBlock className="lg:mt-42.5 xs:mt-25 mt-17.5" />
+      <ServicesBlock className="lg:mt-39 xs:mt-18 mt-10.5" />
 
       <button
         onClick={openModal}
