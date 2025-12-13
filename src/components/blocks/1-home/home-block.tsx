@@ -58,7 +58,7 @@ export default function HomeBlock({ className }: { className?: string }) {
           "-mt-[7.55cqw] xs:-mt-[6.65cqw] md:mt-[-1.405em]",
           "pl-[1.39cqw] pointer-events-none @container md:text-[3.75cqw] md:leading-[4.5cqw] xs:text-[4.6875cqw] xs:leading-[5.72cqw] text-2xl leading-[1.9375rem] relative z-10 font-medium md:pr-[9.58cqw]")}
       >
-        Functionally and strategically refined design by a brand identity studio that solves business challenges, drives growth, and is based on in‑depth analysis
+        Strategic brand identity for brands. Function Design Studio — a global remote-first brand identity studio creating functional, aesthetic visual systems grounded in analytics and a clear understanding of business objectives.
       </p>
     </section>
   );
