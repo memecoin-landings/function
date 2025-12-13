@@ -119,18 +119,18 @@ export default function TestimonialsBlock({ className }: { className?: string })
               className="flex-shrink-0"
               style={{ width: `calc((100% - ${itemsPerView - 1} * 1.25rem) / ${itemsPerView})` }}
             >
-              <div className="bg-transparent text-[#F0EDE8] pr-5 xs:pr-2.5">
+              <div className=" text-[#F0EDE8] pr-5 xs:pr-2.5 lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
                 <h3 className="font-medium lg:text-3xl text-2xl mb-1 leading-[100%]">
                   {testimonial.name}
                 </h3>
-                <p className="lg:text-[1.375rem] text-base mb-3 xs:mb-2">
+                <p className="mb-3 xs:mb-2">
                   {testimonial.title}
                 </p>
-                <p className="font-medium lg:text-[1.375rem] text-base">
+                <p className="font-medium ">
                   {testimonial.company}
                 </p>
                 {testimonial.text && (
-                  <p className="md:text-base text-sm xs:text-sm leading-relaxed mb-3 xs:mb-2">
+                  <p className=" mb-3 xs:mb-2">
                     {testimonial.text}
                   </p>
                 )}
