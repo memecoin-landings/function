@@ -17,7 +17,7 @@ export default function StrategicIdentityBlock({ className }: { className?: stri
         </div>
       </WebGLBlurEffect>
       <p className="pointer-events-none font-medium md:text-[3.85cqw] xs:text-[4.6875cqw] text-[5.96cqw] md:leading-[4.5cqw] xs:leading-[5.73cqw] leading-[7.36cqw] md:mt-[-1.37em] xs:mt-[-1.37em] mt-[-1.28em] relative z-10 md:pl-5 xs:pl-2.5 md:pr-34.5 pr-2.5"
-      >The studio&apos;s mission is to create functional and aesthetically refined brand identities that address key business challenges, drive growth, and open new markets. Combining analytics, art, and creativity, we deliver unique solutions that achieve tangible results.</p>
+      >Function Design Studio is a global remote-first brand identity studio crafting functional, aesthetic visual systems shaped by analytics and design clarity. The studio’s mission is to translate business objectives into precise, meaningful identities that support brand growth.</p>
     </section>
   );
 }
