@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useRef } from "react";
 import SectionHeader from "@/components/common/section-header";
 import ArrowSVG from "@/components/common/arrow";
 import { useScrollReveal } from "@/components/common/use-scroll-reveal";
@@ -67,57 +67,52 @@ const testimonials: Testimonial[] = [
 ];
 
 export default function TestimonialsBlock({ className }: { className?: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const { ref: sectionRef } = useScrollReveal({ threshold: 0.1 });
 
-  const itemsPerView = 3;
-  const maxIndex = Math.max(0, testimonials.length - itemsPerView);
-
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
-
-  const updateSliderPosition = useCallback(() => {
-    if (sliderRef.current && containerRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
-      // Get computed gap value from the slider element
-      const computedStyle = window.getComputedStyle(sliderRef.current);
-      const gap = parseFloat(computedStyle.gap) || 0;
-      const totalGap = gap * (itemsPerView - 1);
-      const cardWidth = (containerWidth - totalGap) / itemsPerView;
-      sliderRef.current.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+    if (sliderRef.current) {
+      const firstCard = sliderRef.current.querySelector('div');
+      if (firstCard) {
+        const cardWidth = firstCard.offsetWidth;
+        const marginRight = parseFloat(window.getComputedStyle(firstCard).marginRight) || 0;
+        const scrollAmount = cardWidth + marginRight;
+        
+        // Check if we can scroll one more card, or if we're at/near the end
+        const currentScroll = sliderRef.current.scrollLeft;
+        const maxScroll = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
+        const willReachEnd = currentScroll + scrollAmount >= maxScroll - 1; // 1px threshold
+        
+        if (willReachEnd) {
+          // Return to start
+          sliderRef.current.scrollTo({
+            left: 0,
+            behavior: "smooth",
+          });
+        } else {
+          // Scroll by one card
+          sliderRef.current.scrollBy({
+            left: scrollAmount,
+            behavior: "smooth",
+          });
+        }
+      }
     }
-  }, [currentIndex]);
-
-  useEffect(() => {
-    updateSliderPosition();
-  }, [updateSliderPosition]);
-
-  // Recalculate on resize
-  useEffect(() => {
-    const handleResize = () => {
-      updateSliderPosition();
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [updateSliderPosition]);
+  };
 
   return (
     <section ref={sectionRef} className={cn("w-full fluid-container", className)}>
       <SectionHeader>Testimonials</SectionHeader>
       
-      <div ref={containerRef} className="relative mt-7.5 xs:mt-5 overflow-hidden">
+      <div className="relative mt-7.5 xs:mt-5">
         <div
           ref={sliderRef}
-          className="flex transition-transform duration-500 ease-in-out gap-5 xs:gap-2.5"
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar -mr-5 xs:-mr-2.5"
         >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[32rem] justify-between"
-              style={{ width: `calc((100% - ${itemsPerView - 1} * 0.001rem) / ${itemsPerView})` }}
+              className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[32rem] justify-between md:w-1/3 w-2/3 mr-5 xs:mr-2.5 last:mr-0"
               >
 
               <div className="flex flex-col h-full text-[#F0EDE8] lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
