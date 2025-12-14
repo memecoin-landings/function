@@ -112,7 +112,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[32rem] justify-between md:w-1/3 w-2/3 mr-5 xs:mr-2.5 last:mr-0"
+              className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[28.75rem] justify-between md:w-1/3 w-2/3"
               >
 
               <div className="flex flex-col h-full text-[#F0EDE8] lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
@@ -126,7 +126,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
                   {testimonial.company}
                 </p>
                 {testimonial.text && (
-                  <p className="mb-5">
+                  <p className="">
                     {testimonial.text}
                   </p>
                 )}
@@ -145,12 +145,12 @@ export default function TestimonialsBlock({ className }: { className?: string })
         </div>
       </div>
 
-      <div className="flex justify-end items-center mt-7.5 xs:mt-5">
+      <div className="flex justify-end items-center mt-7.5 lg:mt-10">
         <button
           onClick={goToNext}
-          className="flex items-center gap-2 xs:gap-1.5 group cursor-pointer"
+          className="flex items-center gap-2 xs:gap-1.5 lg:gap-5 group cursor-pointer"
         >
-          <span className="group-hover:text-[#FF3F1A] text-[#F0EDE8] md:text-base text-sm xs:text-sm font-medium transition-colors duration-300">
+          <span className="group-hover:text-[#FF3F1A] text-[#F0EDE8] md:text-lg text-sm font-medium mr-5 transition-colors duration-300">
             Next Testimonials
           </span>
           <ArrowSVG className="fill-[#F0EDE8] group-hover:fill-[#FF3F1A] group-hover:translate-x-1 transition-all duration-300 w-20! md:w-28.5!" />
