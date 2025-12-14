@@ -50,7 +50,7 @@ export default function NotFound() {
             </div>
 
             {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-            <div className="px-11.5 mt-6 text-left xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
+            <div className="px-0 mt-6 text-center xs:px-11.5 xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
               <Link
                 href="/"
                 className="text-[#F0EDE8] text-[1.5625rem]
