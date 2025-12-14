@@ -4,6 +4,7 @@ import ServicesBlock from "@/components/blocks/3-services/services-block";
 import ClientsBlock from "@/components/blocks/4-clients/clients-block";
 import StrategicIdentityBlock from "@/components/blocks/1-strategic-identity/block";
 import FedorAboutBlock from "@/components/blocks/2-fedor-about/fedor-about-block";
+import TestimonialsBlock from "@/components/blocks/5-testimonials/testimonials-block";
 import { useState, useRef } from "react";
 import FormModal from "@/components/blocks/form/form-modal";
 import { FormViewModel } from "@/domain/form-view-model";
@@ -23,7 +24,8 @@ export default function AboutPage() {
       <StrategicIdentityBlock className="" />
       <FedorAboutBlock className="lg:mt-50 xs:mt-25 mt-17.5" openModal={openModal} />
       <ClientsBlock className="lg:mt-42.5 xs:mt-25 mt-17.5" />
-      <ServicesBlock className="lg:mt-39 xs:mt-18 mt-10.5" />
+      <TestimonialsBlock className="lg:mt-50 xs:mt-27 mt-17.5" />
+      <ServicesBlock className="lg:mt-36.25 xs:mt-25 mt-17.5" />
 
       <button
         onClick={openModal}
