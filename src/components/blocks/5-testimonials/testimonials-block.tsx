@@ -116,35 +116,35 @@ export default function TestimonialsBlock({ className }: { className?: string })
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0"
-              style={{ width: `calc((100% - ${itemsPerView - 1} * 1.25rem) / ${itemsPerView})` }}
-            >
-              <div className=" text-[#F0EDE8] pr-5 xs:pr-2.5 lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
+              className="flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[32rem] justify-between"
+              style={{ width: `calc((100% - ${itemsPerView - 1} * 0.001rem) / ${itemsPerView})` }}
+              >
+
+              <div className="flex flex-col h-full text-[#F0EDE8] lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
                 <h3 className="font-medium lg:text-3xl text-2xl mb-1 leading-[100%]">
                   {testimonial.name}
                 </h3>
-                <p className="mb-3 xs:mb-2">
+                <p className="mb-1">
                   {testimonial.title}
                 </p>
-                <p className="font-medium ">
+                <p className="font-medium mb-5">
                   {testimonial.company}
                 </p>
                 {testimonial.text && (
-                  <p className=" mb-3 xs:mb-2">
+                  <p className="mb-5">
                     {testimonial.text}
                   </p>
                 )}
-                {testimonial.linkedinUrl && (
-                  <a
-                    href={testimonial.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#FF3F1A] underline decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] hover:opacity-80 transition-opacity duration-200 md:text-sm text-xs xs:text-sm"
-                  >
-                    Full review on LinkedIn
-                  </a>
-                )}
               </div>
+
+              <a
+                href={testimonial.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto text-[#FF3F1A] underline decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] hover:opacity-80 transition-opacity duration-200 md:text-sm text-xs xs:text-sm"
+              >
+                Full review on LinkedIn
+              </a>
             </div>
           ))}
         </div>
