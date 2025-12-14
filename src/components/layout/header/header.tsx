@@ -18,6 +18,11 @@ export default function Header({ className }: { className?: string }) {
   const formRef = useRef<HTMLDivElement>(null);
   const [formViewModel] = useState(() => new FormViewModel());
 
+  // Scroll tracking states
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const openModal = () => {
     setIsModalOpen(true);
     formRef.current?.focus();
@@ -35,13 +40,63 @@ export default function Header({ className }: { className?: string }) {
     };
   }, [isModalOpen]);
 
+  // Handle scroll behavior
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // Show blur background after scrolling 20px
+          setIsScrolled(currentScrollY > 20);
+
+          // Show header when scrolling up, hide when scrolling down
+          // Always show header at the very top
+          if (currentScrollY < 20) {
+            setIsVisible(true);
+          } else if (currentScrollY < lastScrollY - 5) {
+            // Scrolling up (with 5px threshold to avoid jitter)
+            setIsVisible(true);
+          } else if (currentScrollY > lastScrollY + 5 && currentScrollY > 150) {
+            // Scrolling down and past 150px (with 5px threshold)
+            setIsVisible(false);
+          }
+
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
     <>
-      {/* Render header only if modal is not open */}
+      {/* Render header with scroll behavior */}
       <header
-        className={cn(`w-full ${pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]"}  sm:relative fixed z-100`, className)}
+        className={cn(
+          "w-full fixed top-0 left-0 z-100",
+          "transition-all duration-500 ease-out",
+          // Show/hide based on scroll
+          isVisible ? "translate-y-0" : "-translate-y-full",
+          // Backdrop blur when scrolled with same color as main background
+          isScrolled
+            ? "backdrop-blur-xl "
+            : "bg-transparent",
+          // Text colors based on pathname
+          pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]",
+          className
+        )}
       >
-        <div className={cn("mx-auto px-5 flex items-center")}>
+        <div className={cn(
+          "mx-auto px-5 flex items-center xs:py-7 py-5"
+        )}>
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center group">
             <FunctionLogo className={`origin-left sm:scale-100 scale-119 ${pathname == "/contacts" ? "fill-[#FF3F1A]" : "fill-[#F0EDE8]"} group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300`} />

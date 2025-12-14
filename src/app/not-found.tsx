@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <>
       <main className="xs:h-screen h-[100dvh] relative overflow-hidden">
-        <Header className="pt-5 xs:pt-7" />
+        <Header />
         <CustomCursor />
         {/* Container for the entire 404 design */}
         <div className="w-full mt-5 xs:mt-0 h-full flex flex-col xs:items-center justify-center pointer-events-none">
@@ -31,7 +31,7 @@ export default function NotFound() {
 
             {/* Main 404 SVG */}
             <div className="flex justify-center overflow-hidden">
-              <WebGLBlurEffect className="bg-[#151516] pointer-events-auto py-[50px] xs:py-[60px] lg:py-[80px]">
+              <WebGLBlurEffect className="bg-[#151516] pointer-events-auto xs:py-[60px] lg:py-[80px]">
                 <svg
                   width="1207"
                   height="486"
@@ -50,7 +50,7 @@ export default function NotFound() {
             </div>
 
             {/* Link - Mobile: Below SVG, Desktop: Overlaid on bottom right */}
-            <div className="px-11.5 mt-6 text-left xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
+            <div className="max-xs:px-11.5 mt-6 text-left xs:px-11.5 xs:absolute xs:z-20 xs:bottom-0 lg:pb-1 lg:pt-0 xs:pl-48 lg:pl-123 xs:text-right" custom-cursor="hover">
               <Link
                 href="/"
                 className="text-[#F0EDE8] text-[1.5625rem]
