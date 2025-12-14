@@ -136,7 +136,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
                 href={testimonial.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto text-[#FF3F1A] underline decoration-[#FF3F1A] decoration-[0.065em] underline-offset-[0.8cqw] hover:opacity-80 transition-opacity duration-200 md:text-sm text-xs xs:text-sm"
+                className="mt-auto text-[#727272] underline decoration-[#727272] decoration-[0.065em] underline-offset-[0.25cqw] hover:text-[#FF3F1A] hover:underline hover:decoration-[#FF3F1A] active:text-[#FF3F1A] active:underline active:decoration-[#FF3F1A] transition-colors duration-200 md:text-sm text-xs xs:text-sm"
               >
                 Full review on LinkedIn
               </a>
