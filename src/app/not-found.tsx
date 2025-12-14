@@ -31,7 +31,7 @@ export default function NotFound() {
 
             {/* Main 404 SVG */}
             <div className="flex justify-center overflow-hidden">
-              <WebGLBlurEffect className="bg-[#151516] pointer-events-auto py-[50px] xs:py-[60px] lg:py-[80px]">
+              <WebGLBlurEffect className="bg-[#151516] pointer-events-auto xs:py-[60px] lg:py-[80px]">
                 <svg
                   width="1207"
                   height="486"
