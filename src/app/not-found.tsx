@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <>
       <main className="xs:h-screen h-[100dvh] relative overflow-hidden">
-        <Header className="pt-5 xs:pt-7" />
+        <Header />
         <CustomCursor />
         {/* Container for the entire 404 design */}
         <div className="w-full mt-5 xs:mt-0 h-full flex flex-col xs:items-center justify-center pointer-events-none">

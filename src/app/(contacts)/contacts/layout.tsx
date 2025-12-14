@@ -14,9 +14,9 @@ export default function ContactsLayout({
 }>) {
 
   return (
-    <div className="bg-[#F0EDE8] xs:pt-7 pt-5 ">
+    <div className="bg-[#F0EDE8]">
       <ToastProvider>
-        <Header className="" />
+        <Header />
         <CookieConsent />
         <CustomCursor />
         <SmoothScroll />
