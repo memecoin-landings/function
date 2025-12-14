@@ -112,7 +112,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11 min-h-[28.75rem] justify-between md:w-1/3 w-2/3"
+              className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11.25 lg:min-h-[28.75rem] xs:min-h-[22.5rem] min-h-[22rem] justify-between xs:w-1/3 w-2/3"
               >
 
               <div className="flex flex-col h-full text-[#F0EDE8] lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
