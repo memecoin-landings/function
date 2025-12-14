@@ -17,7 +17,7 @@ export default function Header({ className }: { className?: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
   const [formViewModel] = useState(() => new FormViewModel());
-  
+
   // Scroll tracking states
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -48,10 +48,10 @@ export default function Header({ className }: { className?: string }) {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          
+
           // Show blur background after scrolling 20px
           setIsScrolled(currentScrollY > 20);
-          
+
           // Show header when scrolling up, hide when scrolling down
           // Always show header at the very top
           if (currentScrollY < 20) {
@@ -63,11 +63,11 @@ export default function Header({ className }: { className?: string }) {
             // Scrolling down and past 150px (with 5px threshold)
             setIsVisible(false);
           }
-          
+
           setLastScrollY(currentScrollY);
           ticking = false;
         });
-        
+
         ticking = true;
       }
     };
@@ -86,8 +86,8 @@ export default function Header({ className }: { className?: string }) {
           // Show/hide based on scroll
           isVisible ? "translate-y-0" : "-translate-y-full",
           // Backdrop blur when scrolled with same color as main background
-          isScrolled 
-            ? "backdrop-blur-xl bg-[#151516]/80" 
+          isScrolled
+            ? "backdrop-blur-xl "
             : "bg-transparent",
           // Text colors based on pathname
           pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]",
