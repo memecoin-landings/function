@@ -20,49 +20,49 @@ const testimonials: Testimonial[] = [
     title: "CEO & Co-Founder",
     company: "GOLDEX",
     text: "The identity work for GOLDEX was handled professionally and smoothly. The result is precise, memorable, and fully aligned with the company’s vision. Strongly recommended.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Andrew Kormysh",
     title: "Marketing Director",
     company: "AIM Property Development",
     text: "AIM Property Development and OZ Mall received clear, well-structured branding, with Fedor bringing creative direction and strategic insight to the process. His work was reliable, effective, and easy to collaborate on.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Nick Morozov",
     title: "CEO",
     company: "Atelier Morozov",
     text: "Fedor created the corporate identity and website for my menswear brand Morozov, delivering strong, precise branding and managing the full process professionally. Highly recommended.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Daniel Iurev",
     title: "CEO & Founder",
     company: "IVA endo",
     text: "Fedor created a clear, trustworthy identity for IVA endo, immersing himself in our AI-driven medtech field and delivering precise, thoughtful work that supports our mission.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Kirill Tishchenko",
     title: "Founder",
     company: "MyCouture",
     text: "The MyCouture project was delivered thoughtfully and with a clear creative approach. The branding and website gave the brand individuality and helped it connect with its audience. Highly recommended.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Alexander Cherny",
     title: "Head of Marketing",
     company: "Belagra Group",
     text: "My company ordered a rebranding from Fedor, and he delivered the project professionally, efficiently, and on time. He listens carefully to client needs and implements them fully. I confidently recommend him.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
   {
     name: "Denis Makhalov",
     title: "Entrepreneur & Founder",
     company: "",
     text: "Over many years of collaboration, Fedor has delivered strong, reliable work across multiple branding projects. He quickly understands business needs, offers thoughtful solutions, and remains a trusted partner I can fully rely on.",
-    linkedinUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/fedor-beltugov-a6896a37/details/recommendations/",
   },
 ];
 
@@ -77,12 +77,12 @@ export default function TestimonialsBlock({ className }: { className?: string })
         const cardWidth = firstCard.offsetWidth;
         const marginRight = parseFloat(window.getComputedStyle(firstCard).marginRight) || 0;
         const scrollAmount = cardWidth + marginRight;
-        
+
         // Check if we can scroll one more card, or if we're at/near the end
         const currentScroll = sliderRef.current.scrollLeft;
         const maxScroll = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
         const willReachEnd = currentScroll + scrollAmount >= maxScroll - 1; // 1px threshold
-        
+
         if (willReachEnd) {
           // Return to start
           sliderRef.current.scrollTo({
@@ -103,7 +103,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
   return (
     <section ref={sectionRef} className={cn("w-full fluid-container", className)}>
       <SectionHeader>Testimonials</SectionHeader>
-      
+
       <div className="relative mt-7.5 xs:mt-5">
         <div
           ref={sliderRef}
@@ -113,7 +113,7 @@ export default function TestimonialsBlock({ className }: { className?: string })
             <div
               key={index}
               className="snap-start flex-shrink-0 flex flex-col h-full pt-5 lg:pt-13.5 lg:pr-34 xs:pr-2.5 pr-11.25 lg:min-h-[28.75rem] xs:min-h-[22.5rem] min-h-[22rem] justify-between xs:w-1/3 w-2/3"
-              >
+            >
 
               <div className="flex flex-col h-full text-[#F0EDE8] lg:text-[1.375rem] text-base lg:leading-8.5 leading-6.5 tracking-[-3%]">
                 <h3 className="font-medium lg:text-3xl text-2xl mb-1 leading-[100%]">
