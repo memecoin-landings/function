@@ -21,7 +21,6 @@ export default function Header({ className }: { className?: string }) {
   // Scroll tracking states
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -49,18 +48,15 @@ export default function Header({ className }: { className?: string }) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
 
-          // Show blur background after scrolling 20px
-          setIsScrolled(currentScrollY > 20);
-
           // Show header when scrolling up, hide when scrolling down
           // Always show header at the very top
-          if (currentScrollY < 20) {
+          if (currentScrollY < 50) {
             setIsVisible(true);
-          } else if (currentScrollY < lastScrollY - 5) {
-            // Scrolling up (with 5px threshold to avoid jitter)
+          } else if (currentScrollY < lastScrollY - 10) {
+            // Scrolling up (with 10px threshold for smoother detection)
             setIsVisible(true);
-          } else if (currentScrollY > lastScrollY + 5 && currentScrollY > 150) {
-            // Scrolling down and past 150px (with 5px threshold)
+          } else if (currentScrollY > lastScrollY + 10 && currentScrollY > 200) {
+            // Scrolling down and past 200px (with 10px threshold for smoother behavior)
             setIsVisible(false);
           }
 
@@ -78,17 +74,24 @@ export default function Header({ className }: { className?: string }) {
 
   return (
     <>
+      {/* Permanent gradient blur overlay - always visible at top */}
+      <div 
+        className="fixed top-0 left-0 w-full h-[200px] pointer-events-none z-90"
+        style={{
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
+        }}
+      />
+
       {/* Render header with scroll behavior */}
       <header
         className={cn(
           "w-full fixed top-0 left-0 z-100",
-          "transition-all duration-500 ease-out",
+          "transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
           // Show/hide based on scroll
           isVisible ? "translate-y-0" : "-translate-y-full",
-          // Backdrop blur when scrolled with same color as main background
-          isScrolled
-            ? "backdrop-blur-xl "
-            : "bg-transparent",
           // Text colors based on pathname
           pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]",
           className
