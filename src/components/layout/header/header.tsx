@@ -76,12 +76,14 @@ export default function Header({ className }: { className?: string }) {
     <>
       {/* Permanent gradient blur overlay - always visible at top */}
       <div 
-        className="fixed top-0 left-0 w-full h-[200px] pointer-events-none z-90"
+        className="fixed top-0 left-0 w-full h-[300px] pointer-events-none z-90"
         style={{
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 10%, transparent 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 10%, transparent 70%, transparent 100%)',
+          willChange: 'backdrop-filter',
+          transform: 'translateZ(0)',
         }}
       />
 
@@ -90,8 +92,8 @@ export default function Header({ className }: { className?: string }) {
         className={cn(
           "w-full fixed top-0 left-0 z-100",
           "transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-          // Show/hide based on scroll
-          isVisible ? "translate-y-0" : "-translate-y-full",
+          // Show/hide based on scroll - оставляем небольшой отступ, чтобы контент не уходил выше
+          isVisible ? "translate-y-0" : "-translate-y-[calc(100%-4rem)]",
           // Text colors based on pathname
           pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]",
           className
