@@ -23,8 +23,8 @@ export default function MobileMenu({
     <div
       className={cn(
         className,
-        "fixed -z-1 top-0 h-screen left-0 w-screen transition-[translate] duration-300 overflow-scroll",
-        "pt-[max(10.5vh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20"
+        "fixed -z-1 top-0 h-[100svh] left-0 w-full transition-[translate] duration-300 overflow-scroll",
+        "pt-[max(10.5svh,5rem)] pl-[calc(max(26.74%,2.5rem))] bg-black flex flex-col pb-20"
       )}
     >
       <div className="flex flex-col items-start space-y-2.75">
