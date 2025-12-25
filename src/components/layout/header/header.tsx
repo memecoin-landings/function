@@ -21,6 +21,7 @@ export default function Header({ className }: { className?: string }) {
   // Scroll tracking states
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -38,6 +39,16 @@ export default function Header({ className }: { className?: string }) {
       document.body.classList.remove('modal-open');
     };
   }, [isModalOpen]);
+
+  // Анимация появления при первой загрузке
+  useEffect(() => {
+    // Небольшая задержка для плавного появления
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Handle scroll behavior
   useEffect(() => {
@@ -90,10 +101,11 @@ export default function Header({ className }: { className?: string }) {
       {/* Render header with scroll behavior */}
       <header
         className={cn(
-          "w-full fixed top-0 left-0 z-100",
+          "w-full fixed top-0 left-0 right-0 z-100",
           "transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-          // Show/hide based on scroll - оставляем небольшой отступ, чтобы контент не уходил выше
-          isVisible ? "translate-y-0" : "-translate-y-[calc(100%-4rem)]",
+          "will-change-transform [backface-visibility:hidden]",
+          // Show/hide based on scroll and initial load
+          (isVisible && !isInitialLoad) ? "translate-y-0" : "-translate-y-full",
           // Text colors based on pathname
           pathname == "/contacts" ? "text-[#FF3F1A] fill-[#F0EDE8]" : "text-[#F0EDE8]",
           className
